@@ -61,6 +61,7 @@
     <Compile Include="Manuscript\Repositories\JournalArticleTypeRepository.cs" />
     <Compile Include="Manuscript\Repositories\JournalRepository.cs" />
     <Compile Include="Manuscript\Repositories\JournalSectionTypeRepository.cs" />
+    <Compile Include="Manuscript\Repositories\ManuscriptBookErrorCategoryRepository.cs" />
     <Compile Include="Manuscript\Repositories\ManuscriptBookLoginDetailsRepository.cs" />
     <Compile Include="Manuscript\Repositories\ManuscriptBookLoginRepository.cs" />
     <Compile Include="Manuscript\Repositories\ManuscriptBookScreeningRepository.cs" />

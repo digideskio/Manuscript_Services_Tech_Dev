@@ -20,20 +20,20 @@ namespace TransferDesk.BAL.Manuscript
 {
     public class ManuscriptScreeningBL : IDisposable
     {
-      
+
         public ManuscriptDBRepositoryReadSide _manuscriptDBRepositoryReadSide { get; set; }
+        public ManuscriptLoginDBRepositoryReadSide ManuscriptLoginDbRepositoryReadSide { get; set; }
+        public Validations.ManuscriptValidations _manuscriptValidations { get; set; }
 
-        public Validations.ManuscriptValidations _manuscriptValidations { get; set; } 
+        public String _ConStringRead { get; set; }
 
-        public String _ConStringRead {get;set;}
+        public String _ConStringWrite { get; set; }
 
-         public String _ConStringWrite {get;set;}
+        public ManuscriptScreeningBL()
+        {
+            //empty constructor
+        }
 
-         public ManuscriptScreeningBL()
-         {
-             //empty constructor
-         }
- 
         public ManuscriptScreeningBL(String ConStringRead, String ConStringWrite)
         {
             _ConStringRead = ConStringRead;
@@ -41,7 +41,7 @@ namespace TransferDesk.BAL.Manuscript
             InitManuscriptScreeningBL();
         }
 
-         public void InitManuscriptScreeningBL()
+        public void InitManuscriptScreeningBL()
         {
             InitManuscriptDBRepositoryReadSide();
 
@@ -51,6 +51,7 @@ namespace TransferDesk.BAL.Manuscript
         public void InitManuscriptDBRepositoryReadSide()
         {
             _manuscriptDBRepositoryReadSide = new ManuscriptDBRepositoryReadSide(_ConStringWrite);
+            ManuscriptLoginDbRepositoryReadSide = new ManuscriptLoginDBRepositoryReadSide(_ConStringWrite);
         }
 
         public void InitManuscriptValidations()
@@ -68,11 +69,11 @@ namespace TransferDesk.BAL.Manuscript
         public DTOs.ManuscriptScreeningDTO GetManuscriptScreeningDefaultDTO()
         {
             DTOs.ManuscriptScreeningDTO manuscriptDTO = new DTOs.ManuscriptScreeningDTO();
-           
+
             manuscriptDTO.ErrorCategoriesList = _manuscriptDBRepositoryReadSide.GetErrorCategoryList("j");
-            
+
             return manuscriptDTO;
-          
+
         }
 
         public DTOs.ManuscriptBookScreeningDTO GetManuscriptBookScreeningDefaultDTO()
@@ -92,7 +93,7 @@ namespace TransferDesk.BAL.Manuscript
             manuscriptDTO.Manuscript = _manuscriptDBRepositoryReadSide.GetManuscriptByID(manuscriptID);
             manuscriptDTO.OtherAuthors = _manuscriptDBRepositoryReadSide.GetOtherAuthors(manuscriptID);
             manuscriptDTO.manuscriptErrorCategoryList = _manuscriptDBRepositoryReadSide.GetManuscriptErrorCategoryList(manuscriptID);
-         
+
             return manuscriptDTO;
         }
 
@@ -100,30 +101,37 @@ namespace TransferDesk.BAL.Manuscript
         {
 
             DTOs.ManuscriptBookScreeningDTO manuscriptDTO = GetManuscriptBookScreeningDefaultDTO();
-            manuscriptDTO.ManuscriptBookScreening = _manuscriptDBRepositoryReadSide.GetManuscriptBookByID(bookid);
-            manuscriptDTO.manuscriptErrorCategoryList = _manuscriptDBRepositoryReadSide.GetManuscriptErrorCategoryList(bookid);
-
+            var manuscriptBookScreeningList = _manuscriptDBRepositoryReadSide.IsBookLoginIDAvailable(bookid);
+            if (manuscriptBookScreeningList.Count > 0)
+            {
+                manuscriptDTO.ManuscriptBookScreening = manuscriptBookScreeningList.First();
+                manuscriptDTO.ManuscriptBookLogin =
+                    ManuscriptLoginDbRepositoryReadSide.GetManuscriptBookLoginByCrestID(
+                        manuscriptDTO.ManuscriptBookScreening.BookLoginID);
+                manuscriptDTO.manuscriptBookErrorCategory = _manuscriptDBRepositoryReadSide.GetManuscriptBookErrorCategoryList(manuscriptDTO.ManuscriptBookScreening.ID);
+            }
+            else
+            {
+                manuscriptDTO.ManuscriptBookLogin = ManuscriptLoginDbRepositoryReadSide.GetManuscriptBookLoginByCrestID(bookid);
+            }
             return manuscriptDTO;
         }
 
-        public bool SaveManuscriptScreening(DTOs.ManuscriptScreeningDTO manuscriptScreeningDTO, IDictionary<string,string> dataErrors)
+        public bool SaveManuscriptScreening(DTOs.ManuscriptScreeningDTO manuscriptScreeningDTO, IDictionary<string, string> dataErrors)
         {
             if (_manuscriptValidations == null)
             {
                 InitManuscriptValidations();
 
-                 _manuscriptValidations.Validate_MSID(manuscriptScreeningDTO.Manuscript, dataErrors);
+                _manuscriptValidations.Validate_MSID(manuscriptScreeningDTO.Manuscript, dataErrors);
                 if (dataErrors.Count > 0)
                 {
                     return false;
                 }
-                
+
             }
-
-            //set system managed attributes
-
             //set starttime as system time for add of Manuscript
-            if (manuscriptScreeningDTO.Manuscript.ID  == 0)
+            if (manuscriptScreeningDTO.Manuscript.ID == 0)
             {
                 manuscriptScreeningDTO.Manuscript.StartDate = System.DateTime.Now;
             }
@@ -140,26 +148,26 @@ namespace TransferDesk.BAL.Manuscript
 
             //if a revision occurs, add the same manuscript as new manuscript with a parent 
 
-             if (manuscriptScreeningDTO.AddedNewRevision == true)
-             {
-                 manuscriptScreeningDTO.Manuscript.ParentManuscriptID = manuscriptScreeningDTO.Manuscript.ID;
-                 manuscriptScreeningDTO.Manuscript.ID = 0;
+            if (manuscriptScreeningDTO.AddedNewRevision == true)
+            {
+                manuscriptScreeningDTO.Manuscript.ParentManuscriptID = manuscriptScreeningDTO.Manuscript.ID;
+                manuscriptScreeningDTO.Manuscript.ID = 0;
 
-                 //also each related details will be added, for new revised manuscript
-                 for(int counter = 0; counter < manuscriptScreeningDTO.OtherAuthors.Count; counter++)
-                 {
-                     manuscriptScreeningDTO.OtherAuthors[counter].ID = 0;
-                 }
-                 for (int counter = 0; counter < manuscriptScreeningDTO.manuscriptErrorCategoryList.Count; counter++)
-                 {
-                     manuscriptScreeningDTO.manuscriptErrorCategoryList[counter].ID = 0;
-                 }
-             }
-            
+                //also each related details will be added, for new revised manuscript
+                for (int counter = 0; counter < manuscriptScreeningDTO.OtherAuthors.Count; counter++)
+                {
+                    manuscriptScreeningDTO.OtherAuthors[counter].ID = 0;
+                }
+                for (int counter = 0; counter < manuscriptScreeningDTO.manuscriptErrorCategoryList.Count; counter++)
+                {
+                    manuscriptScreeningDTO.manuscriptErrorCategoryList[counter].ID = 0;
+                }
+            }
+
             //set what to save for manuscript screening
-             manuscriptScreeningDTO.HasToSaveManuscript = true;
-             manuscriptScreeningDTO.HasToSaveOtherAuthors = true;
-             manuscriptScreeningDTO.HasToSaveErrorCategoriesList = true;
+            manuscriptScreeningDTO.HasToSaveManuscript = true;
+            manuscriptScreeningDTO.HasToSaveOtherAuthors = true;
+            manuscriptScreeningDTO.HasToSaveErrorCategoriesList = true;
 
             ManuscriptScreeningUnitOfWork _manuscriptScreeningUnitOfWork = null;
             try
@@ -174,17 +182,63 @@ namespace TransferDesk.BAL.Manuscript
             //exception will be raised up in the call stack
             finally
             {
-                if(_manuscriptScreeningUnitOfWork != null)
+                if (_manuscriptScreeningUnitOfWork != null)
                 {
                     _manuscriptScreeningUnitOfWork.Dispose();
                 }
             }
         }
 
-        //public IEnumerable<Entities.Manuscript> GetAllManuscript()
-        //{
-        //    return _manuscriptScreeningUnitOfWork.GetManuscriptList();  
-        //}
+        public bool SaveManuscriptBookScreening(DTOs.ManuscriptBookScreeningDTO manuscriptBookScreeningDto, IDictionary<string, string> dataErrors)
+        {
+            if (_manuscriptValidations == null)
+            {
+                InitManuscriptValidations();
+
+                if (dataErrors.Count > 0)
+                {
+                    return false;
+                }
+
+            }
+            //set starttime as system time for add of Manuscript
+            if (manuscriptBookScreeningDto.ManuscriptBookScreening.ID == 0)
+            {
+                manuscriptBookScreeningDto.ManuscriptBookScreening.CreatedDate = System.DateTime.Now;
+            }
+
+            //Set Quality user id if role is quality
+            if (manuscriptBookScreeningDto.ManuscriptBookScreening.RollID == 2)//todo: set constants for roles
+            {
+                manuscriptBookScreeningDto.ManuscriptBookScreening.QualityUserID = manuscriptBookScreeningDto.CurrentUserID;
+            }
+            else
+            {
+                manuscriptBookScreeningDto.ManuscriptBookScreening.AssociateUserID = manuscriptBookScreeningDto.CurrentUserID;
+            }
+            //set what to save for manuscript screening
+            manuscriptBookScreeningDto.HasToSaveManuscriptBookScreening = true;
+            manuscriptBookScreeningDto.HasToSaveErrorCategoriesList = true;
+
+            ManuscriptScreeningUnitOfWork _manuscriptScreeningUnitOfWork = null;
+            try
+            {
+                _manuscriptScreeningUnitOfWork = new ManuscriptScreeningUnitOfWork(_ConStringWrite);
+
+                _manuscriptScreeningUnitOfWork.manuscriptBookScreeningDTO = manuscriptBookScreeningDto;
+                _manuscriptScreeningUnitOfWork.SaveManuscriptBookScreening();
+                _manuscriptScreeningUnitOfWork.SaveBookChanges();//todo:change this function to update ids and save as seperate commit
+                return true;
+            }
+            //exception will be raised up in the call stack
+            finally
+            {
+                if (_manuscriptScreeningUnitOfWork != null)
+                {
+                    _manuscriptScreeningUnitOfWork.Dispose();
+                }
+            }
+        }
 
         private bool disposed = false;
 
@@ -206,7 +260,7 @@ namespace TransferDesk.BAL.Manuscript
             Dispose(true);
             GC.SuppressFinalize(this);
         }
-      
+
 
     }
 }

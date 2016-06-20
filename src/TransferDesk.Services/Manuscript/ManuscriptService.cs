@@ -21,7 +21,7 @@ namespace TransferDesk.Services.Manuscript
         public String _ConStringWrite { get; set; }
 
         public ManuscriptScreeningBL _manuscriptScreeningBL { get; set; }
-           
+
         public ManuscriptService()
         {
             //empty constructor            
@@ -38,7 +38,7 @@ namespace TransferDesk.Services.Manuscript
         {
             _manuscriptScreeningBL = new ManuscriptScreeningBL(_ConStringRead, _ConStringWrite);
         }
-        
+
         public void CreateManuscriptServiceComponents()
         {
             CreateManuscriptScreeningBL();
@@ -46,12 +46,12 @@ namespace TransferDesk.Services.Manuscript
 
         public ManuscripScreeningVM GetManuscriptScreeningVM()
         {
-           return GetManuscriptScreeningDefaultVM();
+            return GetManuscriptScreeningDefaultVM();
         }
 
         public ManuscripScreeningVM GetManuscriptScreeningVM(int manuscriptID)
         {
-           return new ManuscripScreeningVM(_manuscriptScreeningBL.GetManuscriptScreeningDTO(manuscriptID));
+            return new ManuscripScreeningVM(_manuscriptScreeningBL.GetManuscriptScreeningDTO(manuscriptID));
         }
 
         public ManuscripScreeningVM GetManuscriptScreeningDefaultVM()
@@ -72,7 +72,7 @@ namespace TransferDesk.Services.Manuscript
             return new ManuscriptBookScreeningVm(manuscriptScreeningDTO);
         }
 
-        public void ValidateManuscriptScreening(IDictionary<string,string> dataErrors, ManuscriptScreeningDTO manuscriptScreeningDTO)
+        public void ValidateManuscriptScreening(IDictionary<string, string> dataErrors, ManuscriptScreeningDTO manuscriptScreeningDTO)
         {
             Entities.Manuscript manuscript = manuscriptScreeningDTO.Manuscript;
             if (manuscript.JournalID == null)
@@ -107,19 +107,58 @@ namespace TransferDesk.Services.Manuscript
                 dataErrors.Add("OverallAnalysis", "Overall Analysis is required.");
         }
 
-        public bool SaveManuscriptScreeningVM(IDictionary<string,string> dataErrors, ManuscripScreeningVM manuscriptVM)
+        public bool SaveManuscriptScreeningVM(IDictionary<string, string> dataErrors, ManuscripScreeningVM manuscriptVM)
         {
             ManuscriptScreeningDTO manuscriptScreeningDTO = manuscriptVM.FetchDTO;
             manuscriptScreeningDTO.CurrentUserID = System.Web.HttpContext.Current.User.Identity.Name.Replace("SPRINGER-SBM\\", "");
             ValidateManuscriptScreening(dataErrors, manuscriptScreeningDTO);
             if (dataErrors.Count == 0)
             {
-                _manuscriptScreeningBL.SaveManuscriptScreening(manuscriptScreeningDTO,dataErrors);
+                _manuscriptScreeningBL.SaveManuscriptScreening(manuscriptScreeningDTO, dataErrors);
                 return true;
             }
             else
             {
                 return false;
+            }
+        }
+
+        public bool SaveManuscriptBookScreeningVM(IDictionary<string, string> dataErrors, ManuscriptBookScreeningVm manuscriptVM)
+        {
+            ManuscriptBookScreeningDTO manuscriptBookScreeningDTO = manuscriptVM.FetchDTO;
+            manuscriptBookScreeningDTO.CurrentUserID = System.Web.HttpContext.Current.User.Identity.Name.Replace("SPRINGER-SBM\\", "");
+            manuscriptBookScreeningDTO.ManuscriptBookScreening.BookLoginID = manuscriptVM.BookLoginID;
+            manuscriptBookScreeningDTO.ManuscriptBookScreening.ID = manuscriptVM.BookScreeningID;
+            _manuscriptScreeningBL.SaveManuscriptBookScreening(manuscriptBookScreeningDTO, dataErrors);
+            return true;
+        }
+
+        public void IsBookSaveOrSubmit(ManuscriptBookScreeningVm manuscriptBookScreeningVm, string associateCommand,
+            string qualityCommand)
+        {
+            if (associateCommand != null)
+            {
+                switch (associateCommand.ToLower())
+                {
+                    case "save":
+                        manuscriptBookScreeningVm.IsAssociateFinalSubmit = false;
+                        break;
+                    case "submit":
+                        manuscriptBookScreeningVm.IsAssociateFinalSubmit = true;
+                        break;
+                }
+            }
+            if (qualityCommand != null)
+            {
+                switch (qualityCommand.ToLower())
+                {
+                    case "save":
+                        manuscriptBookScreeningVm.IsQualityFinalSubmit = false;
+                        break;
+                    case "submit":
+                        manuscriptBookScreeningVm.IsQualityFinalSubmit = true;
+                        break;
+                }
             }
         }
 

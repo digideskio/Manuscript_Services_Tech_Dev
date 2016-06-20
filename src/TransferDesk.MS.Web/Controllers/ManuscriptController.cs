@@ -17,7 +17,6 @@ using System.Text;
 using Microsoft.Ajax.Utilities;
 using TransferDesk.Services.Manuscript.ReportOutputs;
 using TransferDesk.Services.Manuscript.Preview;
-using TransferDesk.Contracts.Logging;
 
 namespace TransferDesk.MS.Web.Controllers
 {
@@ -25,11 +24,9 @@ namespace TransferDesk.MS.Web.Controllers
     {
         private readonly ManuscriptDBRepositoryReadSide _manuscriptDbRepositoryReadSide;
         private readonly ManuscriptService _manuscriptService;
-        private ILogger _logger;
 
-        public ManuscriptController(ILogger logger)
+        public ManuscriptController()
         {
-            _logger = logger;
             var conString = Convert.ToString(ConfigurationManager.AppSettings["dbTransferDeskService"]);
             _manuscriptService = new ManuscriptService(conString, conString);
             _manuscriptDbRepositoryReadSide = new ManuscriptDBRepositoryReadSide(conString);
@@ -38,42 +35,34 @@ namespace TransferDesk.MS.Web.Controllers
         [HttpGet]
         public ActionResult HomePage(int? id)
         {
-            try
+            var userId = @System.Web.HttpContext.Current.User.Identity.Name.Replace("SPRINGER-SBM\\", "");
+            var roleIds = _manuscriptDbRepositoryReadSide.GetUserRoles(userId);
+            if (roleIds.Count() > 0)
             {
-                var userId = @System.Web.HttpContext.Current.User.Identity.Name.Replace("SPRINGER-SBM\\", "");
-                var roleIds = _manuscriptDbRepositoryReadSide.GetUserRoles(userId);
-                if (roleIds.Count() > 0)
-                {
-                    ViewBag.RoleList = _manuscriptDbRepositoryReadSide.GetUserRoleList(roleIds);
-                    ViewBag.SearchList = _manuscriptDbRepositoryReadSide.GetSearchList("j");
-                    ViewBag.JournalList = _manuscriptDbRepositoryReadSide.GetJournalList();
-                    ViewBag.JournalStatusList = _manuscriptDbRepositoryReadSide.GetJournalStatusList();
-                    ViewBag.iThenticateResult = JsonConvert.SerializeObject(_manuscriptDbRepositoryReadSide.GetList(1));
-                    ViewBag.EnglishLangQuality = JsonConvert.SerializeObject(_manuscriptDbRepositoryReadSide.GetList(2));
-                    ViewBag.EthicsComplience = JsonConvert.SerializeObject(_manuscriptDbRepositoryReadSide.GetList(3));
-                    ViewBag.OverallAnalysis = JsonConvert.SerializeObject(_manuscriptDbRepositoryReadSide.GetList(4));
-                    var manuscriptId = id ?? default(int);
+                ViewBag.RoleList = _manuscriptDbRepositoryReadSide.GetUserRoleList(roleIds);
+                ViewBag.SearchList = _manuscriptDbRepositoryReadSide.GetSearchList("j");
+                ViewBag.JournalList = _manuscriptDbRepositoryReadSide.GetJournalList();
+                ViewBag.JournalStatusList = _manuscriptDbRepositoryReadSide.GetJournalStatusList();
+                ViewBag.iThenticateResult = JsonConvert.SerializeObject(_manuscriptDbRepositoryReadSide.GetList(1));
+                ViewBag.EnglishLangQuality = JsonConvert.SerializeObject(_manuscriptDbRepositoryReadSide.GetList(2));
+                ViewBag.EthicsComplience = JsonConvert.SerializeObject(_manuscriptDbRepositoryReadSide.GetList(3));
+                ViewBag.OverallAnalysis = JsonConvert.SerializeObject(_manuscriptDbRepositoryReadSide.GetList(4));
+                var manuscriptId = id ?? default(int);
 
-                    if (_manuscriptService._manuscriptScreeningBL == null)
-                        _manuscriptService._manuscriptScreeningBL = new BAL.Manuscript.ManuscriptScreeningBL();
+                if (_manuscriptService._manuscriptScreeningBL == null)
+                    _manuscriptService._manuscriptScreeningBL = new BAL.Manuscript.ManuscriptScreeningBL();
 
-                    if (_manuscriptService._manuscriptScreeningBL._manuscriptDBRepositoryReadSide == null)
-                        _manuscriptService._manuscriptScreeningBL._manuscriptDBRepositoryReadSide = _manuscriptDbRepositoryReadSide;
+                if (_manuscriptService._manuscriptScreeningBL._manuscriptDBRepositoryReadSide == null)
+                    _manuscriptService._manuscriptScreeningBL._manuscriptDBRepositoryReadSide = _manuscriptDbRepositoryReadSide;
 
-                    var manuscriptVm = manuscriptId == 0 ? _manuscriptService.GetManuscriptScreeningDefaultVM() : _manuscriptService.GetManuscriptScreeningVM(manuscriptId);
+                var manuscriptVm = manuscriptId == 0 ? _manuscriptService.GetManuscriptScreeningDefaultVM() : _manuscriptService.GetManuscriptScreeningVM(manuscriptId);
 
-                    var journalId = Convert.ToInt32(manuscriptVm.JournalID);
-                    ViewBag.ArticleList = _manuscriptDbRepositoryReadSide.GetArticleList(journalId);
-                    ViewBag.SectionList = _manuscriptDbRepositoryReadSide.GetSectionList(journalId);
-                    return View("HomePage", manuscriptVm);
-                }
-                return File("~/Views/Shared/Unauthorised.htm", "text/html");
+                var journalId = Convert.ToInt32(manuscriptVm.JournalID);
+                ViewBag.ArticleList = _manuscriptDbRepositoryReadSide.GetArticleList(journalId);
+                ViewBag.SectionList = _manuscriptDbRepositoryReadSide.GetSectionList(journalId);
+                return View("HomePage", manuscriptVm);
             }
-            catch (Exception exception)
-            {
-                _logger.LogException(exception);
-                return null;
-            }
+            return File("~/Views/Shared/Unauthorised.htm", "text/html");
         }
 
         [HttpPost, ValidateInput(false)]
@@ -240,7 +229,6 @@ namespace TransferDesk.MS.Web.Controllers
 
         private bool disposed = false;
 
-
         [HttpGet]
         public FileResult TransferReport(int manuscriptId)
         {
@@ -253,7 +241,6 @@ namespace TransferDesk.MS.Web.Controllers
             return File("~/Templates/TransferReport/" + manuscriptVm.MSID + "_TransferReport.docx", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", manuscriptVm.MSID + "_TransferReport.docx");
         }
 
-        
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -374,6 +361,38 @@ namespace TransferDesk.MS.Web.Controllers
                 return View("BookScreening", manuscriptBookVm);
             }
             return File("~/Views/Shared/Unauthorised.htm", "text/html");
+        }
+
+        [HttpPost, ValidateInput(false)]
+        [ValidateAntiForgeryToken]
+        public ActionResult BookScreening(ManuscriptBookScreeningVm manuscriptBookScreeningVm, string associateCommand, string qualityCommand)
+        {
+            try
+            {
+                var userId = @System.Web.HttpContext.Current.User.Identity.Name.Replace("SPRINGER-SBM\\", "");
+                IDictionary<string, string> dataErrors = new Dictionary<string, string>();
+                _manuscriptService.IsBookSaveOrSubmit(manuscriptBookScreeningVm, associateCommand, qualityCommand);
+                if (manuscriptBookScreeningVm.BookScreeningID == 0)
+                {
+                    _manuscriptService.SaveManuscriptBookScreeningVM(dataErrors, manuscriptBookScreeningVm);
+                    TempData["msg"] = "<script>alert('Record added succesfully');</script>";
+                }
+                else
+                {
+                    _manuscriptService.SaveManuscriptBookScreeningVM(dataErrors, manuscriptBookScreeningVm);
+                    TempData["msg"] = "<script>alert('Record updated succesfully');</script>";
+                }
+            }
+            catch (Exception ex) { }
+            return RedirectToAction("BookScreening", manuscriptBookScreeningVm.BookLoginID);
+        }
+
+
+
+        [AcceptVerbs(HttpVerbs.Get)]
+        public JsonResult GetBookSearchResult(string selectedValue, string searchBy)
+        {
+            return this.Json(_manuscriptDbRepositoryReadSide.GetBookSearchResult(selectedValue, searchBy), JsonRequestBehavior.AllowGet);
         }
     }
 }

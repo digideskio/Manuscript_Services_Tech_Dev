@@ -25,11 +25,11 @@ namespace TransferDesk.Services.Manuscript.ViewModel
         public List<StatusMaster> ServiceTypes { get; set; }
         public List<BookMaster> BookTitleList { get; set; }
         public List<pr_GetBookLoignedJobs_Result> ManuscriptBookLoginedJobs { get; set; }
-        
+
         public ManuscriptBookLoginVM()
         {
             _msDTO = new ManuscriptBookLoginDTO();
-            
+
         }
 
         public int ID
@@ -55,7 +55,7 @@ namespace TransferDesk.Services.Manuscript.ViewModel
         [Required(ErrorMessage = "Chapter Number")]
         public string ChapterNumber
         {
-            get { return  _msDTO.manuscriptBookLogin.ChapterNumber; }
+            get { return _msDTO.manuscriptBookLogin.ChapterNumber; }
             set { _msDTO.manuscriptBookLogin.ChapterNumber = value; }
         }
 

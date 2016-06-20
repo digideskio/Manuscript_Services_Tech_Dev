@@ -261,3 +261,12 @@ D:\MS-Iteration-10_Updated_ToUATRel\MS-Iteration-10_Updated\TransferDesk.Contrac
 D:\MS-Iteration-10_Updated_ToUATRel\MS-Iteration-10_Updated\TransferDesk.Contracts\obj\Debug\TransferDesk.Contracts.csprojResolveAssemblyReference.cache
 D:\MS-Iteration-10_Updated_ToUATRel\MS-Iteration-10_Updated\TransferDesk.Contracts\obj\Debug\TransferDesk.Contracts.dll
 D:\MS-Iteration-10_Updated_ToUATRel\MS-Iteration-10_Updated\TransferDesk.Contracts\obj\Debug\TransferDesk.Contracts.pdb
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Contracts\bin\Debug\TransferDesk.Contracts.dll.config
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Contracts\bin\Debug\TransferDesk.Contracts.dll
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Contracts\bin\Debug\TransferDesk.Contracts.pdb
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Contracts\bin\Debug\EntityFramework.dll
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Contracts\bin\Debug\EntityFramework.SqlServer.dll
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Contracts\bin\Debug\EntityFramework.xml
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Contracts\bin\Debug\EntityFramework.SqlServer.xml
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Contracts\obj\Debug\TransferDesk.Contracts.dll
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Contracts\obj\Debug\TransferDesk.Contracts.pdb

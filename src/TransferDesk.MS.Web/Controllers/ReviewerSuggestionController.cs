@@ -43,7 +43,7 @@ namespace TransferDesk.MS.Web.Controllers
                 ReviewerSuggestionVM msReviewerSuggestionVM;
                 int reviewerID = id ?? default(int);
 
-                if (_reviewerService._reviewerSuggetionBL== null)
+                if (_reviewerService._reviewerSuggetionBL == null)
                 {
                     _reviewerService._reviewerSuggetionBL = new BAL.Manuscript.ReviewerSuggetionBL();
                 }
@@ -67,14 +67,14 @@ namespace TransferDesk.MS.Web.Controllers
                 return File("~/Views/Shared/Unauthorised.htm", "text/html");
             }
         }
-        
-        public ActionResult UnAssignReviewer(int reviewerInfoID,int? msReviewersSuggestionID)
+
+        public ActionResult UnAssignReviewer(int reviewerInfoID, int? msReviewersSuggestionID)
         {
-            bool result=_reviewerService.UnAssignReviewer(reviewerInfoID, msReviewersSuggestionID);
+            bool result = _reviewerService.UnAssignReviewer(reviewerInfoID, msReviewersSuggestionID);
             if (result)
             {
                 Dictionary<String, String> dicReplace = new Dictionary<String, String>();
-                _reviewerService.GetMailDetails(dicReplace,reviewerInfoID, msReviewersSuggestionID, userID);
+                _reviewerService.GetMailDetails(dicReplace, reviewerInfoID, msReviewersSuggestionID, userID);
                 SendMail(dicReplace, "~/EmailTemplate/Unassign_Reviewer_mail_template.html", "Reviewer(s) unassigned for :" + dicReplace["[manuscriptNumber]"], Convert.ToString(dicReplace["[QAEmail]"]), Convert.ToString(dicReplace["[AnalystEmail]"]), Convert.ToString(dicReplace["[QAEmail]"]), "");
                 TempData["MSIDError"] = "<script>alert('Reviewer unassigned successfully');</script>";
 
@@ -84,7 +84,7 @@ namespace TransferDesk.MS.Web.Controllers
 
         [HttpPost, ValidateInput(false)]
         [ValidateAntiForgeryToken]
-        public ActionResult ReviewersSuggestions(ReviewerSuggestionVM msReviewerSuggestionVM, string AssociateCommand, string QualityCommand)
+        public ActionResult ReviewersSuggestions(ReviewerSuggestionVM msReviewerSuggestionVM, string AssociateCommand, string QualityCommand, string[] UnAssignedReviewer)
         {
             IDictionary<string, string> dataErrors = new Dictionary<string, string>();
             if (ModelState.IsValid)
@@ -95,7 +95,7 @@ namespace TransferDesk.MS.Web.Controllers
                 }
                 else
                 {
-                    if (_reviewerDBRepositoryReadSide.IsMSIDAvailable(msReviewerSuggestionVM.MSID,msReviewerSuggestionVM.ID))
+                    if (_reviewerDBRepositoryReadSide.IsMSIDAvailable(msReviewerSuggestionVM.MSID, msReviewerSuggestionVM.ID))
                     {
                         TempData["MSIDError"] = "<script>alert('Manuscript Number is already present.');</script>";
                     }
@@ -106,6 +106,27 @@ namespace TransferDesk.MS.Web.Controllers
                         TempData["MSIDError"] = "<script>alert('Record updated succesfully');</script>";
                     }
                 }
+            }
+            string reviewerNames = String.Empty;
+            //un-assign reviewer if any
+            foreach (var reviewerID in UnAssignedReviewer)
+            {
+                _reviewerService.UnAssignReviewer(Convert.ToInt32(reviewerID), msReviewerSuggestionVM.ID);
+                var result = _reviewerDBRepositoryReadSide.GetMSReviewerInfoIDs(Convert.ToInt32(reviewerID));
+                List<TransferDesk.Contracts.Manuscript.Entities.ReviewerMaster> reviewerMasters = _reviewerDBRepositoryReadSide.GetReviewerDetails(result.ID);
+                reviewerNames += reviewerMasters[0].ReviewerName + ", ";
+            }
+            if (UnAssignedReviewer.Length > 0)
+            {
+                reviewerNames = reviewerNames.Remove(reviewerNames.Length - 1);
+                Dictionary<String, String> dicReplace = new Dictionary<String, String>();
+                _reviewerService.GetMailDetails(dicReplace, Convert.ToInt32(UnAssignedReviewer[0]), msReviewerSuggestionVM.ID, userID);
+                dicReplace.Add("[reviewername]", reviewerNames);
+                dicReplace.Add("[ReviewerCount]", Convert.ToString(UnAssignedReviewer.Length));
+                dicReplace.Add("[ErrorDescription]", msReviewerSuggestionVM.ErrorDescription);
+                SendMail(dicReplace, "~/EmailTemplate/Unassign_Reviewer_mail_template.html", "Reviewer(s) unassigned for :" + dicReplace["[manuscriptNumber]"], Convert.ToString(dicReplace["[QAEmail]"]), Convert.ToString(dicReplace["[AnalystEmail]"]), Convert.ToString(dicReplace["[QAEmail]"]), "");
+                
+                TempData["MSIDError"] = "<script>alert('Reviewer unassigned successfully');</script>";
             }
             return RedirectToAction("ReviewersSuggestions", new { id = msReviewerSuggestionVM.ID });
         }

@@ -347,3 +347,16 @@ D:\MS-Iteration-10_Updated_ToUATRel\MS-Iteration-10_Updated\TransferDesk.BAL\bin
 D:\MS-Iteration-10_Updated_ToUATRel\MS-Iteration-10_Updated\TransferDesk.BAL\obj\Debug\TransferDesk.BAL.csprojResolveAssemblyReference.cache
 D:\MS-Iteration-10_Updated_ToUATRel\MS-Iteration-10_Updated\TransferDesk.BAL\obj\Debug\TransferDesk.BAL.dll
 D:\MS-Iteration-10_Updated_ToUATRel\MS-Iteration-10_Updated\TransferDesk.BAL\obj\Debug\TransferDesk.BAL.pdb
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.BAL\bin\Debug\TransferDesk.BAL.dll
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.BAL\bin\Debug\TransferDesk.BAL.pdb
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.BAL\bin\Debug\EntityFramework.dll
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.BAL\bin\Debug\EntityFramework.SqlServer.dll
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.BAL\bin\Debug\TransferDesk.Contracts.dll
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.BAL\bin\Debug\TransferDesk.DAL.dll
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.BAL\bin\Debug\TransferDesk.Contracts.pdb
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.BAL\bin\Debug\TransferDesk.DAL.pdb
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.BAL\bin\Debug\EntityFramework.xml
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.BAL\bin\Debug\EntityFramework.SqlServer.xml
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.BAL\obj\Debug\TransferDesk.BAL.csprojResolveAssemblyReference.cache
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.BAL\obj\Debug\TransferDesk.BAL.dll
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.BAL\obj\Debug\TransferDesk.BAL.pdb

@@ -9,6 +9,7 @@ namespace TransferDesk.Contracts.Manuscript.Entities
     public class ManuscriptBookScreening
     {
         public int ID { get; set; }
+        public int? RollID { get; set; }
         public int BookLoginID { get; set; }
         public int? OverallAnalysisID { get; set; }
         public int? Crosscheck_iThenticateResultID { get; set; }
@@ -33,5 +34,7 @@ namespace TransferDesk.Contracts.Manuscript.Entities
         public DateTime? ModifidedDate { get; set; }
         public string ModifidedBy { get; set; }
         public DateTime? QualityStartCheckDate { get; set; }
+        public string AssociateUserID { get; set; }
+        public string QualityUserID { get; set; }
     }
 }

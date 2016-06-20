@@ -55,9 +55,9 @@ $(document).ready(function () {
         $("#dbID").val(ID);
         $('#myModal').modal('hide');
         if (ID == 0 || ID == '' || ID == null) {
-            var url = AppPath+'Manuscript/HomePage';
+            var url = AppPath + 'Manuscript/HomePage';
         } else {
-            var url = AppPath+'Manuscript/HomePage/' + ID;
+            var url = AppPath + 'Manuscript/HomePage/' + ID;
         }
         window.location.href = url;
 
@@ -71,12 +71,6 @@ $(document).ready(function () {
         }
     });
 
-    //$(document).keyup(function (e) {
-    //    if (e.keyCode == 27) { // escape key maps to keycode `27`
-    //        $(".mce-close").click();
-    //    }
-    //});    
-   
     $('#myModal').on('hidden.bs.modal', function (e) {
         $('#txtSearch').val('');
         $('#SelectedValue').find('option:first').attr('selected', 'selected');
@@ -94,7 +88,7 @@ $(document).ready(function () {
             return false;
         }
         //SearchProgress()
-        var URL = AppPath+"Manuscript/GetSearchResult";
+        var URL = AppPath + "Manuscript/GetSearchResult";
         loadMSDetailsModal(URL, selectedValue, searchText);
     });//submit action end
 
@@ -102,14 +96,14 @@ $(document).ready(function () {
     $('#btnNewAdd').click(ResetAllControls);
     $('#QualityStartCheckDate').datepicker({ dateFormat: 'dd/mm/yy' });
     $('.datepicker').datepicker({ dateFormat: 'dd/mm/yy' });
-    
+
     if ($("#ArticleTitle").val() == '' || $("#ArticleTitle").val() == '0') {
         document.getElementById("StartDate").value = new Date($.now()).getDate() + "/" + ("0" + (new Date($.now()).getMonth() + 1)).slice(-2) + "/" + new Date($.now()).getFullYear();
         $('.datepicker').val('');
         $("#MSID").val('');
         $(".ManuscriptDetailsLastRow").css({ "display": "none" });
     }
-    else {        
+    else {
 
         $(".ManuscriptDetailsLastRow").css({ "display": "normal" });
     }
@@ -248,7 +242,7 @@ $(document).ready(function () {
     $("#AssignedEditor").autocomplete({
         source: function (request, response) {
             $.ajax({
-                url:AppPath+ 'Manuscript/GetAssignedEditor',
+                url: AppPath + 'Manuscript/GetAssignedEditor',
                 data: { searchText: request.term, journalID: $("#ddlJournalTitle option:selected").val() },
                 dataType: "json",
                 type: "GET",
@@ -307,7 +301,7 @@ $(document).ready(function () {
 
     IsViewEditable();
 
-    $("#btnIsQualityFinalSubmit").click(function() {
+    $("#btnIsQualityFinalSubmit").click(function () {
         var role = $("#ddlRole option:selected").text();
         if (role == "Quality Analyst") {
             var QualityCheck = $("#QualityCheck option:selected").text();
@@ -318,7 +312,7 @@ $(document).ready(function () {
                         alert("Please, Select Error Categories");
                         return false;
                     }
-                    if (!(jQuery.trim($("#ErrorDescription").val()).length>0)) {
+                    if (!(jQuery.trim($("#ErrorDescription").val()).length > 0)) {
                         //alert(jQuery.trim($("#ErrorDescription").val()).length);
                         alert("Please, Enter Error Description");
                         return false;
@@ -369,7 +363,7 @@ function IsAddNewRevision() {
         $('#RevisedDate').show();
         $('#RevisedDate').val($.datepicker.formatDate("dd/mm/yy", new Date()));
     }
-    else{
+    else {
         $("#hdnIsAssociateFinalSubmit").val(isAssociateFinalSubmit);
         $("#hdnIsQualityFinalSubmit").val(isQualityFinalSubmit);
         var role = $("#ddlRole option:selected").text();
@@ -399,8 +393,8 @@ function IsAddNewRevision() {
             IsTransferReport();
             IsAccurate();
             IsQualityCheck();
-        } 
-	
+        }
+
         //for handling save and submit enable/disable depending on final submit value if revision checkbox is unchecked
         if (isAssociateFinalSubmit.toLocaleLowerCase() == "true") {
             $("#btnAssociateSave,#btnAssociateIsFinalSubmit,#btnTransferReportClick").prop('disabled', true);
@@ -408,7 +402,7 @@ function IsAddNewRevision() {
         else if (isQualityFinalSubmit.toLocaleLowerCase() == "true") {
             $("#btnAssociateSave,#btnAssociateIsFinalSubmit,#btnTransferReportClick, #btnQualitySave,#btnIsQualityFinalSubmit").prop('disabled', true);
         }
-        
+
 
         if ($("#ParentManuscriptID").val() == null || $("#ParentManuscriptID").val() == "") {
             $('#lblRevisedDate,#RevisedDate').hide();
@@ -468,7 +462,7 @@ function IsViewEditable() {
             IsAddNewRevision();
             IsTransferReport();
         }
-    } 
+    }
 }
 
 function IsTransferReport() {
@@ -479,8 +473,7 @@ function IsTransferReport() {
     else
         $('#btnTransferReportClick').prop('disabled', true);
 
-    if(transferReport.toLocaleLowerCase() == 'yes' && ($("#hdnIsAssociateFinalSubmit").val().toLocaleLowerCase() == "true"))
-    {
+    if (transferReport.toLocaleLowerCase() == 'yes' && ($("#hdnIsAssociateFinalSubmit").val().toLocaleLowerCase() == "true")) {
         $('#btnTransferReportClick').prop('disabled', true);
         var role = $("#ddlRole option:selected").text();
         if (role == "Quality Analyst") {
@@ -624,7 +617,7 @@ function loadMSDetailsModal(URL, selectedValue, searchText) {
 }
 
 function ResetAllControls() {
-        var url =AppPath +'Manuscript/';
+    var url = AppPath + 'Manuscript/';
     window.location.href = url;
 }
 
@@ -642,9 +635,7 @@ function loadArticleTypeDDL() {
     $.ajax(
     {
         method: "GET",
-
-
-        url:AppPath+ "Manuscript/GetArticleType",
+        url: AppPath + "Manuscript/GetArticleType",
         contentType: "application/json; charset=utf-8",
         data: { journalMasterID: selectedJournal },
         success: function (data) {
@@ -682,7 +673,7 @@ function loadArticleTypeDDL() {
         method: "GET",
 
 
-        url:AppPath +"Manuscript/GetSectionType",
+        url: AppPath + "Manuscript/GetSectionType",
         contentType: "application/json; charset=utf-8",
         data: { journalMasterID: selectedJournal },
         success: function (data) {
@@ -714,9 +705,9 @@ function loadArticleTypeDDL() {
         }
     });
 
-    //$.get(AppPath + "ManuscriptLogin/GetJournalLink", { "journalId": $("#ddlJournalTitle").val() }, function (link) {
-    //    $('#JournalLink').html('<a href="' + link + '" target="_blank" style="text-decoration: underline;padding-left: 40px;word-break: break-all;color: blue;">' + link + '</a>');
-    //});
+    $.get(AppPath + "ManuscriptLogin/GetJournalLink", { "journalId": $("#ddlJournalTitle").val() }, function (link) {
+        $('#JournalLink').html('<a href="' + link + '" target="_blank" style="text-decoration: underline;word-break: break-all;color: blue;">' + link + '</a>');
+    });
 }
 
 

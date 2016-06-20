@@ -71,6 +71,7 @@ namespace TransferDesk.DAL.Manuscript.DataContext
             modelBuilder.Entity<Entities.BookMaster>();
             modelBuilder.Entity<Entities.ManuscriptBookLogin>();
             modelBuilder.Entity<Entities.ManuscriptBookScreening>();
+            modelBuilder.Entity<Entities.ManuscriptBookErrorCategory>();
 
             modelBuilder.Entity<TransferDesk.Contracts.Manuscript.ComplexTypes.Search.pr_SearchMSDetails_Result>();
             modelBuilder.Entity<TransferDesk.Contracts.Manuscript.ComplexTypes.ManuscriptAdmin.pr_GetJournalArticleDetails_Result>();
@@ -119,6 +120,7 @@ namespace TransferDesk.DAL.Manuscript.DataContext
         public virtual DbSet<Entities.BookMaster> BookMaster { get; set; }
         public virtual DbSet<Entities.ManuscriptBookLogin> ManuscriptBookLogin { get; set; }
         public virtual DbSet<Entities.ManuscriptBookScreening> ManuscriptBookScreening { get; set; }
+        public virtual DbSet<Entities.ManuscriptBookErrorCategory> ManuscriptBookErrorCategory { get; set; }
         public virtual int pr_GetMSDetails()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pr_GetMSDetails");

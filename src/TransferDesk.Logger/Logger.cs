@@ -46,7 +46,7 @@ namespace TransferDesk.Logger
 
         public void Dispose()
         {
-            _fileLogger?.Dispose();
+            _fileLogger.Dispose();
         }
 
        public void WriteStringBuilderToDiskAndClear(StringBuilder stringBuilder)

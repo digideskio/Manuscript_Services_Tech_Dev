@@ -22,8 +22,10 @@ namespace TransferDesk.DAL.Manuscript.UnitOfWork
         private Repos.OtherAuthorsRepository _otherAuthorsRepository;
         private Repos.ManuscriptErrorCategoryRepository _manuscriptErrorCategoryRepository;
         private Repos.ErrorCategoryRepository _errorCategoryRepository;
-
+        private Repos.ManuscriptBookScreeningRepository _manuscriptBookScreeningRepository;
         public DTOs.ManuscriptScreeningDTO manuscriptScreeningDTO { get; set; }
+        private Repos.ManuscriptBookErrorCategoryRepository _bookErrorCategoryRepository;
+        public DTOs.ManuscriptBookScreeningDTO manuscriptBookScreeningDTO { get; set; }
 
         public ManuscriptScreeningUnitOfWork(string conString)
         {
@@ -31,30 +33,9 @@ namespace TransferDesk.DAL.Manuscript.UnitOfWork
             _otherAuthorsRepository = new Repos.OtherAuthorsRepository(_manuscriptRepository.manuscriptDataContext);
             _errorCategoryRepository = new Repos.ErrorCategoryRepository(_manuscriptRepository.manuscriptDataContext);
             _manuscriptErrorCategoryRepository = new Repos.ManuscriptErrorCategoryRepository(_manuscriptRepository.manuscriptDataContext);
+            _manuscriptBookScreeningRepository = new Repos.ManuscriptBookScreeningRepository(conString);
+            _bookErrorCategoryRepository = new Repos.ManuscriptBookErrorCategoryRepository(conString);
         }
-
-
-        //private void SaveOtherAuthors()
-        //{
-        //    if (manuscriptScreeningDTO.OtherAuthors != null)
-        //    {
-        //        foreach (Entities.OtherAuthor otherAuthor in manuscriptScreeningDTO.OtherAuthors)
-        //        {
-        //            if (otherAuthor.ID == null || otherAuthor.ID == 0)
-        //            {
-        //                otherAuthor.ManuscriptID = manuscriptScreeningDTO.Manuscript.ID;
-        //                otherAuthor.MSID = manuscriptScreeningDTO.Manuscript.MSID;
-        //                _otherAuthorsRepository.AddOtherAuthor(otherAuthor);
-        //            }
-        //            else
-        //            {
-        //                otherAuthor.ManuscriptID = manuscriptScreeningDTO.Manuscript.ID;
-        //                otherAuthor.MSID = manuscriptScreeningDTO.Manuscript.MSID;
-        //                _otherAuthorsRepository.UpdateOtherAuthor(otherAuthor);
-        //            }
-        //        }
-        //    }
-        //}
 
         private void SaveOtherAuthors()
         {
@@ -127,16 +108,61 @@ namespace TransferDesk.DAL.Manuscript.UnitOfWork
             SaveManuscriptErrorCategories();
         }
 
+        public void SaveManuscriptBookScreening()
+        {
+            SaveBookScreening();
+            SaveManuscriptBookErrorCategories();
+        }
+
+        private void SaveManuscriptBookErrorCategories()
+        {
+            if (manuscriptBookScreeningDTO.manuscriptBookErrorCategory != null)
+            {
+                foreach (Entities.ManuscriptBookErrorCategory manuscriptBookErrorCategory in manuscriptBookScreeningDTO.manuscriptBookErrorCategory)
+                {
+                    //viewmodel is defined and sent so sure that it is 0(or value) and it is not null
+                    if (manuscriptBookErrorCategory.ID == 0)
+                    {
+                        manuscriptBookErrorCategory.ManuscriptBookScreeningID = manuscriptBookScreeningDTO.ManuscriptBookScreening.ID;
+                        _bookErrorCategoryRepository.AddManuscriptErrorCategory(manuscriptBookErrorCategory);
+                    }
+                    else
+                    {
+                        manuscriptBookErrorCategory.ManuscriptBookScreeningID = manuscriptBookScreeningDTO.ManuscriptBookScreening.ID;
+                        _bookErrorCategoryRepository.UpdateManuscriptErrorCategory(manuscriptBookErrorCategory);
+                    }
+                }
+            }
+        }
+
+        private void SaveBookScreening()
+        {
+            if (manuscriptBookScreeningDTO.ManuscriptBookScreening.ID == 0)
+            {
+                _manuscriptBookScreeningRepository.AddManuscriptBookScreening(
+                    manuscriptBookScreeningDTO.ManuscriptBookScreening);
+            }
+            else
+            {
+                _manuscriptBookScreeningRepository.UpdateManuscriptBookScreening(manuscriptBookScreeningDTO.ManuscriptBookScreening);
+            }
+        }
+
         private void SaveManuscript()
         {
-            if (manuscriptScreeningDTO.Manuscript.ID == 0 ) // first sent starting from create new then
+            if (manuscriptScreeningDTO.Manuscript.ID == 0) // first sent starting from create new then
             {
-               _manuscriptRepository.AddManuscript(manuscriptScreeningDTO.Manuscript);
+                _manuscriptRepository.AddManuscript(manuscriptScreeningDTO.Manuscript);
             }
             else
             {
                 _manuscriptRepository.UpdateManuscript(manuscriptScreeningDTO.Manuscript);
             }
+        }
+
+        public void SaveBookChanges()
+        {
+            _manuscriptBookScreeningRepository.SaveChanges();
         }
 
         public void SaveChanges()
@@ -154,13 +180,12 @@ namespace TransferDesk.DAL.Manuscript.UnitOfWork
             if (!this.disposed)
             {
                 if (disposing)
-                {             
+                {
                     //todo:check null to check if instance is created
                     _otherAuthorsRepository.Dispose();
                     _errorCategoryRepository.Dispose();
                     _manuscriptErrorCategoryRepository.Dispose();
                     _manuscriptRepository.Dispose();
-
                 }
             }
             this.disposed = true;
@@ -171,6 +196,6 @@ namespace TransferDesk.DAL.Manuscript.UnitOfWork
             Dispose(true);
             GC.SuppressFinalize(this);
         }
-       
+
     }
 }

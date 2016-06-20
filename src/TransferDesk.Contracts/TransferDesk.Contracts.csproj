@@ -64,6 +64,7 @@
     <Compile Include="Manuscript\ComplexTypes\ManuscriptLogin\pr_GetManuscriptLoginJobs_Result.cs" />
     <Compile Include="Manuscript\ComplexTypes\QualityAnalystDashBoard\pr_GetSpecificQualityAnalystJobs_Result.cs" />
     <Compile Include="Manuscript\ComplexTypes\Search\pr_ReviewerDetails_Result.cs" />
+    <Compile Include="Manuscript\ComplexTypes\Search\pr_SearchMSBookDetails_Result.cs" />
     <Compile Include="Manuscript\ComplexTypes\Search\pr_SearchMSDetails_Result.cs" />
     <Compile Include="Manuscript\ComplexTypes\UserRole\pr_GetAssociateInfo_Result.cs" />
     <Compile Include="Manuscript\ComplexTypes\UserRole\pr_GetUserRoleDetails_Result.cs" />
@@ -77,6 +78,7 @@
     <Compile Include="Manuscript\DTO\MSReviewerSuggestionDTO.cs" />
     <Compile Include="Manuscript\DTO\ReviewerDetailsDTO.cs" />
     <Compile Include="Manuscript\Entities\ArticleType.cs" />
+    <Compile Include="Manuscript\Entities\ManuscriptBookErrorCategory.cs" />
     <Compile Include="Manuscript\Entities\ManuscriptBookLogin.cs" />
     <Compile Include="Manuscript\Entities\BookMaster.cs" />
     <Compile Include="Manuscript\Entities\DepartmentMaster.cs" />

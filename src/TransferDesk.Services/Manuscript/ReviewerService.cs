@@ -21,7 +21,7 @@ namespace TransferDesk.Services.Manuscript
         public String _ConStringWrite { get; set; }
 
         public ReviewerSuggetionBL _reviewerSuggetionBL { get; set; }
-           
+
         public ReviewerService()
         {
             //empty constructor            
@@ -67,16 +67,16 @@ namespace TransferDesk.Services.Manuscript
             }
         }
 
-        private void ValidateMSReviewerSuggestion(IDictionary<string, string> dataErrors,MSReviewerSuggestionDTO msReviewerSuggestionDTO)
+        private void ValidateMSReviewerSuggestion(IDictionary<string, string> dataErrors, MSReviewerSuggestionDTO msReviewerSuggestionDTO)
         {
             Entities.MSReviewersSuggestion msReviewersSuggestion = msReviewerSuggestionDTO.MSReviewersSuggestion;
-            if(msReviewersSuggestion.StartDate==null)
+            if (msReviewersSuggestion.StartDate == null)
                 dataErrors.Add("StartDate", "Start Date is required.");
-            if(msReviewersSuggestion.JournalID==null)
+            if (msReviewersSuggestion.JournalID == null)
                 dataErrors.Add("JournalID", "JournalTitle is required.");
             if (msReviewersSuggestion.MSID == null)
                 dataErrors.Add("MSID", "Manuscript Number is required.");
-            if (msReviewersSuggestion.ArticleTitle== null)
+            if (msReviewersSuggestion.ArticleTitle == null)
                 dataErrors.Add("ArticleTitle", "Article Title is required.");
             if (msReviewersSuggestion.RoleID == null)
                 dataErrors.Add("RoleID", "Role is required.");
@@ -88,14 +88,15 @@ namespace TransferDesk.Services.Manuscript
             return true;
         }
 
-        public void GetMailDetails(Dictionary<String, String> dicReplace,int reviewerInfoID, int? msReviewersSuggestionID, string userID)
+        public void GetMailDetails(Dictionary<String, String> dicReplace, int reviewerInfoID, int? msReviewersSuggestionID, string userID)
         {
-            _reviewerSuggetionBL.GetMailDetails(dicReplace,reviewerInfoID, msReviewersSuggestionID, userID);
+            _reviewerSuggetionBL.GetMailDetails(dicReplace, reviewerInfoID, msReviewersSuggestionID, userID);
         }
 
         public void SaveMailDetails(Dictionary<string, string> dicReplace, string emailTo, string emailFrom, string emailCC, string emailBCC, string emailSubject, string emailBody)
         {
-            _reviewerSuggetionBL.SaveMailDetails(dicReplace,emailTo, emailFrom, emailCC, emailBCC, emailSubject, Convert.ToString(emailBody));
+            _reviewerSuggetionBL.SaveMailDetails(dicReplace, emailTo, emailFrom, emailCC, emailBCC, emailSubject, Convert.ToString(emailBody));
         }
+
     }
 }

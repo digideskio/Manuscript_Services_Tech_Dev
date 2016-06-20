@@ -26,5 +26,6 @@ namespace TransferDesk.Contracts.Manuscript.Entities
         public DateTime? ModifidedDate { get; set; }
         public string ModifidedBy { get; set; }
         public int ManuscriptStatusID { get; set; }
+        public string ShareDrivePath { get; set; }
     }
 }

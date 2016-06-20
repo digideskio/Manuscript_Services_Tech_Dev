@@ -14,10 +14,12 @@
 <br />
 @Html.Raw(TempData["MSIDError"])
 @Html.Raw(TempData["msg"])
-@using (Html.BeginForm("HomePage", "Manuscript", new { id = "frmHomePage" }))
+@using (Html.BeginForm("BookScreening", "Manuscript", FormMethod.Post))
 {
+
     @Html.AntiForgeryToken()
-    @Html.HiddenFor(model => model.ID, new { id = "dbID" })
+    @Html.HiddenFor(model => model.BookScreeningID, new { id = "dbID" })
+    @Html.HiddenFor(model => model.BookLoginID)
     @Html.HiddenFor(x => x.IsAssociateFinalSubmit, new { id = "hdnIsAssociateFinalSubmit" })
     @Html.HiddenFor(x => x.IsQualityFinalSubmit, new { id = "hdnIsQualityFinalSubmit" })
     @Html.Hidden("tmpAssociateFinalSubmitValue")
@@ -28,7 +30,7 @@
                 Start Date
             </td>
             <td width="214px">
-                @Html.TextBoxFor(x => x.StartDate, new { @class = "form-control input-sm", placeholder = "dd/mm/yyyy", @readonly = "readonly", @Value = Model.StartDate.HasValue?Model.StartDate.Value.ToShortDateString():DateTime.Now.ToShortDateString() })
+                @Html.TextBoxFor(x => x.StartDate, new { @class = "form-control input-sm", placeholder = "dd/mm/yyyy", @readonly = "readonly", @Value = Model.StartDate.HasValue ? Model.StartDate.Value.ToShortDateString() : DateTime.Now.ToShortDateString() })
             </td>
             <td align="right" colspan="2" width="456px">
                 <b>@Model.EmployeeName</b>
@@ -37,7 +39,7 @@
                 Role&nbsp;&nbsp;&nbsp;
             </td>
             <td align="right" width="210px">
-                @Html.DropDownListFor(x => x.RoleID, new SelectList(ViewBag.RoleList, "ID", "RoleName"), new {@class = "form-control input-sm", id = "ddlRole"})
+                @Html.DropDownListFor(x => x.RollID, new SelectList(ViewBag.RoleList, "ID", "RoleName"), new { @class = "form-control input-sm", id = "ddlRole" })
             </td>
         </tr>
     </table>
@@ -46,7 +48,7 @@
     <table class=" tWidth lastTDAlign ManuscriptDetails">
         <tr>
             <td>
-                Book Title 
+                Book Title
                 <span class="asterik">* </span>
             </td>
             <td>
@@ -74,23 +76,21 @@
                 <span class="asterik"> *</span>
             </td>
             <td>
-                @Html.TextBoxFor(model => model.ReceivedDate, new { @class = "form-control input-sm", placeholder = "dd/mm/yyyy", @Value = Model.StartDate.HasValue ? Model.StartDate.Value.ToShortDateString() : null })
+                @Html.TextBoxFor(model => model.ReceivedDate, new { @class = "form-control input-sm", placeholder = "dd/mm/yyyy", @Value = Model.ReceivedDate.ToShortDateString() })
             </td>
             <td>
                 <span>Page Count<span class="asterik"> *</span> </span>
             </td>
             <td>
-                @Html.TextBoxFor(x => x.PageCount, new { @class = "form-control input-sm", placeholder = "Enter Page Count"})
+                @Html.TextBoxFor(x => x.PageCount, new { @class = "form-control input-sm", placeholder = "Enter Page Count" })
             </td>
             <td>
                 <span>
-                    <span id="lblRevision">
-                        Revision
-                    </span>
+                    Shared Drive Path
                 </span>
             </td>
             <td style="text-align:left" class="ManuscriptDetailsLastRow">
-                @Html.CheckBoxFor(x => x.AddedNewRevision)
+                @Html.TextBoxFor(x => x.ShareDrivePath, new { @class = "form-control input-sm", placeholder = "Enter Share Drive Path" })
             </td>
         </tr>
     </table>
@@ -163,10 +163,10 @@
             <td>
                 <div id="ddlEnglishlangQuality">
                 </div>
-                @Html.TextBoxFor(x => x.English_Lang_QualityID, new {id = "hdnEnglishlangQuality", style = "Display:None"})
-                @Html.Hidden("English_Lang_QualityID1", "", new {id = "hdnEnglishlangQuality1"})
-                <input type="hidden" id="hdnEnglishlang" value="@Model.English_Lang_QualityID"/>
-                @Html.TextAreaFor(x => x.Comments_English_Lang_Quality, new {@class = "form-control imgDropDownComment", id = "txtComments_English_Lang_Quality"})
+                @Html.TextBoxFor(x => x.English_Lang_QualityID, new { id = "hdnEnglishlangQuality", style = "Display:None" })
+                @Html.Hidden("English_Lang_QualityID1", "", new { id = "hdnEnglishlangQuality1" })
+                <input type="hidden" id="hdnEnglishlang" value="@Model.English_Lang_QualityID" />
+                @Html.TextAreaFor(x => x.Comments_English_Lang_Quality, new { @class = "form-control imgDropDownComment", id = "txtComments_English_Lang_Quality" })
             </td>
             <td>
                 <span>Ethics Compliance </span>
@@ -176,10 +176,10 @@
                 <div id="ddlEthicsComplience">
                 </div>
                 @* Displaying error *@
-                @Html.TextBoxFor(x => x.Ethics_ComplianceID, new {id = "hdnEthicsComplience", style = "Display:None"})
-                <input type="hidden" id="hdnEthics" value="@Model.Ethics_ComplianceID"/>
-                @Html.Hidden("Ethics_ComplianceID1", "", new {id = "hdnEthicsComplience1"})
-                @Html.TextAreaFor(x => x.Comments_Ethics_Compliance, new {@class = "form-control imgDropDownComment", id = "txtComments_Ethics_Compliance"})
+                @Html.TextBoxFor(x => x.Ethics_ComplianceID, new { id = "hdnEthicsComplience", style = "Display:None" })
+                <input type="hidden" id="hdnEthics" value="@Model.Ethics_ComplianceID" />
+                @Html.Hidden("Ethics_ComplianceID1", "", new { id = "hdnEthicsComplience1" })
+                @Html.TextAreaFor(x => x.Comments_Ethics_Compliance, new { @class = "form-control imgDropDownComment", id = "txtComments_Ethics_Compliance" })
             </td>
             <td>
                 <span>Final Advice </span>
@@ -188,18 +188,18 @@
             <td disabled='true'>
                 <div id="ddlOverallAnalysis">
                 </div>
-                @Html.TextBoxFor(x => x.OverallAnalysisID, new {style = "Display:None"})
-                <input type="hidden" id="hdnOverallAnalysis" value="@Model.OverallAnalysisID"/>
-                @Html.Hidden("OverallAnalysisID", "", new {id = "hdnOverallAnalysis1"})
-                @Html.TextAreaFor(x => x.Comments_OverallAnalysis, new {@class = "form-control imgDropDownComment", id = "txtComments_OverallAnalysis"})
+                @Html.TextBoxFor(x => x.OverallAnalysisID, new { style = "Display:None" })
+                <input type="hidden" id="hdnOverallAnalysis" value="@Model.OverallAnalysisID" />
+                @Html.Hidden("OverallAnalysisID", "", new { id = "hdnOverallAnalysis1" })
+                @Html.TextAreaFor(x => x.Comments_OverallAnalysis, new { @class = "form-control imgDropDownComment", id = "txtComments_OverallAnalysis" })
             </td>
         </tr>
         <tr>
             <td colspan="5"></td>
             <td>
                 <input type="button" id="btnPreviewBookManuscript" value="Preview MS" class="btn btn-primary btn-sm">
-                <input type="submit" id="btnAssociateSave" name="AssociateCommand" value="Save" class="btn btn-primary btn-sm"/>
-                <input type="submit" id="btnAssociateIsFinalSubmit" name="AssociateCommand" value="Submit" class="btn btn-primary btn-sm"/>
+                <input type="submit" id="btnAssociateSave" name="AssociateCommand" value="Save" class="btn btn-primary btn-sm" />
+                <input type="submit" id="btnAssociateIsFinalSubmit" name="AssociateCommand" value="Submit" class="btn btn-primary btn-sm" />
             </td>
         </tr>
     </table>
@@ -262,7 +262,7 @@
                     <span style="padding-left: 1em;"> Error Description  </span>
                 </td>
                 <td colspan="2" align="left" style="padding-left:1.6em">
-                    @Html.TextAreaFor(x => x.ErrorDescription, new { cols = "50",style="height:150px" })
+                    @Html.TextAreaFor(x => x.ErrorDescription, new { cols = "50", style = "height:150px" })
                 </td>
                 <td align="right" style="vertical-align:bottom">
                     <input type="submit" id="btnQualitySave" name="QualityCommand" value="Save" class="btn btn-primary btn-sm" />

@@ -191,8 +191,6 @@ namespace TransferDesk.BAL.Manuscript
         public void GetMailDetails(Dictionary<String, String> dicReplace, int reviewerMasterID, int? msReviewersSuggestionID, string userID)
         {
             Entities.MSReviewersSuggestion msReviewersSuggestion = msReviewerSuggestionDBRepositoryReadSide.GetManuscriptByID(msReviewersSuggestionID);
-            Entities.MSReviewersSuggestionInfo msReviewersSuggestionInfo = msReviewerSuggestionDBRepositoryReadSide.GetMSReviewerInfoIDs(reviewerMasterID);
-            List<Entities.ReviewerMaster> reviewerName = msReviewerSuggestionDBRepositoryReadSide.GetReviewerDetails(msReviewersSuggestionInfo.ReviewerMasterID);
             var journalName = msReviewerSuggestionDBRepositoryReadSide.GetJounralName(msReviewersSuggestion.JournalID);
             Entities.Employee associateUserInfo=null;
             Entities.Employee qualityUserInfo=null;
@@ -204,7 +202,6 @@ namespace TransferDesk.BAL.Manuscript
             }
             dicReplace.Add("[manuscriptNumber]", msReviewersSuggestion.MSID);
             dicReplace.Add("[journalname]", journalName.ToString());
-            dicReplace.Add("[reviewername]", reviewerName[0].ReviewerName);
             dicReplace.Add("[QAname]",qualityUserInfo.EmpName);
             dicReplace.Add("[Analystname]", associateUserInfo.EmpName);
             dicReplace.Add("[QAEmail]", qualityUserInfo.alternateEmail);

@@ -20,7 +20,7 @@
 {
     @Html.AntiForgeryToken()
     @Html.HiddenFor(model => model.ID, new { id = "dbID" })
-    @Html.HiddenFor(x=>x.ParentManuscriptID)
+    @Html.HiddenFor(x => x.ParentManuscriptID)
     @Html.HiddenFor(x => x.IsAssociateFinalSubmit, new { id = "hdnIsAssociateFinalSubmit" })
     @Html.HiddenFor(x => x.IsQualityFinalSubmit, new { id = "hdnIsQualityFinalSubmit" })
     @Html.Hidden("tmpAssociateFinalSubmitValue")
@@ -84,28 +84,28 @@
             <td>
                 <span>Article Title<span class="asterik">*</span> </span>
             </td>
-            <td >
+            <td>
                 @Html.TextBoxFor(x => x.ArticleTitle, new { @class = "form-control input-sm", placeholder = "Enter Article Title" })
                 @*<input type="button" id="btnArticleTitle" value="+" class="btn btn-primary btn-sm" data-target="#ArticleTitleModal" />
-                <div id="ArticleTitleModal" class="modal fade" tabindex='-1' data-backdrop="static" data-dismiss="modal">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <label>Article Title </label>
-                                <button type="button" class="close" data-dismiss="modal" name="ClosePopup" aria-hidden="true">&times;</button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="modal-body">
-
+                    <div id="ArticleTitleModal" class="modal fade" tabindex='-1' data-backdrop="static" data-dismiss="modal">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <label>Article Title </label>
+                                    <button type="button" class="close" data-dismiss="modal" name="ClosePopup" aria-hidden="true">&times;</button>
                                 </div>
-                                <div class="modal-footer">
-                                    <button type="button" id="btnOk" class="btn btn-default btn-sm">Ok</button>
-                                    <button type="button" class="btn btn-default btn-sm" data-dismiss="modal" name="ClosePopup">Close</button>
+                                <div class="modal-body">
+                                    <div class="modal-body">
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" id="btnOk" class="btn btn-default btn-sm">Ok</button>
+                                        <button type="button" class="btn btn-default btn-sm" data-dismiss="modal" name="ClosePopup">Close</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>*@
+                    </div>*@
             </td>
             <td>
                 <span>
@@ -125,7 +125,7 @@
                 </span>
             </td>
             <td style="text-align: left">
-                @Html.DropDownListFor(x => x.JournalStatusID, new SelectList(ViewBag.JournalStatusList, "ID", "Status"), "Select", new {@class = "form-control input-sm", id = "ddlStatusType"})
+                @Html.DropDownListFor(x => x.JournalStatusID, new SelectList(ViewBag.JournalStatusList, "ID", "Status"), "Select", new { @class = "form-control input-sm", id = "ddlStatusType" })
             </td>
             <td class="ManuscriptDetailsLastRow">
                 <span id="lblRevision">
@@ -139,15 +139,15 @@
                 <span id="lblRevisedDate">Revised Date</span>
             </td>
             <td colspan="3" class="ManuscriptDetailsLastRow">
-                @Html.TextBoxFor(x => x.RevisedDate, new {@class = "form-control input-sm datepicker", placeholder = "dd/mm/yyyy", @Value = (Model.RevisedDate.HasValue ? Model.RevisedDate.Value.ToShortDateString() : null)})
+                @Html.TextBoxFor(x => x.RevisedDate, new { @class = "form-control input-sm datepicker", placeholder = "dd/mm/yyyy", @Value = (Model.RevisedDate.HasValue ? Model.RevisedDate.Value.ToShortDateString() : null) })
             </td>
         </tr>
-        @*<tr>
-            <td colspan="3">Journal Link<span class="asterik">*</span></td>
-        <td>
-            <div id="JournalLink"></div>
-        </td>
-        </tr>*@
+        <tr>
+            <td>Journal Link<span class="asterik">*</span></td>
+            <td colspan="3" style="text-align: left">
+                <div id="JournalLink"></div>
+            </td>
+        </tr>
 
     </table>
     <hr />
@@ -185,16 +185,16 @@
 
                             @for (var i = 0; i < Model.OtherAuthors.Count; i++)
                             {
-                            <tr>
-                                <td>
-                                    @Html.HiddenFor(x => x.OtherAuthors[i].ID)
-                                    @Html.TextBoxFor(x => x.OtherAuthors[i].AuthorName, new { style = "width:100%;", @class = "form-control input-sm" })
-                                </td>
+                                <tr>
+                                    <td>
+                                        @Html.HiddenFor(x => x.OtherAuthors[i].ID)
+                                        @Html.TextBoxFor(x => x.OtherAuthors[i].AuthorName, new { style = "width:100%;", @class = "form-control input-sm" })
+                                    </td>
 
-                                <td>
-                                    @Html.TextBoxFor(x => x.OtherAuthors[i].Affillation, new { style = "width:100%;", @class = "form-control input-sm" })
-                                </td>
-                            </tr>
+                                    <td>
+                                        @Html.TextBoxFor(x => x.OtherAuthors[i].Affillation, new { style = "width:100%;", @class = "form-control input-sm" })
+                                    </td>
+                                </tr>
                             }
                         </tbody>
                     </table>
@@ -203,8 +203,8 @@
             </td>
             <td colspan="2" style="padding-left:1.4em;padding-top: 0.6em;">
                 <span>Handling Editor</span>
-				<br /><br />
-				<span>Corresponding Editor</span>
+                <br /><br />
+                <span>Corresponding Editor</span>
             </td>
             <td style="float:inherit">
                 <span style="float:right">
@@ -232,14 +232,15 @@
             </td>
         </tr>
     </table>
-    
+
     @Html.ValidationSummary("Following fields are mandatory:", new { @class = "alert alert-danger" })
     <hr />
 
     <div class="titles"><span><b>Analytical Findings</b></span></div>
     <table class="tWidth">
         <tr>
-            <td><span>iThenticate %</span>
+            <td>
+                <span>iThenticate %</span>
                 <span class="asterik">*</span>
             </td>
             <td>
@@ -380,7 +381,7 @@
                     <button type="button" class="close" data-dismiss="modal" name="ClosePopup" aria-hidden="true">&times;</button>
                 </div>
                 <div class="modal-body">
-                        <div id="divPreviewManuscript"></div>
+                    <div id="divPreviewManuscript"></div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default btn-sm" data-dismiss="modal" name="ClosePopup">Close</button>
                     </div>

@@ -59,13 +59,13 @@ namespace TransferDesk.Services.Manuscript.ViewModel
 
         private void ListErrorCategoryVMToDTO()
         {
-            _msDTO.manuscriptErrorCategoryList = new List<ManuscriptErrorCategory>();
+            _msDTO.manuscriptBookErrorCategory = new List<ManuscriptBookErrorCategory>();
             //locate errorcategory in viewmodel and remove unselected with id 0 
             foreach (ManuscriptErrorCategoryVM manuscriptErrorCategoryVM in _ErrorCategoryVMList)
             {
                 if (manuscriptErrorCategoryVM.ID > 0 || manuscriptErrorCategoryVM.IsSelected == true)
                 {
-                    ManuscriptErrorCategory manuscriptErrorCategory = new ManuscriptErrorCategory();
+                    ManuscriptBookErrorCategory manuscriptErrorCategory = new ManuscriptBookErrorCategory();
                     manuscriptErrorCategory.ID = manuscriptErrorCategoryVM.ID;
                     manuscriptErrorCategory.ErrorCategoryID = manuscriptErrorCategoryVM.ErrorCategoryID;
                     if (manuscriptErrorCategoryVM.ID > 0 && manuscriptErrorCategoryVM.IsSelected == false)
@@ -78,7 +78,11 @@ namespace TransferDesk.Services.Manuscript.ViewModel
                         //todo: remove unchecked by user on progressive updates, instead of deletion
                         manuscriptErrorCategory.IsUncheckedByUser = false;
                     }
-                    _msDTO.manuscriptErrorCategoryList.Add(manuscriptErrorCategory);
+                    if (manuscriptErrorCategoryVM.ID == 0 && manuscriptErrorCategoryVM.IsSelected == true)
+                    {
+                        manuscriptErrorCategory.IsUncheckedByUser = false;
+                    }
+                    _msDTO.manuscriptBookErrorCategory.Add(manuscriptErrorCategory);
                 }
             }
         }
@@ -97,7 +101,7 @@ namespace TransferDesk.Services.Manuscript.ViewModel
             }
 
             //todo:Now update the already selected in dto into list  if any
-            foreach (ManuscriptErrorCategory manuscriptErrorCategory in _msDTO.manuscriptErrorCategoryList)
+            foreach (ManuscriptBookErrorCategory manuscriptErrorCategory in _msDTO.manuscriptBookErrorCategory)
             {
                 if (manuscriptErrorCategory.IsUncheckedByUser == true) continue;//continue with next iteration
                 //ManuscriptErrorCategory tempManuscriptErrorCategory = null;
@@ -116,13 +120,13 @@ namespace TransferDesk.Services.Manuscript.ViewModel
         }
 
         [Key]
-        public int ID
+        public int BookScreeningID
         { get { return _msDTO.ManuscriptBookScreening.ID; } set { _msDTO.ManuscriptBookScreening.ID = value; } }
 
-        public int RoleID
+        public int? RollID
         {
-            get { return _msDTO.RollID; }
-            set { _msDTO.RollID = value; }
+            get { return _msDTO.ManuscriptBookScreening.RollID; }
+            set { _msDTO.ManuscriptBookScreening.RollID = value; }
         }
 
         public int BookTitleId
@@ -130,6 +134,12 @@ namespace TransferDesk.Services.Manuscript.ViewModel
             get { return _msDTO.ManuscriptBookLogin.BookMasterID; }
             set { _msDTO.ManuscriptBookLogin.BookMasterID = value; }
         }
+        public int BookLoginID
+        {
+            get { return _msDTO.ManuscriptBookLogin.ID; }
+            set { _msDTO.ManuscriptBookLogin.ID = value; }
+        }
+
 
         public string ChapterNumber
         {
@@ -153,6 +163,12 @@ namespace TransferDesk.Services.Manuscript.ViewModel
         {
             get { return _msDTO.ManuscriptBookLogin.PageCount; }
             set { _msDTO.ManuscriptBookLogin.PageCount = value; }
+        }
+
+        public string ShareDrivePath
+        {
+            get { return _msDTO.ManuscriptBookLogin.ShareDrivePath; }
+            set { _msDTO.ManuscriptBookLogin.ShareDrivePath = value; }
         }
 
         [Required(ErrorMessage = "Cross check/iThenticate result %")]

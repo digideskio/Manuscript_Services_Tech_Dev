@@ -46,8 +46,8 @@ namespace TransferDesk.DAL.Manuscript.Repositories
         public List<Entities.BookMaster> GetManuscriptBookTitle()
         {
             var bookTitles = (from q in manuscriptDataContextRead.BookMaster
-                where q.IsActive == true
-                select q).ToList();
+                              where q.IsActive == true
+                              select q).ToList();
             return bookTitles;
         }
 
@@ -66,24 +66,41 @@ namespace TransferDesk.DAL.Manuscript.Repositories
                 IEnumerable<pr_SearchMSDetails_Result> empDetails = this.manuscriptDataContextRead.Database.SqlQuery
                                                                                   <pr_SearchMSDetails_Result>("exec pr_SearchMSDetails @SelectedValue, @SearchBy", selectedValueParameter, searchByParameter).ToList();
                 return empDetails;
-
             }
             catch
             {
                 return null;//todo:check and remove this trycatchhandler
             }
-            finally
+        }
+
+
+        public IEnumerable<pr_SearchMSBookDetails_Result> GetBookSearchResult(string SelectedValue, string SearchBy)
+        {
+            try
             {
+                Nullable<int> value = Convert.ToInt32(SelectedValue);
+                var selectedValueParameter = value.HasValue ?
+              new SqlParameter("SelectedValue", value) :
+              new SqlParameter("SelectedValue", typeof(global::System.Int32));
 
+                var searchByParameter = SearchBy != null ?
+                    new SqlParameter("SearchBy", SearchBy) :
+                    new SqlParameter("SearchBy", typeof(global::System.String));
+                IEnumerable<pr_SearchMSBookDetails_Result> empDetails = this.manuscriptDataContextRead.Database.SqlQuery
+                                                                                  <pr_SearchMSBookDetails_Result>("exec pr_SearchMSBookDetails @SelectedValue, @SearchBy", selectedValueParameter, searchByParameter).ToList();
+                return empDetails;
             }
-
+            catch
+            {
+                return null;//todo:check and remove this trycatchhandler
+            }
         }
 
         public List<Entities.SearchByMaster> GetSearchList(string manuscriptType)
-        {            
+        {
             var searchByList = (from q in manuscriptDataContextRead.SearchByMaster
                                 where q.ManuscriptType.ToLower() == manuscriptType.ToLower()
-                select q).ToList();
+                                select q).ToList();
             return searchByList;
         }
 
@@ -108,7 +125,7 @@ namespace TransferDesk.DAL.Manuscript.Repositories
         {
             int service_id = (from manuscriptLoginDetails in manuscriptDataContextRead.ManuscriptLoginDetails
                               where manuscriptLoginDetails.CrestId == crestid
-                              orderby manuscriptLoginDetails.Id descending 
+                              orderby manuscriptLoginDetails.Id descending
                               select manuscriptLoginDetails.ServiceTypeStatusId).FirstOrDefault();
             return service_id;
 
@@ -151,7 +168,7 @@ namespace TransferDesk.DAL.Manuscript.Repositories
         {
             var result = from r in manuscriptDataContextRead.ArticleTypes
                          join s in
-                             (from q in manuscriptDataContextRead.JournalArticleTypes where q.JournalID == journalID && q.IsActive==true select q)
+                             (from q in manuscriptDataContextRead.JournalArticleTypes where q.JournalID == journalID && q.IsActive == true select q)
                              on r.ID equals s.ArticleTypeID
                          select r;
             return result.ToList();
@@ -195,10 +212,18 @@ namespace TransferDesk.DAL.Manuscript.Repositories
 
         public List<Entities.ManuscriptErrorCategory> GetManuscriptErrorCategoryList(int manuscriptID)
         {
-            var ManuscriptErrorCategoryList = from q in manuscriptDataContextRead.ManuscriptErrorCategory
-                                              where q.ManuscriptID == manuscriptID
-                                              select q;
-            return ManuscriptErrorCategoryList.ToList();
+            var ManuscriptErrorCategoryList = (from q in manuscriptDataContextRead.ManuscriptErrorCategory
+                                               where q.ManuscriptID == manuscriptID
+                                               select q).ToList();
+            return ManuscriptErrorCategoryList;
+        }
+
+        public List<Entities.ManuscriptBookErrorCategory> GetManuscriptBookErrorCategoryList(int manuscriptBookID)
+        {
+            var ManuscriptErrorCategoryList = (from q in manuscriptDataContextRead.ManuscriptBookErrorCategory
+                                               where q.ManuscriptBookScreeningID == manuscriptBookID
+                                               select q).ToList();
+            return ManuscriptErrorCategoryList;
         }
 
         public Entities.ManuscriptErrorCategory GetManuscriptErrorCategory(int id)
@@ -210,11 +235,11 @@ namespace TransferDesk.DAL.Manuscript.Repositories
         {
             var errorCategoryList = (from q in manuscriptDataContextRead.ErrorCategories
                                      where q.ManuscriptType.ToLower() == manuscriptType
-                select q).ToList();
+                                     select q).ToList();
             return errorCategoryList;
         }
 
-       
+
         public Entities.ErrorCategory GetErrorCategory(int id)
         {
             return manuscriptDataContextRead.ErrorCategories.Find(id);
@@ -315,13 +340,14 @@ namespace TransferDesk.DAL.Manuscript.Repositories
 
         public int GetManuscriptID(string msid)
         {
-               var result = (from q in manuscriptDataContextRead.Manuscripts
-                             where q.MSID == msid
-                             select new {
-                             q.ID
-                             }).ToList();
+            var result = (from q in manuscriptDataContextRead.Manuscripts
+                          where q.MSID == msid
+                          select new
+                          {
+                              q.ID
+                          }).ToList();
 
-               return result.FirstOrDefault().ID;
+            return result.FirstOrDefault().ID;
         }
 
         public string GetArticleType(int articleTypeID)
@@ -434,6 +460,14 @@ namespace TransferDesk.DAL.Manuscript.Repositories
                 return true;
             }
 
+        }
+
+        public List<Entities.ManuscriptBookScreening> IsBookLoginIDAvailable(int bookid)
+        {
+            var result = (from q in manuscriptDataContextRead.ManuscriptBookScreening
+                          where q.BookLoginID == bookid
+                          select q).ToList();
+            return result;
         }
     }
 }
