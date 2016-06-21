@@ -15,6 +15,8 @@ using Newtonsoft.Json;
 using System.Configuration;
 using System.Text;
 using Microsoft.Ajax.Utilities;
+using TransferDesk.Contracts.Logging;
+using TransferDesk.Logger;
 using TransferDesk.Services.Manuscript.ReportOutputs;
 using TransferDesk.Services.Manuscript.Preview;
 
@@ -24,9 +26,10 @@ namespace TransferDesk.MS.Web.Controllers
     {
         private readonly ManuscriptDBRepositoryReadSide _manuscriptDbRepositoryReadSide;
         private readonly ManuscriptService _manuscriptService;
-
+        public IFileLogger FileLogger;
         public ManuscriptController()
         {
+            FileLogger = new FileLogger();
             var conString = Convert.ToString(ConfigurationManager.AppSettings["dbTransferDeskService"]);
             _manuscriptService = new ManuscriptService(conString, conString);
             _manuscriptDbRepositoryReadSide = new ManuscriptDBRepositoryReadSide(conString);
@@ -383,7 +386,10 @@ namespace TransferDesk.MS.Web.Controllers
                     TempData["msg"] = "<script>alert('Record updated succesfully');</script>";
                 }
             }
-            catch (Exception ex) { }
+            catch (Exception ex)
+            {
+                FileLogger.Log("Error in Manuscript Book Screening during add/update operation: \n"+ ex.StackTrace);
+            }
             return RedirectToAction("BookScreening", manuscriptBookScreeningVm.BookLoginID);
         }
 

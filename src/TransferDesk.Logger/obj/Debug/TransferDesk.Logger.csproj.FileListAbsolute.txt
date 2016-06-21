@@ -25,11 +25,11 @@ D:\MS-Iteration-10_Updated_ToUATRel\MS-Iteration-10_Updated\TransferDesk.Logger\
 D:\MS-Iteration-10_Updated_ToUATRel\MS-Iteration-10_Updated\TransferDesk.Logger\obj\Debug\TransferDesk.Logger.csprojResolveAssemblyReference.cache
 D:\MS-Iteration-10_Updated_ToUATRel\MS-Iteration-10_Updated\TransferDesk.Logger\obj\Debug\TransferDesk.Logger.dll
 D:\MS-Iteration-10_Updated_ToUATRel\MS-Iteration-10_Updated\TransferDesk.Logger\obj\Debug\TransferDesk.Logger.pdb
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Logger\bin\Debug\TransferDesk.Contracts.pdb
 D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Logger\bin\Debug\TransferDesk.Logger.dll
 D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Logger\bin\Debug\TransferDesk.Logger.pdb
 D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Logger\bin\Debug\TransferDesk.Contracts.dll
 D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Logger\bin\Debug\EntityFramework.dll
-D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Logger\bin\Debug\TransferDesk.Contracts.pdb
 D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Logger\bin\Debug\EntityFramework.xml
 D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Logger\obj\Debug\TransferDesk.Logger.csprojResolveAssemblyReference.cache
 D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Logger\obj\Debug\TransferDesk.Logger.dll
