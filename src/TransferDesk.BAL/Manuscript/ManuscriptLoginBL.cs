@@ -13,6 +13,7 @@ using TransferDesk.Contracts.Manuscript.Entities;
 using TransferDesk.Contracts.Manuscript.ComplexTypes.UserRole;
 using System.IO;
 using System.Threading;
+using Microsoft.SqlServer.Server;
 
 namespace TransferDesk.BAL.Manuscript
 {
@@ -68,11 +69,11 @@ namespace TransferDesk.BAL.Manuscript
                 //add record in ManuscriptBookLogin table
                 manuscriptLoginUnitOfWork = new ManuscriptLoginUnitOfWork(conString);
                 manuscriptLoginUnitOfWork.manuscriptBookLoginDTO = manuscriptBookLoginDTO;
-                manuscriptBookLoginDTO.manuscriptBookLogin.CrestID = CreateCrestId(manuscriptBookLoginDTO.manuscriptBookLogin.ID);
+                manuscriptBookLoginDTO.manuscriptBookLogin.CrestID = CreateCrestId(manuscriptBookLoginDTO.manuscriptBookLogin.ID, "B");
                 manuscriptLoginUnitOfWork.SaveManuscriptBookLogin(manuscriptBookLoginDTO);
                 if (manuscriptBookLoginDTO.manuscriptBookLogin.ID != 0)
                 {
-                    manuscriptBookLoginDTO.manuscriptBookLogin.CrestID = CreateCrestId(manuscriptBookLoginDTO.manuscriptBookLogin.ID);
+                    manuscriptBookLoginDTO.manuscriptBookLogin.CrestID = CreateCrestId(manuscriptBookLoginDTO.manuscriptBookLogin.ID, "B");
                     manuscriptLoginUnitOfWork.SaveManuscriptBookLogin(manuscriptBookLoginDTO);
                 }
                 //check service type is changed
@@ -95,12 +96,16 @@ namespace TransferDesk.BAL.Manuscript
             return true;
         }
 
-        public string CreateCrestId(int id)
+        public string CreateCrestId(int id, string jobType)
         {
             DateTime dtTodaysDateTime = DateTime.Now;
             string formatedID = "";
             formatedID = String.Format("{0:00000}", id);
-            string crestId = "B" + Convert.ToString(dtTodaysDateTime.Year) + formatedID;
+            string crestId = "";
+            if (jobType.ToLower() == "B")
+                crestId = "B" + Convert.ToString(dtTodaysDateTime.Year) + formatedID;
+            else
+                crestId = "J" + Convert.ToString(dtTodaysDateTime.Year) + formatedID;
             return crestId;
         }
 
@@ -124,6 +129,12 @@ namespace TransferDesk.BAL.Manuscript
                 manuscriptLoginUnitOfWork = new ManuscriptLoginUnitOfWork(conString);
                 manuscriptLoginUnitOfWork.manuscriptLoginDTO = manuscriptLoginDTO;
                 manuscriptLoginUnitOfWork.SaveManuscriptLogin();
+                if (manuscriptLoginDTO.manuscriptLogin.Id != 0)
+                {
+                    manuscriptLoginDTO.manuscriptLogin.CrestId = CreateCrestId(manuscriptLoginDTO.manuscriptLogin.Id, "J");
+                    manuscriptLoginUnitOfWork.SaveManuscriptLogin();
+                }
+
                 SaveManuscriptDetails(manuscriptLoginDTO, manuscriptStatusId, manuscriptLoginUnitOfWork);
 
                 return true;
@@ -201,16 +212,18 @@ namespace TransferDesk.BAL.Manuscript
 
         private void SaveManuscriptDetails(ManuscriptLoginDTO manuscriptLoginDTO, int manuscriptStatusID, ManuscriptLoginUnitOfWork _manuscriptLoginUnitOfWork)
         {
-            manuscriptLoginDTO.IsCrestIDPresent = _manuscriptLoginDBRepositoryReadSide.IsCrestIDPresent(manuscriptLoginDTO.manuscriptLogin.CrestId);
-            bool IsBoth = _manuscriptLoginDBRepositoryReadSide.IsServiceTypeBoth(manuscriptLoginDTO.manuscriptLogin.ServiceTypeStatusId);
-            if (_manuscriptLoginDetailsRepository.GetOpenManuscriptCount(manuscriptLoginDTO.manuscriptLogin.CrestId) == 2)
+
+            int ID = _manuscriptLoginDBRepositoryReadSide.GetCrestID(manuscriptLoginDTO.manuscriptLogin.MSID);
+            manuscriptLoginDTO.IsCrestIDPresent = _manuscriptLoginDBRepositoryReadSide.IsCrestIDPresent(ID);
+            if (_manuscriptLoginDetailsRepository.GetOpenManuscriptCount(ID) == 2)
             {
                 var msLoginDetails = new ManuscriptLoginDetails
                 {
                     AssignedDate = DateTime.Now,
                     ServiceTypeStatusId = manuscriptLoginDTO.manuscriptLogin.ServiceTypeStatusId,
                     JobStatusId = Convert.ToInt32(manuscriptStatusID),
-                    CrestId = manuscriptLoginDTO.manuscriptLogin.CrestId,
+
+                    CrestId = ID,
                     RoleId = _manuscriptLoginDBRepositoryReadSide.GetAssociateRole(),
                     JobProcessStatusId = _manuscriptLoginDBRepositoryReadSide.GetStatusMaster().Where(x => x.Description.ToLower() == "open").Select(x => x.ID).FirstOrDefault()
                 };
@@ -225,7 +238,7 @@ namespace TransferDesk.BAL.Manuscript
                 {
                     //update record
                     var updateManuscriptLoginDetailsMS = new ManuscriptLoginDetails();
-                    updateManuscriptLoginDetailsMS = _manuscriptLoginDBRepositoryReadSide.GetManuscriptLoginDetails(manuscriptLoginDTO.manuscriptLogin.CrestId, _manuscriptLoginDBRepositoryReadSide.MSServiceTypeID());
+                    updateManuscriptLoginDetailsMS = _manuscriptLoginDBRepositoryReadSide.GetManuscriptLoginDetails(ID, _manuscriptLoginDBRepositoryReadSide.MSServiceTypeID());
                     updateManuscriptLoginDetailsMS.SubmitedDate = DateTime.Now;
                     updateManuscriptLoginDetailsMS.FetchedDate = DateTime.Now;
                     //update using query 
@@ -235,7 +248,7 @@ namespace TransferDesk.BAL.Manuscript
                     manuscriptLoginDTO.manuscriptLoginDetails.Add(updateManuscriptLoginDetailsMS);
 
                     //update record  _manuscriptLoginDetailsRepository
-                    var updateManuscriptLoginDetailsRS = _manuscriptLoginDBRepositoryReadSide.GetManuscriptLoginDetails(manuscriptLoginDTO.manuscriptLogin.CrestId, _manuscriptLoginDBRepositoryReadSide.RSServiceTypeID());
+                    var updateManuscriptLoginDetailsRS = _manuscriptLoginDBRepositoryReadSide.GetManuscriptLoginDetails(ID, _manuscriptLoginDBRepositoryReadSide.RSServiceTypeID());
                     updateManuscriptLoginDetailsRS.SubmitedDate = DateTime.Now;
                     updateManuscriptLoginDetailsRS.FetchedDate = DateTime.Now;
                     //update using query
@@ -243,11 +256,12 @@ namespace TransferDesk.BAL.Manuscript
                     //update using query
                     updateManuscriptLoginDetailsRS.JobStatusId = _manuscriptLoginDBRepositoryReadSide.GetStatusMaster().Where(x => x.Description.ToLower() == "close").Select(x => x.ID).FirstOrDefault();
                     manuscriptLoginDTO.manuscriptLoginDetails.Add(updateManuscriptLoginDetailsRS);
+
+
                 }
             }
             else
-            {
-                AllocateJournalManusript(manuscriptLoginDTO, manuscriptStatusID);
+            {   AllocateJournalManusript(manuscriptLoginDTO, manuscriptStatusID);
                 if (manuscriptLoginDTO.IsCrestIDPresent)
                 {
                     UnAllocateJournalManuscript(manuscriptLoginDTO);
