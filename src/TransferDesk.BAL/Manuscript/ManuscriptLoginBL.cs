@@ -54,13 +54,13 @@ namespace TransferDesk.BAL.Manuscript
                 var currentAssociateName = string.Empty;
                 if (manuscriptBookLoginDTO.manuscriptBookLogin.ID != 0)
                 {
-                    var currentManuscriptBookLogin =context.ManuscriptBookLogin.Find(manuscriptBookLoginDTO.manuscriptBookLogin.ID);
+                    var currentManuscriptBookLogin = context.ManuscriptBookLogin.Find(manuscriptBookLoginDTO.manuscriptBookLogin.ID);
                     currentServiceTypeId = _manuscriptBookLoginDetailsRepository.ServiceTypeId(manuscriptBookLoginDTO.manuscriptBookLogin.ID);
-                    userRoleId =_manuscriptBookLoginDetailsRepository.GetAssociateUserRoleId(manuscriptBookLoginDTO.manuscriptBookLogin.ID);
-                    if (userRoleId!=0)
+                    userRoleId = _manuscriptBookLoginDetailsRepository.GetAssociateUserRoleId(manuscriptBookLoginDTO.manuscriptBookLogin.ID);
+                    if (userRoleId != 0)
                     {
                         currentAssociateName = _manuscriptBookLoginDetailsRepository.GetUserID(Convert.ToInt32(userRoleId)).UserID;
-                        currentAssociateName =_manuscriptDBRepositoryReadSide.EmployeeName(currentAssociateName);
+                        currentAssociateName = _manuscriptDBRepositoryReadSide.EmployeeName(currentAssociateName);
                     }
                     manuscriptBookLoginDTO.manuscriptBookLogin.CreatedBy = currentManuscriptBookLogin.CreatedBy;
                     manuscriptBookLoginDTO.manuscriptBookLogin.CreatedDate = currentManuscriptBookLogin.CreatedDate;
@@ -70,7 +70,7 @@ namespace TransferDesk.BAL.Manuscript
                 manuscriptLoginUnitOfWork.manuscriptBookLoginDTO = manuscriptBookLoginDTO;
                 manuscriptBookLoginDTO.manuscriptBookLogin.CrestID = CreateCrestId(manuscriptBookLoginDTO.manuscriptBookLogin.ID);
                 manuscriptLoginUnitOfWork.SaveManuscriptBookLogin(manuscriptBookLoginDTO);
-                if(manuscriptBookLoginDTO.manuscriptBookLogin.ID!=0)
+                if (manuscriptBookLoginDTO.manuscriptBookLogin.ID != 0)
                 {
                     manuscriptBookLoginDTO.manuscriptBookLogin.CrestID = CreateCrestId(manuscriptBookLoginDTO.manuscriptBookLogin.ID);
                     manuscriptLoginUnitOfWork.SaveManuscriptBookLogin(manuscriptBookLoginDTO);
@@ -151,29 +151,35 @@ namespace TransferDesk.BAL.Manuscript
             {
                 if (currentServiceTypeId != manuscriptBookLoginDTO.manuscriptBookLogin.ServiceTypeID || currentAssociateName != manuscriptBookLoginDTO.AssociateName)
                 {
-                    SaveManuscriptBookLoginDetails(manuscriptBookLoginDTO, manuscriptStatusID);
-                    //update record
-                    var updateManuscriptBookLoginDetails = new ManuscriptBookLoginDetails();
-                    updateManuscriptBookLoginDetails = _manuscriptBookLoginDetailsRepository.GetManuscriptBookLoginDetails(manuscriptBookLoginDTO.manuscriptBookLogin.ID, currentServiceTypeId);//_manuscriptLoginDBRepositoryReadSide.MSServiceTypeID()
-                    updateManuscriptBookLoginDetails.SubmitedDate = DateTime.Now;
-                    updateManuscriptBookLoginDetails.FetchedDate = DateTime.Now;
-                    //update using query 
-                    updateManuscriptBookLoginDetails.JobProcessStatusId = _manuscriptLoginDBRepositoryReadSide.GetStatusMaster().Where(x => x.Description.ToLower() == "unallocate").Select(x => x.ID).FirstOrDefault();
-                    //update using query
-                    updateManuscriptBookLoginDetails.JobStatusId = _manuscriptLoginDBRepositoryReadSide.GetStatusMaster().Where(x => x.Description.ToLower() == "close").Select(x => x.ID).FirstOrDefault();
-                    manuscriptBookLoginDTO.manuscriptBookLoginDetails.Add(updateManuscriptBookLoginDetails);
+                    AllocateManuscriptBookLoginDetails(manuscriptBookLoginDTO, manuscriptStatusID);
+                    UnAllocateManuscriptBookLoginDetails(manuscriptBookLoginDTO, currentServiceTypeId);
                 }
             }
             else
             {
-                SaveManuscriptBookLoginDetails(manuscriptBookLoginDTO, manuscriptStatusID);
+                AllocateManuscriptBookLoginDetails(manuscriptBookLoginDTO, manuscriptStatusID);
             }
             _manuscriptLoginUnitOfWork.SaveManuscriptBookLoginDetails();
             return true;
 
         }
 
-        private void SaveManuscriptBookLoginDetails(ManuscriptBookLoginDTO manuscriptBookLoginDTO, int manuscriptStatusID)
+        private void UnAllocateManuscriptBookLoginDetails(ManuscriptBookLoginDTO manuscriptBookLoginDTO, int currentServiceTypeId)
+        {
+            //update record
+            var updateManuscriptBookLoginDetails = new ManuscriptBookLoginDetails();
+            updateManuscriptBookLoginDetails = _manuscriptBookLoginDetailsRepository.GetManuscriptBookLoginDetails(manuscriptBookLoginDTO.manuscriptBookLogin.ID, currentServiceTypeId);
+            //_manuscriptLoginDBRepositoryReadSide.MSServiceTypeID()
+            updateManuscriptBookLoginDetails.SubmitedDate = DateTime.Now;
+            updateManuscriptBookLoginDetails.FetchedDate = DateTime.Now;
+            //update using query 
+            updateManuscriptBookLoginDetails.JobProcessStatusId = _manuscriptLoginDBRepositoryReadSide.GetStatusMaster().Where(x => x.Description.ToLower() == "unallocate").Select(x => x.ID).FirstOrDefault();
+            //update using query
+            updateManuscriptBookLoginDetails.JobStatusId = _manuscriptLoginDBRepositoryReadSide.GetStatusMaster().Where(x => x.Description.ToLower() == "close").Select(x => x.ID).FirstOrDefault();
+            manuscriptBookLoginDTO.manuscriptBookLoginDetails.Add(updateManuscriptBookLoginDetails);
+        }
+
+        private void AllocateManuscriptBookLoginDetails(ManuscriptBookLoginDTO manuscriptBookLoginDTO, int manuscriptStatusID)
         {
             var msBookLoginDetails = new ManuscriptBookLoginDetails
             {
@@ -197,80 +203,7 @@ namespace TransferDesk.BAL.Manuscript
         {
             manuscriptLoginDTO.IsCrestIDPresent = _manuscriptLoginDBRepositoryReadSide.IsCrestIDPresent(manuscriptLoginDTO.manuscriptLogin.CrestId);
             bool IsBoth = _manuscriptLoginDBRepositoryReadSide.IsServiceTypeBoth(manuscriptLoginDTO.manuscriptLogin.ServiceTypeStatusId);
-            #region["Logic for both service type"]
-            if (IsBoth)
-            {
-                var msLoginDetails = new ManuscriptLoginDetails
-                {
-                    AssignedDate = DateTime.Now,
-                    ServiceTypeStatusId = _manuscriptLoginDBRepositoryReadSide.MSServiceTypeID(),
-                    JobStatusId = Convert.ToInt32(manuscriptStatusID),
-                    CrestId = manuscriptLoginDTO.manuscriptLogin.CrestId,
-                    RoleId = _manuscriptLoginDBRepositoryReadSide.GetAssociateRole(),
-                    JobProcessStatusId = _manuscriptLoginDBRepositoryReadSide.GetStatusMaster().Where(x => x.Description.ToLower() == "open").Select(x => x.ID).FirstOrDefault()
-                };
-                if (!string.IsNullOrEmpty(manuscriptLoginDTO.AssociateName))
-                {
-                    var prGetAssociateInfoResult =
-                        _manuscriptDBRepositoryReadSide.GetAssociateName(manuscriptLoginDTO.AssociateName)
-                            .FirstOrDefault();
-                    msLoginDetails.UserRoleId = prGetAssociateInfoResult.ID;
-                    msLoginDetails.JobProcessStatusId = _manuscriptLoginDBRepositoryReadSide.GetStatusMaster().Where(x => x.Description.ToLower() == "assigned").Select(x => x.ID).FirstOrDefault();
-                }
-                manuscriptLoginDTO.manuscriptLoginDetails.Add(msLoginDetails);
-                if (manuscriptLoginDTO.IsCrestIDPresent)
-                {
-                    var rsLoginDetails = new ManuscriptLoginDetails
-                    {
-                        AssignedDate = DateTime.Now,
-                        CrestId = manuscriptLoginDTO.manuscriptLogin.CrestId,
-                        JobStatusId = Convert.ToInt32(manuscriptStatusID),
-                        RoleId = _manuscriptLoginDBRepositoryReadSide.GetAssociateRole(),
-                        ServiceTypeStatusId = _manuscriptLoginDBRepositoryReadSide.RSServiceTypeID(),
-                        JobProcessStatusId = _manuscriptLoginDBRepositoryReadSide.GetStatusMaster().Where(x => x.Description.ToLower() == "open").Select(x => x.ID).FirstOrDefault()
-                    };
-                    manuscriptLoginDTO.manuscriptLoginDetails.Add(rsLoginDetails);
-
-                    //update record
-                    var updateManuscriptLoginDetails = new ManuscriptLoginDetails();
-                    updateManuscriptLoginDetails = _manuscriptLoginDBRepositoryReadSide.GetManuscriptLoginDetails(manuscriptLoginDTO.manuscriptLogin.CrestId, _manuscriptLoginDBRepositoryReadSide.GetServiceTypeStatusId(manuscriptLoginDTO.manuscriptLogin.CrestId));
-                    updateManuscriptLoginDetails.SubmitedDate = DateTime.Now;
-                    updateManuscriptLoginDetails.FetchedDate = DateTime.Now;
-                    //update using query 
-                    updateManuscriptLoginDetails.JobProcessStatusId = _manuscriptLoginDBRepositoryReadSide.GetStatusMaster().Where(x => x.Description.ToLower() == "unallocate").Select(x => x.ID).FirstOrDefault();
-                    //update using query
-                    updateManuscriptLoginDetails.JobStatusId = _manuscriptLoginDBRepositoryReadSide.GetStatusMaster().Where(x => x.Description.ToLower() == "close").Select(x => x.ID).FirstOrDefault();
-                    manuscriptLoginDTO.manuscriptLoginDetails.Add(updateManuscriptLoginDetails);
-
-                    if (_manuscriptLoginDetailsRepository.GetOpenManuscriptCount(manuscriptLoginDTO.manuscriptLogin.CrestId) == 2)
-                    {
-                        var updateManuscriptLoginDetailsRS = _manuscriptLoginDBRepositoryReadSide.GetManuscriptLoginDetails(manuscriptLoginDTO.manuscriptLogin.CrestId, _manuscriptLoginDBRepositoryReadSide.RSServiceTypeID());
-                        updateManuscriptLoginDetailsRS.SubmitedDate = DateTime.Now;
-                        updateManuscriptLoginDetailsRS.FetchedDate = DateTime.Now;
-                        //update using query
-                        updateManuscriptLoginDetailsRS.JobProcessStatusId = _manuscriptLoginDBRepositoryReadSide.GetStatusMaster().Where(x => x.Description.ToLower() == "unallocate").Select(x => x.ID).FirstOrDefault();
-                        //update using query
-                        updateManuscriptLoginDetailsRS.JobStatusId = _manuscriptLoginDBRepositoryReadSide.GetStatusMaster().Where(x => x.Description.ToLower() == "close").Select(x => x.ID).FirstOrDefault();
-                        manuscriptLoginDTO.manuscriptLoginDetails.Add(updateManuscriptLoginDetailsRS);
-                    }
-                }
-
-                if (!manuscriptLoginDTO.IsCrestIDPresent)
-                {
-                    var rsLoginDetails = new ManuscriptLoginDetails
-                    {
-                        AssignedDate = DateTime.Now,
-                        CrestId = manuscriptLoginDTO.manuscriptLogin.CrestId,
-                        JobStatusId = Convert.ToInt32(manuscriptStatusID),
-                        RoleId = _manuscriptLoginDBRepositoryReadSide.GetAssociateRole(),
-                        ServiceTypeStatusId = _manuscriptLoginDBRepositoryReadSide.RSServiceTypeID(),
-                        JobProcessStatusId = _manuscriptLoginDBRepositoryReadSide.GetStatusMaster().Where(x => x.Description.ToLower() == "open").Select(x => x.ID).FirstOrDefault()
-                    };
-                    manuscriptLoginDTO.manuscriptLoginDetails.Add(rsLoginDetails);
-                }
-            }
-            #endregion
-            else if (_manuscriptLoginDetailsRepository.GetOpenManuscriptCount(manuscriptLoginDTO.manuscriptLogin.CrestId) == 2)
+            if (_manuscriptLoginDetailsRepository.GetOpenManuscriptCount(manuscriptLoginDTO.manuscriptLogin.CrestId) == 2)
             {
                 var msLoginDetails = new ManuscriptLoginDetails
                 {
@@ -287,9 +220,6 @@ namespace TransferDesk.BAL.Manuscript
                     msLoginDetails.UserRoleId = prGetAssociateInfoResult.ID;
                     msLoginDetails.JobProcessStatusId = _manuscriptLoginDBRepositoryReadSide.GetStatusMaster().Where(x => x.Description.ToLower() == "assigned").Select(x => x.ID).FirstOrDefault();
                 }
-
-
-
                 manuscriptLoginDTO.manuscriptLoginDetails.Add(msLoginDetails);
                 if (manuscriptLoginDTO.IsCrestIDPresent)
                 {
@@ -313,44 +243,70 @@ namespace TransferDesk.BAL.Manuscript
                     //update using query
                     updateManuscriptLoginDetailsRS.JobStatusId = _manuscriptLoginDBRepositoryReadSide.GetStatusMaster().Where(x => x.Description.ToLower() == "close").Select(x => x.ID).FirstOrDefault();
                     manuscriptLoginDTO.manuscriptLoginDetails.Add(updateManuscriptLoginDetailsRS);
-
-
                 }
             }
             else
             {
-                var manuscriptLoginDetails = new ManuscriptLoginDetails
-                {
-                    AssignedDate = DateTime.Now,
-                    CrestId = manuscriptLoginDTO.manuscriptLogin.CrestId,
-                    ServiceTypeStatusId = manuscriptLoginDTO.manuscriptLogin.ServiceTypeStatusId,
-                    JobStatusId = Convert.ToInt32(manuscriptStatusID),
-                    RoleId = _manuscriptLoginDBRepositoryReadSide.GetAssociateRole(),
-                    JobProcessStatusId = _manuscriptLoginDBRepositoryReadSide.GetStatusMaster().Where(x => x.Description.ToLower() == "open").Select(x => x.ID).FirstOrDefault()
-                };
-                if (!string.IsNullOrEmpty(manuscriptLoginDTO.AssociateName))
-                {
-                    var prGetAssociateInfoResult =
-                        _manuscriptDBRepositoryReadSide.GetAssociateName(manuscriptLoginDTO.AssociateName)
-                            .FirstOrDefault();
-                    manuscriptLoginDetails.UserRoleId = prGetAssociateInfoResult.ID;
-                    manuscriptLoginDetails.JobProcessStatusId = _manuscriptLoginDBRepositoryReadSide.GetStatusMaster().Where(x => x.Description.ToLower() == "assigned").Select(x => x.ID).FirstOrDefault();
-                }
-                manuscriptLoginDTO.manuscriptLoginDetails.Add(manuscriptLoginDetails);
+                AllocateJournalManusript(manuscriptLoginDTO, manuscriptStatusID);
                 if (manuscriptLoginDTO.IsCrestIDPresent)
                 {
-                    //update record  _manuscriptLoginDetailsRepository
-                    var updateManuscriptLoginDetailsMS = _manuscriptLoginDBRepositoryReadSide.GetManuscriptLoginDetails(manuscriptLoginDTO.manuscriptLogin.CrestId, _manuscriptLoginDBRepositoryReadSide.GetServiceTypeStatusId(manuscriptLoginDTO.manuscriptLogin.CrestId));
-                    updateManuscriptLoginDetailsMS.SubmitedDate = DateTime.Now;
-                    updateManuscriptLoginDetailsMS.FetchedDate = DateTime.Now;
-                    //update using query
-                    updateManuscriptLoginDetailsMS.JobProcessStatusId = _manuscriptLoginDBRepositoryReadSide.GetStatusMaster().Where(x => x.Description.ToLower() == "unallocate").Select(x => x.ID).FirstOrDefault();
-                    //update using query
-                    updateManuscriptLoginDetailsMS.JobStatusId = _manuscriptLoginDBRepositoryReadSide.GetStatusMaster().Where(x => x.Description.ToLower() == "close").Select(x => x.ID).FirstOrDefault();
-                    manuscriptLoginDTO.manuscriptLoginDetails.Add(updateManuscriptLoginDetailsMS);
+                    UnAllocateJournalManuscript(manuscriptLoginDTO);
                 }
             }
             _manuscriptLoginUnitOfWork.SaveManuscriptLoginDetails();
+        }
+
+        private void UnAllocateJournalManuscript(ManuscriptLoginDTO manuscriptLoginDTO)
+        {
+            //update record  _manuscriptLoginDetailsRepository
+            var updateManuscriptLoginDetailsMS =
+                _manuscriptLoginDBRepositoryReadSide.GetManuscriptLoginDetails(manuscriptLoginDTO.manuscriptLogin.CrestId,
+                    _manuscriptLoginDBRepositoryReadSide.GetServiceTypeStatusId(manuscriptLoginDTO.manuscriptLogin.CrestId));
+            updateManuscriptLoginDetailsMS.SubmitedDate = DateTime.Now;
+            updateManuscriptLoginDetailsMS.FetchedDate = DateTime.Now;
+            //update using query
+            updateManuscriptLoginDetailsMS.JobProcessStatusId =
+                _manuscriptLoginDBRepositoryReadSide.GetStatusMaster()
+                    .Where(x => x.Description.ToLower() == "unallocate")
+                    .Select(x => x.ID)
+                    .FirstOrDefault();
+            //update using query
+            updateManuscriptLoginDetailsMS.JobStatusId =
+                _manuscriptLoginDBRepositoryReadSide.GetStatusMaster()
+                    .Where(x => x.Description.ToLower() == "close")
+                    .Select(x => x.ID)
+                    .FirstOrDefault();
+            manuscriptLoginDTO.manuscriptLoginDetails.Add(updateManuscriptLoginDetailsMS);
+        }
+
+        private void AllocateJournalManusript(ManuscriptLoginDTO manuscriptLoginDTO, int manuscriptStatusID)
+        {
+            var manuscriptLoginDetails = new ManuscriptLoginDetails
+            {
+                AssignedDate = DateTime.Now,
+                CrestId = manuscriptLoginDTO.manuscriptLogin.CrestId,
+                ServiceTypeStatusId = manuscriptLoginDTO.manuscriptLogin.ServiceTypeStatusId,
+                JobStatusId = Convert.ToInt32(manuscriptStatusID),
+                RoleId = _manuscriptLoginDBRepositoryReadSide.GetAssociateRole(),
+                JobProcessStatusId =
+                    _manuscriptLoginDBRepositoryReadSide.GetStatusMaster()
+                        .Where(x => x.Description.ToLower() == "open")
+                        .Select(x => x.ID)
+                        .FirstOrDefault()
+            };
+            if (!string.IsNullOrEmpty(manuscriptLoginDTO.AssociateName))
+            {
+                var prGetAssociateInfoResult =
+                    _manuscriptDBRepositoryReadSide.GetAssociateName(manuscriptLoginDTO.AssociateName)
+                        .FirstOrDefault();
+                manuscriptLoginDetails.UserRoleId = prGetAssociateInfoResult.ID;
+                manuscriptLoginDetails.JobProcessStatusId =
+                    _manuscriptLoginDBRepositoryReadSide.GetStatusMaster()
+                        .Where(x => x.Description.ToLower() == "assigned")
+                        .Select(x => x.ID)
+                        .FirstOrDefault();
+            }
+            manuscriptLoginDTO.manuscriptLoginDetails.Add(manuscriptLoginDetails);
         }
 
         public bool ImpersonateUser()
