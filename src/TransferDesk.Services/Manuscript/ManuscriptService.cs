@@ -129,8 +129,39 @@ namespace TransferDesk.Services.Manuscript
             manuscriptBookScreeningDTO.CurrentUserID = System.Web.HttpContext.Current.User.Identity.Name.Replace("SPRINGER-SBM\\", "");
             manuscriptBookScreeningDTO.ManuscriptBookScreening.BookLoginID = manuscriptVM.BookLoginID;
             manuscriptBookScreeningDTO.ManuscriptBookScreening.ID = manuscriptVM.BookScreeningID;
-            _manuscriptScreeningBL.SaveManuscriptBookScreening(manuscriptBookScreeningDTO, dataErrors);
-            return true;
+            ValidateManuscriptBookScreening(dataErrors, manuscriptBookScreeningDTO);
+            if (dataErrors.Count == 0)
+            {
+                _manuscriptScreeningBL.SaveManuscriptBookScreening(manuscriptBookScreeningDTO, dataErrors);
+                return true;
+            }
+            else
+                return false;           
+        }
+
+        private void ValidateManuscriptBookScreening(IDictionary<string, string> dataErrors, ManuscriptBookScreeningDTO manuscriptBookScreeningDTO)
+        {
+            var bookScreening=new Entities.ManuscriptBookScreening();
+            if(bookScreening.BookLoginID==0)
+                dataErrors.Add("BookLoginID", "Book login details are required.");
+            if (bookScreening.RollID == null)
+                dataErrors.Add("RollID", "Role is required.");
+            if (bookScreening.Crosscheck_iThenticateResultID == null)
+                dataErrors.Add("Crosscheck_iThenticateResultID", "Crosscheck iThenticateResult is required.");
+            if (bookScreening.Highest_iThenticateFromSingleSrc == null)
+                dataErrors.Add("Highest_iThenticateFromSingleSrc", "Highest iThenticate(From SingleSource) is required.");
+            if (bookScreening.English_Lang_QualityID == null)
+                dataErrors.Add("English_Lang_QualityID", "English Language Quality is required.");
+            if (bookScreening.Ethics_ComplianceID == null)
+                dataErrors.Add("Ethics_ComplianceID", "Ethics Compliance is required.");
+            if (bookScreening.CorrespondingAuthor == null)
+                dataErrors.Add("CorrespondingAuthor", "Corresponding Author is required.");
+            if (bookScreening.CorrespondingAuthorEmail == null)
+                dataErrors.Add("CorrespondingAuthorEmail", "Corresponding Author Email is required.");
+            if (bookScreening.CorrespondingAuthorAff == null)
+                dataErrors.Add("CorrespondingAuthorAff", "Corresponding Author Aff. is required.");
+            if (bookScreening.OverallAnalysisID == null)
+                dataErrors.Add("OverallAnalysis", "Overall Analysis is required.");
         }
 
         public void IsBookSaveOrSubmit(ManuscriptBookScreeningVm manuscriptBookScreeningVm, string associateCommand,
