@@ -47,6 +47,9 @@ $(document).ready(function () {
     else {
         $("#btnExportTransferReport").show();
         $("#btnPreviewManuscript").show();
+        $.get(AppPath + "ManuscriptLogin/GetJournalLink", { "journalId": $("#ddlJournalTitle").val() }, function (link) {
+            $('#JournalLink').html('<a href="' + link + '" target="_blank" style="text-decoration: underline;word-break: break-all;color: blue;">' + link + '</a>');
+        });
     }
 
     $('#btnOk').click(function () {
