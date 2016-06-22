@@ -21,6 +21,7 @@
 {
     @Html.AntiForgeryToken()
     @Html.HiddenFor(x => x.CrestId)
+    @Html.HiddenFor(x => x.Id)
     <div class="container">
         <div class="table-responsive">
             <table class="table MetadataInfo">
@@ -204,6 +205,9 @@
             </td>
             <td width="84px">
                 <input type="button" id="btnEdit" class="btn btn-primary btn-sm editButton" style="line-height: normal;" value="Edit"/>
+            </td>
+            <td style="display:none">
+                @item.Id
             </td>
         </tr>
     }

@@ -17,7 +17,7 @@ namespace TransferDesk.Services.Manuscript
         public String conString { get; set; }
 
         public ManuscriptLoginBL _manuscriptLoginBL { get; set; }
-       // Entities.ManuscriptLogin manuscriptLogin { get; set; }
+        // Entities.ManuscriptLogin manuscriptLogin { get; set; }
         Entities.ManuscriptLoginDetails manuscriptLoginDetails { get; set; }
         ManuscriptLoginDTO manuscriptLoginDTO { get; set; }
         ManuscriptBookLoginDTO manuscriptBookLoginDTO { get; set; }
@@ -27,14 +27,14 @@ namespace TransferDesk.Services.Manuscript
             _manuscriptLoginBL = new ManuscriptLoginBL(conString);
         }
 
-        public bool SaveManuscriptBookLoginVM(IDictionary<string, string> dataErrors,ManuscriptBookLoginVM manuscriptBookLoginVM, Entities.ManuscriptBookLogin manuscriptBookLogin)
+        public bool SaveManuscriptBookLoginVM(IDictionary<string, string> dataErrors, ManuscriptBookLoginVM manuscriptBookLoginVM, Entities.ManuscriptBookLogin manuscriptBookLogin)
         {
             //if validation required add here
             if (dataErrors.Count == 0)
             {
                 manuscriptBookLoginDTO = new ManuscriptBookLoginDTO();
                 manuscriptBookLoginDTO = manuscriptBookLoginVM.FetchDTO;
-                
+
                 if (_manuscriptLoginBL.SaveManuscriptBookLogin(manuscriptBookLoginDTO, dataErrors))
                 {
                     return true;
@@ -46,7 +46,7 @@ namespace TransferDesk.Services.Manuscript
                 return false;
         }
 
-        public bool SaveManuscriptLoginVM(IDictionary<string, string> dataErrors, ManuscriptLoginVM manuscriptLoginVM,Entities.ManuscriptLogin manuscriptLogin)
+        public bool SaveManuscriptLoginVM(IDictionary<string, string> dataErrors, ManuscriptLoginVM manuscriptLoginVM, Entities.ManuscriptLogin manuscriptLogin)
         {
 
             ValidateManuscriptLogin(dataErrors, manuscriptLoginVM);
@@ -56,11 +56,12 @@ namespace TransferDesk.Services.Manuscript
                 //manuscriptLogin = new Entities.ManuscriptLogin();
 
                 //ManuscriptLogin entity data fill up
-                if (manuscriptLoginVM.CrestId == null || manuscriptLoginVM.CrestId==0)
+
+                if (manuscriptLoginVM.Id == 0)
                 {
-                    manuscriptLogin.CrestId = Convert.ToInt32(manuscriptLoginVM.CrestId);
+                    manuscriptLogin.CrestId = Convert.ToString(manuscriptLoginVM.CrestId);
                     //manuscriptLogin.ManuscriptFilePath = manuscriptLoginVM.ManuscriptFilePath;
-                }    
+                }
 
                 manuscriptLogin.ArticleTitle = manuscriptLoginVM.ArticleTitle;
                 manuscriptLogin.ArticleTypeId = manuscriptLoginVM.ArticleTypeID;

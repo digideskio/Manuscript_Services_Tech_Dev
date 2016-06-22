@@ -15,7 +15,7 @@ using DTOs = TransferDesk.Contracts.Manuscript.DTO;
 using TransferDesk.Contracts.Manuscript.DTO;
 namespace TransferDesk.DAL.Manuscript.UnitOfWork
 {
-    public class ManuscriptLoginUnitOfWork:IDisposable
+    public class ManuscriptLoginUnitOfWork : IDisposable
     {
 
         private Repos.ManuscriptLoginRepository _manuscriptLoginRepository;
@@ -32,7 +32,7 @@ namespace TransferDesk.DAL.Manuscript.UnitOfWork
             _manuscriptLoginDetailsRepository = new Repos.ManuscriptLoginDetailsRepository(_manuscriptLoginRepository.context);
 
             _manuscriptBookLoginRepository = new Repos.ManuscriptBookLoginRepository(conString);
-            _manuscriptBookLoginDetailsRepository=new Repos.ManuscriptBookLoginDetailsRepository(conString);
+            _manuscriptBookLoginDetailsRepository = new Repos.ManuscriptBookLoginDetailsRepository(conString);
         }
 
         public void SaveManuscriptBookLoginDetails()
@@ -55,19 +55,19 @@ namespace TransferDesk.DAL.Manuscript.UnitOfWork
             foreach (var item in manuscriptLoginDTO.manuscriptLoginDetails)
             {
                 if (item.Id == 0 || item.Id == null)
-                      _manuscriptLoginDetailsRepository.AddManuscriptLoginDetails(item);
+                    _manuscriptLoginDetailsRepository.AddManuscriptLoginDetails(item);
                 else
                 {
                     _manuscriptLoginDetailsRepository.UpdateManuscriptLoginDetails(item);
                 }
-                
+
             }
             _manuscriptLoginDetailsRepository.SaveChanges();
         }
 
         public void SaveManuscriptBookLogin(ManuscriptBookLoginDTO manuscriptBookLoginDTO)
         {
-            if (manuscriptBookLoginDTO.manuscriptBookLogin.ID==0) // first sent starting from create new then
+            if (manuscriptBookLoginDTO.manuscriptBookLogin.ID == 0) // first sent starting from create new then
             {
                 manuscriptBookLoginDTO.manuscriptBookLogin.CreatedDate = System.DateTime.Now;
                 manuscriptBookLoginDTO.manuscriptBookLogin.CreatedBy = manuscriptBookLoginDTO.userId;
@@ -76,15 +76,15 @@ namespace TransferDesk.DAL.Manuscript.UnitOfWork
             else
             {
                 manuscriptBookLoginDTO.manuscriptBookLogin.ModifidedDate = System.DateTime.Now;
-                manuscriptBookLoginDTO.manuscriptBookLogin.ModifidedBy= manuscriptBookLoginDTO.userId;
+                manuscriptBookLoginDTO.manuscriptBookLogin.ModifidedBy = manuscriptBookLoginDTO.userId;
                 _manuscriptBookLoginRepository.UpdateManuscriptBookLogin(manuscriptBookLoginDTO.manuscriptBookLogin);
             }
             _manuscriptBookLoginRepository.SaveChanges();
         }
-        
+
         public void SaveManuscriptLogin()
         {
-            if (manuscriptLoginDTO.manuscriptLogin.CrestId == 0) // first sent starting from create new then
+            if (manuscriptLoginDTO.manuscriptLogin.Id == 0) // first sent starting from create new then
             {
                 manuscriptLoginDTO.manuscriptLogin.CreatedDate = System.DateTime.Now;
                 manuscriptLoginDTO.manuscriptLogin.CreatedBy = manuscriptLoginDTO.userID;

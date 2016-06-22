@@ -8,7 +8,7 @@ namespace TransferDesk.Contracts.Manuscript.ComplexTypes.ManuscriptLogin
 {
    public class pr_GetManuscriptLoginedJobByMSID_Result
     {
-        public int CrestId { get; set; }
+        public string CrestId { get; set; }
         public string ServiceType { get; set; }
         public string JournalTitle { get; set; }
         public string MSID { get; set; }

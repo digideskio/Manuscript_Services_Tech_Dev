@@ -12,7 +12,8 @@ namespace TransferDesk.Services.Manuscript.ViewModel
 {
     public class ManuscriptLoginVM
     {
-        public int CrestId { get; set; }
+        public int Id { get; set; }
+        public string CrestId { get; set; }
         public List<Journal> Journal { get; set; }
         public List<ArticleType> ArticleType { get; set; }
         public List<Section> Section { get; set; }

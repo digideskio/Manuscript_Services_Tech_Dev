@@ -106,7 +106,8 @@ $(document).ready(function () {
 
 
     $("#btnAssociateSave,#btnAssociateIsFinalSubmit, #btnQualitySave,#btnIsQualityFinalSubmit").click(function () {
-        //ImageDropdownValidation();
+        var Highest_iThenticateFromSingleSrc = $('#Highest_iThenticateFromSingleSrc').val();
+        var iThenticatePercentage = $('#iThenticatePercentage').val();
         var iThenticateResult = $('#hdniThenticateResult1').val();
         var EnglishlangQualityId = $('#hdnEnglishlangQuality1').val();
         var EthicsComplienceId = $('#hdnEthicsComplience1').val();
@@ -119,7 +120,11 @@ $(document).ready(function () {
             return false;
         }
         else if (EthicsComplienceId == 0) {
-            alert("Please, Select Ethics Compliance")
+            alert("Please, Select Ethics Compliance");
+            return false;
+        }
+        if ((Highest_iThenticateFromSingleSrc > iThenticatePercentage) || (Highest_iThenticateFromSingleSrc === iThenticatePercentage)) {
+            alert("Highest i-thenticate % to be lower than i-thenticate %");
             return false;
         }
     });

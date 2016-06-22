@@ -10,7 +10,8 @@ namespace TransferDesk.Contracts.Manuscript.Entities
     public class ManuscriptLogin
     {
         [Key]
-        public int CrestId { get; set; }
+        public int Id { get; set; }
+        public string CrestId { get; set; }
         public int JournalId { get; set; }
         public int ArticleTypeId { get; set; }
         public int? SectionId { get; set; }

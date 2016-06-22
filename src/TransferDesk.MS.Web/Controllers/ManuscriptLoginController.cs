@@ -45,11 +45,11 @@ namespace TransferDesk.MS.Web.Controllers
             //change as per id
             if (manuscriptLogin.ServiceTypeStatusId == 9)
             {
-                manuscriptLoginDetails = ManuscriptLoginDbRepositoryReadSide.GetManuscriptLoginDetails(manuscriptLogin.CrestId, ManuscriptLoginDbRepositoryReadSide.MSServiceTypeID());
+                manuscriptLoginDetails = ManuscriptLoginDbRepositoryReadSide.GetManuscriptLoginDetails(manuscriptLogin.Id, ManuscriptLoginDbRepositoryReadSide.MSServiceTypeID());
             }
             else
             {
-                manuscriptLoginDetails = ManuscriptLoginDbRepositoryReadSide.GetManuscriptLoginDetails(manuscriptLogin.CrestId, manuscriptLogin.ServiceTypeStatusId);
+                manuscriptLoginDetails = ManuscriptLoginDbRepositoryReadSide.GetManuscriptLoginDetails(manuscriptLogin.Id, manuscriptLogin.ServiceTypeStatusId);
             }
             if (manuscriptLoginDetails != null)
             {
@@ -59,6 +59,7 @@ namespace TransferDesk.MS.Web.Controllers
                     manuscriptLoginVm.Associate = _manuscriptDBRepositoryReadSide.EmployeeName(usernameID);
                 }
             }
+            manuscriptLoginVm.CrestId = manuscriptLogin.CrestId;
             manuscriptLoginVm.InitialSubmissionDate = manuscriptLogin.InitialSubmissionDate;
             manuscriptLoginVm.ManuscriptFilePath = manuscriptLogin.ManuscriptFilePath;
             manuscriptLoginVm.ServiceTypeID = manuscriptLogin.ServiceTypeStatusId;
@@ -114,7 +115,7 @@ namespace TransferDesk.MS.Web.Controllers
             IDictionary<string, string> dataErrors = new Dictionary<string, string>();
             if (manuscriptBookLoginVM.ChapterNumber != "")
                 manuscriptBookLoginVM.ChapterNumber = Convert.ToString(manuscriptBookLoginVM.ChapterNumber).Trim();
-            if (ManuscriptLoginDbRepositoryReadSide.IsBookCrestIDLogin(manuscriptBookLoginVM.ServiceTypeID, manuscriptBookLoginVM.BookMasterId, manuscriptBookLoginVM.ChapterNumber, manuscriptBookLoginVM.ChapterTitle,manuscriptBookLoginVM.ID))
+            if (ManuscriptLoginDbRepositoryReadSide.IsBookCrestIDLogin(manuscriptBookLoginVM.ServiceTypeID, manuscriptBookLoginVM.BookMasterId, manuscriptBookLoginVM.ChapterNumber, manuscriptBookLoginVM.ChapterTitle, manuscriptBookLoginVM.ID))
             {
                 TempData["msg"] = "<script>alert('Job is already loggedin');</script>";
                 return RedirectToAction("BookLogin", new { id = 0 });
@@ -154,7 +155,7 @@ namespace TransferDesk.MS.Web.Controllers
                 if (empInfo.Count() > 0)
                     manuscriptLoginVm.userID = empInfo.FirstOrDefault().UserID;
             }
-            if (manuscriptLoginVm.CrestId == 0)
+            if (manuscriptLoginVm.Id == 0)
             {
                 if (manuscriptLoginVm.IsRevision)
                 {
@@ -162,7 +163,7 @@ namespace TransferDesk.MS.Web.Controllers
                 }
                 else
                 {
-                    if (!ManuscriptLoginDbRepositoryReadSide.IsMSIDAvailable(manuscriptLoginVm.MSID, manuscriptLoginVm.CrestId, manuscriptLoginVm.ServiceTypeID))
+                    if (!ManuscriptLoginDbRepositoryReadSide.IsMSIDAvailable(manuscriptLoginVm.MSID, manuscriptLoginVm.Id, manuscriptLoginVm.ServiceTypeID))
                         TempData["MSIDError"] = "<script>alert('Manuscript Number is already present.');</script>";
                     else
                     {
@@ -178,12 +179,12 @@ namespace TransferDesk.MS.Web.Controllers
                 }
                 else
                 {
-                    if (ManuscriptLoginDbRepositoryReadSide.IsMSIDAvailable(manuscriptLoginVm.MSID, manuscriptLoginVm.CrestId, manuscriptLoginVm.ServiceTypeID))
+                    if (ManuscriptLoginDbRepositoryReadSide.IsMSIDAvailable(manuscriptLoginVm.MSID, manuscriptLoginVm.Id, manuscriptLoginVm.ServiceTypeID))
                         TempData["MSIDError"] = "<script>alert('Manuscript Number is already present.');</script>";
                     else
                     {
                         var manuscriptLogin = new ManuscriptLogin();
-                        manuscriptLogin = ManuscriptLoginDbRepositoryReadSide.GetManuscriptByCrestID(manuscriptLoginVm.CrestId);
+                        manuscriptLogin = ManuscriptLoginDbRepositoryReadSide.GetManuscriptByCrestID(manuscriptLoginVm.Id);
                         //code to updated record
                         _manuscriptLoginService.SaveManuscriptLoginVM(dataErrors, manuscriptLoginVm, manuscriptLogin);
                         TempData["msg"] = "<script>alert('Record updated succesfully');</script>";
@@ -198,7 +199,7 @@ namespace TransferDesk.MS.Web.Controllers
             //code to add record
             var manuscriptLogin = new ManuscriptLogin();
             //if new record or revision then add entry into db
-            manuscriptLoginVm.CrestId = 0;
+            manuscriptLoginVm.CrestId = "";
             _manuscriptLoginService.SaveManuscriptLoginVM(dataErrors, manuscriptLoginVm, manuscriptLogin);
             TempData["msg"] = "<script>alert('Record added succesfully');</script>";
         }
@@ -283,7 +284,8 @@ namespace TransferDesk.MS.Web.Controllers
                 Response.Write(sw.ToString());
                 Response.Flush();
                 Response.End();
-                return View();
+
+                return View("JournalLogin");
             }
             else
             {
@@ -374,25 +376,22 @@ namespace TransferDesk.MS.Web.Controllers
             manuscriptLoginVm.ServiceType = _manuscriptDBRepositoryReadSide.GetServiceType();
             manuscriptLoginVm.EmployeeName = _manuscriptDBRepositoryReadSide.EmployeeName(userId);
             manuscriptLoginVm.ManuscriptLoginedJobs = ManuscriptLoginDbRepositoryReadSide.GetManuscriptLoginJobs();
-            var crestId = Convert.ToInt32(id);
+            var ID = Convert.ToInt32(id);
             if (id != null && id != 0)
             {
-                var serviceTypeid = _manuscriptDBRepositoryReadSide.GetServiceID(crestId);
-                var jobstatusisOnHold = _manuscriptDBRepositoryReadSide.CheckJobStatusForHold(crestId, serviceTypeid);
+                var serviceTypeid = _manuscriptDBRepositoryReadSide.GetServiceID(ID);
+                var jobstatusisOnHold = _manuscriptDBRepositoryReadSide.CheckJobStatusForHold(ID, serviceTypeid);
                 if (jobstatusisOnHold == false)
                 {
                     _errormsg = "This job is on hold and is not editable.";
                     TempData["msg1"] = "<script>alert(\"" + _errormsg + "\");</script>";
                     return RedirectToAction("JournalLogin");
                 }
-                ManuscriptLoginVmDetails(manuscriptLoginVm, crestId);
+                ManuscriptLoginVmDetails(manuscriptLoginVm, ID);
             }
             manuscriptLoginVm.ArticleType = _manuscriptDBRepositoryReadSide.GetArticleList(Convert.ToInt32(manuscriptLoginVm.JournalID));
             manuscriptLoginVm.Section = _manuscriptDBRepositoryReadSide.GetSectionList(Convert.ToInt32(manuscriptLoginVm.JournalID));
             return View("JournalLogin", manuscriptLoginVm);
         }
-
-
-
     }
 }

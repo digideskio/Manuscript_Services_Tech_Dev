@@ -90,7 +90,7 @@
                 </span>
             </td>
             <td style="text-align:left" class="ManuscriptDetailsLastRow">
-                @Html.TextBoxFor(x => x.ShareDrivePath, new { @class = "form-control input-sm", placeholder = "Enter Share Drive Path" })
+                <a href="@Model.ShareDrivePath" title="" target="_blank">@Model.ShareDrivePath</a>
             </td>
         </tr>
     </table>

@@ -10,7 +10,7 @@ using DataContexts = TransferDesk.DAL.Manuscript.DataContext;
 using Entities = TransferDesk.Contracts.Manuscript.Entities;
 namespace TransferDesk.DAL.Manuscript.Repositories
 {
-    public class ManuscriptLoginDetailsRepository:IManuscriptLoginDetails 
+    public class ManuscriptLoginDetailsRepository : IManuscriptLoginDetails
     {
         public DataContexts.ManuscriptDBContext context;
         private bool disposed = false;
@@ -31,7 +31,7 @@ namespace TransferDesk.DAL.Manuscript.Repositories
 
         public void UpdateManuscriptLoginDetails(Entities.ManuscriptLoginDetails manuscriptLoginDetails)
         {
-            manuscriptLoginDetails.ModifiedDate= System.DateTime.Now;
+            manuscriptLoginDetails.ModifiedDate = System.DateTime.Now;
             //context.Entry(manuscriptLoginDetails).State = EntityState.Modified;
             Entities.ManuscriptLoginDetails existing = context.ManuscriptLoginDetails.Find(manuscriptLoginDetails.Id);
             ((IObjectContextAdapter)context).ObjectContext.Detach(existing);
@@ -61,10 +61,11 @@ namespace TransferDesk.DAL.Manuscript.Repositories
             GC.SuppressFinalize(this);
         }
 
-        public int GetOpenManuscriptCount(int crestId)
+        public int GetOpenManuscriptCount(int Id)
         {
             var serviceTypeStatusId = (from q in context.ManuscriptLoginDetails
-                                       where q.CrestId == crestId && q.JobStatusId == 7
+
+                                       where q.Id == Id && q.JobStatusId == 7
                                        select q.ServiceTypeStatusId).Count();
             return serviceTypeStatusId;
         }

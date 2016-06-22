@@ -20,7 +20,7 @@
 
 
     $(".editButton").click(function (event) {
-        var id = ($(this).closest("tr").find("td").eq(1).text()).trim();
+        var id = ($(this).closest("tr").find("td").eq(11).text()).trim();
         if (id == 0 || id == '' || id == null) {
             var url = AppPath + 'ManuscriptLogin/JournalLogin';
         } else {

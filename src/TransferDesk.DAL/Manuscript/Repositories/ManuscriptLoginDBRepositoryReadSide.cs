@@ -30,21 +30,23 @@ namespace TransferDesk.DAL.Manuscript.Repositories
 
         public int GetCrestID(string msid)
         {
-            var crestId = (from q in manuscriptDataContextRead.ManuscriptLogin
-                           where q.MSID == msid
-                           select q.CrestId).FirstOrDefault();
-            return crestId;
+            var Id = (from q in manuscriptDataContextRead.ManuscriptLogin
+                      where q.MSID == msid
+                      select q.Id).FirstOrDefault();
+            return Id;
+
         }
 
         public int GetParentCrestId(string msid)
         {
             var parentCrestId = (from q in manuscriptDataContextRead.ManuscriptLogin
                                  where q.MSID == msid
-                                 select q.CrestId).FirstOrDefault();
+                                 select q.Id).FirstOrDefault();
             var revisionParentCrestId = (from q in manuscriptDataContextRead.ManuscriptLogin
                                          where q.MSID.Contains(msid + "_R")
-                                         orderby q.CrestId descending
-                                         select q.CrestId).FirstOrDefault();
+                                         orderby q.Id descending
+
+                                         select q.Id).FirstOrDefault();
             if (revisionParentCrestId != 0)
                 return revisionParentCrestId;
             else
@@ -122,7 +124,7 @@ namespace TransferDesk.DAL.Manuscript.Repositories
             return (revisionCount + 1);
         }
 
-        public bool IsMSIDAvailable(string msid, int id,int serviceTypeStatusId)
+        public bool IsMSIDAvailable(string msid, int id, int serviceTypeStatusId)
         {
             if (id == 0)
             {
@@ -143,7 +145,7 @@ namespace TransferDesk.DAL.Manuscript.Repositories
                 if (result.ToList().Count() == 1)
                 {
                     var pkCheck = from manuscript in result
-                                  where manuscript.CrestId == id
+                                  where manuscript.Id == id
                                   select manuscript;
                     if (pkCheck.ToList().Count() == 1)
                         return false;
@@ -161,10 +163,10 @@ namespace TransferDesk.DAL.Manuscript.Repositories
             }
         }
 
-        public bool IsCrestIDPresent(int crestID)
+        public bool IsCrestIDPresent(int Id)
         {
             int IsCrestIDPresent = (from q in manuscriptDataContextRead.ManuscriptLoginDetails
-                                    where q.CrestId == crestID && q.JobStatusId == 7
+                                    where q.CrestId == Id && q.JobStatusId == 7
                                     select q.CrestId).ToList().Count;
             if (IsCrestIDPresent > 0)
                 return true;
@@ -181,10 +183,10 @@ namespace TransferDesk.DAL.Manuscript.Repositories
             return id;
         }
 
-        public Entities.ManuscriptLoginDetails GetManuscriptLoginDetails(int crestID, int ServiceTypeStatusId)
+        public Entities.ManuscriptLoginDetails GetManuscriptLoginDetails(int ID, int ServiceTypeStatusId)
         {
             var manuscriptLoginDetails = (from q in manuscriptDataContextRead.ManuscriptLoginDetails
-                                          where q.CrestId == crestID && q.ServiceTypeStatusId == ServiceTypeStatusId && q.JobStatusId == 7
+                                          where q.CrestId == ID && q.ServiceTypeStatusId == ServiceTypeStatusId && q.JobStatusId == 7
                                           select q).FirstOrDefault();
             return manuscriptLoginDetails;
         }
@@ -193,14 +195,14 @@ namespace TransferDesk.DAL.Manuscript.Repositories
         {
             var manuscriptBookLoginDetails = (from q in manuscriptDataContextRead.ManuscriptBookLoginDetails
                                               where q.ManuscriptBookLoginId == manuscriptBookLoginId && q.ServiceTypeStatusId == ServiceTypeStatusId && q.JobStatusId == 7
-                                          select q).FirstOrDefault();
+                                              select q).FirstOrDefault();
             return manuscriptBookLoginDetails;
         }
 
-        public int GetServiceTypeStatusId(int crestId)
+        public int GetServiceTypeStatusId(int Id)
         {
             var serviceTypeStatusId = (from q in manuscriptDataContextRead.ManuscriptLoginDetails
-                                       where q.CrestId == crestId && q.JobStatusId == 7
+                                       where q.CrestId == Id && q.JobStatusId == 7
                                        select q.ServiceTypeStatusId).FirstOrDefault();
             return serviceTypeStatusId;
         }
@@ -270,24 +272,24 @@ namespace TransferDesk.DAL.Manuscript.Repositories
             return manuscripBooktLogin;
         }
 
-        public bool IsBookCrestIDLogin(int serviceTypeId,int BookTitleId,string chapterNo,string chapterTitle, int ID)
+        public bool IsBookCrestIDLogin(int serviceTypeId, int BookTitleId, string chapterNo, string chapterTitle, int ID)
         {
             var manuscripBooktLogin = 0;
-            if(ID==0)
-            { 
-            manuscripBooktLogin = (from q in manuscriptDataContextRead.ManuscriptBookLogin
-                                        where q.BookMasterID == BookTitleId && q.ChapterNumber == chapterNo && q.ServiceTypeID == serviceTypeId && q.ManuscriptStatusID==7
-                                        select q.CrestID).Count();
+            if (ID == 0)
+            {
+                manuscripBooktLogin = (from q in manuscriptDataContextRead.ManuscriptBookLogin
+                                       where q.BookMasterID == BookTitleId && q.ChapterNumber == chapterNo && q.ServiceTypeID == serviceTypeId && q.ManuscriptStatusID == 7
+                                       select q.CrestID).Count();
             }
             else
             {
-                var currentServiceTypeId =(from q in manuscriptDataContextRead.ManuscriptBookLogin where q.ID == ID select q.ServiceTypeID).FirstOrDefault();
+                var currentServiceTypeId = (from q in manuscriptDataContextRead.ManuscriptBookLogin where q.ID == ID select q.ServiceTypeID).FirstOrDefault();
                 if (Convert.ToInt32(currentServiceTypeId) == serviceTypeId)
                     return false;
                 manuscripBooktLogin = (from q in manuscriptDataContextRead.ManuscriptBookLogin
                                        where q.BookMasterID == BookTitleId && q.ChapterNumber == chapterNo && q.ServiceTypeID == serviceTypeId && q.ManuscriptStatusID == 7
                                        select q.CrestID).Count();
-                
+
             }
             if (Convert.ToInt32(manuscripBooktLogin) == 0)
                 return false;
@@ -325,7 +327,7 @@ namespace TransferDesk.DAL.Manuscript.Repositories
         {
             try
             {
-                var FromDate = Convert.ToDateTime(strFromDate);               
+                var FromDate = Convert.ToDateTime(strFromDate);
                 var ToDate = Convert.ToDateTime(strToDate);
                 var FromDateParameter = FromDate != null ?
                 new SqlParameter("FromDate", FromDate) :
@@ -338,20 +340,20 @@ namespace TransferDesk.DAL.Manuscript.Repositories
                 List<pr_GetManuscriptLoginJobs_Result> manuscriptLoginJobsForExcel =
                     this.manuscriptDataContextRead.Database.SqlQuery<pr_GetManuscriptLoginJobs_Result>("pr_LoginExportToExcel @FromDate, @ToDate", FromDateParameter, ToDateParameter).ToList();
                 var manuscriptLoginExportJobs = (from q in manuscriptLoginJobsForExcel
-                              select new pr_GetManuscriptLoginExportJobs_Result()
-                              {
-                                 CrestId=q.CrestId,
-                                 ServiceType=q.ServiceType,
-                                 JournalTitle=q.JournalTitle,
-                                 MSID=q.MSID,
-                                 ArticleTypeName=q.ArticleTypeName,
-                                 SectionName=q.SectionName,
-                                 Link=q.Link,
-                                 ArticleTitle=q.ArticleTitle,
-                                 SpecialInstruction=q.SpecialInstruction,
-                                 Associate=q.Associate,
-                                  InitialSubmissionDate = q.InitialSubmissionDate.ToString("dd/MM/yyyy")
-                              }).ToList<pr_GetManuscriptLoginExportJobs_Result>();
+                                                 select new pr_GetManuscriptLoginExportJobs_Result()
+                                                 {
+                                                     CrestId = q.CrestId,
+                                                     ServiceType = q.ServiceType,
+                                                     JournalTitle = q.JournalTitle,
+                                                     MSID = q.MSID,
+                                                     ArticleTypeName = q.ArticleTypeName,
+                                                     SectionName = q.SectionName,
+                                                     Link = q.Link,
+                                                     ArticleTitle = q.ArticleTitle,
+                                                     SpecialInstruction = q.SpecialInstruction,
+                                                     Associate = q.Associate,
+                                                     InitialSubmissionDate = q.InitialSubmissionDate.ToString("dd/MM/yyyy")
+                                                 }).ToList<pr_GetManuscriptLoginExportJobs_Result>();
                 return manuscriptLoginExportJobs;
             }
             catch
@@ -381,23 +383,23 @@ namespace TransferDesk.DAL.Manuscript.Repositories
 
                 List<pr_GetBookLoignedJobs_Result> manuscriptBookLoginJobsForExcel =
                     this.manuscriptDataContextRead.Database.SqlQuery<pr_GetBookLoignedJobs_Result>("pr_BookLoginExportToExcel @FromDate, @ToDate", FromDateParameter, ToDateParameter).ToList();
-                var manuscriptBookLoginExportJobs = (from q in manuscriptBookLoginJobsForExcel 
-                                                 select new pr_GetManuscriptBookLoginExportJobs_Result()
-                                                 {
-                                                     BookTitle = q.BookTitle,
-                                                     CrestId = q.CrestID,
-                                                     ChapterNumber=q.ChapterNumber,
-                                                     FTPLink=  q.FTPLink,
-                                                     GPUInformation=q.GPUInformation,
-                                                     ChapterTitle= q.ChapterTitle,
-                                                     PageCount=q.PageCount,
-                                                     ReceivedDate =q.ReceivedDate.ToString("dd/MM/yyyy"),
-                                                     RequesterName=q.RequesterName,
-                                                     Associate = q.Associate,
-                                                     SpecialInstruction=q.SpecialInstruction,
-                                                     ServiceType = q.ServiceType,
-                                                     Task=q.Task
-                                                 }).ToList<pr_GetManuscriptBookLoginExportJobs_Result>();
+                var manuscriptBookLoginExportJobs = (from q in manuscriptBookLoginJobsForExcel
+                                                     select new pr_GetManuscriptBookLoginExportJobs_Result()
+                                                     {
+                                                         BookTitle = q.BookTitle,
+                                                         CrestId = q.CrestID,
+                                                         ChapterNumber = q.ChapterNumber,
+                                                         FTPLink = q.FTPLink,
+                                                         GPUInformation = q.GPUInformation,
+                                                         ChapterTitle = q.ChapterTitle,
+                                                         PageCount = q.PageCount,
+                                                         ReceivedDate = q.ReceivedDate.ToString("dd/MM/yyyy"),
+                                                         RequesterName = q.RequesterName,
+                                                         Associate = q.Associate,
+                                                         SpecialInstruction = q.SpecialInstruction,
+                                                         ServiceType = q.ServiceType,
+                                                         Task = q.Task
+                                                     }).ToList<pr_GetManuscriptBookLoginExportJobs_Result>();
                 return manuscriptBookLoginExportJobs;
             }
             catch

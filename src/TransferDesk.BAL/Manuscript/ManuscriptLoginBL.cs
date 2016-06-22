@@ -214,6 +214,7 @@ namespace TransferDesk.BAL.Manuscript
         {
 
             int ID = _manuscriptLoginDBRepositoryReadSide.GetCrestID(manuscriptLoginDTO.manuscriptLogin.MSID);
+            manuscriptLoginDTO.manuscriptLogin.Id = ID;
             manuscriptLoginDTO.IsCrestIDPresent = _manuscriptLoginDBRepositoryReadSide.IsCrestIDPresent(ID);
             if (_manuscriptLoginDetailsRepository.GetOpenManuscriptCount(ID) == 2)
             {
@@ -274,8 +275,8 @@ namespace TransferDesk.BAL.Manuscript
         {
             //update record  _manuscriptLoginDetailsRepository
             var updateManuscriptLoginDetailsMS =
-                _manuscriptLoginDBRepositoryReadSide.GetManuscriptLoginDetails(manuscriptLoginDTO.manuscriptLogin.CrestId,
-                    _manuscriptLoginDBRepositoryReadSide.GetServiceTypeStatusId(manuscriptLoginDTO.manuscriptLogin.CrestId));
+                _manuscriptLoginDBRepositoryReadSide.GetManuscriptLoginDetails(manuscriptLoginDTO.manuscriptLogin.Id,
+                    _manuscriptLoginDBRepositoryReadSide.GetServiceTypeStatusId(manuscriptLoginDTO.manuscriptLogin.Id));
             updateManuscriptLoginDetailsMS.SubmitedDate = DateTime.Now;
             updateManuscriptLoginDetailsMS.FetchedDate = DateTime.Now;
             //update using query
@@ -298,7 +299,7 @@ namespace TransferDesk.BAL.Manuscript
             var manuscriptLoginDetails = new ManuscriptLoginDetails
             {
                 AssignedDate = DateTime.Now,
-                CrestId = manuscriptLoginDTO.manuscriptLogin.CrestId,
+                CrestId = manuscriptLoginDTO.manuscriptLogin.Id,
                 ServiceTypeStatusId = manuscriptLoginDTO.manuscriptLogin.ServiceTypeStatusId,
                 JobStatusId = Convert.ToInt32(manuscriptStatusID),
                 RoleId = _manuscriptLoginDBRepositoryReadSide.GetAssociateRole(),
