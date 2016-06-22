@@ -102,7 +102,7 @@ namespace TransferDesk.BAL.Manuscript
             string formatedID = "";
             formatedID = String.Format("{0:00000}", id);
             string crestId = "";
-            if (jobType.ToLower() == "B")
+            if (jobType.ToLower() == "b")
                 crestId = "B" + Convert.ToString(dtTodaysDateTime.Year) + formatedID;
             else
                 crestId = "J" + Convert.ToString(dtTodaysDateTime.Year) + formatedID;
@@ -213,7 +213,7 @@ namespace TransferDesk.BAL.Manuscript
         private void SaveManuscriptDetails(ManuscriptLoginDTO manuscriptLoginDTO, int manuscriptStatusID, ManuscriptLoginUnitOfWork _manuscriptLoginUnitOfWork)
         {
 
-            int ID = _manuscriptLoginDBRepositoryReadSide.GetCrestID(manuscriptLoginDTO.manuscriptLogin.MSID);
+            int ID = _manuscriptLoginDBRepositoryReadSide.GetCrestID(manuscriptLoginDTO.manuscriptLogin.MSID,manuscriptLoginDTO.manuscriptLogin.ServiceTypeStatusId);
             manuscriptLoginDTO.manuscriptLogin.Id = ID;
             manuscriptLoginDTO.IsCrestIDPresent = _manuscriptLoginDBRepositoryReadSide.IsCrestIDPresent(ID);
             if (_manuscriptLoginDetailsRepository.GetOpenManuscriptCount(ID) == 2)
@@ -315,9 +315,7 @@ namespace TransferDesk.BAL.Manuscript
                     _manuscriptDBRepositoryReadSide.GetAssociateName(manuscriptLoginDTO.AssociateName)
                         .FirstOrDefault();
                 manuscriptLoginDetails.UserRoleId = prGetAssociateInfoResult.ID;
-                manuscriptLoginDetails.JobProcessStatusId =
-                    _manuscriptLoginDBRepositoryReadSide.GetStatusMaster()
-                        .Where(x => x.Description.ToLower() == "assigned")
+                manuscriptLoginDetails.JobProcessStatusId =_manuscriptLoginDBRepositoryReadSide.GetStatusMaster().Where(x => x.Description.ToLower() == "assigned")
                         .Select(x => x.ID)
                         .FirstOrDefault();
             }

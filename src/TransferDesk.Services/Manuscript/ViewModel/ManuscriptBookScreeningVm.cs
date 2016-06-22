@@ -128,37 +128,38 @@ namespace TransferDesk.Services.Manuscript.ViewModel
             get { return _msDTO.ManuscriptBookScreening.RollID; }
             set { _msDTO.ManuscriptBookScreening.RollID = value; }
         }
-
+        [Required(ErrorMessage = "Book Title")]
         public int BookTitleId
         {
             get { return _msDTO.ManuscriptBookLogin.BookMasterID; }
             set { _msDTO.ManuscriptBookLogin.BookMasterID = value; }
         }
+        
         public int BookLoginID
         {
             get { return _msDTO.ManuscriptBookLogin.ID; }
             set { _msDTO.ManuscriptBookLogin.ID = value; }
         }
 
-
+        [Required(ErrorMessage = "Chapter Number")]
         public string ChapterNumber
         {
             get { return _msDTO.ManuscriptBookLogin.ChapterNumber; }
             set { _msDTO.ManuscriptBookLogin.ChapterNumber = value; }
         }
-
+        [Required(ErrorMessage = "Chapter Title")]
         public string ChapterTitle
         {
             get { return _msDTO.ManuscriptBookLogin.ChapterTitle; }
             set { _msDTO.ManuscriptBookLogin.ChapterTitle = value; }
         }
-
+        [Required(ErrorMessage = "Received Date")]
         public DateTime ReceivedDate
         {
             get { return _msDTO.ManuscriptBookLogin.ReceivedDate; }
             set { _msDTO.ManuscriptBookLogin.ReceivedDate = value; }
         }
-
+        [Required(ErrorMessage = "Page Count")]
         public int PageCount
         {
             get { return _msDTO.ManuscriptBookLogin.PageCount; }

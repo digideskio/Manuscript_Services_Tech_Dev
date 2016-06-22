@@ -104,10 +104,11 @@ $(document).ready(function () {
 
     $('#StartDate').prop("readonly", true);
 
+    
 
     $("#btnAssociateSave,#btnAssociateIsFinalSubmit, #btnQualitySave,#btnIsQualityFinalSubmit").click(function () {
-        var Highest_iThenticateFromSingleSrc = $('#Highest_iThenticateFromSingleSrc').val();
-        var iThenticatePercentage = $('#iThenticatePercentage').val();
+        var Highest_iThenticateFromSingleSrc =parseInt($('#Highest_iThenticateFromSingleSrc').val());
+        var iThenticatePercentage =parseInt($('#iThenticatePercentage').val());
         var iThenticateResult = $('#hdniThenticateResult1').val();
         var EnglishlangQualityId = $('#hdnEnglishlangQuality1').val();
         var EthicsComplienceId = $('#hdnEthicsComplience1').val();

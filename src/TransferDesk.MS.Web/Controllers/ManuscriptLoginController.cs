@@ -164,7 +164,7 @@ namespace TransferDesk.MS.Web.Controllers
                 else
                 {
                     if (!ManuscriptLoginDbRepositoryReadSide.IsMSIDAvailable(manuscriptLoginVm.MSID, manuscriptLoginVm.Id, manuscriptLoginVm.ServiceTypeID))
-                        TempData["MSIDError"] = "<script>alert('Manuscript Number is already present.');</script>";
+                            TempData["MSIDError"] = "<script>alert('Manuscript Number is already present.');</script>";
                     else
                     {
                         AddManuscriptLoginInfo(manuscriptLoginVm, dataErrors);
@@ -290,7 +290,7 @@ namespace TransferDesk.MS.Web.Controllers
             else
             {
                 TempData["msg"] = "<script>alert('No Record Found');</script>";
-                return RedirectToAction("ManuscriptLogin");
+                return RedirectToAction("JournalLogin");
             }
 
         }

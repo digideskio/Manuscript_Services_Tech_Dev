@@ -65,7 +65,7 @@ namespace TransferDesk.DAL.Manuscript.Repositories
         {
             var serviceTypeStatusId = (from q in context.ManuscriptLoginDetails
 
-                                       where q.Id == Id && q.JobStatusId == 7
+                                       where q.CrestId == Id && q.JobStatusId == 7
                                        select q.ServiceTypeStatusId).Count();
             return serviceTypeStatusId;
         }

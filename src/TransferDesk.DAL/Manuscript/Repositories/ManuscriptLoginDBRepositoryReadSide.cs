@@ -28,10 +28,10 @@ namespace TransferDesk.DAL.Manuscript.Repositories
             this.manuscriptDataContextRead = new DataContexts.ManuscriptDBContext(conString);
         }
 
-        public int GetCrestID(string msid)
+        public int GetCrestID(string msid, int ServiceTypeStatusId)
         {
             var Id = (from q in manuscriptDataContextRead.ManuscriptLogin
-                      where q.MSID == msid
+                      where q.MSID == msid && q.ServiceTypeStatusId==ServiceTypeStatusId
                       select q.Id).FirstOrDefault();
             return Id;
 
