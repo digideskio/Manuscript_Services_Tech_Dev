@@ -142,6 +142,7 @@ namespace TransferDesk.Services.Manuscript
         private void ValidateManuscriptBookScreening(IDictionary<string, string> dataErrors, ManuscriptBookScreeningDTO manuscriptBookScreeningDTO)
         {
             var bookScreening=new Entities.ManuscriptBookScreening();
+            bookScreening = manuscriptBookScreeningDTO.ManuscriptBookScreening;
             if(bookScreening.BookLoginID==0)
                 dataErrors.Add("BookLoginID", "Book login details are required.");
             if (bookScreening.RollID == null)
