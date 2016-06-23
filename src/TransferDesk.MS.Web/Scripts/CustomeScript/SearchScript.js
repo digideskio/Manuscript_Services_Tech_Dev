@@ -630,6 +630,7 @@ function loadArticleTypeDDL() {
     var sectionTypeDDL = $("#ddlSectionType");
     if (selectedJournal == 0 || selectedJournal == null || selectedJournal == "") {
         articleDDL.empty();
+        $('#JournalLink').empty();
         articleDDL.append(new Option("Select-ArticleType", ""));
         sectionTypeDDL.empty();
         sectionTypeDDL.append(new Option("Select-Section", ""));

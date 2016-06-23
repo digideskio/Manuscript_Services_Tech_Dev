@@ -31,7 +31,7 @@
     });
 
     $("tr.grid-row").click(function (event) {
-        crestId = ($(this).closest("tr").find("td").eq(1).text()).trim();
+        crestId = ($(this).closest("tr").find("td").eq(18).text()).trim();
         serviceType = ($(this).closest("tr").find("td").eq(3).text()).trim();
         jobProcessingStatus = ($(this).closest("tr").find("td").eq(9).text()).trim();
         role = ($(this).closest("tr").find("td").eq(8).text()).trim();

@@ -9,7 +9,8 @@ namespace TransferDesk.Contracts.Manuscript.ComplexTypes.AdminDashBoard
     public class pr_AdminDashBoardGetAllOpenJobs_Result
     {
         public long? SrNo { get; set; }
-        public int CrestId { get; set; }
+        public int Id { get; set; }
+        public string CrestId { get; set; }
         public string JobType { get; set; }
         public string ServiceType { get; set; }
         public string MSID { get; set; }

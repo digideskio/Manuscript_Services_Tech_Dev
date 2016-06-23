@@ -131,6 +131,9 @@
                 white-space: nowrap;
                 text-align: left;
             }
+            .hide {
+                display: none;
+            }
         </style>
         @Html.Grid(Model.jobsdetails).Named("AllOpenJobs").Columns(columns =>
         {
@@ -153,6 +156,8 @@
             columns.Add(x => x.Age).Titled("Age (days)");
             columns.Add(x => x.HandlingTime).Titled("Handling time")
                 .Encoded(false).Sanitized(false);
+            columns.Add(x => x.Id).Css("hide");
+
         }).Sortable().Selectable(false)
     </div>
 
