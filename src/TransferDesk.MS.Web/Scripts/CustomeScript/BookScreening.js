@@ -90,8 +90,6 @@ $(document).ready(function () {
 
     $('#QualityStartCheckDate').datepicker({ dateFormat: 'dd/mm/yy' });
 
-    //$('#ReceivedDate').datepicker({ dateFormat: 'dd/mm/yy', maxDate: '0' });
-
     if ($("#PageCount").val() == 0) {
         $("#PageCount").val('');
     }

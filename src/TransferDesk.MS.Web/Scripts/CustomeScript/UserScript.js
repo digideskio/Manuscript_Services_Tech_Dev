@@ -15,14 +15,7 @@
 
         $('#btnUserSubmit').val("Update");
     });
-    //$('#btnUserSubmit').val("Submit");
-    //$('#ID').val('');
-    //$('#EmpID').val('');
-    //$('#EmpUserID').val('');
-    //$('#EmpName').val('');
-    //$('#Email').val('');
-    //$('#dvStatus').css({ "display": "none" });
-
+    
     $("#btnReset").click(function () {
         $('#btnUserSubmit').val("Submit");
         $('#ID').val('');

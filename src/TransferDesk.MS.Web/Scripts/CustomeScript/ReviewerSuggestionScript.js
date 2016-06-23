@@ -84,7 +84,6 @@
     });//submit action end
 
     $('#QualityStartCheckDate').datepicker({ dateFormat: 'dd/mm/yy' });
-    //$('#QualityStartCheckDate').val($.datepicker.formatDate("dd/mm/yy", new Date()));
     $('.datepicker').datepicker({ dateFormat: 'dd/mm/yy' });
     if($("#MSID").val()=='')
     {
@@ -127,12 +126,6 @@
     $('.unBind').click(function (e) {
         var role = $("#ddlRole option:selected").text();
         if (role == "Quality Analyst" && $("#hdnIsQualityFinalSubmit").val().toLocaleLowerCase() != "true") {
-            //if (confirm('Do you really want to un-assign the reviewer')) {
-            //    return true;
-            //}
-            //else {
-            //    return false;
-            //}
             return true;
         } else {
             return false;
@@ -189,11 +182,7 @@ function loadMSDetailsModal(URL, selectedValue, searchText) {
             var table = $("<table />");
             table[0].id = "trdMSDetails";
             table[0].className = "table table-striped table-hover";
-            //table[0].border = "1";
-
-            //Get the count of columns.
-            //var columnCount = Object.keys(data[0]).length;
-
+           
             //Add headers
             var row = $(table[0].insertRow(-1));
             $.each(data, function (key, val) {
@@ -222,7 +211,6 @@ function loadMSDetailsModal(URL, selectedValue, searchText) {
             rows = array.split('---');
             //add row data
             for (var i = 0; i < rows.length - 1; i++) {
-                //var row = $(table[0].insertRow(-1));
                 var row = $(tBody[0].insertRow(-1));
                 var temp = rows[i].split('##');
                 //add temp array data to td's

@@ -2,11 +2,9 @@
     $('#dvIsActive').css({ "display": "none" });
     $('.editButton').click(function () {
         $('.field-validation-error').text("")
-        $('#ID').val($(this).closest("tr").find("td").eq(0).text());
-        //$('#ddlJournalTitle').text($(this).closest("tr").find("td").eq(1).text().trim());
+        $('#ID').val($(this).closest("tr").find("td").eq(0).text());        
         $('#JrID').val($(this).closest("tr").find("td").eq(1).text());
         var journalTitle = $(this).closest("tr").find("td").eq(2).text().trim();
-        //    $("#ddlJournalTitle option:contains(" + journalTitle + ")").attr('selected', 'selected');       
         $("#ddlJournalTitle").val($("#ddlJournalTitle" + " option").filter(function () { return this.text == journalTitle }).val());
         $('#ddlJournalTitle').attr("disabled", true);
         $('#SectionName').val($(this).closest("tr").find("td").eq(3).text().trim());

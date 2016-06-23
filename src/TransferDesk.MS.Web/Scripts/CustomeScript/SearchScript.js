@@ -89,8 +89,7 @@ $(document).ready(function () {
         if (searchText == "" || searchText == null) {
             alert('Please,Enter search-text');
             return false;
-        }
-        //SearchProgress()
+        }        
         var URL = AppPath + "Manuscript/GetSearchResult";
         loadMSDetailsModal(URL, selectedValue, searchText);
     });//submit action end
@@ -202,7 +201,6 @@ $(document).ready(function () {
         theme_advanced_resizing: true,
         fontsize_formats: "8pt 10pt 12pt 14pt 18pt 24pt 36pt",
         editor_selector: "mceEditor",
-        //menubar: false,
         statusbar: false,
         width: "320",
         height: "230",
@@ -294,8 +292,6 @@ $(document).ready(function () {
     $("#tmpAssociateFinalSubmitValue").val($("#hdnIsAssociateFinalSubmit").val());
     $("#tmpQualityFinalSubmitValue").val($("#hdnIsQualityFinalSubmit").val());
 
-    //$('#RevisedDate, #lblRevisedDate').hide();
-
     //when first time page load
     IsQualityRole();
 
@@ -316,7 +312,6 @@ $(document).ready(function () {
                         return false;
                     }
                     if (!(jQuery.trim($("#ErrorDescription").val()).length > 0)) {
-                        //alert(jQuery.trim($("#ErrorDescription").val()).length);
                         alert("Please, Enter Error Description");
                         return false;
                     }
@@ -501,8 +496,6 @@ function IsQualityCheck() {
         $("#QualityStartCheckDate").val('');
     }
     else {
-        //$(".chkQualityCheck").prop("disabled", false);
-        //$("#ErrorDescription").prop('disabled', false);
         $("#QualityStartCheckDate").prop("readonly", false);
         $("#ddlAccurate").prop("disabled", false);
         $("#QualityStartCheckDate").prop("readonly", false);

@@ -4,11 +4,9 @@
     $('.editButton').click(function () {
         $('.field-validation-error').text("")
         $('#ID').val($(this).closest("tr").find("td").eq(0).text());
-        //$('#ddlJournalTitle').text($(this).closest("tr").find("td").eq(1).text().trim());
         $('#JrID').val($(this).closest("tr").find("td").eq(1).text());
         var journalTitle = $(this).closest("tr").find("td").eq(2).text().trim();
         $("#ddlJournalTitle").val($("#ddlJournalTitle" + " option").filter(function () { return this.text == journalTitle }).val());
-
         $('#ddlJournalTitle').attr("disabled", true);
         $('#ArticleTypeName').val($(this).closest("tr").find("td").eq(3).text().trim());
         $('#ArticleTypeID').val($(this).closest("tr").find("td").eq(6).text());
@@ -30,7 +28,6 @@
 
 
     $('#btnReset').click(function () {
-        // window.location.href = "/ManuscriptScreening/Manuscript/JournalArticleTypes";
         window.location.href = AppPath + "Admin/JournalArticleTypes";
     });
 

@@ -57,12 +57,6 @@
                             val: item.UserID
                         }
                     }))
-                },
-                error: function (response) {
-                    //alert("Please,");
-                },
-                failure: function (response) {
-                    //alert("Please,select journal title");
                 }
             });
         },

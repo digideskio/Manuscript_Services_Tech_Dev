@@ -69,10 +69,8 @@
                     }))
                 },
                 error: function (response) {
-                    //alert("Please,");
                 },
                 failure: function (response) {
-                    //alert("Please,select journal title");
                 }
             });
         },
@@ -93,8 +91,7 @@
         var associateName = $("#AssociateName").val();
         var serviceType = $("#ServiceTypeVM").val();
         var jobProcessingStatus = $("#JobProcessingStatusVM").val();
-        var role = $("#RoleVM").val();
-        //  window.location.href = AppPath + 'AdminDashboard/AdminActionResult?AssociateNameVM=' + associateName + "&CrestIdVM=" + crestid + "&ServiceTypeVM=" + serviceType + "&JobProcessingStatusVM=" + jobProcessingStatus + "&RoleVM=" + role;
+        var role = $("#RoleVM").val();        
         $.ajax(
         {
             method: "GET",
@@ -134,33 +131,6 @@
         $(this).find("input,textarea,select").val('').end();
 
     });
-
-   
-    //$('#myModal').on('shown.bs.modal', function () {
-    //    $("#btnExportOk").click(function () {
-    //        var FromDateValue = $.datepicker.parseDate("dd/mm/yy", $("#FromDate").val());
-    //        var ToDateValue = $.datepicker.parseDate("dd/mm/yy", $("#ToDate").val());
-    //        if (FromDateValue > ToDateValue) {
-    //            alert("From date cannot be greater then To Date.");
-    //            return false;
-    //        }
-    //        if (FromDateValue == "" && ToDateValue == "") {
-    //            alert('Please select Dates');
-    //            return false;
-    //        }
-    //        if (FromDateValue == "") {
-    //            alert('Please select From Date');
-    //            return false;
-    //        }
-    //        else if (ToDateValue == "") {
-    //            alert('Please select To Date');
-    //            return false;
-    //        }
-    //        window.location.href = AppPath + "ManuscriptLogin/ManuscriptLoginExportResult?FromDate=" + $("#FromDate").val() + "&ToDate=" + $("#ToDate").val();
-    //        $("#myModal").modal('hide');
-    //    });
-    //});
-
 
     $('#myModal').on('shown.bs.modal', function () {
     $("#btnExportOk").click(function () {
@@ -235,8 +205,6 @@
     $("#btnHoldId").click(function () {
 
         var associateName1 = $("#AssociateNameVM").val();
-
-
         if (crestId == null) {
             alert("Select a MSID.");
             return false;
