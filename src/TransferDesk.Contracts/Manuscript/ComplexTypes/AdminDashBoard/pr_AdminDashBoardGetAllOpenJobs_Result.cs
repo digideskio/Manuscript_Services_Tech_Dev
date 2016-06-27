@@ -15,7 +15,7 @@ namespace TransferDesk.Contracts.Manuscript.ComplexTypes.AdminDashBoard
         public string ServiceType { get; set; }
         public string MSID { get; set; }
         public string JournalBookName { get; set; }
-        public string PageCount { get; set; }
+        public int PageCount { get; set; }
         public string Name { get; set; }
         public string Role { get; set; }
         public string Status { get; set; }
@@ -31,12 +31,12 @@ namespace TransferDesk.Contracts.Manuscript.ComplexTypes.AdminDashBoard
     public class pr_AdminDashBoardGetAllOpenJobsForExport_Result
     {
         public long? SrNo { get; set; }
-        public int CrestId { get; set; }
+        public string CrestId { get; set; }
         public string JobType { get; set; }
         public string ServiceType { get; set; }
         public string MSID { get; set; }
         public string JournalBookName { get; set; }
-        public string PageCount { get; set; }
+        public int PageCount { get; set; }
         public string Name { get; set; }
         public string Role { get; set; }
         public string Status { get; set; }

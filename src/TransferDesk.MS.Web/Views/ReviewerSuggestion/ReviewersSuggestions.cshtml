@@ -93,6 +93,9 @@
                     <th width="73px">
                         Publications
                     </th>
+                    <th width="62px">
+                        UnAssign
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -167,20 +170,22 @@
                                     <span>Link</span>
                                     @if (i == 0)
                                     {
-                                         @Convert.ToString(1) <span class="asterik">*</span>
+                                        @Convert.ToString(1) <span class="asterik">*</span>
                                     }
                                     else
-                                    { @Convert.ToString(i+1)}
-                                    <a href=@reviewerInfo.ReferenceLinks[i].Link target="_blank" style="word-wrap: break-word;text-decoration: underline;">@reviewerInfo.ReferenceLinks[i].Link</a>                                    
+                                    { @Convert.ToString(i + 1)}
+                                    <a href=@reviewerInfo.ReferenceLinks[i].Link target="_blank" style="word-wrap: break-word;text-decoration: underline;">@reviewerInfo.ReferenceLinks[i].Link</a>
                                 </div>
                             }
                         </td>
-                        <td style="text-align:center">
+                        <td style="text-align: center">
                             <div class="form-group">
                                 @Html.TextBox("publication", reviewerInfo.NoOfPublication, new { @class = "form-control input-sm", placeholder = "Enter publication", @readonly = "readonly" })
                             </div>
-                            <div class="form-group">
-                                @Html.ActionLink("UnAssign", "UnAssignReviewer", "ReviewerSuggestion", new { reviewerInfoID = reviewerInfo.ID, msReviewersSuggestionID = Model.ID }, new { style = "text-decoration: underline;", @class = "unBind" })
+                        </td>
+                        <td>
+                            <div style="text-align: center;width:62px">
+                                <input id="UnAssignedReviewer" name="UnAssignedReviewer" type="checkbox" value="@reviewerInfo.ID" class="task_checked" />
                             </div>
                         </td>
                     </tr>
@@ -189,9 +194,10 @@
         </table>
     </div>
     <br />
+
     @Html.ValidationSummary("Following fields are mandatory:", new { @class = "alert alert-danger" })
     <div>Reviewers Suggestions Mandatory Fields<span class="asterik">*</span></div>
-    
+
     <hr id="hrUpQualityAnalyst" />
     <div id="divQualityAnalyst" style="" width="100%">
         <div class="titles"><span><b>Quality Analyst</b></span></div>
@@ -228,7 +234,7 @@
                 </td>
                 <td width="214px" colspan="3">
                     <div id="ListManuscriptErrorCategories">
-                     
+
                         @for (var i = 0; i < Model.ListManuscriptErrorCategoriesVM.Count; i++)
                         {
                             <div style="display:inline-block;">
@@ -251,7 +257,8 @@
                 </td>
             </tr>
             <tr>
-                <td colspan="6" align="right" style="vertical-align:bottom">
+                <td colspan="6" align="right" style="vertical-align: bottom">
+                    <input type="submit" id="btnRevertToAssociate" name="RevertToAssociate" value="RevertToAssociate" class="btn btn-primary btn-sm" />
                     <input type="submit" id="btnQualitySave" name="QualityCommand" value="Save" class="btn btn-primary btn-sm" />
                     <input type="submit" id="btnIsQualityFinalSubmit" name="QualityCommand" value="Submit" class="btn btn-primary btn-sm" />
                 </td>

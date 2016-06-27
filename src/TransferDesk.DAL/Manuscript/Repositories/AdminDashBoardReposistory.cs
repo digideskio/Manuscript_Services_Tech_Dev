@@ -66,7 +66,7 @@ namespace TransferDesk.DAL.Manuscript.Repositories
                                                        select new pr_AdminDashBoardGetAllOpenJobsForExport_Result()
                                                        {
                                                            SrNo = q.SrNo,
-                                                           CrestId = q.Id,
+                                                           CrestId = q.CrestId,
                                                            JobType = q.JobType,
                                                            ServiceType = q.ServiceType,
                                                            MSID = q.MSID,

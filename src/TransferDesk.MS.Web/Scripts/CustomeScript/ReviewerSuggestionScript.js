@@ -61,12 +61,12 @@
             $('#btnSubmit').click();
         }
     });
-        
+
     $('#btnNewAdd').click(ResetAllControls)
     $('#myModal').on('hidden.bs.modal', function (e) {
         $('#txtSearch').val('');
         $('#SelectedValue').find('option:first').attr('selected', 'selected');
-    })
+    });
 
     $('#btnSubmit').click(function () {
         var selectedValue = $("#SelectedValue option:selected").val();
@@ -84,9 +84,9 @@
     });//submit action end
 
     $('#QualityStartCheckDate').datepicker({ dateFormat: 'dd/mm/yy' });
+    //$('#QualityStartCheckDate').val($.datepicker.formatDate("dd/mm/yy", new Date()));
     $('.datepicker').datepicker({ dateFormat: 'dd/mm/yy' });
-    if($("#MSID").val()=='')
-    {
+    if ($("#MSID").val() == '') {
         document.getElementById("StartDate").value = new Date($.now()).getDate() + "/" + ("0" + (new Date($.now()).getMonth() + 1)).slice(-2) + "/" + new Date($.now()).getFullYear();
     }
     $("#ddlRole").change(function () {
@@ -96,7 +96,6 @@
     //when first time page load
     IsQualityRole();
 
-    
     //when ddl QualityCheck change
     $("#QualityCheck").change(function () {
         IsQualityCheck();
@@ -132,9 +131,42 @@
         }
     });
 
-    
+    $("#btnRevertToAssociate").click(function () {
+        IsErrorCatAndDescriptionFilled();
+        var newTasks = {};
+        $(".task_checked:checked").each(function () {
+            var reviewerInfoID = $(this).attr("id");
+            var msReviewersSuggestionID = $(this).val();
+            newTasks[msReviewersSuggestionID] = reviewerInfoID;
+        });
+    });
+
+    $("#btnIsQualityFinalSubmit").click(function () {
+        IsErrorCatAndDescriptionFilled();
+    });
+
 
 });//Ready function ends
+
+function IsErrorCatAndDescriptionFilled() {
+    var role = $("#ddlRole option:selected").text();
+    if (role == "Quality Analyst") {
+        var QualityCheck = $("#QualityCheck option:selected").text();
+        if (QualityCheck.toLocaleLowerCase() == "yes") {
+            var accurate = $("#ddlAccurate option:selected").text();
+            if (accurate.toLocaleLowerCase() == "no") {
+                if (!$(".chkQualityCheck:checked").length > 0) {
+                    alert("Please, Select Error Categories");
+                    return false;
+                }
+                if (!(jQuery.trim($("#ErrorDescription").val()).length > 0)) {
+                    alert("Please, Enter Error Description");
+                    return false;
+                }
+            }
+        }
+    }
+}
 
 function IsQualityRole() {
     var role = $("#ddlRole option:selected").text();
@@ -150,7 +182,7 @@ function IsQualityRole() {
         $("#divQualityAnalyst").css({ "display": "none" });
         $("#hrUpQualityAnalyst").css({ "display": "none" });
         $("#btnNewAdd").prop('disabled', false);
-        $("#btnQualitySave,#btnIsQualityFinalSubmit").prop('disabled', true); 
+        $("#btnQualitySave,#btnIsQualityFinalSubmit").prop('disabled', true);
         $('#ddlJournalTitle,#ddlTaskID,#ArticleTitle,#MSID').prop("disabled", true);
         $('.unBind').hide();
     }
@@ -182,7 +214,11 @@ function loadMSDetailsModal(URL, selectedValue, searchText) {
             var table = $("<table />");
             table[0].id = "trdMSDetails";
             table[0].className = "table table-striped table-hover";
-           
+            //table[0].border = "1";
+
+            //Get the count of columns.
+            //var columnCount = Object.keys(data[0]).length;
+
             //Add headers
             var row = $(table[0].insertRow(-1));
             $.each(data, function (key, val) {
@@ -211,6 +247,7 @@ function loadMSDetailsModal(URL, selectedValue, searchText) {
             rows = array.split('---');
             //add row data
             for (var i = 0; i < rows.length - 1; i++) {
+                //var row = $(table[0].insertRow(-1));
                 var row = $(tBody[0].insertRow(-1));
                 var temp = rows[i].split('##');
                 //add temp array data to td's
@@ -248,14 +285,14 @@ function loadMSDetailsModal(URL, selectedValue, searchText) {
 function IsViewEditable() {
     var role = $("#ddlRole option:selected").text();
     if ($("#hdnIsQualityFinalSubmit").val().toLocaleLowerCase() == "true") {
-      if (role == "Quality Analyst") {
+        if (role == "Quality Analyst") {
             $('input[type="text"], textarea, select').prop("disabled", true);
             $("#SelectedValue, #txtSearch").prop('disabled', false);
             $("#ddlRole").prop('disabled', false);
             $("#btnQualitySave,#btnIsQualityFinalSubmit").prop('disabled', true);
             $(".chkQualityCheck").prop("disabled", true);
             $('.unBind').hide();
-      } 
+        }
     }
 }
 

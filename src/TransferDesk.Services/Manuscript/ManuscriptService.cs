@@ -157,10 +157,6 @@ namespace TransferDesk.Services.Manuscript
                 dataErrors.Add("Ethics_ComplianceID", "Ethics Compliance is required.");
             if (bookScreening.CorrespondingAuthor == null)
                 dataErrors.Add("CorrespondingAuthor", "Corresponding Author is required.");
-            if (bookScreening.CorrespondingAuthorEmail == null)
-                dataErrors.Add("CorrespondingAuthorEmail", "Corresponding Author Email is required.");
-            if (bookScreening.CorrespondingAuthorAff == null)
-                dataErrors.Add("CorrespondingAuthorAff", "Corresponding Author Aff. is required.");
             if (bookScreening.OverallAnalysisID == null)
                 dataErrors.Add("OverallAnalysis", "Overall Analysis is required.");
         }
@@ -172,10 +168,11 @@ namespace TransferDesk.Services.Manuscript
             {
                 switch (associateCommand.ToLower())
                 {
-                    case "save":
+                    case "save":                        
                         manuscriptBookScreeningVm.IsAssociateFinalSubmit = false;
                         break;
                     case "submit":
+                        manuscriptBookScreeningVm.AssociateFinalSubmitDate = DateTime.Now;
                         manuscriptBookScreeningVm.IsAssociateFinalSubmit = true;
                         break;
                 }
@@ -188,6 +185,7 @@ namespace TransferDesk.Services.Manuscript
                         manuscriptBookScreeningVm.IsQualityFinalSubmit = false;
                         break;
                     case "submit":
+                        manuscriptBookScreeningVm.QualityFinalSubmitDate = DateTime.Now;
                         manuscriptBookScreeningVm.IsQualityFinalSubmit = true;
                         break;
                 }

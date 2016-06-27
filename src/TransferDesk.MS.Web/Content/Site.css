@@ -332,7 +332,7 @@ a#scroll-up {
 	border-right-color: transparent;
 	border-bottom-width: 30px;
 	border-bottom-style: solid;
-	border-bottom-color: red;
+	border-bottom-color: #192F5A;
 }
 
 	a#scroll-up:before {

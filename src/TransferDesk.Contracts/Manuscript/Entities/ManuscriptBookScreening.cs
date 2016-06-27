@@ -36,5 +36,8 @@ namespace TransferDesk.Contracts.Manuscript.Entities
         public DateTime? QualityStartCheckDate { get; set; }
         public string AssociateUserID { get; set; }
         public string QualityUserID { get; set; }
+        public DateTime? AssociateFinalSubmitDate { get; set; }
+        public DateTime? QualityFinalSubmitDate { get; set; }
+        
     }
 }

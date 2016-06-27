@@ -24,6 +24,8 @@
     @Html.HiddenFor(x => x.IsQualityFinalSubmit, new { id = "hdnIsQualityFinalSubmit" })
     @Html.Hidden("tmpAssociateFinalSubmitValue")
     @Html.Hidden("tmpQualityFinalSubmitValue")
+    @Html.HiddenFor(x=>x.AssociateFinalSubmitDate)
+    @Html.HiddenFor(x => x.AssociateUserID)
     <table width="100%">
         <tr>
             <td width="168px">
@@ -107,7 +109,7 @@
 
             </td>
             <td>
-                <span>Corresponding Author Email<span class="asterik"> *</span> </span>
+                <span>Corresponding Author Email </span>
             </td>
             <td>
                 @Html.TextBoxFor(x => x.CorrespondingAuthorEmail, new { @class = "form-control input-sm", placeholder = "Enter Corresponding Author Email" })

@@ -113,7 +113,7 @@ namespace TransferDesk.MS.Web.Controllers
             {
                 _reviewerService.UnAssignReviewer(Convert.ToInt32(reviewerID), msReviewerSuggestionVM.ID);
                 var result = _reviewerDBRepositoryReadSide.GetMSReviewerInfoIDs(Convert.ToInt32(reviewerID));
-                List<TransferDesk.Contracts.Manuscript.Entities.ReviewerMaster> reviewerMasters = _reviewerDBRepositoryReadSide.GetReviewerDetails(result.ID);
+                List<TransferDesk.Contracts.Manuscript.Entities.ReviewerMaster> reviewerMasters = _reviewerDBRepositoryReadSide.GetReviewerDetails(result.ReviewerMasterID);
                 reviewerNames += reviewerMasters[0].ReviewerName + ", ";
             }
             if (UnAssignedReviewer.Length > 0)

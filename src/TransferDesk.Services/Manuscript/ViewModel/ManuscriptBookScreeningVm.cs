@@ -203,13 +203,10 @@ namespace TransferDesk.Services.Manuscript.ViewModel
         [Required(ErrorMessage = "Corresponding Author")]
         public string CorrespondingAuthor
         { get { return _msDTO.ManuscriptBookScreening.CorrespondingAuthor; } set { _msDTO.ManuscriptBookScreening.CorrespondingAuthor = value; } }
-
-        [Required(ErrorMessage = "Email")]
-        [RegularExpression(@"(([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)(\s*;\s*|\s*$))*", ErrorMessage = "Email is not valid")]
+        [Required(ErrorMessage = "Corresponding Author Email")]
         public string CorrespondingAuthorEmail
         { get { return _msDTO.ManuscriptBookScreening.CorrespondingAuthorEmail; } set { _msDTO.ManuscriptBookScreening.CorrespondingAuthorEmail = value; } }
 
-        [Required(ErrorMessage = "Corresponding Author Affiliation")]
         public string CorrespondingAuthorAff
         { get { return _msDTO.ManuscriptBookScreening.CorrespondingAuthorAff; } set { _msDTO.ManuscriptBookScreening.CorrespondingAuthorAff = value; } }
 
@@ -254,6 +251,15 @@ namespace TransferDesk.Services.Manuscript.ViewModel
 
         public System.DateTime? StartDate
         { get { return _msDTO.ManuscriptBookScreening.CreatedDate; } set { _msDTO.ManuscriptBookScreening.CreatedDate = value; } }
+
+        public System.DateTime? AssociateFinalSubmitDate
+        { get { return _msDTO.ManuscriptBookScreening.AssociateFinalSubmitDate; } set { _msDTO.ManuscriptBookScreening.AssociateFinalSubmitDate = value; } }
+
+        public System.DateTime? QualityFinalSubmitDate
+        { get { return _msDTO.ManuscriptBookScreening.QualityFinalSubmitDate; } set { _msDTO.ManuscriptBookScreening.QualityFinalSubmitDate = value; } }
+
+        public string AssociateUserID
+        { get { return _msDTO.ManuscriptBookScreening.AssociateUserID; } set { _msDTO.ManuscriptBookScreening.AssociateUserID = value; } }
 
     }
 }
