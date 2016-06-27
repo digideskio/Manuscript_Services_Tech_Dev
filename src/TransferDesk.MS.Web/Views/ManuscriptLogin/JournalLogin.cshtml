@@ -81,7 +81,7 @@
                     </td>
                     <td>Initial Submission Date<span class="asterik">*</span></td>
                     <td>
-                        @Html.TextBoxFor(model => model.InitialSubmissionDate, new {@class = "form-control input-sm", @Value = Model.InitialSubmissionDate.ToString("d"), placeholder = "dd/mm/yyyy"})
+                        @Html.TextBoxFor(model => model.InitialSubmissionDate, new { @class = "form-control input-sm", @Value = (Model.InitialSubmissionDate.HasValue ? Model.InitialSubmissionDate.Value.ToShortDateString() : null), placeholder = "dd/mm/yyyy" })
                     </td>
                 </tr>
                 <tr>
@@ -95,8 +95,6 @@
                     </td>
                 </tr>
                 <tr>
-                    @*<td>Auto Assignment</td>
-                            <td><input type="checkbox" value=" " /></td>*@
                     <td colspan="4" align="right">
                         <input type="submit" value="Login" id="btnLogin" class="btn btn-primary btn-sm"/>
                         <input type="button" value="Reset" id="btnReset" class="btn btn-primary btn-sm"/>

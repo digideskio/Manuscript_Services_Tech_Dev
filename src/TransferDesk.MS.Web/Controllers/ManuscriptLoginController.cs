@@ -140,7 +140,7 @@ namespace TransferDesk.MS.Web.Controllers
             var manuscriptBookLogin = new ManuscriptBookLogin();
 
             _manuscriptLoginService.SaveManuscriptBookLoginVM(dataErrors, manuscriptBookLoginVM, manuscriptBookLogin);
-            //TempData["msg"] = "<script>alert('Record updated succesfully');</script>";
+
         }
 
         [HttpPost]

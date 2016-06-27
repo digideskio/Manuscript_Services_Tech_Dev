@@ -13,11 +13,11 @@ namespace TransferDesk.Contracts.Manuscript.Entities
         public int Id { get; set; }
         public string CrestId { get; set; }
         public int JournalId { get; set; }
-        public int ArticleTypeId { get; set; }
+        public int? ArticleTypeId { get; set; }
         public int? SectionId { get; set; }
         public string MSID { get; set; }
         public string ArticleTitle { get; set; }
-        public DateTime InitialSubmissionDate { get; set; }
+        public DateTime? InitialSubmissionDate { get; set; }
         public int ServiceTypeStatusId { get; set; }
         public int ManuscriptStatusId { get; set; }
         public string ManuscriptFilePath { get; set; }

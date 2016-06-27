@@ -92,12 +92,8 @@ namespace TransferDesk.Services.Manuscript
         {
             if (manuscriptLoginVM.JournalID == null)
                 dataErrors.Add("JournalID", "JournalTitle is required.");
-            if (manuscriptLoginVM.ArticleTypeID == null)
-                dataErrors.Add("ArticleTypeID", "Article Type is required.");
             if (manuscriptLoginVM.ArticleTitle == null)
                 dataErrors.Add("ArticleTitle", "Article Title is required.");
-            if (manuscriptLoginVM.InitialSubmissionDate == null)
-                dataErrors.Add("InitialSubmissionDate", "Initial Submission Date is required.");
             if (manuscriptLoginVM.MSID == null)
                 dataErrors.Add("MSID", "Manuscript Number is required.");
             if (manuscriptLoginVM.ServiceTypeID == null)

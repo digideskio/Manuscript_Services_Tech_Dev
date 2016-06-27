@@ -29,8 +29,7 @@ namespace TransferDesk.Services.Manuscript.ViewModel
         [Required(ErrorMessage = "Journal Title")]
         public int JournalID { get; set; }
         
-        [Required(ErrorMessage = "Article Type")]
-        public int ArticleTypeID { get; set; }
+        public int? ArticleTypeID { get; set; }
         
         public int? SectionID { get; set; }
         
@@ -39,8 +38,7 @@ namespace TransferDesk.Services.Manuscript.ViewModel
         
         public string SpecialInstruction { get; set; }
         
-        [Required(ErrorMessage = "Initial Submission Date")]
-        public DateTime InitialSubmissionDate { get; set; }
+        public DateTime? InitialSubmissionDate { get; set; }
 
         [Required(ErrorMessage = "Received Date")]
         public DateTime? ReceivedDate { get; set; }

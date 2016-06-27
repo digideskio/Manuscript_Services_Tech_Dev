@@ -175,8 +175,19 @@
                 alert('Please, Select Task');
                 return false;
             }
-        } else {
+        }
+        else {
             $("#TaskID").val('');
+        }
+        if (serviceType === "Manuscript Screening") {
+            if ($("#ddlArticleType").val() == null || $("#ddlArticleType").val() == '') {
+                alert('Please, select journal title and article type');
+                return false;
+            }
+            if ($("#InitialSubmissionDate").val() == null || $("#InitialSubmissionDate").val() == '') {
+                alert('Initial submission date can not be blank');
+                return false;
+            }
         }
     });
 
