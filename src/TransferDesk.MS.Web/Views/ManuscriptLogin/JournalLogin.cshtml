@@ -199,7 +199,10 @@
             </td>
 
             <td class="hide">
-                @item.InitialSubmissionDate.ToString("d")
+                @if (@item.InitialSubmissionDate.HasValue)
+                {
+                    @item.InitialSubmissionDate.Value.ToString("d")
+                }
             </td>
             <td width="84px">
                 <input type="button" id="btnEdit" class="btn btn-primary btn-sm editButton" style="line-height: normal;" value="Edit"/>

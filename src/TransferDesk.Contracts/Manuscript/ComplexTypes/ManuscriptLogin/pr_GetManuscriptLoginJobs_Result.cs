@@ -20,7 +20,7 @@ namespace TransferDesk.Contracts.Manuscript.ComplexTypes.ManuscriptLogin
         public string ArticleTitle { get; set; }
         public string SpecialInstruction { get; set; }     
         public string Associate { get; set; }
-        public DateTime InitialSubmissionDate { get; set; }
+        public DateTime? InitialSubmissionDate { get; set; }
     }
 
 

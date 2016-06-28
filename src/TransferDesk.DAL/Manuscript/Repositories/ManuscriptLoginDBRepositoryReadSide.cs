@@ -352,7 +352,7 @@ namespace TransferDesk.DAL.Manuscript.Repositories
                                                      ArticleTitle = q.ArticleTitle,
                                                      SpecialInstruction = q.SpecialInstruction,
                                                      Associate = q.Associate,
-                                                     InitialSubmissionDate = q.InitialSubmissionDate.ToString("dd/MM/yyyy")
+                                                     InitialSubmissionDate =(q.InitialSubmissionDate.HasValue? q.InitialSubmissionDate.Value.ToString("dd/MM/yyyy"):string.Empty)
                                                  }).ToList<pr_GetManuscriptLoginExportJobs_Result>();
                 return manuscriptLoginExportJobs;
             }
