@@ -1,0 +1,9 @@
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Logger\bin\Release\TransferDesk.Logger.dll
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Logger\bin\Release\TransferDesk.Logger.pdb
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Logger\bin\Release\TransferDesk.Contracts.dll
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Logger\bin\Release\EntityFramework.dll
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Logger\bin\Release\TransferDesk.Contracts.pdb
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Logger\bin\Release\EntityFramework.xml
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Logger\obj\Release\TransferDesk.Logger.csprojResolveAssemblyReference.cache
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Logger\obj\Release\TransferDesk.Logger.dll
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Logger\obj\Release\TransferDesk.Logger.pdb

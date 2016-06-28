@@ -1,0 +1,12 @@
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.DAL\bin\Release\TransferDesk.DAL.dll.config
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.DAL\bin\Release\TransferDesk.DAL.dll
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.DAL\bin\Release\TransferDesk.DAL.pdb
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.DAL\bin\Release\EntityFramework.dll
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.DAL\bin\Release\EntityFramework.SqlServer.dll
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.DAL\bin\Release\TransferDesk.Contracts.dll
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.DAL\bin\Release\TransferDesk.Contracts.pdb
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.DAL\bin\Release\EntityFramework.xml
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.DAL\bin\Release\EntityFramework.SqlServer.xml
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.DAL\obj\Release\TransferDesk.DAL.csprojResolveAssemblyReference.cache
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.DAL\obj\Release\TransferDesk.DAL.dll
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.DAL\obj\Release\TransferDesk.DAL.pdb
