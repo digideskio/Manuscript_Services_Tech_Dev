@@ -30,8 +30,8 @@ namespace TransferDesk.Contracts.Manuscript.Entities
         public int? DeliveryAdviceID { get; set; }
         public DateTime? BackupDateTime { get; set; }
         public string BackupPath { get; set; }
-        public int PriorityStatusId { get; set; }
-        public int RevisionParentId { get; set; }
+        public int? PriorityStatusId { get; set; }
+        public int? RevisionParentId { get; set; }
         public string CreatedUserID { get; set; }
         public DateTime? CreatedDate { get; set; }
         public DateTime? ModifiedDate { get; set; }

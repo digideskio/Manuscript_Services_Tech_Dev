@@ -91,6 +91,8 @@
     }
     $("#ddlRole").change(function () {
         IsQualityRole();
+        IsQualityCheck();
+        IsAccurate();
     });
 
     //when first time page load
@@ -132,13 +134,34 @@
     });
 
     $("#btnRevertToAssociate").click(function () {
-        IsErrorCatAndDescriptionFilled();
-        var newTasks = {};
+        var newTasks = [];
         $(".task_checked:checked").each(function () {
             var reviewerInfoID = $(this).attr("id");
             var msReviewersSuggestionID = $(this).val();
             newTasks[msReviewersSuggestionID] = reviewerInfoID;
         });
+        if (newTasks.length > 0) {
+            var role = $("#ddlRole option:selected").text();
+            if (role == "Quality Analyst") {
+                var QualityCheck = $("#QualityCheck option:selected").text();
+                if (QualityCheck.toLocaleLowerCase() == "yes") {
+                    var accurate = $("#ddlAccurate option:selected").text();
+                    if (accurate.toLocaleLowerCase() == "no") {
+                        if (!$(".chkQualityCheck:checked").length > 0) {
+                            alert("Please, Select Error Categories");
+                            return false;
+                        }
+                        if (!(jQuery.trim($("#ErrorDescription").val()).length > 0)) {
+                            alert("Please, Enter Error Description");
+                            return false;
+                        }
+                    }
+                }
+            }
+        } else {
+            alert('Please, select Reviewer to un-Assign');
+            return false;
+        }
     });
 
     $("#btnIsQualityFinalSubmit").click(function () {
@@ -176,7 +199,7 @@ function IsQualityRole() {
         $("#btnNewAdd").prop('disabled', true);
         $("#btnQualitySave,#btnIsQualityFinalSubmit").prop('disabled', false);
         $('#ddlJournalTitle,#ddlTaskID,#ArticleTitle,#MSID').prop("disabled", false);
-        $('.unBind').show();
+        $(".task_checked").prop('disabled', false);
     }
     else if (role.toLocaleLowerCase() == "associate") {
         $("#divQualityAnalyst").css({ "display": "none" });
@@ -184,7 +207,7 @@ function IsQualityRole() {
         $("#btnNewAdd").prop('disabled', false);
         $("#btnQualitySave,#btnIsQualityFinalSubmit").prop('disabled', true);
         $('#ddlJournalTitle,#ddlTaskID,#ArticleTitle,#MSID').prop("disabled", true);
-        $('.unBind').hide();
+        $(".task_checked").prop('disabled', true);
     }
 }
 
@@ -306,6 +329,8 @@ function IsQualityCheck() {
         $("#QualityStartCheckDate").val('');
         $(".chkQualityCheck").prop("disabled", true);
         $("#ErrorDescription").prop('disabled', true);
+        $("#btnIsQualityFinalSubmit").prop('disabled', false);
+        $("#btnRevertToAssociate").prop('disabled', true);
     }
     else {
         $(".chkQualityCheck").prop("disabled", false);
@@ -314,6 +339,8 @@ function IsQualityCheck() {
         $("#ddlAccurate").prop("disabled", false);
         $("#QualityStartCheckDate").prop("readonly", false);
         $("#QualityStartCheckDate").datepicker("option", "disabled", false);
+        $("#btnIsQualityFinalSubmit").prop('disabled', true);
+        $("#btnRevertToAssociate").prop('disabled', false);
     }
 }
 
@@ -322,10 +349,14 @@ function IsAccurate() {
     if (accurate.toLocaleLowerCase() == "yes") {
         $(".chkQualityCheck").prop("disabled", true);
         $("#ErrorDescription").prop('disabled', true);
+        $("#btnIsQualityFinalSubmit").prop('disabled', false);
+        $("#btnRevertToAssociate").prop('disabled', true);
     }
     else {
         $(".chkQualityCheck").prop("disabled", false);
         $("#ErrorDescription").prop('disabled', false);
+        $("#btnIsQualityFinalSubmit").prop('disabled', true);
+        $("#btnRevertToAssociate").prop('disabled', false);
     }
 
 }

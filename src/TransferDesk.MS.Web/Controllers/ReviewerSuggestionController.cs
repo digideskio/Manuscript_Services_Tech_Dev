@@ -109,24 +109,32 @@ namespace TransferDesk.MS.Web.Controllers
             }
             string reviewerNames = String.Empty;
             //un-assign reviewer if any
-            foreach (var reviewerID in UnAssignedReviewer)
-            {
-                _reviewerService.UnAssignReviewer(Convert.ToInt32(reviewerID), msReviewerSuggestionVM.ID);
-                var result = _reviewerDBRepositoryReadSide.GetMSReviewerInfoIDs(Convert.ToInt32(reviewerID));
-                List<TransferDesk.Contracts.Manuscript.Entities.ReviewerMaster> reviewerMasters = _reviewerDBRepositoryReadSide.GetReviewerDetails(result.ReviewerMasterID);
-                reviewerNames += reviewerMasters[0].ReviewerName + ", ";
-            }
             if (UnAssignedReviewer.Length > 0)
             {
-                reviewerNames = reviewerNames.Remove(reviewerNames.Length - 1);
-                Dictionary<String, String> dicReplace = new Dictionary<String, String>();
-                _reviewerService.GetMailDetails(dicReplace, Convert.ToInt32(UnAssignedReviewer[0]), msReviewerSuggestionVM.ID, userID);
-                dicReplace.Add("[reviewername]", reviewerNames);
-                dicReplace.Add("[ReviewerCount]", Convert.ToString(UnAssignedReviewer.Length));
-                dicReplace.Add("[ErrorDescription]", msReviewerSuggestionVM.ErrorDescription);
-                SendMail(dicReplace, "~/EmailTemplate/Unassign_Reviewer_mail_template.html", "Reviewer(s) unassigned for :" + dicReplace["[manuscriptNumber]"], Convert.ToString(dicReplace["[QAEmail]"]), Convert.ToString(dicReplace["[AnalystEmail]"]), Convert.ToString(dicReplace["[QAEmail]"]), "");
-                
-                TempData["MSIDError"] = "<script>alert('Reviewer unassigned successfully');</script>";
+                foreach (var reviewerID in UnAssignedReviewer)
+                {
+                    _reviewerService.UnAssignReviewer(Convert.ToInt32(reviewerID), msReviewerSuggestionVM.ID);
+                    var result = _reviewerDBRepositoryReadSide.GetMSReviewerInfoIDs(Convert.ToInt32(reviewerID));
+                    List<TransferDesk.Contracts.Manuscript.Entities.ReviewerMaster> reviewerMasters =
+                        _reviewerDBRepositoryReadSide.GetReviewerDetails(result.ReviewerMasterID);
+                    reviewerNames += reviewerMasters[0].ReviewerName + ", ";
+                }
+                if (UnAssignedReviewer.Length > 0)
+                {
+                    reviewerNames = reviewerNames.Remove(reviewerNames.Length - 1);
+                    Dictionary<String, String> dicReplace = new Dictionary<String, String>();
+                    _reviewerService.GetMailDetails(dicReplace, Convert.ToInt32(UnAssignedReviewer[0]),
+                        msReviewerSuggestionVM.ID, userID);
+                    dicReplace.Add("[reviewername]", reviewerNames);
+                    dicReplace.Add("[ReviewerCount]", Convert.ToString(UnAssignedReviewer.Length));
+                    dicReplace.Add("[ErrorDescription]", msReviewerSuggestionVM.ErrorDescription);
+                    SendMail(dicReplace, "~/EmailTemplate/Unassign_Reviewer_mail_template.html",
+                        "Reviewer(s) unassigned for :" + dicReplace["[manuscriptNumber]"],
+                        Convert.ToString(dicReplace["[QAEmail]"]), Convert.ToString(dicReplace["[AnalystEmail]"]),
+                        Convert.ToString(dicReplace["[QAEmail]"]), "");
+
+                    TempData["MSIDError"] = "<script>alert('Reviewer unassigned successfully');</script>";
+                }
             }
             return RedirectToAction("ReviewersSuggestions", new { id = msReviewerSuggestionVM.ID });
         }
