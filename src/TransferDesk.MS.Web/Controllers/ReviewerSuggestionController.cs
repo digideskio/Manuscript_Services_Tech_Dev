@@ -84,7 +84,7 @@ namespace TransferDesk.MS.Web.Controllers
 
         [HttpPost, ValidateInput(false)]
         [ValidateAntiForgeryToken]
-        public ActionResult ReviewersSuggestions(ReviewerSuggestionVM msReviewerSuggestionVM, string AssociateCommand, string QualityCommand, string[] UnAssignedReviewer)
+        public ActionResult ReviewersSuggestions(ReviewerSuggestionVM msReviewerSuggestionVM, string AssociateCommand, string QualityCommand, string[] UnAssignedReviewer, string RevertToAssociate)
         {
             IDictionary<string, string> dataErrors = new Dictionary<string, string>();
             if (ModelState.IsValid)
@@ -109,7 +109,7 @@ namespace TransferDesk.MS.Web.Controllers
             }
             string reviewerNames = String.Empty;
             //un-assign reviewer if any
-            if (UnAssignedReviewer.Length > 0)
+            if (UnAssignedReviewer != null && String.IsNullOrEmpty(RevertToAssociate))
             {
                 foreach (var reviewerID in UnAssignedReviewer)
                 {

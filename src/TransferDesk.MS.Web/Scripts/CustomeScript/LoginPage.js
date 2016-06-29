@@ -42,12 +42,14 @@
             $.get(AppPath + "ManuscriptLogin/GetJournalLink", { "journalId": $("#ddlJournalTitle").val() }, function (link) {
                 $('#JournalLink').html('<a href="' + link + '" target="_blank" style="text-decoration: underline;padding-left: 40px;word-break: break-all;color: blue;">' + link + '</a>');
             });
-            $('#ddlArticleType').empty();
-            $('#ddlArticleType').append($('<option>', {
-                value: data.ArticleTypeID,
-                text: data.ArticleTypeName
-            }));
-            $("#ddlArticleType").val($("#ddlArticleType" + " option").filter(function () { return this.text == data.ArticleTypeName }).val());
+            if (data.ArticleTypeID != null) {
+                $('#ddlArticleType').empty();
+                $('#ddlArticleType').append($('<option>', {
+                    value: data.ArticleTypeID,
+                    text: data.ArticleTypeName
+                }));
+                $("#ddlArticleType").val($("#ddlArticleType" + " option").filter(function() { return this.text == data.ArticleTypeName }).val());
+            }
             if (data.SectionID != null) {
                 $('#ddlSectionType').append($('<option>', {
                     value: data.SectionID,
@@ -180,8 +182,8 @@
             $("#TaskID").val('');
         }
         if (serviceType === "Manuscript Screening") {
-            if ($("#ddlArticleType").val() == null || $("#ddlArticleType").val() == '') {
-                alert('Please, select journal title and article type');
+            if ($("#ddlArticleType").val() == null) {
+                alert('Please, select journal title');
                 return false;
             }
             if ($("#InitialSubmissionDate").val() == null || $("#InitialSubmissionDate").val() == '') {

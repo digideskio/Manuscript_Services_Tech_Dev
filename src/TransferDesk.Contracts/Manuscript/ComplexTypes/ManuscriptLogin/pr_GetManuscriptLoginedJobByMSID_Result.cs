@@ -12,7 +12,7 @@ namespace TransferDesk.Contracts.Manuscript.ComplexTypes.ManuscriptLogin
         public string ServiceType { get; set; }
         public string JournalTitle { get; set; }
         public string MSID { get; set; }
-        public int ArticleTypeID { get; set; }
+        public int? ArticleTypeID { get; set; }
         public int? SectionID { get; set; }
         public string ArticleTypeName { get; set; }
         public string SectionName { get; set; }
@@ -21,6 +21,6 @@ namespace TransferDesk.Contracts.Manuscript.ComplexTypes.ManuscriptLogin
         public string ArticleTitle { get; set; }
         public string SpecialInstruction { get; set; }
         public string Associate { get; set; }
-        public DateTime InitialSubmissionDate { get; set; }
+        public DateTime? InitialSubmissionDate { get; set; }
     }
 }

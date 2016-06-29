@@ -103,8 +103,6 @@
         IsQualityCheck();
     });
 
-    //when first time page load
-    IsAccurate();
     //when ddlAccurate change
     $("#ddlAccurate").change(function () {
         IsAccurate();
@@ -122,16 +120,10 @@
     //when first time page load
     IsQualityCheck();
 
-    IsViewEditable();
+    //when first time page load
+    IsAccurate();
 
-    $('.unBind').click(function (e) {
-        var role = $("#ddlRole option:selected").text();
-        if (role == "Quality Analyst" && $("#hdnIsQualityFinalSubmit").val().toLocaleLowerCase() != "true") {
-            return true;
-        } else {
-            return false;
-        }
-    });
+    IsViewEditable();
 
     $("#btnRevertToAssociate").click(function () {
         var newTasks = [];
@@ -314,7 +306,6 @@ function IsViewEditable() {
             $("#ddlRole").prop('disabled', false);
             $("#btnQualitySave,#btnIsQualityFinalSubmit").prop('disabled', true);
             $(".chkQualityCheck").prop("disabled", true);
-            $('.unBind').hide();
         }
     }
 }
