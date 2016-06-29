@@ -49,7 +49,7 @@
                         &nbsp;&nbsp;&nbsp;
                         @Html.CheckBoxFor(x => x.IsRevision, new {disabled = "disabled"})&nbsp;Revision
                     </td>
-                    <td>Article Type<span class="asterik">*</span></td>
+                    <td>Article Type<span id="ArticleTypeAsterik" class="asterik"></span></td>
                     <td>
                         @Html.DropDownListFor(x => x.ArticleTypeID, new SelectList(Model.ArticleType, "ID", "ArticleTypeName"), "Select-ArticleType", new {@class = "form-control input-sm", id = "ddlArticleType"})
                     </td>
@@ -79,7 +79,7 @@
                     <td>
                         @Html.TextBoxFor(model => model.Associate, new {@class = "form-control input-sm", placeholder = "Please, Enter Associate"})
                     </td>
-                    <td>Initial Submission Date<span class="asterik">*</span></td>
+                    <td>Initial Submission Date<span class="asterik" id="InitialSubmissionDateAsterik"></span></td>
                     <td>
                         @Html.TextBoxFor(model => model.InitialSubmissionDate, new { @class = "form-control input-sm", @Value = (Model.InitialSubmissionDate.HasValue ? Model.InitialSubmissionDate.Value.ToShortDateString() : null), placeholder = "dd/mm/yyyy" })
                     </td>

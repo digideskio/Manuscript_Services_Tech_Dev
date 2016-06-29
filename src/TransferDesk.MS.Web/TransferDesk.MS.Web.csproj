@@ -434,7 +434,6 @@
     <Content Include="Views\Manuscript\BookScreening.cshtml" />
     <Content Include="Views\ManuscriptLogin\BookLogin.cshtml" />
     <Content Include="Views\ManuscriptLogin\JournalLogin.cshtml" />
-    <Content Include="TransferDesk.MS.Web.zip" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TransferDesk.BAL\TransferDesk.BAL.csproj">

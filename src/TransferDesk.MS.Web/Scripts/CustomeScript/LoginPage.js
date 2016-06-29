@@ -182,8 +182,8 @@
             $("#TaskID").val('');
         }
         if (serviceType === "Manuscript Screening") {
-            if ($("#ddlArticleType").val() == null) {
-                alert('Please, select journal title');
+            if ($("#ddlArticleType").val() == null || $("#ddlArticleType").val() == '') {
+                alert('Please, select journal title and article type');
                 return false;
             }
             if ($("#InitialSubmissionDate").val() == null || $("#InitialSubmissionDate").val() == '') {
@@ -227,13 +227,20 @@
 
 });//ready function end
 
+
 function GetTaskTypeStatus() {
     var serviceType = $("#ServiceTypeID option:selected").text();
     if (serviceType == "Manuscript Screening") {
         $("#TaskID").prop("disabled", true);
-    } else
+        $("#ArticleTypeAsterik").append("<span>*</span>");
+        $("#InitialSubmissionDateAsterik").append("<span>*</span>");
+    } else {
         $("#TaskID").prop("disabled", false);
+        $("#ArticleTypeAsterik").empty();
+        $("#InitialSubmissionDateAsterik").empty();
+    }
 }
+
 
 function loadArticleTypeDDL() {
     var selectedJournal = $("#ddlJournalTitle option:selected").val();

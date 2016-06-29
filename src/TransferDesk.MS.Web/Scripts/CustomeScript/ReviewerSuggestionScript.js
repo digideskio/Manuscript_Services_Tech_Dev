@@ -117,11 +117,12 @@
         }
     });
 
-    //when first time page load
-    IsQualityCheck();
 
     //when first time page load
     IsAccurate();
+
+    //when first time page load
+    IsQualityCheck();
 
     IsViewEditable();
 
@@ -192,6 +193,7 @@ function IsQualityRole() {
         $("#btnQualitySave,#btnIsQualityFinalSubmit").prop('disabled', false);
         $('#ddlJournalTitle,#ddlTaskID,#ArticleTitle,#MSID').prop("disabled", false);
         $(".task_checked").prop('disabled', false);
+        IsQualityCheck();
     }
     else if (role.toLocaleLowerCase() == "associate") {
         $("#divQualityAnalyst").css({ "display": "none" });
@@ -324,14 +326,12 @@ function IsQualityCheck() {
         $("#btnRevertToAssociate").prop('disabled', true);
     }
     else {
-        $(".chkQualityCheck").prop("disabled", false);
-        $("#ErrorDescription").prop('disabled', false);
-        $("#QualityStartCheckDate").prop("readonly", false);
         $("#ddlAccurate").prop("disabled", false);
         $("#QualityStartCheckDate").prop("readonly", false);
         $("#QualityStartCheckDate").datepicker("option", "disabled", false);
         $("#btnIsQualityFinalSubmit").prop('disabled', true);
         $("#btnRevertToAssociate").prop('disabled', false);
+        IsAccurate();
     }
 }
 
