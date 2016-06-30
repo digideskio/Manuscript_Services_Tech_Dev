@@ -37,6 +37,7 @@ namespace TransferDesk.MS.Web.Controllers
 
         [HttpGet]
         public ActionResult HomePage(int? id)
+      
         {
             var userId = @System.Web.HttpContext.Current.User.Identity.Name.Replace("SPRINGER-SBM\\", "");
             var roleIds = _manuscriptDbRepositoryReadSide.GetUserRoles(userId);

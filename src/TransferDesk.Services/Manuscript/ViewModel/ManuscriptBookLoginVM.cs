@@ -122,6 +122,12 @@ namespace TransferDesk.Services.Manuscript.ViewModel
             get { return _msDTO.AssociateName; }
             set { _msDTO.AssociateName = value; }
         }
+        public string SharedDrivePath
+        {
+            get { return _msDTO.manuscriptBookLogin.ShareDrivePath; }
+            set { _msDTO.manuscriptBookLogin.ShareDrivePath = value; }
+        }
+
 
         public string userId
         {

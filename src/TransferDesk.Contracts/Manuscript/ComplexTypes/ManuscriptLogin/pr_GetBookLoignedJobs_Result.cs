@@ -22,6 +22,7 @@ namespace TransferDesk.Contracts.Manuscript.ComplexTypes.ManuscriptLogin
         public string SpecialInstruction{ get; set; }
         public string ServiceType{ get; set; }
         public string Task{ get; set; }
+        public string ShareDrivePath { get; set; }
     }
 
     public class pr_GetManuscriptBookLoginExportJobs_Result
@@ -39,5 +40,6 @@ namespace TransferDesk.Contracts.Manuscript.ComplexTypes.ManuscriptLogin
         public string SpecialInstruction { get; set; }
         public string ServiceType { get; set; }
         public string Task { get; set; }
+        public string ShareDrivePath { get; set; }
     }
 }
