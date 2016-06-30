@@ -235,8 +235,8 @@
                 </td>
                 <td style="float:right" width="210">
                     @Html.DropDownListFor(x => x.Accurate, new SelectList(new List<Object>{
-                       new { value = "No" , text = "No"  },
-                       new { value = "Yes" , text = "Yes" }
+                       new { value = "False" , text = "No"  },
+                       new { value = "True" , text = "Yes" }
                     }, "value", "text"), new { @class = "form-control input-sm", id = "ddlAccurate" })
                 </td>
             </tr>

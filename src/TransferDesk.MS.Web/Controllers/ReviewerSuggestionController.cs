@@ -109,7 +109,7 @@ namespace TransferDesk.MS.Web.Controllers
             }
             string reviewerNames = String.Empty;
             //un-assign reviewer if any
-            if (UnAssignedReviewer != null && String.IsNullOrEmpty(RevertToAssociate))
+            if (UnAssignedReviewer != null && RevertToAssociate!=null)
             {
                 foreach (var reviewerID in UnAssignedReviewer)
                 {

@@ -92,7 +92,6 @@
     $("#ddlRole").change(function () {
         IsQualityRole();
         IsQualityCheck();
-        IsAccurate();
     });
 
     //when first time page load
