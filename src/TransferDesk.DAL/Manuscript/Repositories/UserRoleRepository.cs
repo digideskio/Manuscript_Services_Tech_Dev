@@ -10,11 +10,12 @@ using Entities = TransferDesk.Contracts.Manuscript.Entities;
 
 using TransferDesk.DAL.Manuscript.DataContext;
 using System.Data.Entity.Infrastructure;
+using TransferDesk.Contracts.Manuscript.ComplexTypes.ManuscriptLogin;
 using TransferDesk.Contracts.Manuscript.Entities;
 using TransferDesk.Contracts.Manuscript.ComplexTypes.UserRole;
 
 
-namespace TransferDesk.DAL.Manuscript
+namespace TransferDesk.DAL.Manuscript.Repositories
 {
     public class UserRoleRepository : IDisposable
     {
@@ -25,6 +26,10 @@ namespace TransferDesk.DAL.Manuscript
             this.context = context;
         }
 
+		public UserRoleRepository(string constring)
+        {
+            this.context = new ManuscriptDBContext(constring);
+        }
         public IEnumerable<Entities.UserRoles> GetUserRoles()
         {
             return context.UserRoles.ToList<Entities.UserRoles>();
@@ -40,6 +45,11 @@ namespace TransferDesk.DAL.Manuscript
             context.UserRoles.Add(userRoles);
         }
 
+		public Entities.UserRoles GetUserDetailsById(int? id)
+        {
+            var userdetails = context.UserRoles.Find(id);
+            return userdetails;
+        }
 
         public void UpdateUserRole(Entities.UserRoles userRoles)
         {
@@ -73,6 +83,51 @@ namespace TransferDesk.DAL.Manuscript
             {
 
             }
+
+        }
+		
+		public bool CheckIfUserIsPresent(string userid, int servicetypeID)
+        {
+
+            var check = (from q in context.UserRoles
+                         where q.UserID == userid && q.ServiceTypeId == servicetypeID
+                         select q);
+            if (check.Count() > 0)
+                return true;
+            else
+            {
+                return false;
+            }
+
+        }
+		public int CheckUserIdIfPresent(string userid, int servicetypeID)
+        {
+
+            var check = (from q in context.UserRoles
+                         where q.UserID == userid && q.ServiceTypeId == servicetypeID
+                         select q);
+            foreach (var id in check)
+            {
+                return id.ID;
+            }
+            return 0;
+        }
+
+        public int GetUserID(string userid, int serviceType)
+        {
+            var id = from q in context.UserRoles
+                     where q.UserID.ToLower().Trim() == userid.ToLower().Trim() && q.ServiceTypeId == serviceType
+                     select q;
+            foreach (var uid in id)
+            {
+                return uid.ID;
+
+            }
+
+            return 0;
+
+
+
 
         }
 
@@ -158,6 +213,35 @@ namespace TransferDesk.DAL.Manuscript
                 return true;
             else
                 return false;
+        }
+
+		
+		
+		public List<pr_GetUserMasterDetails_Result> pr_GetUserMasterDetails_Result()
+        {
+            try
+            {
+                List<pr_GetUserMasterDetails_Result> usermasterdetails =
+             this.context.Database.SqlQuery<pr_GetUserMasterDetails_Result>("exec UserMasterDetails").ToList();
+                return usermasterdetails;
+            }
+            catch
+            {
+                return null;//todo:check and remove this trycatchhandler
+            }
+            finally
+            {
+
+            }
+
+        }
+		public List<Entities.SlidingScale> GetSlidingScaleList(int servicetypeid)
+        {
+            var slidingscale = from s in context.SlidingScale
+                               where s.ServiceTypeID == servicetypeid
+                               select s;
+            //   var result = from ja in journalArticles join s in manuscriptDataContextRead.ArticleTypes on ja.ArticleTypeID equals s.ID select s;
+            return slidingscale.ToList();
         }
     }
 }

@@ -4,10 +4,12 @@ using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using TransferDesk.Contracts.Logging;
 using TransferDesk.Contracts.Manuscript.Entities;
 using TransferDesk.DAL.Manuscript;
 using TransferDesk.DAL.Manuscript.DataContext;
 using TransferDesk.DAL.Manuscript.Repositories;
+using TransferDesk.Services.Manuscript;
 using TransferDesk.Services.Manuscript.ViewModel;
 
 namespace TransferDesk.MS.Web.Controllers
@@ -15,15 +17,25 @@ namespace TransferDesk.MS.Web.Controllers
     public class UserRoleController : Controller
     {
         private UserRoleRepository _UserRoleRepository;
+		private JournalUserReposistory _journalUserRoles;
+        private BookUserReposistory _bookUserRoles;
         private UserRoleVM userRoleVM;
         private ManuscriptDBRepositoryReadSide _manuscriptDBRepositoryReadSide;
-        public UserRoleController()
+		private readonly UserRoleService _userRoleService;
+        private readonly string _conString;
+        private string _errormsg = String.Empty;
+        private ILogger _logger;
+        public UserRoleController(ILogger logger)
         {
+			_logger = logger;
             string conString = Convert.ToString(ConfigurationManager.AppSettings["dbTransferDeskService"]);
             //ManuscriptContext  
             this._UserRoleRepository = new UserRoleRepository((new ManuscriptDBContext(conString)));
             _manuscriptDBRepositoryReadSide = new ManuscriptDBRepositoryReadSide(conString);
             userRoleVM = new UserRoleVM();
+			_userRoleService = new UserRoleService(conString);
+            _journalUserRoles = new JournalUserReposistory(conString);
+            _bookUserRoles = new BookUserReposistory(conString);
         }
         // GET: UserRole
         public ActionResult UserRole()
@@ -113,5 +125,138 @@ namespace TransferDesk.MS.Web.Controllers
             userRoleVM.EmployeeName = _manuscriptDBRepositoryReadSide.EmployeeName(userID);
             return View(userRoleVM);
         }
-    }
+		
+		[HttpGet]
+        public ActionResult UserMaster(int? id)
+        {
+            var userRoleVM = new UserRoleVM();
+            if (id != 0 && id != null)
+            {
+                UserMasterDetailsOnEdit(userRoleVM, id);
+                //  return RedirectToAction("UserMaster");
+            }
+            var userId = @System.Web.HttpContext.Current.User.Identity.Name.Replace("SPRINGER-SBM\\", "");
+            var roleIds = _manuscriptDBRepositoryReadSide.GetUserRoles(userId);
+            ViewBag.RoleList = _manuscriptDBRepositoryReadSide.GetRoleList();
+            userRoleVM.EmployeeName = _manuscriptDBRepositoryReadSide.EmployeeName(userId);
+            userRoleVM.ServiceType = _manuscriptDBRepositoryReadSide.GetServiceType();           
+            ViewBag.JournalList = _manuscriptDBRepositoryReadSide.GetJournalList();
+            ViewBag.BookList = _manuscriptDBRepositoryReadSide.GetManuscriptBookTitleList();
+            userRoleVM.TeamList = _manuscriptDBRepositoryReadSide.GetTeamList();
+            var serviceId = Convert.ToInt32(userRoleVM.ServiceTypeID);
+            ViewBag.SlidingSacleList = _UserRoleRepository.GetSlidingScaleList(serviceId);
+            userRoleVM.usermasterdetailslist = _UserRoleRepository.pr_GetUserMasterDetails_Result();
+
+            return View("UserMaster",userRoleVM);
+        }
+
+
+		private void UserMasterDetailsOnEdit(UserRoleVM userRoleVm, int? id)
+        {
+            UserRoles userrole;
+            List<JournalUserRoles> journalUserRoles = new List<JournalUserRoles>();
+            List<BookUserRoles> bookUserRoles = new List<BookUserRoles>();
+            var userId = @System.Web.HttpContext.Current.User.Identity.Name.Replace("SPRINGER-SBM\\", "");
+            try
+            {
+                userrole = _UserRoleRepository.GetUserDetailsById(id);
+                journalUserRoles = _journalUserRoles.GetJournalDetailsForUserID(userrole.ID);
+               
+                if (journalUserRoles.Count == 0)
+                {
+                    userRoleVm.IsJournal = false;
+                    userRoleVm.SelectedJournalIDs = null;
+                }
+                else
+                {
+                    userRoleVm.IsJournal = true;
+                    int[] juid = new int[journalUserRoles.Count];
+                    int i = 0;
+                    foreach (var jid in journalUserRoles)
+                    {
+                        juid[i] = jid.JournalMasterId;
+                        i++;
+                    }
+                    userRoleVm.SelectedJournalIDs = juid.ToArray().ToList();
+                }
+                bookUserRoles = _bookUserRoles.GetBookDetailsForUserID(userrole.ID);
+                if (bookUserRoles.Count == 0)
+                {
+                    userRoleVm.IsBook = false;
+                    userRoleVm.SelectedBookIDs = null;
+                }
+                else
+                {
+                    userRoleVm.IsBook = true;
+                    int[] buid = new int[bookUserRoles.Count];
+                    int j = 0;
+                    foreach (var bid in bookUserRoles)
+                    {
+                        buid[j] = bid.BookMasterId;
+                        j++;
+                    }
+                    userRoleVm.SelectedBookIDs = buid.ToArray().ToList();
+                }
+                userRoleVm.Name = _manuscriptDBRepositoryReadSide.EmployeeName(userrole.UserID);
+                userRoleVm.UserID = userrole.UserID;
+                userRoleVm.IsActive = userrole.IsActive;
+                userRoleVm.ServiceTypeID = userrole.ServiceTypeId;
+                userRoleVm.SlidingScaleId = userrole.SlidingScaleId;
+                userRoleVm.RollID = userrole.RollID;
+                userRoleVm.TeamId = userrole.StatusTeamId;
+
+
+            }
+            catch (Exception ex)
+            {
+                _logger.Log("Error in UserMaster during update operation: \n" + ex.StackTrace);
+            }
+        }
+
+		[HttpPost]
+        public ActionResult UserMaster(UserRoleVM userrolevm, List<int> SelectedJournalID, List<int> SelectedBookIDs)
+        {
+
+            if (userrolevm.ID == 0)
+            {
+                AddUserMasterInfo(userrolevm);
+                TempData["msg"] = "<script>alert('Record added succesfully');</script>";
+            }
+            else
+            {
+                AddUserMasterInfo(userrolevm);
+                TempData["msg"] = "<script>alert('Record updated succesfully');</script>";
+            }
+            return RedirectToAction("UserMaster", new { id = 0 });
+        }
+
+        private void AddUserMasterInfo(UserRoleVM userrolevm)
+        {
+            var userRoles = new UserRoles();
+            _userRoleService.SaveUserRoleDetails(userrolevm, userRoles);
+        }
+
+		
+		[AcceptVerbs(HttpVerbs.Get)]
+        public string GetSlidingScaleList(int ServiceTypeId)
+        {
+            var slidingscaleList = string.Empty;
+            if (ServiceTypeId > 0)
+            {
+                var slidingscalelist = _UserRoleRepository.GetSlidingScaleList(ServiceTypeId);
+                foreach (var quality in slidingscalelist)
+                {
+                    slidingscaleList += Convert.ToString(quality.ID) + "---" +
+                                       Convert.ToString(quality.QualityCheckedPercentage) + "~";
+                }
+            }
+            return slidingscaleList;
+        }
+		public string EmployeeName(string userID)
+        {
+            var name = _manuscriptDBRepositoryReadSide.EmployeeName(userID);
+            return name;
+        }
+	
+	}
 }

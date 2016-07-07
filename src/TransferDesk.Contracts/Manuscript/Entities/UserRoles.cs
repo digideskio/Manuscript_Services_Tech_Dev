@@ -14,8 +14,11 @@ namespace TransferDesk.Contracts.Manuscript.Entities
         public int RollID { get; set; }
         public int DefaultRollID { get; set; }
         public string UserID { get; set; }
+		public int ServiceTypeId { get; set; }
         public bool IsActive { get; set; }
         public int? Status { get; set; }
+		public int? SlidingScaleId { get; set; }
+        public int? StatusTeamId { get; set; }
         public System.DateTime? ModifiedDateTime { get; set; }
     }
 }

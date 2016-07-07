@@ -431,6 +431,29 @@ namespace TransferDesk.DAL.Manuscript.Repositories
 
         }
 
+        public List<Entities.BookMaster> GetManuscriptBookTitleList()
+        {
+            var bookTitles = (from q in manuscriptDataContextRead.BookMaster
+                              where q.IsActive == true
+                              orderby q.ID descending
+                              select q).ToList();
+            return bookTitles;
+        }
+
+        public List<Entities.Role> GetRoleList()
+        {
+            var roles = from q in manuscriptDataContextRead.Roles
+                        where q.Status == 1
+                        select q;
+            return roles.ToList();
+        }
+        public List<Entities.StatusMaster> GetTeamList()
+        {
+            var teamList = from q in manuscriptDataContextRead.StatusMaster
+                           where q.StatusCode.ToLower() == "team" && q.IsActive == true
+                           select q;
+            return teamList.ToList();
+        }
         public bool CheckJobStatusForHold(int crestid, int servicetype)
         {
             const string onHold = "On Hold";

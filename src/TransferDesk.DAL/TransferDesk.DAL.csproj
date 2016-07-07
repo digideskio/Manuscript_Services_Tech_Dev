@@ -55,12 +55,14 @@
     <Compile Include="Manuscript\Repositories\ArticleTypeRepository.cs" />
     <Compile Include="Manuscript\Repositories\AssociateDashBoardReposistory.cs" />
     <Compile Include="Manuscript\Repositories\BookMasterRepository.cs" />
+    <Compile Include="Manuscript\Repositories\BookUserReposistory.cs" />
     <Compile Include="Manuscript\Repositories\EmailDetailsRepository.cs" />
     <Compile Include="Manuscript\Repositories\ErrorCategoryRepository.cs" />
     <Compile Include="Manuscript\Repositories\GenericRepository\GenericRepository.cs" />
     <Compile Include="Manuscript\Repositories\JournalArticleTypeRepository.cs" />
     <Compile Include="Manuscript\Repositories\JournalRepository.cs" />
     <Compile Include="Manuscript\Repositories\JournalSectionTypeRepository.cs" />
+    <Compile Include="Manuscript\Repositories\JournalUserReposistory.cs" />
     <Compile Include="Manuscript\Repositories\ManuscriptBookErrorCategoryRepository.cs" />
     <Compile Include="Manuscript\Repositories\ManuscriptBookLoginDetailsRepository.cs" />
     <Compile Include="Manuscript\Repositories\ManuscriptBookLoginRepository.cs" />
@@ -84,6 +86,8 @@
     <Compile Include="Manuscript\UnitOfWork\ManuscriptScreeningUnitOfWork.cs" />
     <Compile Include="Manuscript\Repositories\UserRepository.cs" />
     <Compile Include="Manuscript\UnitOfWork\ReviewerSuggestionUnitOfWork.cs" />
+    <Compile Include="Manuscript\UnitOfWork\UnitOfWorkManuscriptRepos.cs" />
+    <Compile Include="Manuscript\UnitOfWork\UserRolesUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

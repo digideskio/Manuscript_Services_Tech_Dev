@@ -96,3 +96,7 @@ D:\GitHub_Dev_Branch\Manuscript_Services_Tech_Dev\src\TransferDesk.UtilitiesHtml
 D:\GitHub_Dev_Branch\Manuscript_Services_Tech_Dev\src\TransferDesk.UtilitiesHtml\bin\Debug\TransferDesk.UtilitiesHtml.pdb
 D:\GitHub_Dev_Branch\Manuscript_Services_Tech_Dev\src\TransferDesk.UtilitiesHtml\obj\Debug\TransferDesk.UtilitiesHtml.dll
 D:\GitHub_Dev_Branch\Manuscript_Services_Tech_Dev\src\TransferDesk.UtilitiesHtml\obj\Debug\TransferDesk.UtilitiesHtml.pdb
+D:\GitHub_Dev_Branch\GitDev_pull\Manuscript_Services_Tech_Dev\src\TransferDesk.UtilitiesHtml\bin\Debug\TransferDesk.UtilitiesHtml.dll
+D:\GitHub_Dev_Branch\GitDev_pull\Manuscript_Services_Tech_Dev\src\TransferDesk.UtilitiesHtml\bin\Debug\TransferDesk.UtilitiesHtml.pdb
+D:\GitHub_Dev_Branch\GitDev_pull\Manuscript_Services_Tech_Dev\src\TransferDesk.UtilitiesHtml\obj\Debug\TransferDesk.UtilitiesHtml.dll
+D:\GitHub_Dev_Branch\GitDev_pull\Manuscript_Services_Tech_Dev\src\TransferDesk.UtilitiesHtml\obj\Debug\TransferDesk.UtilitiesHtml.pdb
