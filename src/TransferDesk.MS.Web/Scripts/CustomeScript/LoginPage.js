@@ -35,26 +35,19 @@
             $("#ddlJournalTitle").val($("#ddlJournalTitle" + " option").filter(function () { return this.text == data.JournalTitle }).val());
             $("#ArticleTitle").val(data.ArticleTitle);
             $("#SpecialInstruction").val(data.SpecialInstruction);
-            if (data.InitialSubmissionDate != null) {
-                var currentTime = new Date(parseInt(data.InitialSubmissionDate.substr(6)));
-                var initialSubmissionDate = currentTime.getDate() + "/" + (currentTime.getMonth() + 1) + "/" + currentTime.getFullYear();
-                $("#InitialSubmissionDate").val(initialSubmissionDate);
-            }
+            var currentTime = new Date(parseInt(data.InitialSubmissionDate.substr(6)));
+            var initialSubmissionDate = currentTime.getDate() + "/" + (currentTime.getMonth() + 1) + "/" + currentTime.getFullYear();
+            $("#InitialSubmissionDate").val(initialSubmissionDate);
             $("#Associate").val(data.Associate);
-            jQuery.ajaxSetup({ async: false });
             $.get(AppPath + "ManuscriptLogin/GetJournalLink", { "journalId": $("#ddlJournalTitle").val() }, function (link) {
                 $('#JournalLink').html('<a href="' + link + '" target="_blank" style="text-decoration: underline;padding-left: 40px;word-break: break-all;color: blue;">' + link + '</a>');
             });
-            jQuery.ajaxSetup({ async: true });
-            jQuery.ajaxSetup({ async: false });
-            loadArticleTypeDDL();
-            jQuery.ajaxSetup({ async: true });
             if (data.ArticleTypeID != null) {
-                //$('#ddlArticleType').empty();
-                //$('#ddlArticleType').append($('<option>', {
-                //    value: data.ArticleTypeID,
-                //    text: data.ArticleTypeName
-                //}));
+                $('#ddlArticleType').empty();
+                $('#ddlArticleType').append($('<option>', {
+                    value: data.ArticleTypeID,
+                    text: data.ArticleTypeName
+                }));
                 $("#ddlArticleType").val($("#ddlArticleType" + " option").filter(function() { return this.text == data.ArticleTypeName }).val());
             }
             if (data.SectionID != null) {
@@ -66,7 +59,6 @@
             $("#ddlSectionType").val($("#ddlSectionType" + " option").filter(function () { return this.text == data.SectionName }).val());
             GetTaskTypeStatus();
         });
-        jQuery.ajaxSetup({ async: false });
         $.get(AppPath + "ManuscriptLogin/IsMsidAvaialable", { "msid": $("#MSID").val(), "serviceTypeStatusId": $("#ServiceTypeID").val() }, function (data1) {
             if (data1.toLocaleLowerCase() == "false") {
                 $("#IsRevision").prop("disabled", false);
@@ -75,7 +67,6 @@
                 $("#IsRevision").prop("disabled", true);
             }
         });
-        jQuery.ajaxSetup({ async: true });
     });
 
 

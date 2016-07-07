@@ -398,7 +398,8 @@ namespace TransferDesk.DAL.Manuscript.Repositories
                                                          Associate = q.Associate,
                                                          SpecialInstruction = q.SpecialInstruction,
                                                          ServiceType = q.ServiceType,
-                                                         Task = q.Task
+                                                         Task = q.Task,
+                                                          ShareDrivePath = q.ShareDrivePath,
                                                      }).ToList<pr_GetManuscriptBookLoginExportJobs_Result>();
                 return manuscriptBookLoginExportJobs;
             }

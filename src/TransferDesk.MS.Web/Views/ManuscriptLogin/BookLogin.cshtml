@@ -98,10 +98,14 @@
                     </td>
                 </tr>
                 <tr>
+                    <td>Shared Drive Path</td>
+                    <td>
+                        @Html.TextAreaFor(model => model.SharedDrivePath, new { @class = "form-control input-sm ", style = "height: 40px", placeholder = "Please, Enter Share Drive Path", id = "bookSpecialInstruction" })
+                    </td>
                     <td colspan="4" align="right">
-                        <input type="submit" value="Login" id="btnBookLogin" class="btn btn-primary btn-sm"/>
-                        <input type="reset" value="Reset" id="btnBookReset" class="btn btn-primary btn-sm"/>
-                        <input type="button" value="Export To Excel" id="btnBookExporttoExcel" class="btn btn-primary btn-sm" data-target="#myBookModal"/>
+                        <input type="submit" value="Login" id="btnBookLogin" class="btn btn-primary btn-sm" />
+                        <input type="reset" value="Reset" id="btnBookReset" class="btn btn-primary btn-sm" />
+                        <input type="button" value="Export To Excel" id="btnBookExporttoExcel" class="btn btn-primary btn-sm" data-target="#myBookModal" />
                     </td>
                 </tr>
                 </tbody>

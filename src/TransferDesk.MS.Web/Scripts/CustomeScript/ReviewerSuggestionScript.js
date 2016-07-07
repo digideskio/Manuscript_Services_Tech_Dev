@@ -92,7 +92,7 @@
     $("#ddlRole").change(function () {
         IsQualityRole();
         IsQualityCheck();
-        IsViewEditable();
+		 IsViewEditable();
     });
 
     //when first time page load

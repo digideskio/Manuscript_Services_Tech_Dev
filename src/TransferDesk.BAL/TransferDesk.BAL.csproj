@@ -52,6 +52,7 @@
     <Compile Include="Manuscript\ManuscriptScreeningBL.cs" />
     <Compile Include="Manuscript\ReviewerSuggetionBL.cs" />
     <Compile Include="Manuscript\Rules\ManuscriptScreeningRules.cs" />
+    <Compile Include="Manuscript\UserRoleBL.cs" />
     <Compile Include="Manuscript\Validations\ManuscriptValidation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

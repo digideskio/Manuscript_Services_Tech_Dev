@@ -9,7 +9,7 @@ namespace TransferDesk.Contracts.Manuscript.ComplexTypes.AssociateDashBoard
    public class pr_GetSpecificAssociateDetails_Result
     {
         public long? SrNo { get; set; }
-        public int CrestId { get; set; }
+        public string CrestId { get; set; }
         public string JobType { get; set; }
         public string ServiceType { get; set; }
         public string MSID { get; set; }

@@ -104,6 +104,7 @@ namespace TransferDesk.MS.Web.Controllers
                 manuscriptBookLoginVm.ServiceTypeID = manuscriptBookLogin.ServiceTypeID;
                 manuscriptBookLoginVm.StatusMasterTaskID = manuscriptBookLogin.StatusMasterTaskID;
                 manuscriptBookLoginVm.EmployeeName = _manuscriptDBRepositoryReadSide.EmployeeName(userId);
+                manuscriptBookLoginVm.SharedDrivePath = manuscriptBookLogin.ShareDrivePath;
             }
             catch (Exception ex) { }
         }
@@ -325,6 +326,7 @@ namespace TransferDesk.MS.Web.Controllers
                 grid.HeaderRow.Cells[10].Text = "Special Instruction";
                 grid.HeaderRow.Cells[11].Text = "Service Type";
                 grid.HeaderRow.Cells[12].Text = "Task";
+                grid.HeaderRow.Cells[13].Text = "Shared Drive Path";
                 Response.ClearContent();
                 Response.Buffer = true;
                 Response.AddHeader("content-disposition", string.Format("attachment; filename={0}", "ManuscriptBookLogin" + DateTime.Now.ToShortDateString() + ".xls"));

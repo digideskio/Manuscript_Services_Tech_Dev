@@ -360,3 +360,42 @@ D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\Tran
 D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.BAL\obj\Debug\TransferDesk.BAL.csprojResolveAssemblyReference.cache
 D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.BAL\obj\Debug\TransferDesk.BAL.dll
 D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.BAL\obj\Debug\TransferDesk.BAL.pdb
+D:\GitHub_Dev_Branch\Manuscript_Services_Tech_Dev\src\TransferDesk.BAL\bin\Debug\TransferDesk.BAL.dll
+D:\GitHub_Dev_Branch\Manuscript_Services_Tech_Dev\src\TransferDesk.BAL\bin\Debug\TransferDesk.BAL.pdb
+D:\GitHub_Dev_Branch\Manuscript_Services_Tech_Dev\src\TransferDesk.BAL\bin\Debug\EntityFramework.dll
+D:\GitHub_Dev_Branch\Manuscript_Services_Tech_Dev\src\TransferDesk.BAL\bin\Debug\EntityFramework.SqlServer.dll
+D:\GitHub_Dev_Branch\Manuscript_Services_Tech_Dev\src\TransferDesk.BAL\bin\Debug\TransferDesk.Contracts.dll
+D:\GitHub_Dev_Branch\Manuscript_Services_Tech_Dev\src\TransferDesk.BAL\bin\Debug\TransferDesk.DAL.dll
+D:\GitHub_Dev_Branch\Manuscript_Services_Tech_Dev\src\TransferDesk.BAL\bin\Debug\TransferDesk.Contracts.pdb
+D:\GitHub_Dev_Branch\Manuscript_Services_Tech_Dev\src\TransferDesk.BAL\bin\Debug\TransferDesk.DAL.pdb
+D:\GitHub_Dev_Branch\Manuscript_Services_Tech_Dev\src\TransferDesk.BAL\bin\Debug\EntityFramework.xml
+D:\GitHub_Dev_Branch\Manuscript_Services_Tech_Dev\src\TransferDesk.BAL\bin\Debug\EntityFramework.SqlServer.xml
+D:\GitHub_Dev_Branch\Manuscript_Services_Tech_Dev\src\TransferDesk.BAL\obj\Debug\TransferDesk.BAL.csprojResolveAssemblyReference.cache
+D:\GitHub_Dev_Branch\Manuscript_Services_Tech_Dev\src\TransferDesk.BAL\obj\Debug\TransferDesk.BAL.dll
+D:\GitHub_Dev_Branch\Manuscript_Services_Tech_Dev\src\TransferDesk.BAL\obj\Debug\TransferDesk.BAL.pdb
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.BAL\bin\Debug\TransferDesk.BAL.dll
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.BAL\bin\Debug\TransferDesk.BAL.pdb
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.BAL\bin\Debug\EntityFramework.dll
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.BAL\bin\Debug\EntityFramework.SqlServer.dll
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.BAL\bin\Debug\TransferDesk.Contracts.dll
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.BAL\bin\Debug\TransferDesk.DAL.dll
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.BAL\bin\Debug\TransferDesk.Contracts.pdb
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.BAL\bin\Debug\TransferDesk.DAL.pdb
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.BAL\bin\Debug\EntityFramework.xml
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.BAL\bin\Debug\EntityFramework.SqlServer.xml
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.BAL\obj\Debug\TransferDesk.BAL.csprojResolveAssemblyReference.cache
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.BAL\obj\Debug\TransferDesk.BAL.dll
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.BAL\obj\Debug\TransferDesk.BAL.pdb
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.BAL\bin\Debug\TransferDesk.BAL.dll
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.BAL\bin\Debug\TransferDesk.BAL.pdb
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.BAL\bin\Debug\EntityFramework.dll
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.BAL\bin\Debug\EntityFramework.SqlServer.dll
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.BAL\bin\Debug\TransferDesk.Contracts.dll
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.BAL\bin\Debug\TransferDesk.DAL.dll
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.BAL\bin\Debug\TransferDesk.Contracts.pdb
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.BAL\bin\Debug\TransferDesk.DAL.pdb
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.BAL\bin\Debug\EntityFramework.xml
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.BAL\bin\Debug\EntityFramework.SqlServer.xml
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.BAL\obj\Debug\TransferDesk.BAL.csprojResolveAssemblyReference.cache
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.BAL\obj\Debug\TransferDesk.BAL.dll
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.BAL\obj\Debug\TransferDesk.BAL.pdb

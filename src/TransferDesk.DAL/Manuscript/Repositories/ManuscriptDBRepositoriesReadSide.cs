@@ -51,6 +51,14 @@ namespace TransferDesk.DAL.Manuscript.Repositories
             return bookTitles;
         }
 
+
+		public List<Entities.BookMaster> GetManuscriptBookTitleList()
+        {
+            var bookTitles = (from q in manuscriptDataContextRead.BookMaster
+                              where q.IsActive == true orderby q.ID descending 
+                              select q  ).ToList();
+            return bookTitles;
+        }
         public IEnumerable<pr_SearchMSDetails_Result> GetSearchResult(string SelectedValue, string SearchBy)
         {
             try
@@ -304,6 +312,21 @@ namespace TransferDesk.DAL.Manuscript.Repositories
             }
         }
 
+public List<Entities.Role> GetRoleList()
+        {
+            var roles = from q in manuscriptDataContextRead.Roles
+                        where q.Status == 1
+                        select q;
+            return roles.ToList();
+        }
+
+        public List<Entities.StatusMaster> GetTeamList()
+        {
+            var teamList = from q in manuscriptDataContextRead.StatusMaster
+                           where q.StatusCode.ToLower() == "team" && q.IsActive == true
+                           select q;
+            return teamList.ToList();
+        }
         public string EmployeeName(string userID)
         {
             string userName = manuscriptDataContextRead.Database.SqlQuery<string>("SELECT EmpName from Employee Where UserName = '" + userID + "' and leftdate =''").FirstOrDefault<string>();

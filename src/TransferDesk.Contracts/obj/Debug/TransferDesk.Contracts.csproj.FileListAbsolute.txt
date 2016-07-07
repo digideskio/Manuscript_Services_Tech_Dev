@@ -270,3 +270,31 @@ D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\Tran
 D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Contracts\bin\Debug\EntityFramework.SqlServer.xml
 D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Contracts\obj\Debug\TransferDesk.Contracts.dll
 D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Contracts\obj\Debug\TransferDesk.Contracts.pdb
+D:\GitHub_Dev_Branch\Manuscript_Services_Tech_Dev\src\TransferDesk.Contracts\bin\Debug\TransferDesk.Contracts.dll.config
+D:\GitHub_Dev_Branch\Manuscript_Services_Tech_Dev\src\TransferDesk.Contracts\bin\Debug\TransferDesk.Contracts.dll
+D:\GitHub_Dev_Branch\Manuscript_Services_Tech_Dev\src\TransferDesk.Contracts\bin\Debug\TransferDesk.Contracts.pdb
+D:\GitHub_Dev_Branch\Manuscript_Services_Tech_Dev\src\TransferDesk.Contracts\bin\Debug\EntityFramework.dll
+D:\GitHub_Dev_Branch\Manuscript_Services_Tech_Dev\src\TransferDesk.Contracts\bin\Debug\EntityFramework.SqlServer.dll
+D:\GitHub_Dev_Branch\Manuscript_Services_Tech_Dev\src\TransferDesk.Contracts\bin\Debug\EntityFramework.xml
+D:\GitHub_Dev_Branch\Manuscript_Services_Tech_Dev\src\TransferDesk.Contracts\bin\Debug\EntityFramework.SqlServer.xml
+D:\GitHub_Dev_Branch\Manuscript_Services_Tech_Dev\src\TransferDesk.Contracts\obj\Debug\TransferDesk.Contracts.dll
+D:\GitHub_Dev_Branch\Manuscript_Services_Tech_Dev\src\TransferDesk.Contracts\obj\Debug\TransferDesk.Contracts.pdb
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.Contracts\bin\Debug\TransferDesk.Contracts.dll.config
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.Contracts\bin\Debug\TransferDesk.Contracts.dll
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.Contracts\bin\Debug\TransferDesk.Contracts.pdb
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.Contracts\bin\Debug\EntityFramework.dll
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.Contracts\bin\Debug\EntityFramework.SqlServer.dll
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.Contracts\bin\Debug\EntityFramework.xml
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.Contracts\bin\Debug\EntityFramework.SqlServer.xml
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.Contracts\obj\Debug\TransferDesk.Contracts.dll
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.Contracts\obj\Debug\TransferDesk.Contracts.pdb
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.Contracts\bin\Debug\TransferDesk.Contracts.dll.config
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.Contracts\bin\Debug\TransferDesk.Contracts.dll
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.Contracts\bin\Debug\TransferDesk.Contracts.pdb
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.Contracts\bin\Debug\EntityFramework.dll
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.Contracts\bin\Debug\EntityFramework.SqlServer.dll
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.Contracts\bin\Debug\EntityFramework.xml
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.Contracts\bin\Debug\EntityFramework.SqlServer.xml
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.Contracts\obj\Debug\TransferDesk.Contracts.csprojResolveAssemblyReference.cache
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.Contracts\obj\Debug\TransferDesk.Contracts.dll
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.Contracts\obj\Debug\TransferDesk.Contracts.pdb

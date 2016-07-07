@@ -34,12 +34,6 @@ namespace TransferDesk.MS.Web.Controllers
         {
 
             var userId = @System.Web.HttpContext.Current.User.Identity.Name.Replace("SPRINGER-SBM\\", "");
-            //var roleIds = _manuscriptDbRepositoryReadSide.GetUserRoles(userId);
-            //if (roleIds.GetValue(0) == "1")
-            //{
-            //    TempData["msg"] = "<script>alert('No Record Found');</script>";
-            //    return View(associateDasboardVM);
-            //}
             associateDasboardVM.specificAssociatedetails = _associateDashBoardReposistory.pr_GetAllAssociatesAssignedJobs(userId);
             return View(associateDasboardVM);
 

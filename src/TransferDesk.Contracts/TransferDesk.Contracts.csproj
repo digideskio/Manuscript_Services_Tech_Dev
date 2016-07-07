@@ -77,7 +77,10 @@
     <Compile Include="Manuscript\DTO\ManuscriptScreeningDTO.cs" />
     <Compile Include="Manuscript\DTO\MSReviewerSuggestionDTO.cs" />
     <Compile Include="Manuscript\DTO\ReviewerDetailsDTO.cs" />
+    <Compile Include="Manuscript\DTO\UserMasterDTO.cs" />
     <Compile Include="Manuscript\Entities\ArticleType.cs" />
+    <Compile Include="Manuscript\Entities\BookUserRoles.cs" />
+    <Compile Include="Manuscript\Entities\JournalUserRoles.cs" />
     <Compile Include="Manuscript\Entities\ManuscriptBookErrorCategory.cs" />
     <Compile Include="Manuscript\Entities\ManuscriptBookLogin.cs" />
     <Compile Include="Manuscript\Entities\BookMaster.cs" />
@@ -112,6 +115,7 @@
     <Compile Include="Manuscript\Entities\ReviewerMaster.cs" />
     <Compile Include="Manuscript\Entities\Role.cs" />
     <Compile Include="Manuscript\Entities\Section.cs" />
+    <Compile Include="Manuscript\Entities\SlidingScale.cs" />
     <Compile Include="Manuscript\Entities\StatusMaster.cs" />
     <Compile Include="Manuscript\Entities\User.cs" />
     <Compile Include="Manuscript\Entities\UserAdmin.cs" />

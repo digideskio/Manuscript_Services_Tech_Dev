@@ -34,3 +34,30 @@ D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\Tran
 D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Logger\obj\Debug\TransferDesk.Logger.csprojResolveAssemblyReference.cache
 D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Logger\obj\Debug\TransferDesk.Logger.dll
 D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Logger\obj\Debug\TransferDesk.Logger.pdb
+D:\GitHub_Dev_Branch\Manuscript_Services_Tech_Dev\src\TransferDesk.Logger\bin\Debug\TransferDesk.Logger.dll
+D:\GitHub_Dev_Branch\Manuscript_Services_Tech_Dev\src\TransferDesk.Logger\bin\Debug\TransferDesk.Logger.pdb
+D:\GitHub_Dev_Branch\Manuscript_Services_Tech_Dev\src\TransferDesk.Logger\bin\Debug\TransferDesk.Contracts.dll
+D:\GitHub_Dev_Branch\Manuscript_Services_Tech_Dev\src\TransferDesk.Logger\bin\Debug\EntityFramework.dll
+D:\GitHub_Dev_Branch\Manuscript_Services_Tech_Dev\src\TransferDesk.Logger\bin\Debug\TransferDesk.Contracts.pdb
+D:\GitHub_Dev_Branch\Manuscript_Services_Tech_Dev\src\TransferDesk.Logger\bin\Debug\EntityFramework.xml
+D:\GitHub_Dev_Branch\Manuscript_Services_Tech_Dev\src\TransferDesk.Logger\obj\Debug\TransferDesk.Logger.csprojResolveAssemblyReference.cache
+D:\GitHub_Dev_Branch\Manuscript_Services_Tech_Dev\src\TransferDesk.Logger\obj\Debug\TransferDesk.Logger.dll
+D:\GitHub_Dev_Branch\Manuscript_Services_Tech_Dev\src\TransferDesk.Logger\obj\Debug\TransferDesk.Logger.pdb
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.Logger\bin\Debug\TransferDesk.Logger.dll
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.Logger\bin\Debug\TransferDesk.Logger.pdb
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.Logger\bin\Debug\TransferDesk.Contracts.dll
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.Logger\bin\Debug\EntityFramework.dll
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.Logger\bin\Debug\TransferDesk.Contracts.pdb
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.Logger\bin\Debug\EntityFramework.xml
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.Logger\obj\Debug\TransferDesk.Logger.csprojResolveAssemblyReference.cache
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.Logger\obj\Debug\TransferDesk.Logger.dll
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.Logger\obj\Debug\TransferDesk.Logger.pdb
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.Logger\bin\Debug\TransferDesk.Logger.dll
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.Logger\bin\Debug\TransferDesk.Logger.pdb
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.Logger\bin\Debug\TransferDesk.Contracts.dll
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.Logger\bin\Debug\EntityFramework.dll
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.Logger\bin\Debug\TransferDesk.Contracts.pdb
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.Logger\bin\Debug\EntityFramework.xml
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.Logger\obj\Debug\TransferDesk.Logger.csprojResolveAssemblyReference.cache
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.Logger\obj\Debug\TransferDesk.Logger.dll
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.Logger\obj\Debug\TransferDesk.Logger.pdb
