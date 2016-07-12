@@ -26,10 +26,11 @@ namespace TransferDesk.MS.Web.Controllers
     {
         private readonly ManuscriptDBRepositoryReadSide _manuscriptDbRepositoryReadSide;
         private readonly ManuscriptService _manuscriptService;
-        public IFileLogger FileLogger;
-        public ManuscriptController()
+        private ILogger _logger;
+
+        public ManuscriptController(ILogger logger)
         {
-            FileLogger = new FileLogger();
+            _logger = logger;
             var conString = Convert.ToString(ConfigurationManager.AppSettings["dbTransferDeskService"]);
             _manuscriptService = new ManuscriptService(conString, conString);
             _manuscriptDbRepositoryReadSide = new ManuscriptDBRepositoryReadSide(conString);
@@ -37,9 +38,11 @@ namespace TransferDesk.MS.Web.Controllers
 
         [HttpGet]
         public ActionResult HomePage(int? id)
-      
         {
-            var userId = @System.Web.HttpContext.Current.User.Identity.Name.Replace("SPRINGER-SBM\\", "");
+            try
+            {
+                var userId = @System.Web.HttpContext.Current.User.Identity.Name.Replace("SPRINGER-SBM\\", "");
+                _logger.Log("user id is " + userId);
             var roleIds = _manuscriptDbRepositoryReadSide.GetUserRoles(userId);
             if (roleIds.Count() > 0)
             {
@@ -67,6 +70,13 @@ namespace TransferDesk.MS.Web.Controllers
                 return View("HomePage", manuscriptVm);
             }
             return File("~/Views/Shared/Unauthorised.htm", "text/html");
+            }
+            catch (Exception exception)
+            {
+                _logger.LogException(exception);
+            
+                return null;
+            }
         }
 
         [HttpPost, ValidateInput(false)]
@@ -389,7 +399,7 @@ namespace TransferDesk.MS.Web.Controllers
             }
             catch (Exception ex)
             {
-                FileLogger.Log("Error in Manuscript Book Screening during add/update operation: \n"+ ex.StackTrace);
+                _logger.Log("Error in Manuscript Book Screening during add/update operation: \n"+ ex.StackTrace);
             }
             return RedirectToAction("BookScreening", manuscriptBookScreeningVm.BookLoginID);
         }
