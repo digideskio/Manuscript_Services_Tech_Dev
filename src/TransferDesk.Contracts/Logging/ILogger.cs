@@ -24,7 +24,9 @@ namespace TransferDesk.Contracts.Logging
         void LogException(Exception exception);
 
         void Log(string message);
-    
+
+        void UserLog(string userId, string message);
+
     }
 
 
