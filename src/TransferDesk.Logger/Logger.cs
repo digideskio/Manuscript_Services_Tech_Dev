@@ -96,7 +96,7 @@ namespace TransferDesk.Logger
         }
 
 
-        public void LogException(Exception exception)
+        public void LogException(Exception exception, StringBuilder stringBuilder)
 
         {
             switch (LogTarget)
@@ -109,7 +109,7 @@ namespace TransferDesk.Logger
                     IFileLogger fileLogger = logger as IFileLogger;
                     fileLogger.FilePath = this.FilePath;
                     fileLogger.FileName = this.FileName;
-                    fileLogger.LogException(exception);
+                    fileLogger.LogException(exception,stringBuilder);
 
                     break;
 
@@ -229,10 +229,11 @@ namespace TransferDesk.Logger
 
             LogLineCounter += 1;
 
-            if (LogLineCounter > LogLineLimitCount)
-            {
-                FileNameSuffixCounter += 1;
-            }
+            //check and file split not required as app and each user log will be now seperate
+            //if (LogLineCounter > LogLineLimitCount)
+            //{
+            //    FileNameSuffixCounter += 1;
+            //}
             
             }
 
@@ -254,14 +255,19 @@ namespace TransferDesk.Logger
                 
             }
 
-            public void LogException(Exception exception)
+            public void LogException(Exception exception, StringBuilder stringBuilder)
 
             {
                 var userId = "";
                 string message = null;
                 try
                 {
+                    WriteStringBuilderToDiskAndClear(stringBuilder);
+
                     userId = @System.Web.HttpContext.Current.User.Identity.Name.Replace("SPRINGER-SBM\\", "");
+
+                    //write Stringbuilder to disk and clear
+
                 
                     //exception.tostring will include all inner exception details
 
@@ -283,15 +289,26 @@ namespace TransferDesk.Logger
             public void TryWriteForLoggerException(Exception loggerException, string message, string userId = "")
 
             {
-           
-                using (StreamWriter streamWriter = new StreamWriter(FilePath + FileName + FileNameSuffix
-                        + "_" + DateTime.Today.Day + "_" + DateTime.Today.Month + "_" + DateTime.Today.Year + "_" + FileNameSuffixCounter + "_" + userId + "_Loggerexception_" + "log.txt", true))
+                try
                 {
-                    streamWriter.WriteLine(message );
-              
-                    streamWriter.Close();
+                    using (StreamWriter streamWriter = new StreamWriter(FilePath + FileName + FileNameSuffix
+                      + "_" + DateTime.Today.Day + "_" + DateTime.Today.Month + "_" + DateTime.Today.Year + "_" + FileNameSuffixCounter + "_" + userId + "_Loggerexception_" + "log.txt", true))
+                    {
+                        string timeStamp = DateTime.Now.ToString("yyyy.MM.dd HH:mm:ss:ffff");
 
+                        streamWriter.WriteLine(LogLineCounter + " " +
+                            timeStamp + " " +
+                            PerformanceStopWatch.ElapsedMilliseconds + " " + message);
+
+                        streamWriter.Close();
+
+                    }
                 }
+                catch (Exception exception)
+                {
+                    Trace.TraceWarning("TransferDesk unable to write log due to " +  exception.ToString());
+                }
+               
             }
 
         }
