@@ -9,36 +9,36 @@ using TransferDesk.DAL.Manuscript.DataContext;
 namespace TransferDesk.BAL.Manuscript
 {
     public class AdminDashBoardBL
-    {       
-        public AdminDashBoardReposistory _adminDashBoardDBReadSide { get; set; }
+    {
+        public AdminDashBoardReposistory _adminDashBoardReposistory { get; set; }
 
         public AdminDashBoardBL(string conString)
         {
-            _adminDashBoardDBReadSide = new AdminDashBoardReposistory(conString);
+            _adminDashBoardReposistory = new AdminDashBoardReposistory(conString);
         }
 
         public bool AllocateManuscriptToUser(AdminDashBoardDTO adminDashBoardDTO)
         {
             if (adminDashBoardDTO.JobType.ToLower() == "book")
             {
-                return _adminDashBoardDBReadSide.AllocateAssociateToChapter(adminDashBoardDTO);
+                return _adminDashBoardReposistory.AllocateAssociateToChapter(adminDashBoardDTO);
             }
             else
             {
-                return _adminDashBoardDBReadSide.AllocateAssociateToMSID(adminDashBoardDTO);    
+                return _adminDashBoardReposistory.AllocateAssociateToMSID(adminDashBoardDTO);
             }
-            
+
         }
 
         public bool updateManuscriptLoginDeatils(AdminDashBoardDTO adminDashBoardDTO)
         {
             if (adminDashBoardDTO.JobType.ToLower() == "book")
             {
-                    return _adminDashBoardDBReadSide.UnallocateAssociateUserFromChapter(adminDashBoardDTO) ? true : false;
+                return _adminDashBoardReposistory.UnallocateAssociateUserFromChapter(adminDashBoardDTO) ? true : false;
             }
             else
             {
-                return _adminDashBoardDBReadSide.UnallocateAssociateUser(adminDashBoardDTO)?true:false;
+                return _adminDashBoardReposistory.UnallocateAssociateUser(adminDashBoardDTO) ? true : false;
 
             }
         }
@@ -47,11 +47,11 @@ namespace TransferDesk.BAL.Manuscript
         {
             if (adminDashBoardDTO.JobType.ToLower() == "book")
             {
-                return _adminDashBoardDBReadSide.OnHoldBookChapter(adminDashBoardDTO) ? true : false;
+                return _adminDashBoardReposistory.OnHoldBookChapter(adminDashBoardDTO) ? true : false;
             }
             else
             {
-                return _adminDashBoardDBReadSide.HoldMSIDForJob(adminDashBoardDTO) ? true : false;
+                return _adminDashBoardReposistory.HoldMSIDForJob(adminDashBoardDTO) ? true : false;
             }
         }
     }

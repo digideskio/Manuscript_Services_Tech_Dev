@@ -135,12 +135,6 @@ namespace TransferDesk.BAL.Manuscript
             {
                 manuscriptScreeningDTO.Manuscript.StartDate = System.DateTime.Now;
             }
-            //else
-            //{
-            //    var manuscript = _manuscriptDBRepositoryReadSide.GetManuscriptByID(manuscriptScreeningDTO.Manuscript.ID);
-            //    manuscript = manuscriptScreeningDTO.Manuscript;
-            //    manuscriptScreeningDTO.Manuscript = manuscript;
-            //}
             //Set Quality user id if role is quality
             if (manuscriptScreeningDTO.Manuscript.RoleID == 2)//todo: set constants for roles
             {
@@ -206,7 +200,7 @@ namespace TransferDesk.BAL.Manuscript
                 }
 
             }
-            
+
             //set starttime as system time for add of Manuscript
             if (manuscriptBookScreeningDto.ManuscriptBookScreening.ID == 0)
             {
