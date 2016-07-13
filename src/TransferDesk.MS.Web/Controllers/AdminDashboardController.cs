@@ -23,7 +23,6 @@ namespace TransferDesk.MS.Web.Controllers
 {
     public class AdminDashboardController : Controller
     {
-
         private AdminDasboardVM adminDasboardVM;
         private AdminDashBoardService adminDashBoardService;
         private AdminDashBoardReposistory _adminDashBoardReposistory;
@@ -47,40 +46,26 @@ namespace TransferDesk.MS.Web.Controllers
         }
 
 
-        public bool AdminActionResult(string AssociateNameVM, int CrestIdVM, string ServiceTypeVM, string JobProcessingStatusVM, string RoleVM)
+        public bool AllocateManuscriptToUser(string AssociateNameVM, int CrestIdVM, string ServiceTypeVM, string JobProcessingStatusVM, string RoleVM, string JobType)
         {
-            var adminDash = new AdminDasboardVM();
-            adminDash.AssociateNameVM = AssociateNameVM;
-            adminDash.CrestIdVM = CrestIdVM;
-            adminDash.ServiceTypeVM = ServiceTypeVM;
-            adminDash.JobProcessingStatusVM = JobProcessingStatusVM;
-            adminDash.RoleVM = RoleVM;
-            return adminDashBoardService.AllocateMSIDToUser(adminDash);
+            var adminDash = adminDashBoardService.CreateAdminDasboardVm(AssociateNameVM, CrestIdVM, ServiceTypeVM, JobProcessingStatusVM, RoleVM, JobType);
+            return adminDashBoardService.AllocateManuscriptToUser(adminDash);
         }
 
-        public bool AdminUnallocateMSID(string AssociateNameVM, int CrestIdVM, string ServiceTypeVM, string JobProcessingStatusVM, string RoleVM)
+        public bool UnallocateManuscriptFromUser(string AssociateNameVM, int CrestIdVM, string ServiceTypeVM, string JobProcessingStatusVM, string RoleVM, string jobType)
         {
-            var adminDash = new AdminDasboardVM();
-            adminDash.AssociateNameVM = AssociateNameVM;
-            adminDash.CrestIdVM = CrestIdVM;
-            adminDash.ServiceTypeVM = ServiceTypeVM;
-            adminDash.JobProcessingStatusVM = JobProcessingStatusVM;
-            adminDash.RoleVM = RoleVM;
-            return adminDashBoardService.UnallocateMSIDFromUser(adminDash);
+            var adminDash = adminDashBoardService.CreateAdminDasboardVm(AssociateNameVM, CrestIdVM, ServiceTypeVM, JobProcessingStatusVM, RoleVM, jobType);
+            return adminDashBoardService.UnallocateManuscriptFromUser(adminDash);
 
         }
 
-        public bool AdminHoldMSID(string AssociateNameVM, int CrestIdVM, string ServiceTypeVM, string JobProcessingStatusVM, string RoleVM)
+        public bool OnHoldManuscript(string AssociateNameVM, int CrestIdVM, string ServiceTypeVM, string JobProcessingStatusVM, string RoleVM, string jobType)
         {
-            var adminDash = new AdminDasboardVM();
-            adminDash.CrestIdVM = CrestIdVM;
-            adminDash.AssociateNameVM = AssociateNameVM;
-            adminDash.ServiceTypeVM = ServiceTypeVM;
-            adminDash.JobProcessingStatusVM = JobProcessingStatusVM;
-            adminDash.RoleVM = RoleVM;
-            return adminDashBoardService.HoldMSID(adminDash);
-
+            var adminDash =adminDashBoardService.CreateAdminDasboardVm(AssociateNameVM, CrestIdVM, ServiceTypeVM, JobProcessingStatusVM, RoleVM, jobType);
+            return adminDashBoardService.OnHoldManuscript(adminDash);
         }
+
+        
 
         [AcceptVerbs(HttpVerbs.Get)]
         public JsonResult GetAssociateName(string searchAssociate,string RoleName)
@@ -89,9 +74,9 @@ namespace TransferDesk.MS.Web.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Get)]
-        public string GetLastAssociateName(int crestid, string servicetype)
+        public string GetLastAssociateName(int crestid, string servicetype,string JobType)
         {
-            var LastAssociateName = _adminDashBoardReposistory.GetLastNameOfAssociate_ForHoldJob(crestid, servicetype);
+            var LastAssociateName = _adminDashBoardReposistory.GetLastNameOfAssociate_ForHoldJob(crestid, servicetype, JobType);
             if (LastAssociateName.Count > 0)
             {
                 foreach (var item in LastAssociateName)

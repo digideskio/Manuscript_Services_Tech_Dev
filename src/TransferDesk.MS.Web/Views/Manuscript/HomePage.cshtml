@@ -31,7 +31,8 @@
                 Start Date
             </td>
             <td width="214px">
-                @Html.TextBoxFor(x => x.StartDate, new { @class = "form-control input-sm", placeholder = "dd/mm/yyyy", @readonly = "readonly", @Value = Model.StartDate.ToString("d") })
+                @Html.TextBoxFor(x => x.DisplayStartDate, new { @class = "form-control input-sm", placeholder = "dd/mm/yyyy", @readonly = "readonly", @Value = Model.StartDate.ToString("d"), id = "StartDate" })
+                @Html.HiddenFor(x=>x.StartDate,new {id="dtStartDate"})
             </td>
             <td align="right" colspan="2" width="356px">
                 @System.Web.HttpContext.Current.User.Identity.Name.Replace("SPRINGER-SBM\\", "")

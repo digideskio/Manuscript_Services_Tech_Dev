@@ -14,7 +14,7 @@ namespace TransferDesk.Contracts.Manuscript.ComplexTypes.AssociateDashBoard
         public string ServiceType { get; set; }
         public string MSID { get; set; }
         public string JournalBookName { get; set; }
-        public string PageCount { get; set; }
+        public int PageCount { get; set; }
         public string Name { get; set; }
         public string Status { get; set; }
         public string Task { get; set; }

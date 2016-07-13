@@ -11,9 +11,11 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Microsoft.Ajax.Utilities;
 using Newtonsoft.Json.Linq;
+using TransferDesk.Contracts.Logging;
 using TransferDesk.Contracts.Manuscript.ComplexTypes.UserRole;
 using TransferDesk.Contracts.Manuscript.Entities;
 using TransferDesk.DAL.Manuscript.Repositories;
+using TransferDesk.Logger;
 using TransferDesk.Services.Manuscript;
 using TransferDesk.Services.Manuscript.ViewModel;
 
@@ -26,12 +28,14 @@ namespace TransferDesk.MS.Web.Controllers
         private readonly ManuscriptLoginService _manuscriptLoginService;
         private readonly string _conString;
         private string _errormsg = String.Empty;
+        public IFileLogger FileLogger;
         public ManuscriptLoginController()
         {
             _conString = Convert.ToString(ConfigurationManager.AppSettings["dbTransferDeskService"]);
             _manuscriptDBRepositoryReadSide = new ManuscriptDBRepositoryReadSide(_conString);
             ManuscriptLoginDbRepositoryReadSide = new ManuscriptLoginDBRepositoryReadSide(_conString);
             _manuscriptLoginService = new ManuscriptLoginService(_conString);
+            FileLogger = new FileLogger();
         }
 
         private void ManuscriptLoginVmDetails(ManuscriptLoginVM manuscriptLoginVm, int crestId)
@@ -81,12 +85,16 @@ namespace TransferDesk.MS.Web.Controllers
             try
             {
                 manuscriptBookLogin = ManuscriptLoginDbRepositoryReadSide.GetManuscriptBookLoginByCrestID(crestId);
-                manuscriptLoginDetails = ManuscriptLoginDbRepositoryReadSide.GetManuscriptBookLoginDetails(manuscriptBookLogin.ID, manuscriptBookLogin.ServiceTypeID);
+                manuscriptLoginDetails =
+                    ManuscriptLoginDbRepositoryReadSide.GetManuscriptBookLoginDetails(manuscriptBookLogin.ID,
+                        manuscriptBookLogin.ServiceTypeID);
                 if (manuscriptLoginDetails != null)
                 {
                     if (manuscriptLoginDetails.UserRoleId != null && manuscriptLoginDetails.UserRoleId != 0)
                     {
-                        var usernameID = ManuscriptLoginDbRepositoryReadSide.GetUserID(Convert.ToInt32(manuscriptLoginDetails.UserRoleId)).UserID;
+                        var usernameID =
+                            ManuscriptLoginDbRepositoryReadSide.GetUserID(
+                                Convert.ToInt32(manuscriptLoginDetails.UserRoleId)).UserID;
                         manuscriptBookLoginVm.AssociateName = _manuscriptDBRepositoryReadSide.EmployeeName(usernameID);
                     }
                 }
@@ -94,8 +102,8 @@ namespace TransferDesk.MS.Web.Controllers
 
                 manuscriptBookLoginVm.BookMasterId = manuscriptBookLogin.BookMasterID;
                 manuscriptBookLoginVm.ChapterNumber = Convert.ToString(manuscriptBookLogin.ChapterNumber).Trim();
-                manuscriptBookLoginVm.FTPLink = ((BookMaster)(JsBookLinkAndGPUInformation.Data)).FTPLink;
-                manuscriptBookLoginVm.GPUInformation = ((BookMaster)(JsBookLinkAndGPUInformation.Data)).GPUInformation;
+                manuscriptBookLoginVm.FTPLink = ((BookMaster) (JsBookLinkAndGPUInformation.Data)).FTPLink;
+                manuscriptBookLoginVm.GPUInformation = ((BookMaster) (JsBookLinkAndGPUInformation.Data)).GPUInformation;
                 manuscriptBookLoginVm.ChapterTitle = manuscriptBookLogin.ChapterTitle;
                 manuscriptBookLoginVm.PageCount = manuscriptBookLogin.PageCount;
                 manuscriptBookLoginVm.ReceivedDate = manuscriptBookLogin.ReceivedDate;
@@ -106,7 +114,10 @@ namespace TransferDesk.MS.Web.Controllers
                 manuscriptBookLoginVm.EmployeeName = _manuscriptDBRepositoryReadSide.EmployeeName(userId);
                 manuscriptBookLoginVm.SharedDrivePath = manuscriptBookLogin.ShareDrivePath;
             }
-            catch (Exception ex) { }
+            catch (Exception ex)
+            {
+                FileLogger.Log("Error in Manuscript Login class and method name ManuscriptBookLoginVmDetails: \n"+ex.ToString());
+            }
         }
 
         [HttpPost]
@@ -359,6 +370,14 @@ namespace TransferDesk.MS.Web.Controllers
             var userId = @System.Web.HttpContext.Current.User.Identity.Name.Replace("SPRINGER-SBM\\", "");
             if (id != null && id != 0 && jobtype == "book")
             {
+                var serviceTypeid = _manuscriptDBRepositoryReadSide.GetBookServiceID(id);
+                var jobstatusisOnHold = _manuscriptDBRepositoryReadSide.CheckChpaterJobStatusForHold(id, serviceTypeid);
+                if (jobstatusisOnHold == false)
+                {
+                    _errormsg = "This job is on hold and is not editable.";
+                    TempData["msg1"] = "<script>alert(\"" + _errormsg + "\");</script>";
+                    return RedirectToAction("BookLogin");
+                }
                 ManuscriptBookLoginVmDetails(manuscriptBookLoginVm, crestId);
             }
             manuscriptBookLoginVm.TaskList = _manuscriptDBRepositoryReadSide.GetTaskType();

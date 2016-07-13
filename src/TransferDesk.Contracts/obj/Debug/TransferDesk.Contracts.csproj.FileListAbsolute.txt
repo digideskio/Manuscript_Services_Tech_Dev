@@ -295,6 +295,5 @@ D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.Contracts\bin\De
 D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.Contracts\bin\Debug\EntityFramework.SqlServer.dll
 D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.Contracts\bin\Debug\EntityFramework.xml
 D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.Contracts\bin\Debug\EntityFramework.SqlServer.xml
-D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.Contracts\obj\Debug\TransferDesk.Contracts.csprojResolveAssemblyReference.cache
 D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.Contracts\obj\Debug\TransferDesk.Contracts.dll
 D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.Contracts\obj\Debug\TransferDesk.Contracts.pdb

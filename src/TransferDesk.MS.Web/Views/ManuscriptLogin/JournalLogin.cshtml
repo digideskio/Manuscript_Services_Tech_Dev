@@ -85,7 +85,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>Task</td>
+                    <td>Task<span id="taskasterik" class="asterik">*</span></td>
                     <td>
                         @Html.DropDownListFor(model => model.TaskID, new SelectList(Model.TaskList, "ID", "Description"), "Select-Task", new {@class = "form-control input-sm"})
                     </td>

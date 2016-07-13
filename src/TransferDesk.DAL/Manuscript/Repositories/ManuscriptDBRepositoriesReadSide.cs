@@ -492,5 +492,45 @@ public List<Entities.Role> GetRoleList()
                           select q).ToList();
             return result;
         }
+
+        public int GetBookServiceID(int? id)
+        {
+
+            int service_id = (from manuscriptLoginDetails in manuscriptDataContextRead.ManuscriptBookLoginDetails
+                              where manuscriptLoginDetails.ManuscriptBookLoginId == id
+                              orderby manuscriptLoginDetails.Id descending
+                              select manuscriptLoginDetails.ServiceTypeStatusId).FirstOrDefault();
+            return service_id;
+        }
+
+        public bool CheckChpaterJobStatusForHold(int? id, int serviceTypeid)
+        {
+            const string onHold = "On Hold";
+            holdstatus_id = GetStatusID(onHold);
+            try
+            {
+                var checkstatus = (from status in manuscriptDataContextRead.ManuscriptBookLoginDetails
+                                   where status.ManuscriptBookLoginId == id && status.ServiceTypeStatusId == serviceTypeid
+                                   orderby status.Id descending
+                                   select status.JobProcessStatusId).FirstOrDefault();
+                if (checkstatus == null)
+                {
+                    return true;
+                }
+                else if (checkstatus == holdstatus_id)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+
+            }
+            catch (Exception)
+            {
+                return true;
+            }
+        }
     }
 }

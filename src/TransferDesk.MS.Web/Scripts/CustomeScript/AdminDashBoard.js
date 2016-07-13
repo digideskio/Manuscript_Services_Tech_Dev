@@ -1,5 +1,5 @@
 ﻿$(document).ready(function () {
-    var crestId = null, serviceType = null, jobProcessingStatus = null, role = null;
+    var crestId = null, serviceType = null, jobProcessingStatus = null, role = null,jobType=null;
     $("#btnAllocateID").click(function () {
         if (crestId == null) {
             alert("Select a MSID.");
@@ -12,7 +12,7 @@
                {
                    method: "GET",
                    url: AppPath + 'AdminDashBoard/GetLastAssociateName',
-                   data: { crestid: crestid, servicetype: serviceType },
+                   data: { crestid: crestid, servicetype: serviceType, JobType: $("#JobType").val() },
                    success: function (data) {
                        $("#AssociateName").val(data);
                    },
@@ -36,11 +36,13 @@
         jobProcessingStatus = ($(this).closest("tr").find("td").eq(9).text()).trim();
         role = ($(this).closest("tr").find("td").eq(8).text()).trim();
         status = ($(this).closest("tr").find("td").eq(9).text()).trim();
+        jobType = ($(this).closest("tr").find("td").eq(2).text()).trim();
         $("#CrestIdVM").val(crestId);
         $("#ServiceTypeVM").val(serviceType);
         $("#JobProcessingStatusVM").val(jobProcessingStatus);
         $("#RoleVM").val(role);
         $("#StatusVm").val(status);
+        $("#JobType").val(jobType);
         var selected = $(this).hasClass("highlight");
         $("table.table.table-striped.grid-table tr").removeClass("highlight");
         if (!selected)
@@ -91,18 +93,19 @@
         var associateName = $("#AssociateName").val();
         var serviceType = $("#ServiceTypeVM").val();
         var jobProcessingStatus = $("#JobProcessingStatusVM").val();
-        var role = $("#RoleVM").val();        
+        var role = $("#RoleVM").val();
+        var JobType = $("#JobType").val();
         $.ajax(
         {
             method: "GET",
-            url: AppPath + 'AdminDashboard/AdminActionResult',
+            url: AppPath + 'AdminDashboard/AllocateManuscriptToUser',
             data: {
                 AssociateNameVM: associateName,
                 CrestIdVM: crestid,
                 ServiceTypeVM: serviceType,
                 JobProcessingStatusVM: jobProcessingStatus,
-                RoleVM: role
-
+                RoleVM: role,
+                JobType:JobType 
             },
             contentType: "application/json; charset=utf-8",
             success: function (returnValue) {
@@ -174,16 +177,18 @@
             var serviceType = $("#ServiceTypeVM").val();
             var jobProcessingStatus = $("#JobProcessingStatusVM").val();
             var role = $("#RoleVM").val();
+            var JobType = $("#JobType").val();
             $.ajax(
             {
                 method: "GET",
-                url: AppPath + 'AdminDashboard/AdminUnallocateMSID',
+                url: AppPath + 'AdminDashboard/UnallocateManuscriptFromUser',
                 data: {
                     AssociateNameVM: associateName,
                     CrestIdVM: crestid,
                     ServiceTypeVM: serviceType,
                     JobProcessingStatusVM: jobProcessingStatus,
-                    RoleVM: role
+                    RoleVM: role,
+                    jobType: JobType
                 },
                 contentType: "application/json; charset=utf-8",
                 success: function (returnValue) {
@@ -214,16 +219,18 @@
             var associateName = associateName1;
             var jobProcessingStatus = $("#JobProcessingStatusVM").val();
             var role = $("#RoleVM").val();
+            var JobType = $("#JobType").val();
             $.ajax(
             {
                 method: "GET",
-                url: AppPath + 'AdminDashboard/AdminHoldMSID',
+                url: AppPath + 'AdminDashboard/OnHoldManuscript',
                 data: {
                     AssociateNameVM: associateName,
                     CrestIdVM: crestid,
                     ServiceTypeVM: serviceType,
                     JobProcessingStatusVM: jobProcessingStatus,
-                    RoleVM: role
+                    RoleVM: role,
+                    jobType:JobType 
                 },
                 contentType: "application/json; charset=utf-8",
                 success: function (returnValue) {

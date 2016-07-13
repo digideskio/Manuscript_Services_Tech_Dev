@@ -12,42 +12,55 @@ namespace TransferDesk.Services.Manuscript
 {
     public class AdminDashBoardService
     {
-        //public String conString { get; set; }
-
         AdminDashBoardDTO adminDashBoardDTO { get; set; }
         AdminDashBoardBL adminDashBoardBL { get; set; }
+
         public AdminDashBoardService(String conString)
         {
             adminDashBoardDTO = new AdminDashBoardDTO();
             adminDashBoardBL = new AdminDashBoardBL(conString);
         }
 
-        public bool AllocateMSIDToUser(AdminDasboardVM adminDasboardVM)
+        public bool AllocateManuscriptToUser(AdminDasboardVM adminDasboardVM)
         {
-            GetMSIDValues(adminDasboardVM);
+            GetManuscriptValues(adminDasboardVM);
             adminDashBoardDTO.AssociateName = adminDasboardVM.AssociateNameVM;
-            return adminDashBoardBL.SaveManuscriptLoginDeatils(adminDashBoardDTO);
+            return adminDashBoardBL.AllocateManuscriptToUser(adminDashBoardDTO);
         }
 
-        public bool UnallocateMSIDFromUser(AdminDasboardVM adminDasboardVM)
+        public bool UnallocateManuscriptFromUser(AdminDasboardVM adminDasboardVM)
         {
-            GetMSIDValues(adminDasboardVM);
+            GetManuscriptValues(adminDasboardVM);
             return adminDashBoardBL.updateManuscriptLoginDeatils(adminDashBoardDTO);
 
         }
 
-        private void GetMSIDValues(AdminDasboardVM adminDasboardVM)
+        private void GetManuscriptValues(AdminDasboardVM adminDasboardVM)
         {
             adminDashBoardDTO.CrestId = adminDasboardVM.CrestIdVM;
             adminDashBoardDTO.ServiceType = adminDasboardVM.ServiceTypeVM;
             adminDashBoardDTO.JobProcessingStatus = adminDasboardVM.JobProcessingStatusVM;
             adminDashBoardDTO.Role = adminDasboardVM.RoleVM;
+            adminDashBoardDTO.JobType = adminDasboardVM.JobType;
         }
-        public bool HoldMSID(AdminDasboardVM adminDasboardVM)
+        public bool OnHoldManuscript(AdminDasboardVM adminDasboardVM)
         {
-            GetMSIDValues(adminDasboardVM);
+            GetManuscriptValues(adminDasboardVM);
             return adminDashBoardBL.updateManuscriptLoginDeatilsForHold(adminDashBoardDTO);
 
+        }
+
+        public AdminDasboardVM CreateAdminDasboardVm(string AssociateNameVM, int CrestIdVM, string ServiceTypeVM,
+            string JobProcessingStatusVM, string RoleVM, string jobType)
+        {
+            var adminDash = new AdminDasboardVM();
+            adminDash.CrestIdVM = CrestIdVM;
+            adminDash.AssociateNameVM = AssociateNameVM;
+            adminDash.ServiceTypeVM = ServiceTypeVM;
+            adminDash.JobProcessingStatusVM = JobProcessingStatusVM;
+            adminDash.RoleVM = RoleVM;
+            adminDash.JobType = jobType;
+            return adminDash;
         }
     }
 

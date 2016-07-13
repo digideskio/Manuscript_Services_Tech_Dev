@@ -50,7 +50,6 @@
   <ItemGroup>
     <Compile Include="Manuscript\DataContext\ManuscriptDBContext.cs" />
     <Compile Include="Manuscript\MSReviewerInfo.cs" />
-    <Compile Include="Manuscript\Repositories\AdminDashBoardDBReadSide.cs" />
     <Compile Include="Manuscript\Repositories\AdminDashBoardReposistory.cs" />
     <Compile Include="Manuscript\Repositories\ArticleTypeRepository.cs" />
     <Compile Include="Manuscript\Repositories\AssociateDashBoardReposistory.cs" />

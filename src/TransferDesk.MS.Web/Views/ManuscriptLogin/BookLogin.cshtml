@@ -18,6 +18,7 @@
 <br/>
 <br/>
 @Html.Raw(TempData["msg"])
+@Html.Raw(TempData["msg1"])
 @using (Html.BeginForm("BookLogin", "ManuscriptLogin", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
@@ -42,12 +43,10 @@
                 <tr>
                     <td>FTP Path</td>
                     <td>
-                        @*<input type="text" class="form-control input-sm" placeholder="Please, Select Book Title" id="txtFTPLink" readonly="readonly" />*@
                         <div id="txtFTPLink"></div>
                     </td>
                     <td>GPU Information</td>
                     <td>
-                        @*<input type="text" placeholder="Please, Select Book Title" class="form-control input-sm" id="txtGPUInformation" readonly="readonly" />*@
                         <div id="txtGPUInformation" style="text-decoration: none; padding-left: 40px"></div>
                     </td>
                 </tr>

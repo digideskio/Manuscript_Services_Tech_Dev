@@ -44,7 +44,6 @@ namespace TransferDesk.Services.Manuscript.ViewModel
             get { return _msDTO.manuscriptBookLogin.BookMasterID; }
             set { _msDTO.manuscriptBookLogin.BookMasterID = value; }
         }
-
         [Required(ErrorMessage = "Chapter Title")]
         public string ChapterTitle
         {
@@ -91,7 +90,8 @@ namespace TransferDesk.Services.Manuscript.ViewModel
             get { return _msDTO.manuscriptBookLogin.ReceivedDate; }
             set { _msDTO.manuscriptBookLogin.ReceivedDate = value; }
         }
-
+        
+        //[RegularExpression(@"[0-9]",ErrorMessage = "Page Count Should be integer")]
         public int PageCount
         {
             get { return _msDTO.manuscriptBookLogin.PageCount; }

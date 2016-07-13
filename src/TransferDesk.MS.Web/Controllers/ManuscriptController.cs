@@ -87,7 +87,9 @@ namespace TransferDesk.MS.Web.Controllers
                         manuscriptVm.RevisedDate = null;
                         manuscriptVm = IsSaveOrSubmit(manuscriptVm, associateCommand, qualityCommand);
                         _manuscriptService.SaveManuscriptScreeningVM(dataErrors, manuscriptVm);
+                        FileLogger.Log(" Manuscript Record added succesfully for MSID:"+manuscriptVm.MSID);
                         TempData["msg"] = "<script>alert('Record added succesfully');</script>";
+
                         ModelState.Clear();
                         manuscriptVm.ID = _manuscriptDbRepositoryReadSide.GetManuscriptID(manuscriptVm.MSID);
                         manuscriptVm = _manuscriptService.GetManuscriptScreeningVM(manuscriptVm.ID);
@@ -112,12 +114,14 @@ namespace TransferDesk.MS.Web.Controllers
                             {
                                 _manuscriptService.SaveManuscriptScreeningVM(dataErrors, manuscriptVm);
                                 TempData["msg"] = "<script>alert('Record added succesfully');</script>";
+                                FileLogger.Log("Manuscript Record added succesfully in revision case for MSID:"+manuscriptVm.MSID);
                             }
                         }
                         else
                         {
                             _manuscriptService.SaveManuscriptScreeningVM(dataErrors, manuscriptVm);
                             TempData["msg"] = "<script>alert('Record updated succesfully');</script>";
+                            FileLogger.Log("Manuscript Record updated succesfully for MSID:"+manuscriptVm.MSID);
                         }
                         ModelState.Clear();
                         manuscriptVm.ID = _manuscriptDbRepositoryReadSide.GetManuscriptID(manuscriptVm.MSID);
@@ -142,6 +146,8 @@ namespace TransferDesk.MS.Web.Controllers
             catch (Exception ex)
             {
                 ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator. [exception] " + ex.Message);
+                FileLogger.Log("Error in Manuscript Screening during add/update operation: \n" + ex.StackTrace);
+                
             }
             finally
             {
@@ -388,7 +394,7 @@ namespace TransferDesk.MS.Web.Controllers
             }
             catch (Exception ex)
             {
-                FileLogger.Log("Error in Manuscript Book Screening during add/update operation: \n"+ ex.StackTrace);
+                FileLogger.Log("Error in Manuscript Book Screening during add/update operation: \n"+ ex.ToString());
             }
             return RedirectToAction("BookScreening", manuscriptBookScreeningVm.BookLoginID);
         }

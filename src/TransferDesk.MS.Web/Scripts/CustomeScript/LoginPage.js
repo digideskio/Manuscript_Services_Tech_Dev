@@ -232,12 +232,19 @@ function GetTaskTypeStatus() {
     var serviceType = $("#ServiceTypeID option:selected").text();
     if (serviceType == "Manuscript Screening") {
         $("#TaskID").prop("disabled", true);
+        $("#ArticleTypeAsterik").empty();
+        $("#InitialSubmissionDateAsterik").empty();
+
         $("#ArticleTypeAsterik").append("<span>*</span>");
         $("#InitialSubmissionDateAsterik").append("<span>*</span>");
+        $("#taskasterik").empty();
     } else {
         $("#TaskID").prop("disabled", false);
         $("#ArticleTypeAsterik").empty();
         $("#InitialSubmissionDateAsterik").empty();
+        $("#taskasterik").empty();
+        $("#taskasterik").append("<span>*</span>");
+
     }
 }
 
