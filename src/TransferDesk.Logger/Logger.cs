@@ -77,6 +77,24 @@ namespace TransferDesk.Logger
 
         }
 
+        public void UserLog(string userId ,string message)
+
+        {
+            switch (LogTarget)
+
+            {
+                case LogTarget.File:
+                    ILogger logger = GetLogger();
+                    IFileLogger fileLogger = logger as IFileLogger;
+                    fileLogger.FilePath = this.FilePath;
+                    fileLogger.FileName = this.FileName;
+                    fileLogger.UserLog(userId,message);
+
+                    break;
+            }
+
+        }
+
 
         public void LogException(Exception exception)
 
@@ -121,7 +139,7 @@ namespace TransferDesk.Logger
     public class FileLogger : IFileLogger
 
         {
-            protected static readonly object LockObj = new object();
+            private static readonly object LockObj = new object();
 
             protected static Stopwatch PerformanceStopWatch;
 
@@ -171,14 +189,28 @@ namespace TransferDesk.Logger
               
         }
 
-            private void WriteToDisk(string message )
+        public void UserLog(string userId, string message)
+        {
+            try
+            {
+                WriteToDisk(message,userId);
+
+            }
+            catch (Exception loggerException)
+            {
+                TryWriteForLoggerException(loggerException, message);
+            }
+
+        }
+
+        private void WriteToDisk(string message,string userId = "" )
             {
                 
                 lock (LockObj)
 
                 {
                     using (StreamWriter streamWriter = new StreamWriter(FilePath + FileName + FileNameSuffix 
-                        + "_" + DateTime.Today.Day + "_" + DateTime.Today.Month + "_" + DateTime.Today.Year + "_" + FileNameSuffixCounter + "_log.txt", true))
+                        + "_" + DateTime.Today.Day + "_" + DateTime.Today.Month + "_" + DateTime.Today.Year + "_" + FileNameSuffixCounter + "_" + userId + "_" +"log.txt", true))
 
                     {
                         string timeStamp = DateTime.Now.ToString("yyyy.MM.dd HH:mm:ss:ffff");
@@ -225,39 +257,38 @@ namespace TransferDesk.Logger
             public void LogException(Exception exception)
 
             {
+                var userId = "";
                 string message = null;
                 try
                 {
-                    var userId = @System.Web.HttpContext.Current.User.Identity.Name.Replace("SPRINGER-SBM\\", "");
+                    userId = @System.Web.HttpContext.Current.User.Identity.Name.Replace("SPRINGER-SBM\\", "");
                 
                     //exception.tostring will include all inner exception details
 
                     message = "userID : " + userId + " exception : " + exception.ToString();
 
-                    WriteToDisk(message);
+                    WriteToDisk(message, userId);
 
                     //throw new Exception("test logger exception");
                 }
                 catch (Exception loggerException)
                 {
-                    TryWriteForLoggerException(loggerException, message);
+                    TryWriteForLoggerException(loggerException, message, userId);
                 }
                     
             }
             
 
 
-            public void TryWriteForLoggerException(Exception loggerException, string message)
+            public void TryWriteForLoggerException(Exception loggerException, string message, string userId = "")
 
             {
-            string timeStamp = DateTime.Now.ToString("yyyy_MM_dd");
-            string filePathForExceptionInLogger = (FilePath + "whenLoggerException" + timeStamp);
-
-                using (StreamWriter streamWriter = new StreamWriter(filePathForExceptionInLogger))
+           
+                using (StreamWriter streamWriter = new StreamWriter(FilePath + FileName + FileNameSuffix
+                        + "_" + DateTime.Today.Day + "_" + DateTime.Today.Month + "_" + DateTime.Today.Year + "_" + FileNameSuffixCounter + "_" + userId + "_Loggerexception_" + "log.txt", true))
                 {
-                    streamWriter.WriteLine(message);
+                    streamWriter.WriteLine(message );
               
-                    streamWriter.WriteLine("ExceptionInLogger:" + loggerException.Message);
                     streamWriter.Close();
 
                 }
