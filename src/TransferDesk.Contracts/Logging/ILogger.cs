@@ -16,12 +16,13 @@ namespace TransferDesk.Contracts.Logging
     /// </summary>
     public interface ILogger:IDisposable
     {
-        
+
         /// <summary>
         /// Writes a message to the log
         /// </summary>
         /// <param name="exception">exception to write</param>
-        void LogException(Exception exception);
+        /// <param name="stringbuilder">write pending writes</param>
+        void LogException(Exception exception, StringBuilder stringbuilder = null);
 
         void Log(string message);
 
