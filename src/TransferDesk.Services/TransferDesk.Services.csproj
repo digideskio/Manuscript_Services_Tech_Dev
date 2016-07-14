@@ -87,6 +87,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Manuscript\AdminDashBoardService.cs" />
+    <Compile Include="Manuscript\HTMLOutputs\ManuscriptBookScreeningPreview.cs" />
     <Compile Include="Manuscript\HTMLOutputs\ManuscriptScreeningPreview.cs" />
     <Compile Include="Manuscript\ManuscriptLoginService.cs" />
     <Compile Include="Manuscript\ManuscriptService.cs" />
