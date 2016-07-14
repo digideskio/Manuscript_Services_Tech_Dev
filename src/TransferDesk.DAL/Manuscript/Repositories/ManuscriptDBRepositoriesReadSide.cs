@@ -200,6 +200,8 @@ namespace TransferDesk.DAL.Manuscript.Repositories
             return manuscripts.ToList();
         }
 
+
+
         public List<Entities.OtherAuthor> GetOtherAuthors()
         {
             return manuscriptDataContextRead.OtherAuthors.ToList<Entities.OtherAuthor>();

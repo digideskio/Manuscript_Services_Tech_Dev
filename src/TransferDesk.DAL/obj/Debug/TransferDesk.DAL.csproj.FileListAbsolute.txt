@@ -370,3 +370,15 @@ D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\Tran
 D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.DAL\obj\Debug\TransferDesk.DAL.csprojResolveAssemblyReference.cache
 D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.DAL\obj\Debug\TransferDesk.DAL.dll
 D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.DAL\obj\Debug\TransferDesk.DAL.pdb
+D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.DAL\obj\Debug\TransferDesk.DAL.csprojResolveAssemblyReference.cache
+D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.DAL\obj\Debug\TransferDesk.DAL.dll
+D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.DAL\obj\Debug\TransferDesk.DAL.pdb
+D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.DAL\bin\Debug\TransferDesk.DAL.dll.config
+D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.DAL\bin\Debug\TransferDesk.DAL.dll
+D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.DAL\bin\Debug\TransferDesk.DAL.pdb
+D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.DAL\bin\Debug\EntityFramework.dll
+D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.DAL\bin\Debug\EntityFramework.SqlServer.dll
+D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.DAL\bin\Debug\TransferDesk.Contracts.dll
+D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.DAL\bin\Debug\TransferDesk.Contracts.pdb
+D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.DAL\bin\Debug\EntityFramework.xml
+D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.DAL\bin\Debug\EntityFramework.SqlServer.xml

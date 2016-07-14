@@ -321,6 +321,52 @@ namespace TransferDesk.MS.Web.Controllers
             var htmlPreview = msHtmlPreview.CreateHtmlPreview(htmlRowDataList, "", true, "table table-bordered");
             return htmlPreview;
         }
+        [HttpPost]
+        public string BookPreviewForm(ManuscriptBookScreeningVm manuscriptbookVm)
+        {
+            var bookid = Convert.ToInt32(manuscriptbookVm.BookTitleId);
+            var booktitleList = _manuscriptDbRepositoryReadSide.GetManuscriptBookTitle();
+            var msBookHtmlPreview = new ManuscriptBookScreeningPreview(manuscriptbookVm)
+            {
+                BookTitleList = booktitleList
+            };
+            var StyleGroupRow = "StyleGroupRow";
+            var StyleRow = "row";
+            var htmlRowDataBookList = new List<HtmlRowData>
+            {
+                 new HtmlRowData() { LabelText = "Book screening  field", InnerHtml = "Information", StyleClass = StyleGroupRow},
+                new HtmlRowData() { LabelText = "Start Date",           InnerHtml = manuscriptbookVm.StartDate.HasValue? manuscriptbookVm.StartDate.Value.ToString("d"):String.Empty , StyleClass = StyleRow },
+                new HtmlRowData() { LabelText = "Associate ID",         InnerHtml = manuscriptbookVm.AssociateUserID, StyleClass = StyleRow },
+                new HtmlRowData() { LabelText = "Role",                 InnerHtml =_manuscriptDbRepositoryReadSide.GetRole(Convert.ToInt32(manuscriptbookVm.RollID)), StyleClass = StyleRow },
+
+                new HtmlRowData() { LabelText = "Book details",   InnerHtml = string.Empty, StyleClass = StyleGroupRow },
+                new HtmlRowData() { LabelText = "Book title*",InnerHtml = msBookHtmlPreview.GetBookTitleList(manuscriptbookVm.BookTitleId), StyleClass = StyleRow },
+                new HtmlRowData() { LabelText = "Chapter Number*",                 InnerHtml = manuscriptbookVm.ChapterNumber, StyleClass = StyleRow },
+                  new HtmlRowData() { LabelText = "Chapter Title*",                 InnerHtml = manuscriptbookVm.ChapterTitle, StyleClass = StyleRow },              
+                new HtmlRowData() { LabelText = "Received date*",      InnerHtml = manuscriptbookVm.ReceivedDate.ToString("d"), StyleClass = StyleRow },
+                 new HtmlRowData() { LabelText = "Page Count*",  InnerHtml =manuscriptbookVm.PageCount.ToString(), StyleClass = StyleRow },
+
+                new HtmlRowData() { LabelText = "Author(s) Details", InnerHtml = string.Empty, StyleClass = StyleGroupRow },
+                new HtmlRowData() { LabelText = "Corresponding author*",        InnerHtml = manuscriptbookVm.CorrespondingAuthor, StyleClass = StyleRow },
+                new HtmlRowData() { LabelText = "Corresponding author email*",  InnerHtml = manuscriptbookVm.CorrespondingAuthorEmail, StyleClass = StyleRow },
+                new HtmlRowData() { LabelText = "Corresponding author affiliation*", InnerHtml = manuscriptbookVm.CorrespondingAuthorAff, StyleClass = StyleRow },
+              
+
+                new HtmlRowData() { LabelText = "Analytical Findings",  InnerHtml = string.Empty, StyleClass = StyleGroupRow },
+                new HtmlRowData() { LabelText = "iThenticate %*",       InnerHtml =Convert.ToString(manuscriptbookVm.iThenticatePercentage), StyleClass = StyleRow },
+                new HtmlRowData() { LabelText = "Highest iThenticate %*", InnerHtml =Convert.ToString(manuscriptbookVm.Highest_iThenticateFromSingleSrc), StyleClass = StyleRow },
+                new HtmlRowData() { LabelText = "Cross check/ iThenticate result*", InnerHtml = _manuscriptDbRepositoryReadSide.GetMetrixLegendTitle(Convert.ToInt32(manuscriptbookVm.Crosscheck_iThenticateResultID)), StyleClass = StyleRow },
+                new HtmlRowData() { LabelText = "Comment",              InnerHtml = manuscriptbookVm.Comments_Crosscheck_iThenticateResult, StyleClass = StyleRow },
+                new HtmlRowData() { LabelText = "English language Quality*", InnerHtml = _manuscriptDbRepositoryReadSide.GetMetrixLegendTitle(Convert.ToInt32(manuscriptbookVm.English_Lang_QualityID)), StyleClass = StyleRow },
+                new HtmlRowData() { LabelText = "Comment",              InnerHtml = manuscriptbookVm.Comments_English_Lang_Quality , StyleClass = StyleRow },
+                new HtmlRowData() { LabelText = "Ethics compliance*",   InnerHtml =_manuscriptDbRepositoryReadSide.GetMetrixLegendTitle(Convert.ToInt32(manuscriptbookVm.Ethics_ComplianceID)), StyleClass = StyleRow },
+                new HtmlRowData() { LabelText = "Comment",              InnerHtml = manuscriptbookVm.Comments_Ethics_Compliance, StyleClass = StyleRow },
+                new HtmlRowData() { LabelText = "Final Advice*",   InnerHtml =_manuscriptDbRepositoryReadSide.GetMetrixLegendTitle(Convert.ToInt32(manuscriptbookVm.OverallAnalysisID)), StyleClass = StyleRow },
+                new HtmlRowData() { LabelText = "Comment",              InnerHtml = manuscriptbookVm.Comments_OverallAnalysis, StyleClass = StyleRow },
+            };
+            var htmlBookPreview = msBookHtmlPreview.CreateHtmlPreview(htmlRowDataBookList, "", true, "table table-bordered");
+            return htmlBookPreview;
+        }
 
         private string GetOtherAuthors(ManuscripScreeningVM manuscriptVm)
         {
