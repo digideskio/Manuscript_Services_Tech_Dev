@@ -12,30 +12,41 @@ namespace TransferDesk.Contracts.Logging
     }
 
     /// <summary>
-    /// Defines the common logging interface
+    /// Defines the common logging interface, implementations can call wrappers with provided interface
     /// </summary>
     public interface ILogger:IDisposable
     {
 
         /// <summary>
-        /// Writes a message to the log
+        /// Writes a exception message to the user log
         /// </summary>
-        /// <param name="exception">exception to write</param>
-        /// <param name="stringbuilder">write pending writes</param>
-        void LogException(Exception exception, StringBuilder stringbuilder = null);
+        /// <param name="exception">user exception to write</param>
+        /// <param name="stringbuilder">write pending user writes</param>
+        void LogException(Exception exception, StringBuilder stringbuilder);
+        
+        void Log(string message, string userId);
 
-        void Log(string message);
-
-        void UserLog(string userId, string message);
+        void WriteStringBuilderToLogAndClear(StringBuilder stringBuilder, string userId = "");
 
     }
 
+    public interface IApplicationLog:ILogger
+    {
+        /// <summary>
+        /// Writes a application exception message to the log
+        /// </summary>
+        /// <param name="exception">application exception to write</param>
+        /// <param name="stringbuilder">write pending application writes</param>
+        void ApplicationExceptionLog(Exception exception, StringBuilder stringbuilder);
+
+        void ApplicationLog(string message);
+    }
 
     /// <summary>
     /// Defines the File logging interface
     /// Following the interface segration principle, inherited from a base interface 
     /// </summary>
-    public interface IFileLogger:ILogger
+    public interface IFileLogger:IApplicationLog
     {
         /// <summary>
         /// Writes a message to the file log
@@ -47,7 +58,7 @@ namespace TransferDesk.Contracts.Logging
 
         //long LogLineCounter { get; set; }
 
-        void WriteStringBuilderToDiskAndClear(StringBuilder stringBuilder);
+        
 
     }
 
