@@ -49,17 +49,17 @@ namespace TransferDesk.Logger
             _fileLogger.Dispose();
         }
 
-       public void WriteStringBuilderToDiskAndClear(StringBuilder stringBuilder)
+       public void WriteStringBuilderToLogAndClear(StringBuilder stringBuilder, string userId = null)
         {
             ILogger logger = GetLogger();
             IFileLogger fileLogger = logger as IFileLogger;
             fileLogger.FilePath = this.FilePath;
             fileLogger.FileName = this.FileName;
-            fileLogger.WriteStringBuilderToDiskAndClear(stringBuilder);
+            fileLogger.WriteStringBuilderToLogAndClear(stringBuilder, userId);
        }
 
 
-        public void Log(string message)
+        public void ApplicationLog(string message)
 
         {
             switch (LogTarget)
@@ -70,14 +70,14 @@ namespace TransferDesk.Logger
                     IFileLogger fileLogger = logger as IFileLogger;
                     fileLogger.FilePath = this.FilePath;
                     fileLogger.FileName = this.FileName;
-                    fileLogger.Log(message);
+                    fileLogger.ApplicationLog(message);
 
                     break;
             }
 
         }
 
-        public void UserLog(string userId ,string message)
+        public void Log(string userId ,string message)
 
         {
             switch (LogTarget)
@@ -88,7 +88,7 @@ namespace TransferDesk.Logger
                     IFileLogger fileLogger = logger as IFileLogger;
                     fileLogger.FilePath = this.FilePath;
                     fileLogger.FileName = this.FileName;
-                    fileLogger.UserLog(userId,message);
+                    fileLogger.Log(userId,message);
 
                     break;
             }
@@ -118,8 +118,29 @@ namespace TransferDesk.Logger
 
         }
 
+        public void ApplicationExceptionLog(Exception exception, StringBuilder stringBuilder)
 
-       private ILogger GetLogger() //factory method to return objects
+        {
+            switch (LogTarget)
+
+            {
+
+                case LogTarget.File:
+
+                    ILogger logger = GetLogger();
+                    IFileLogger fileLogger = logger as IFileLogger;
+                    fileLogger.FilePath = this.FilePath;
+                    fileLogger.FileName = this.FileName;
+                    fileLogger.LogException(exception, stringBuilder);
+
+                    break;
+
+
+            }
+
+        }
+
+        private ILogger GetLogger() //factory method to return objects
        {
            switch (LogTarget)
            {
@@ -175,7 +196,7 @@ namespace TransferDesk.Logger
         }
 
 
-        public void Log(string message)
+        public void Log(string userId,string message)
         {
                 try
                 {
@@ -189,11 +210,11 @@ namespace TransferDesk.Logger
               
         }
 
-        public void UserLog(string userId, string message)
+        public void ApplicationLog(string message)
         {
             try
             {
-                WriteToDisk(message,userId);
+                WriteToDisk(message);
 
             }
             catch (Exception loggerException)
@@ -237,11 +258,11 @@ namespace TransferDesk.Logger
             
             }
 
-            public void WriteStringBuilderToDiskAndClear(StringBuilder stringBuilder )
+            public void WriteStringBuilderToLogAndClear(StringBuilder stringBuilder, string userId )
             {
                 try
                 {
-                    WriteToDisk(stringBuilder.ToString());
+                    WriteToDisk(stringBuilder.ToString(),userId);
                 }
                 catch (Exception loggerException)
                 {
@@ -262,12 +283,10 @@ namespace TransferDesk.Logger
                 string message = null;
                 try
                 {
-                    WriteStringBuilderToDiskAndClear(stringBuilder);
-
                     userId = @System.Web.HttpContext.Current.User.Identity.Name.Replace("SPRINGER-SBM\\", "");
 
                     //write Stringbuilder to disk and clear
-
+                    WriteStringBuilderToLogAndClear(stringBuilder,userId);
                 
                     //exception.tostring will include all inner exception details
 
@@ -283,10 +302,37 @@ namespace TransferDesk.Logger
                 }
                     
             }
-            
 
 
-            public void TryWriteForLoggerException(Exception loggerException, string message, string userId = "")
+        public void ApplicationExceptionLog(Exception exception, StringBuilder stringBuilder)
+
+        {
+            var userId = "";
+            string message = null;
+            try
+            {
+                userId = @System.Web.HttpContext.Current.User.Identity.Name.Replace("SPRINGER-SBM\\", "");
+
+                //write Stringbuilder to disk and clear
+                WriteStringBuilderToLogAndClear(stringBuilder, userId);
+
+                //exception.tostring will include all inner exception details
+
+                message = "userID : " + userId + " exception : " + exception.ToString();
+
+                WriteToDisk(message, userId);
+
+                //throw new Exception("test logger exception");
+            }
+            catch (Exception loggerException)
+            {
+                TryWriteForLoggerException(loggerException, message, userId);
+            }
+
+        }
+
+
+        public void TryWriteForLoggerException(Exception loggerException, string message, string userId = "")
 
             {
                 try
