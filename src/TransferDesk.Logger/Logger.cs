@@ -19,7 +19,7 @@ using System.Text;
 //File size limited to 1000 lines per file
 //helper can have extension methods for logger classes so it is extensible to change but core will be with logger classes.
 //exception.Tostring will show all inner exceptions if not null
-//will handle line breaks using a wrapper with environment.newline character
+
 
 namespace TransferDesk.Logger
 {
@@ -200,7 +200,7 @@ namespace TransferDesk.Logger
         {
                 try
                 {
-                    WriteToDisk(message);
+                    WriteToDisk(message,userId);
                     
                 }
                 catch (Exception loggerException)
