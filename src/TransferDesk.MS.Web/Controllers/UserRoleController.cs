@@ -216,7 +216,8 @@ namespace TransferDesk.MS.Web.Controllers
 		[HttpPost]
         public ActionResult UserMaster(UserRoleVM userrolevm, List<int> SelectedJournalID, List<int> SelectedBookIDs)
         {
-
+            var userId = @System.Web.HttpContext.Current.User.Identity.Name.Replace("SPRINGER-SBM\\", "");
+            userrolevm.loginuser = userId;
             if (userrolevm.ID == 0)
             {
                 AddUserMasterInfo(userrolevm);

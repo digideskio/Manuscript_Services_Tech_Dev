@@ -126,7 +126,6 @@ namespace TransferDesk.BAL.Manuscript
               
             catch (Exception)
             {
-
                 return false;
             }
             
@@ -172,8 +171,8 @@ namespace TransferDesk.BAL.Manuscript
                             {
                                 JournalUserRolesList.JournalMasterId = id;
                                 JournalUserRolesList.UserRolesId = userRoleDto.userroles.ID;
-                                JournalUserRolesList.CreatedBy = userRoleDto.userroles.UserID;
-                                JournalUserRolesList.ModifiedBy = userRoleDto.userroles.UserID;
+                                JournalUserRolesList.CreatedBy = userRoleDto.loginuser;
+                                JournalUserRolesList.ModifiedBy = userRoleDto.loginuser;
                                 JournalUserRolesList.ModifiedDate = DateTime.Now;
                                 JournalUserRolesList.CreatedDate = DateTime.Now;
                                 JournalUserRolesList.Status = true;
@@ -204,45 +203,22 @@ namespace TransferDesk.BAL.Manuscript
                          userRolesUnitOfWork.DeleteBookUserRolesDetails(userRoleDto);  
                     foreach (var id in userRoleDto.SelectedBookID)
                     {
-                        var check = userRolesUnitOfWork.CheckIfBookForUserIsPresentInBookUserRoles(usermasterid, id);
-                        if (check == true)
-                        {
-                            var getid = userRolesUnitOfWork.GetIDfromBookUserRoles(usermasterid, id);
-                            var BookDetails = userRolesUnitOfWork.GetBookDetails(getid);
-                            userRoleDto.journaluser.Clear();
-                            var BookUserRoles = new BookUserRoles();
-                            {
-                                BookUserRoles.ID = getid;
-                                BookUserRoles.BookMasterId = id;
-                                BookUserRoles.UserRolesId = BookDetails.UserRolesId;
-                                BookUserRoles.CreatedBy = BookDetails.CreatedBy;
-                                BookUserRoles.ModifiedBy = userRoleDto.userroles.UserID;
-                                BookUserRoles.ModifiedDate = DateTime.Now;
-                                BookUserRoles.CreatedDate = BookDetails.CreatedDate;
-                                BookUserRoles.Status = true;
-                            }
-                            ;
-                            userRoleDto.bookuser.Add(BookDetails);
-                            userRolesUnitOfWork.SaveBookUserRolesDetails(userRoleDto, 0);
-                        }
-                        else
-                        {
+                                            
                             userRoleDto.bookuser.Clear();
                             var BookUserRolesList = new BookUserRoles();
                             {
                                 BookUserRolesList.BookMasterId = id;
                                 BookUserRolesList.UserRolesId = userRoleDto.userroles.ID;
-                                BookUserRolesList.CreatedBy = userRoleDto.userroles.UserID;
-                                BookUserRolesList.ModifiedBy = userRoleDto.userroles.UserID;
+                                BookUserRolesList.CreatedBy = userRoleDto.loginuser;
+                                BookUserRolesList.ModifiedBy = userRoleDto.loginuser;
                                 BookUserRolesList.ModifiedDate = DateTime.Now;
                                 BookUserRolesList.CreatedDate = DateTime.Now;
                                 BookUserRolesList.Status = true;
                             }
                             ;
-
                             userRoleDto.bookuser.Add(BookUserRolesList);
-                            userRolesUnitOfWork.SaveBookUserRolesDetails(userRoleDto, 1);
-                        }
+                            userRolesUnitOfWork.SaveBookUserRolesDetails(userRoleDto);
+                      
 
                     }
                 }

@@ -149,19 +149,12 @@ namespace TransferDesk.DAL.Manuscript.UnitOfWork
             _bookUserReposistory.SaveChanges();
         }
 
-        public void SaveBookUserRolesDetails(UserRoleDTO userRoleDto, int check)
+        public void SaveBookUserRolesDetails(UserRoleDTO userRoleDto)
         {
             foreach (var item in userRoleDto.bookuser)
             {
-                if (check == 1)
                     _bookUserReposistory.AddBookUserDetails(item);
-
-                else
-                {
-                    _bookUserReposistory.UpdateBookUserDetails(item);
-
-                }
-
+            
             }
             _bookUserReposistory.SaveChanges();
         }

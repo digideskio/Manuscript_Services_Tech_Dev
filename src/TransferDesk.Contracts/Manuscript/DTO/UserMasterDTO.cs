@@ -25,6 +25,7 @@ namespace TransferDesk.Contracts.Manuscript.DTO
             JournalUserRoles=new JournalUserRoles();
             BookUserRoles=new BookUserRoles();
         }
+
         public string loginuser { get; set; }
         public int UserRoleId { get; set; }
     //    public string UserID { get; set; }

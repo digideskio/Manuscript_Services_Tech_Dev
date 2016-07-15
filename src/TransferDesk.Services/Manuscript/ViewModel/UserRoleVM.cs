@@ -102,6 +102,11 @@ namespace TransferDesk.Services.Manuscript.ViewModel
             get { return _uDto.SelectedBookID; }
             set { _uDto.SelectedBookID = value; }
         }
+        public string loginuser
+        {
+            get { return _uDto.loginuser; }
+            set { _uDto.loginuser = value; }
+        }
         [Required(ErrorMessage = "Name")]
         public string Name { get; set; }
         public bool IsJournal { get; set; }
