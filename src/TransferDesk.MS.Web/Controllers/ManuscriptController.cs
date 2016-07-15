@@ -327,8 +327,7 @@ namespace TransferDesk.MS.Web.Controllers
         [HttpPost]
         public string BookPreviewForm(ManuscriptBookScreeningVm manuscriptbookVm)
         {
-            try
-            {
+            
                 _logger.Log("Loading Book Preview Form ");
                 var bookid = Convert.ToInt32(manuscriptbookVm.BookTitleId);
                 var booktitleList = _manuscriptDbRepositoryReadSide.GetManuscriptBookTitle();
@@ -344,20 +343,16 @@ namespace TransferDesk.MS.Web.Controllers
                 new HtmlRowData() { LabelText = "Start Date",           InnerHtml = manuscriptbookVm.StartDate.HasValue? manuscriptbookVm.StartDate.Value.ToString("d"):String.Empty , StyleClass = StyleRow },
                 new HtmlRowData() { LabelText = "Associate ID",         InnerHtml = manuscriptbookVm.AssociateUserID, StyleClass = StyleRow },
                 new HtmlRowData() { LabelText = "Role",                 InnerHtml =_manuscriptDbRepositoryReadSide.GetRole(Convert.ToInt32(manuscriptbookVm.RollID)), StyleClass = StyleRow },
-
                 new HtmlRowData() { LabelText = "Manuscript Details",   InnerHtml = string.Empty, StyleClass = StyleGroupRow },
                 new HtmlRowData() { LabelText = "Book Title*",InnerHtml = msBookHtmlPreview.GetBookTitleList(manuscriptbookVm.BookTitleId), StyleClass = StyleRow },
                 new HtmlRowData() { LabelText = "Chapter Number*",                 InnerHtml = manuscriptbookVm.ChapterNumber, StyleClass = StyleRow },
                   new HtmlRowData() { LabelText = "Chapter Title*",                 InnerHtml = manuscriptbookVm.ChapterTitle, StyleClass = StyleRow },              
                 new HtmlRowData() { LabelText = "Received Date*",      InnerHtml = manuscriptbookVm.ReceivedDate.ToString("d"), StyleClass = StyleRow },
                  new HtmlRowData() { LabelText = "Page Count*",  InnerHtml =manuscriptbookVm.PageCount.ToString(), StyleClass = StyleRow },
-
                 new HtmlRowData() { LabelText = "Author(s) Details", InnerHtml = string.Empty, StyleClass = StyleGroupRow },
                 new HtmlRowData() { LabelText = "Corresponding Author*",        InnerHtml = manuscriptbookVm.CorrespondingAuthor, StyleClass = StyleRow },
                 new HtmlRowData() { LabelText = "Corresponding Author Email*",  InnerHtml = manuscriptbookVm.CorrespondingAuthorEmail, StyleClass = StyleRow },
-                new HtmlRowData() { LabelText = "Corresponding Author Affiliation*", InnerHtml = manuscriptbookVm.CorrespondingAuthorAff, StyleClass = StyleRow },
-              
-
+                new HtmlRowData() { LabelText = "Corresponding Author Affiliation*", InnerHtml = manuscriptbookVm.CorrespondingAuthorAff, StyleClass = StyleRow },              
                 new HtmlRowData() { LabelText = "Analytical Findings",  InnerHtml = string.Empty, StyleClass = StyleGroupRow },
                 new HtmlRowData() { LabelText = "iThenticate %*",       InnerHtml =Convert.ToString(manuscriptbookVm.iThenticatePercentage), StyleClass = StyleRow },
                 new HtmlRowData() { LabelText = "Highest iThenticate %*", InnerHtml =Convert.ToString(manuscriptbookVm.Highest_iThenticateFromSingleSrc), StyleClass = StyleRow },
@@ -371,13 +366,7 @@ namespace TransferDesk.MS.Web.Controllers
                 new HtmlRowData() { LabelText = "Comment",              InnerHtml = manuscriptbookVm.Comments_OverallAnalysis, StyleClass = StyleRow },
             };
                 var htmlBookPreview = msBookHtmlPreview.CreateHtmlPreview(htmlRowDataBookList, "", true, "table table-bordered");
-                return htmlBookPreview;
-            }
-            catch (Exception ex)
-            {
-                _logger.Log("Error in Book Preview Form \n" + ex.StackTrace);
-            }
-            return null;
+                return htmlBookPreview;                       
         }
 
         private string GetOtherAuthors(ManuscripScreeningVM manuscriptVm)

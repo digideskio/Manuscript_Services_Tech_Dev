@@ -39,7 +39,7 @@ namespace TransferDesk.Services.Manuscript.Preview
         public string CreateHtmlPreview(List<HtmlRowData> htmlNodeDataList, string parentNodename, bool asHtmlPage, string tableClassName)
         {
             var doc = new HtmlDocument();
-            const string body = "Body";
+           const string body = "Body";
             if (asHtmlPage == true)
             {
                 parentNodename = body;

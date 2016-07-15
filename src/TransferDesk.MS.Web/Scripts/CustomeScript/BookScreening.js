@@ -37,6 +37,13 @@ $(document).ready(function () {
     if ($("#BookLoginID").val() == null || $("#BookLoginID").val() == 0) {
         $('#ReceivedDate').val('');
     }
+
+    if ($("#dbID").val() == "" || $("#dbID").val() == 0) {
+        $("#btnPreviewBookManuscript").hide();
+    }else {
+        $("#btnPreviewBookManuscript").show();
+    }
+
     $("#BookTitleId").val($("#ddlBookTitle").val());
     $(".ManuscriptDetails").find('input').each(function () {
         $(this).prop('readonly', true);
