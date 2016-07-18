@@ -95,8 +95,26 @@ namespace TransferDesk.Logger
 
         }
 
-
         public void LogException(Exception exception, StringBuilder stringBuilder)
+
+        {
+            if (stringBuilder == null)
+            {
+                _LogException(exception,null);
+            }
+            else
+            {
+                _LogException(exception,stringBuilder);
+            }
+        }
+
+        public void LogException(Exception exception)
+
+        {
+                _LogException(exception,null);
+            
+        }
+        private void _LogException(Exception exception, StringBuilder stringBuilder)
 
         {
             switch (LogTarget)
@@ -276,7 +294,7 @@ namespace TransferDesk.Logger
                 
             }
 
-            public void LogException(Exception exception, StringBuilder stringBuilder)
+            public void LogException(Exception exception, StringBuilder stringBuilder = null)
 
             {
                 var userId = "";
@@ -285,9 +303,11 @@ namespace TransferDesk.Logger
                 {
                     userId = @System.Web.HttpContext.Current.User.Identity.Name.Replace("SPRINGER-SBM\\", "");
 
-                    //write Stringbuilder to disk and clear
-                    WriteStringBuilderToLogAndClear(stringBuilder,userId);
-                
+                    if (stringBuilder != null)
+                    {
+                        //write Stringbuilder to disk and clear
+                        WriteStringBuilderToLogAndClear(stringBuilder, userId);
+                    }
                     //exception.tostring will include all inner exception details
 
                     message = "userID : " + userId + " exception : " + exception.ToString();
