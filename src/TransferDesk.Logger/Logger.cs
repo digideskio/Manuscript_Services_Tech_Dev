@@ -49,15 +49,23 @@ namespace TransferDesk.Logger
             _fileLogger.Dispose();
         }
 
-       public void WriteStringBuilderToLogAndClear(StringBuilder stringBuilder, string userId = null)
+       public void WriteStringBuilderToUserLogAndClear(StringBuilder stringBuilder, string userId = null)
         {
             ILogger logger = GetLogger();
             IFileLogger fileLogger = logger as IFileLogger;
             fileLogger.FilePath = this.FilePath;
             fileLogger.FileName = this.FileName;
-            fileLogger.WriteStringBuilderToLogAndClear(stringBuilder, userId);
+            fileLogger.WriteStringBuilderToUserLogAndClear(stringBuilder, userId);
        }
 
+        public void WriteStringBuilderToAppLogAndClear(StringBuilder stringBuilder)
+        {
+            ILogger logger = GetLogger();
+            IFileLogger fileLogger = logger as IFileLogger;
+            fileLogger.FilePath = this.FilePath;
+            fileLogger.FileName = this.FileName;
+            fileLogger.WriteStringBuilderToAppLogAndClear(stringBuilder);
+        }
 
         public void ApplicationLog(string message)
 
@@ -249,6 +257,9 @@ namespace TransferDesk.Logger
             {
                 throw new Exception("Invalid UserID length greater than 9 characters or contains space in windows user Id ");
             }
+
+            if (userId.Trim() == "") { userId = "App";} // app as a logger File name user description
+                
                 lock (LockObj)
 
                 {
@@ -280,7 +291,7 @@ namespace TransferDesk.Logger
             
         }
 
-            public void WriteStringBuilderToLogAndClear(StringBuilder stringBuilder, string userId )
+            public void WriteStringBuilderToUserLogAndClear(StringBuilder stringBuilder, string userId )
             {
                 try
                 {
@@ -298,7 +309,25 @@ namespace TransferDesk.Logger
                 
             }
 
-            public void LogException(Exception exception, StringBuilder stringBuilder = null)
+        public void WriteStringBuilderToAppLogAndClear(StringBuilder stringBuilder)
+        {
+            try
+            {
+                WriteToDiskFile(stringBuilder.ToString());
+            }
+            catch (Exception loggerException)
+            {
+                TryWriteForLoggerException(loggerException, stringBuilder.ToString());
+            }
+            finally
+            {
+                stringBuilder.Clear();
+
+            }
+
+        }
+
+        public void LogException(Exception exception, StringBuilder stringBuilder = null)
 
             {
                 var userId = "";
@@ -310,7 +339,7 @@ namespace TransferDesk.Logger
                     if (stringBuilder != null)
                     {
                         //write Stringbuilder to disk and clear
-                        WriteStringBuilderToLogAndClear(stringBuilder, userId);
+                        WriteStringBuilderToAppLogAndClear(stringBuilder);
                     }
                     //exception.tostring will include all inner exception details
 
@@ -338,7 +367,7 @@ namespace TransferDesk.Logger
                 userId = @System.Web.HttpContext.Current.User.Identity.Name.Replace("SPRINGER-SBM\\", "");
 
                 //write Stringbuilder to disk and clear
-                WriteStringBuilderToLogAndClear(stringBuilder, userId);
+                WriteStringBuilderToAppLogAndClear(stringBuilder);
 
                 //exception.tostring will include all inner exception details
 
