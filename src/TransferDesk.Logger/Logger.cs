@@ -244,7 +244,11 @@ namespace TransferDesk.Logger
 
         private void WriteToDisk(string message,string userId = "" )
             {
-                
+            //this check can be eleminated for non windows logon outside interanet
+            if (userId.Length >= 10 || userId.Contains(" "))
+            {
+                throw new Exception("Invalid UserID length greater than 9 characters or contains space in windows user Id ");
+            }
                 lock (LockObj)
 
                 {
