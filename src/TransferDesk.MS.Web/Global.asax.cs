@@ -61,7 +61,7 @@ namespace TransferDesk.MS.Web
                 
                 stringBuilder.AppendLine("Try Register the container as  IDependencyResolver.");
 
-                _fileLogger.WriteStringBuilderToLogAndClear(stringBuilder);
+                _fileLogger.WriteStringBuilderToAppLogAndClear(stringBuilder);
                 
                 try
                 {
