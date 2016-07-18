@@ -29,49 +29,67 @@ namespace TransferDesk.MS.Web
         {
             //test
             //List<string> listOfString = new List<string>();
-            StringBuilder stringBuilder = new StringBuilder();
-
-            AreaRegistration.RegisterAllAreas();
-            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
-            RouteConfig.RegisterRoutes(RouteTable.Routes);
-            BundleConfig.RegisterBundles(BundleTable.Bundles);
-            //compositon root for object graph using the IoC Container
-            _simpleInjectorcontainer = new SimpleInjector.Container();
-
-            //Register all components
-            RegisterAllComponents(stringBuilder, _simpleInjectorcontainer);
-
-            var logger = _simpleInjectorcontainer.GetInstance<ILogger>();
-
-                _fileLogger = logger as IFileLogger;
-            //fileLogger.FilePath = "d:\\TransferdeskLog\\";
-            string iterationInfo = "Iteration11";//todo:setto config
-
-            _fileLogger.FilePath = System.Web.HttpRuntime.AppDomainAppPath + iterationInfo + "Log\\";
-
-            if (System.IO.Directory.Exists(_fileLogger.FilePath) == false)
-            {
-                System.IO.Directory.CreateDirectory(_fileLogger.FilePath);
-            }
-
-            _fileLogger.FileName = "TransferDeskLog";
-
-            _fileLogger.WriteStringBuilderToDiskAndClear(stringBuilder);
-
-            stringBuilder.Length = 0;
-
-            stringBuilder.AppendLine("Try Register the container as  IDependencyResolver.");
-
-            _fileLogger.WriteStringBuilderToDiskAndClear(stringBuilder);
-
+            StringBuilder stringBuilder = null;
             try
             {
-                // Register the container as  IDependencyResolver.
-                DependencyResolver.SetResolver(new SimpleInjectorDependencyResolver(_simpleInjectorcontainer));
+                stringBuilder = new StringBuilder();
+
+                AreaRegistration.RegisterAllAreas();
+                FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+                RouteConfig.RegisterRoutes(RouteTable.Routes);
+                BundleConfig.RegisterBundles(BundleTable.Bundles);
+                //compositon root for object graph using the IoC Container
+                _simpleInjectorcontainer = new SimpleInjector.Container();
+
+                //Register all components
+                RegisterAllComponents(stringBuilder, _simpleInjectorcontainer);
+
+                var logger = _simpleInjectorcontainer.GetInstance<ILogger>();
+
+                _fileLogger = logger as IFileLogger;
+                //fileLogger.FilePath = "d:\\TransferdeskLog\\";
+                string iterationInfo = "Transferdesk";//todo:setto config
+
+                _fileLogger.FilePath = System.Web.HttpRuntime.AppDomainAppPath + iterationInfo + "Log\\";
+
+                if (System.IO.Directory.Exists(_fileLogger.FilePath) == false)
+                {
+                    System.IO.Directory.CreateDirectory(_fileLogger.FilePath);
+                }
+
+                _fileLogger.FileName = "TransferDeskLog";
+                
+                stringBuilder.AppendLine("Try Register the container as  IDependencyResolver.");
+
+                _fileLogger.WriteStringBuilderToLogAndClear(stringBuilder);
+                
+                try
+                {
+                    // Register the container as  IDependencyResolver.
+                    DependencyResolver.SetResolver(new SimpleInjectorDependencyResolver(_simpleInjectorcontainer));
+                }
+                catch (Exception exception)
+                {
+                    _fileLogger.LogException(exception, stringBuilder);
+                }
+                //throw new Exception("test app start exception");
             }
             catch (Exception exception)
             {
-                _fileLogger.LogException(exception);
+                if (_fileLogger == null)
+                {
+                    string pendingLogWrites = string.Empty;
+                    if (stringBuilder != null)
+                    {
+                        pendingLogWrites = stringBuilder.ToString();
+                    }
+                    Trace.WriteLine("Transferdesk exception " + pendingLogWrites + exception.ToString());
+                }
+                else
+                {
+                   _fileLogger.ApplicationExceptionLog(exception,stringBuilder);
+                }
+
             }
 
         }
@@ -111,11 +129,13 @@ namespace TransferDesk.MS.Web
 
                 stringBuilder.AppendLine("DI container verify done");
 
+
+
             }
             catch (Exception exception)
             {
-                //throw; essential to catch before first trace log, stringbuilder instance will identify steps skipped
-                stringBuilder.AppendLine("Exception in app_start " + exception.ToString());
+                //register is called before logger instance so write to string builder if exception in registering
+                stringBuilder.AppendLine(exception.ToString());
             }
         }
 
@@ -145,7 +165,7 @@ namespace TransferDesk.MS.Web
                 {
                     if (_fileLogger != null)
                     {
-                        _fileLogger.Log(String.Format("_shutDownMessage={0}\r\n\r\n_shutDownStack={1}", shutDownMessage,shutDownStack));
+                        _fileLogger.ApplicationLog(String.Format("_shutDownMessage={0}\r\n\r\n_shutDownStack={1}", shutDownMessage,shutDownStack));
                     }
                 }
             }
