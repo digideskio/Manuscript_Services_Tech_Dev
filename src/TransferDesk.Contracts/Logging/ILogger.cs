@@ -28,7 +28,8 @@ namespace TransferDesk.Contracts.Logging
 
         void Log(string message, string userId);
 
-        void WriteStringBuilderToLogAndClear(StringBuilder stringBuilder, string userId = "");
+        void WriteStringBuilderToUserLogAndClear(StringBuilder stringBuilder, string userIdForUserLog = "");
+        
 
     }
 
@@ -42,6 +43,8 @@ namespace TransferDesk.Contracts.Logging
         void ApplicationExceptionLog(Exception exception, StringBuilder stringbuilder);
 
         void ApplicationLog(string message);
+
+        void WriteStringBuilderToAppLogAndClear(StringBuilder stringBuilder);
     }
 
     /// <summary>
