@@ -291,10 +291,13 @@ namespace TransferDesk.Logger
             
         }
 
-            public void WriteStringBuilderToUserLogAndClear(StringBuilder stringBuilder, string userId )
+            public void WriteStringBuilderToUserLogAndClear(StringBuilder stringBuilder, string userId = null )
             {
                 try
                 {
+                    if (userId == null || userId.Trim() == "")
+                    { userId = @System.Web.HttpContext.Current.User.Identity.Name.Replace("SPRINGER-SBM\\", ""); }
+
                     WriteToDiskFile(stringBuilder.ToString(),userId);
                 }
                 catch (Exception loggerException)
