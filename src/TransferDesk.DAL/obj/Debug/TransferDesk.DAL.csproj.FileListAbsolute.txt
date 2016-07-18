@@ -382,3 +382,15 @@ D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\Transfer
 D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.DAL\obj\Debug\TransferDesk.DAL.csprojResolveAssemblyReference.cache
 D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.DAL\obj\Debug\TransferDesk.DAL.dll
 D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.DAL\obj\Debug\TransferDesk.DAL.pdb
+D:\DayaData\GitHubWorkingCopy\TransferDesk\Saloni\Manuscript_Services_Tech_Dev\src\TransferDesk.DAL\bin\Debug\TransferDesk.DAL.dll.config
+D:\DayaData\GitHubWorkingCopy\TransferDesk\Saloni\Manuscript_Services_Tech_Dev\src\TransferDesk.DAL\bin\Debug\TransferDesk.DAL.dll
+D:\DayaData\GitHubWorkingCopy\TransferDesk\Saloni\Manuscript_Services_Tech_Dev\src\TransferDesk.DAL\bin\Debug\TransferDesk.DAL.pdb
+D:\DayaData\GitHubWorkingCopy\TransferDesk\Saloni\Manuscript_Services_Tech_Dev\src\TransferDesk.DAL\bin\Debug\EntityFramework.dll
+D:\DayaData\GitHubWorkingCopy\TransferDesk\Saloni\Manuscript_Services_Tech_Dev\src\TransferDesk.DAL\bin\Debug\EntityFramework.SqlServer.dll
+D:\DayaData\GitHubWorkingCopy\TransferDesk\Saloni\Manuscript_Services_Tech_Dev\src\TransferDesk.DAL\bin\Debug\TransferDesk.Contracts.dll
+D:\DayaData\GitHubWorkingCopy\TransferDesk\Saloni\Manuscript_Services_Tech_Dev\src\TransferDesk.DAL\bin\Debug\TransferDesk.Contracts.pdb
+D:\DayaData\GitHubWorkingCopy\TransferDesk\Saloni\Manuscript_Services_Tech_Dev\src\TransferDesk.DAL\bin\Debug\EntityFramework.xml
+D:\DayaData\GitHubWorkingCopy\TransferDesk\Saloni\Manuscript_Services_Tech_Dev\src\TransferDesk.DAL\bin\Debug\EntityFramework.SqlServer.xml
+D:\DayaData\GitHubWorkingCopy\TransferDesk\Saloni\Manuscript_Services_Tech_Dev\src\TransferDesk.DAL\obj\Debug\TransferDesk.DAL.csprojResolveAssemblyReference.cache
+D:\DayaData\GitHubWorkingCopy\TransferDesk\Saloni\Manuscript_Services_Tech_Dev\src\TransferDesk.DAL\obj\Debug\TransferDesk.DAL.dll
+D:\DayaData\GitHubWorkingCopy\TransferDesk\Saloni\Manuscript_Services_Tech_Dev\src\TransferDesk.DAL\obj\Debug\TransferDesk.DAL.pdb

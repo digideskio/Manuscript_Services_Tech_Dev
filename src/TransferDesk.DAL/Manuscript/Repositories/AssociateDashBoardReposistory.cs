@@ -27,7 +27,7 @@ namespace TransferDesk.DAL.Manuscript.Repositories
             this.context = manuscriptDbContext;  
         }
 
-        public IEnumerable<pr_GetSpecificAssociateDetails_Result> pr_GetAllAssociatesAssignedJobs(string userid)
+        public IEnumerable<pr_GetSpecificAssociateDetails_Result> pr_GetAllAssociatesAssignedJobs(string userid, int serviceTypeId)
         {
             try
             {
@@ -36,8 +36,12 @@ namespace TransferDesk.DAL.Manuscript.Repositories
                    new SqlParameter("userid", userid) :
                    new SqlParameter("userid", typeof(global::System.String));
 
+                var serviceType = serviceTypeId != null ?
+                   new SqlParameter("serviceType", serviceTypeId) :
+                   new SqlParameter("serviceType", typeof(global::System.Int32));
+
                 IEnumerable<pr_GetSpecificAssociateDetails_Result> alljobsdetails = this.context.Database.SqlQuery
-                                                                                  <pr_GetSpecificAssociateDetails_Result>("exec pr_GetAssociateAssignedJobs @userid", associateuserid).ToList();
+                                                                                  <pr_GetSpecificAssociateDetails_Result>("exec pr_GetAssociateAssignedJobs @userid,@serviceType", associateuserid, serviceType).ToList();
                 return alljobsdetails;
             }
             catch
@@ -48,6 +52,135 @@ namespace TransferDesk.DAL.Manuscript.Repositories
             {
 
             }
+        }
+
+        public IEnumerable<pr_GetSpecificAssociateDetails_Result> GetAssociatedFetchedJobs(string crestId, int serviceTypeId, int role)
+        {
+            try
+            {
+
+                var crestID = crestId != null ?
+                   new SqlParameter("crestID", crestId) :
+                   new SqlParameter("crestID", typeof(global::System.String));
+
+                var serviceType = serviceTypeId != null ?
+                   new SqlParameter("serviceType", serviceTypeId) :
+                   new SqlParameter("serviceType", typeof(global::System.Int32));
+
+                var roleId = role != null ?
+                   new SqlParameter("roleID", role) :
+                   new SqlParameter("roleID", typeof(global::System.Int32));
+
+                IEnumerable<pr_GetSpecificAssociateDetails_Result> fetchedJobs = this.context.Database.SqlQuery
+                                                                                  <pr_GetSpecificAssociateDetails_Result>("exec pr_GetAssociatedFetchedJobs @crestID,@serviceType,@roleID", crestID, serviceType, roleId).ToList();
+                return fetchedJobs;
+            }
+            catch
+            {
+                return null;//todo:check and remove this trycatchhandler
+            }
+            finally
+            {
+
+            }
+        }
+
+
+        public pr_IsJobFetched_Result IsJobFetched(string userid, int serviceTypeId)
+        {
+            try
+            {
+
+                var userId = userid != null ?
+                   new SqlParameter("userId", userid) :
+                   new SqlParameter("userId", typeof(global::System.String));
+
+                var serviceType = serviceTypeId != null ?
+                   new SqlParameter("serviceType", serviceTypeId) :
+                   new SqlParameter("serviceType", typeof(global::System.Int32));
+
+                pr_IsJobFetched_Result fetchedJobs = this.context.Database.SqlQuery<pr_IsJobFetched_Result>("exec pr_IsJobFetched @userId,@serviceType", userId, serviceType).FirstOrDefault();
+                return fetchedJobs;
+            }
+            catch
+            {
+                return null;//todo:check and remove this trycatchhandler
+            }
+            finally
+            {
+
+            }
+        }
+
+        public pr_JobTobeFetched_Result JobTobeFetched(string userid, int serviceTypeId, int roleId)
+        {
+            try
+            {
+
+                var userId = userid != null ?
+                   new SqlParameter("userId", userid) :
+                   new SqlParameter("userId", typeof(global::System.Int32));
+
+                var serviceType = serviceTypeId != null ?
+                   new SqlParameter("serviceType", serviceTypeId) :
+                   new SqlParameter("serviceType", typeof(global::System.Int32));
+
+                var role = roleId != null ?
+                   new SqlParameter("RoleId", roleId) :
+                   new SqlParameter("RoleId", typeof(global::System.Int32));
+
+                pr_JobTobeFetched_Result fetchedJobs = this.context.Database.SqlQuery<pr_JobTobeFetched_Result>("exec pr_JobTobeFetched @userId,@serviceType,@RoleId", userId, serviceType, role).FirstOrDefault();
+                return fetchedJobs;
+            }
+            catch
+            {
+                return null;//todo:check and remove this trycatchhandler
+            }
+            finally
+            {
+
+            }
+        }
+        public string GetMSIDOnCrestId(string crestID)
+        {
+            string MSID = string.Empty;
+            if (crestID.StartsWith("J"))
+            {
+                MSID = (from ML in context.ManuscriptLogin
+                        where ML.CrestId == crestID
+                        select ML.MSID).FirstOrDefault();
+            }
+            else
+            {
+                MSID = "";
+                //MSID = (from MBL in context.ManuscriptBookLogin
+                //        where MBL.CrestID == crestID
+                //        select MBL.MSID).FirstOrDefault();
+            }
+            return MSID;
+        }
+
+        public int GetServiceTypeOnUserId(string userID)
+        {
+            var serivceType = (from UR in context.UserRoles
+                               where UR.UserID == userID && UR.RollID == 1
+                               select UR.ServiceTypeId).FirstOrDefault();
+
+            return Convert.ToInt32(serivceType);
+        }
+
+        public int GetManuscriptIDOnMSID(string MSID, string crestID)
+        {
+            int ID = 0;
+            if (crestID.StartsWith("J"))
+            {
+                ID = (from M in context.Manuscripts
+                      where M.MSID == crestID
+                      select M.ID).FirstOrDefault();
+            }
+            else
+                ID = 0;
+            return ID;
         }
 
 

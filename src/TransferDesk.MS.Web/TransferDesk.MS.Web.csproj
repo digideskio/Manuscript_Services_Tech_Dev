@@ -191,6 +191,7 @@
     <Content Include="Images\redtick.bmp" />
     <Content Include="Images\Springer-Nature.jpg" />
     <Content Include="Scripts\CustomeScript\AdminDashBoard.js" />
+    <Content Include="Scripts\CustomeScript\AssociateDashboard.js" />
     <Content Include="Scripts\CustomeScript\BookLogin.js" />
     <Content Include="Scripts\CustomeScript\BookMaster.js" />
     <Content Include="Scripts\CustomeScript\BookScreening.js" />

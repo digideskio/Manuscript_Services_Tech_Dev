@@ -10,6 +10,6 @@ namespace TransferDesk.Services.Manuscript.ViewModel
     public class AssociateDashboardVM
     {
         public IEnumerable<pr_GetSpecificAssociateDetails_Result> specificAssociatedetails { get; set; }
-
+        public int? manuscriptsIDVM { get; set; }
     }
 }

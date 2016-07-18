@@ -62,6 +62,8 @@ namespace TransferDesk.MS.Web
             bundles.Add(new ScriptBundle("~/bundles/AdminDashBoard")
    .Include("~/Scripts/CustomeScript/AdminDashBoard.js")
        );
+            bundles.Add(new ScriptBundle("~/bundles/AssociateDashboard")
+            .Include("~/Scripts/CustomeScript/AssociateDashboard.js"));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
