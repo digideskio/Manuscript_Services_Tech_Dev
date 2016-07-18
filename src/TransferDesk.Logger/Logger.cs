@@ -218,7 +218,7 @@ namespace TransferDesk.Logger
         {
                 try
                 {
-                    WriteToDisk(message,userId);
+                    WriteToDiskFile(message,userId);
                     
                 }
                 catch (Exception loggerException)
@@ -232,7 +232,7 @@ namespace TransferDesk.Logger
         {
             try
             {
-                WriteToDisk(message);
+                WriteToDiskFile(message);
 
             }
             catch (Exception loggerException)
@@ -242,8 +242,8 @@ namespace TransferDesk.Logger
 
         }
 
-        private void WriteToDisk(string message,string userId = "" )
-            {
+        private void WriteToDiskFile(string message,string userId = "" )
+        {
             //this check can be eleminated for non windows logon outside interanet
             if (userId.Length >= 10 || userId.Contains(" "))
             {
@@ -278,13 +278,13 @@ namespace TransferDesk.Logger
             //    FileNameSuffixCounter += 1;
             //}
             
-            }
+        }
 
             public void WriteStringBuilderToLogAndClear(StringBuilder stringBuilder, string userId )
             {
                 try
                 {
-                    WriteToDisk(stringBuilder.ToString(),userId);
+                    WriteToDiskFile(stringBuilder.ToString(),userId);
                 }
                 catch (Exception loggerException)
                 {
@@ -316,7 +316,7 @@ namespace TransferDesk.Logger
 
                     message = "userID : " + userId + " exception : " + exception.ToString();
 
-                    WriteToDisk(message, userId);
+                    WriteToDiskFile(message, userId);
 
                     //throw new Exception("test logger exception");
                 }
@@ -344,7 +344,7 @@ namespace TransferDesk.Logger
 
                 message = "userID : " + userId + " exception : " + exception.ToString();
 
-                WriteToDisk(message, userId);
+                WriteToDiskFile(message, userId);
 
                 //throw new Exception("test logger exception");
             }
@@ -368,7 +368,11 @@ namespace TransferDesk.Logger
 
                         streamWriter.WriteLine(LogLineCounter + " " +
                             timeStamp + " " +
-                            PerformanceStopWatch.ElapsedMilliseconds + " " + message);
+                            PerformanceStopWatch.ElapsedMilliseconds + " " + "message that was being written when exception occured --" + message);
+
+                        streamWriter.WriteLine(LogLineCounter + " " +
+                            timeStamp + " " +
+                            PerformanceStopWatch.ElapsedMilliseconds + " " + loggerException.ToString());
 
                         streamWriter.Close();
 
