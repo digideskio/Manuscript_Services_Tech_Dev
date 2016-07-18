@@ -40,6 +40,8 @@ namespace TransferDesk.MS.Web.Controllers
         // GET: UserRole
         public ActionResult UserRole()
         {
+            int id = 0;
+            return RedirectToAction("UserMaster", id = 0);
             var userID = @System.Web.HttpContext.Current.User.Identity.Name.Replace("SPRINGER-SBM\\", "");
             if(_UserRoleRepository.IsAdmin(userID.Trim()))
             {
@@ -56,6 +58,8 @@ namespace TransferDesk.MS.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult UserRole(UserRoleVM userRoleVM)
         {
+            int id = 0;
+            return RedirectToAction("UserMaster", id = 0);
             if (ModelState.IsValid)
             {
                 userRoleVM.UserID = userRoleVM.UserID.Trim();

@@ -31,16 +31,44 @@
     $("#ddlBookTitle").change(function () {
         GetBookMasterInfo();
     });
-
     $(".editBookButton").click(function (event) {
+        $('#IsNewEntry').prop('checked', false);
+        //$("#btnBookLogin").val("Update");
         var id = ($(this).closest("tr").find("td").eq(0).text()).trim();
         if (id == 0 || id == '' || id == null) {
             var url = AppPath + 'ManuscriptLogin/BookLogin';
         } else {
             var url = AppPath + 'ManuscriptLogin/BookLogin?id=' + id + '&&jobtype=book';
         }
+
         window.location.href = url;
+
     });
+    
+
+
+    $('#IsNewEntry').click(function () {
+        if ($(this).is(":checked")) {
+            $("#btnBookLogin").val("Login");
+        } else {
+            if ($("#bookid").val() != 0) {
+                $("#btnBookLogin").val("Update");
+            }
+        }
+    });
+
+    $('#IsNewEntry').change(function () {
+        if ($(this).is(":checked")) {
+            $("#btnBookLogin").val("Login");
+        } else {
+            if ($("#bookid").val() != 0) {
+                $("#btnBookLogin").val("Update");
+            }
+        }
+    });
+
+
+
 
     $("#BookAssociateName").autocomplete({
         source: function (request, response) {

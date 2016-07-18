@@ -1928,6 +1928,8 @@ D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\Tran
 D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.MS.Web\obj\Debug\TransferDesk.MS.Web.csprojResolveAssemblyReference.cache
 D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.MS.Web\obj\Debug\TransferDesk.MS.Web.dll
 D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.MS.Web\obj\Debug\TransferDesk.MS.Web.pdb
+D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.MS.Web\bin\TransferDesk.Logger.pdb
+D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.MS.Web\bin\TransferDesk.Services.pdb
 D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.MS.Web\bin\TransferDesk.MS.Web.dll.config
 D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.MS.Web\bin\TransferDesk.MS.Web.dll
 D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.MS.Web\bin\TransferDesk.MS.Web.pdb
@@ -1964,8 +1966,6 @@ D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\Transfer
 D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.MS.Web\bin\TransferDesk.BAL.pdb
 D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.MS.Web\bin\TransferDesk.Contracts.pdb
 D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.MS.Web\bin\TransferDesk.DAL.pdb
-D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.MS.Web\bin\TransferDesk.Logger.pdb
-D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.MS.Web\bin\TransferDesk.Services.pdb
 D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.MS.Web\bin\TransferDesk.Utilities.pdb
 D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.MS.Web\bin\EntityFramework.xml
 D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.MS.Web\bin\EntityFramework.SqlServer.xml

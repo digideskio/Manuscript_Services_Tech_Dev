@@ -25,6 +25,7 @@ namespace TransferDesk.Contracts.Manuscript.DTO
         public DateTime CreatedDate{ get; set; }
         public string CreatedBy { get; set; }
         public string ShareDrivePath { get; set; }
+        public bool IsNewEntry { get; set; }
     }
 }
 

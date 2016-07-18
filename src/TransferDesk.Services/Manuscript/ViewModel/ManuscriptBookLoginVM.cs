@@ -78,7 +78,11 @@ namespace TransferDesk.Services.Manuscript.ViewModel
             get { return _msDTO.manuscriptBookLogin.RequesterName; }
             set { _msDTO.manuscriptBookLogin.RequesterName = value; }
         }
-
+        public bool IsNewEntry
+        {
+            get { return _msDTO.IsNewEntry; }
+            set { _msDTO.IsNewEntry = value; }
+        }
         public string SpecialInstruction
         {
             get { return _msDTO.manuscriptBookLogin.SpecialInstruction; }

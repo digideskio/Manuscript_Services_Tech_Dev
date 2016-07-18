@@ -29,8 +29,10 @@ namespace TransferDesk.MS.Web.Controllers
         private readonly string _conString;
         private string _errormsg = String.Empty;
         public IFileLogger FileLogger;
-        public ManuscriptLoginController()
+        private ILogger _logger;
+        public ManuscriptLoginController(ILogger logger)
         {
+            _logger = logger;
             _conString = Convert.ToString(ConfigurationManager.AppSettings["dbTransferDeskService"]);
             _manuscriptDBRepositoryReadSide = new ManuscriptDBRepositoryReadSide(_conString);
             ManuscriptLoginDbRepositoryReadSide = new ManuscriptLoginDBRepositoryReadSide(_conString);
@@ -123,6 +125,12 @@ namespace TransferDesk.MS.Web.Controllers
         [HttpPost]
         public ActionResult BookLogin(ManuscriptBookLoginVM manuscriptBookLoginVM)
         {
+            _logger.Log("Loading BookLogin");
+            var previousid = manuscriptBookLoginVM.ID;
+            if (manuscriptBookLoginVM.IsNewEntry)
+            {
+                manuscriptBookLoginVM.ID = 0;
+            }
             manuscriptBookLoginVM.userId = @System.Web.HttpContext.Current.User.Identity.Name.Replace("SPRINGER-SBM\\", "");
             IDictionary<string, string> dataErrors = new Dictionary<string, string>();
             if (manuscriptBookLoginVM.ChapterNumber != "")
@@ -130,7 +138,8 @@ namespace TransferDesk.MS.Web.Controllers
             if (ManuscriptLoginDbRepositoryReadSide.IsBookCrestIDLogin(manuscriptBookLoginVM.ServiceTypeID, manuscriptBookLoginVM.BookMasterId, manuscriptBookLoginVM.ChapterNumber, manuscriptBookLoginVM.ChapterTitle, manuscriptBookLoginVM.ID))
             {
                 TempData["msg"] = "<script>alert('Job is already loggedin');</script>";
-                return RedirectToAction("BookLogin", new { id = 0 });
+                _logger.Log("Job with id : " + previousid + "is already loggedin");
+                return RedirectToAction("BookLogin", new { id = previousid, jobtype = "book" });
             }
             if (manuscriptBookLoginVM.ID == 0)
             {
@@ -142,8 +151,7 @@ namespace TransferDesk.MS.Web.Controllers
                 AddManuscriptBookLoginInfo(manuscriptBookLoginVM, dataErrors);
                 TempData["msg"] = "<script>alert('Record updated succesfully');</script>";
             }
-
-            return RedirectToAction("BookLogin", new { id = 0 });
+            return RedirectToAction("BookLogin", new { id = manuscriptBookLoginVM.ID, jobtype = "book" });
         }
 
         private void AddManuscriptBookLoginInfo(ManuscriptBookLoginVM manuscriptBookLoginVM, IDictionary<string, string> dataErrors)

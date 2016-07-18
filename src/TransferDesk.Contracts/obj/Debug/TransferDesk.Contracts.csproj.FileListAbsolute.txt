@@ -305,6 +305,5 @@ D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\Transfer
 D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.Contracts\bin\Debug\EntityFramework.SqlServer.dll
 D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.Contracts\bin\Debug\EntityFramework.xml
 D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.Contracts\bin\Debug\EntityFramework.SqlServer.xml
-D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.Contracts\obj\Debug\TransferDesk.Contracts.csprojResolveAssemblyReference.cache
 D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.Contracts\obj\Debug\TransferDesk.Contracts.dll
 D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.Contracts\obj\Debug\TransferDesk.Contracts.pdb
