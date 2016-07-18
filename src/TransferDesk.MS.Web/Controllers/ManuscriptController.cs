@@ -27,13 +27,24 @@ namespace TransferDesk.MS.Web.Controllers
         private readonly ManuscriptDBRepositoryReadSide _manuscriptDbRepositoryReadSide;
         private readonly ManuscriptService _manuscriptService;
         private ILogger _logger;
+        private string _userId; 
 
         public ManuscriptController(ILogger logger)
         {
             _logger = logger;
-            var conString = Convert.ToString(ConfigurationManager.AppSettings["dbTransferDeskService"]);
-            _manuscriptService = new ManuscriptService(conString, conString);
-            _manuscriptDbRepositoryReadSide = new ManuscriptDBRepositoryReadSide(conString);
+
+            try
+            {
+                _userId = @System.Web.HttpContext.Current.User.Identity.Name.Replace("SPRINGER-SBM\\", "");
+                var conString = Convert.ToString(ConfigurationManager.AppSettings["dbTransferDeskService"]);
+                _manuscriptService = new ManuscriptService(conString, conString);
+                _manuscriptDbRepositoryReadSide = new ManuscriptDBRepositoryReadSide(conString);
+                //throw new Exception("test constructor exception");
+            }
+            catch (Exception exception)
+            {
+               _logger.LogException(exception, null);
+            }
         }
 
         [HttpGet]
@@ -41,9 +52,9 @@ namespace TransferDesk.MS.Web.Controllers
         {
             try
             {
-                var userId = @System.Web.HttpContext.Current.User.Identity.Name.Replace("SPRINGER-SBM\\", "");
-                _logger.Log("user id is " + userId);
-            var roleIds = _manuscriptDbRepositoryReadSide.GetUserRoles(userId);
+               
+                _logger.Log(_userId,"user id is " + _userId);
+            var roleIds = _manuscriptDbRepositoryReadSide.GetUserRoles(_userId);
             if (roleIds.Count() > 0)
             {
                 ViewBag.RoleList = _manuscriptDbRepositoryReadSide.GetUserRoleList(roleIds);
@@ -73,7 +84,7 @@ namespace TransferDesk.MS.Web.Controllers
             }
             catch (Exception exception)
             {
-                _logger.LogException(exception);
+                _logger.LogException(exception, null);
             
                 return null;
             }
@@ -381,9 +392,10 @@ namespace TransferDesk.MS.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult BookScreening(ManuscriptBookScreeningVm manuscriptBookScreeningVm, string associateCommand, string qualityCommand)
         {
+            var userId = "";
             try
             {
-                var userId = @System.Web.HttpContext.Current.User.Identity.Name.Replace("SPRINGER-SBM\\", "");
+                userId = @System.Web.HttpContext.Current.User.Identity.Name.Replace("SPRINGER-SBM\\", "");
                 IDictionary<string, string> dataErrors = new Dictionary<string, string>();
                 _manuscriptService.IsBookSaveOrSubmit(manuscriptBookScreeningVm, associateCommand, qualityCommand);
                 if (manuscriptBookScreeningVm.BookScreeningID == 0)
@@ -399,7 +411,7 @@ namespace TransferDesk.MS.Web.Controllers
             }
             catch (Exception ex)
             {
-                _logger.Log("Error in Manuscript Book Screening during add/update operation: \n"+ ex.StackTrace);
+                _logger.Log("Error in Manuscript Book Screening during add/update operation: \n"+ ex.StackTrace,userId);
             }
             return RedirectToAction("BookScreening", manuscriptBookScreeningVm.BookLoginID);
         }
