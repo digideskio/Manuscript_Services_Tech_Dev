@@ -18,8 +18,6 @@
         ''
     );
 
-
-    //book login script
     $('#ReceivedDateBook').datepicker({ dateFormat: 'dd/mm/yy', maxDate: '0' });
     $("#btnBookReset").click(function () {
         var serviceType = $("#ServiceTypeID option:selected").text();
@@ -33,7 +31,6 @@
     });
     $(".editBookButton").click(function (event) {
         $('#IsNewEntry').prop('checked', false);
-        //$("#btnBookLogin").val("Update");
         var id = ($(this).closest("tr").find("td").eq(0).text()).trim();
         if (id == 0 || id == '' || id == null) {
             var url = AppPath + 'ManuscriptLogin/BookLogin';
@@ -44,10 +41,8 @@
         window.location.href = url;
 
     });
-    
 
-
-    $('#IsNewEntry').click(function () {
+    $('#IsNewEntry').on('click change', function (e) {
         if ($(this).is(":checked")) {
             $("#btnBookLogin").val("Login");
         } else {
@@ -56,18 +51,6 @@
             }
         }
     });
-
-    $('#IsNewEntry').change(function () {
-        if ($(this).is(":checked")) {
-            $("#btnBookLogin").val("Login");
-        } else {
-            if ($("#bookid").val() != 0) {
-                $("#btnBookLogin").val("Update");
-            }
-        }
-    });
-
-
 
 
     $("#BookAssociateName").autocomplete({
@@ -93,8 +76,7 @@
         },
         minLength: 1
     });
-    //book login script
-    
+
     if ($("#bookid").val() != 0 && $("#bookid").val() != null) {
         $("#btnBookLogin").val("Update");
         var selectedBook = $("#ddlBookTitle option:selected").val();
@@ -179,8 +161,7 @@
         });
 
     });
-});//ready function end
-
+});
 function GetTaskTypeStatus() {
     var serviceType = $("#ServiceTypeID option:selected").text();
     if (serviceType == "Manuscript Screening") {

@@ -256,6 +256,8 @@ namespace TransferDesk.MS.Web.Controllers
             return ManuscriptLoginDbRepositoryReadSide.IsMSIDAvailable(msid, 0, serviceTypeStatusId);
         }
 
+     
+
         public string GetJournalLink(int journalId)
         {
             return _manuscriptDBRepositoryReadSide.GetJournalList().Find(x => x.ID == journalId).Link;

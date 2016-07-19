@@ -152,10 +152,7 @@ namespace TransferDesk.DAL.Manuscript.Repositories
             }
             else
             {
-                MSID = "";
-                //MSID = (from MBL in context.ManuscriptBookLogin
-                //        where MBL.CrestID == crestID
-                //        select MBL.MSID).FirstOrDefault();
+                MSID = "";              
             }
             return MSID;
         }
