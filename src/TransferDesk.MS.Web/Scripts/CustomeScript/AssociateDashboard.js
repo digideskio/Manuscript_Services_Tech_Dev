@@ -8,7 +8,7 @@
             contentType: "application/json; charset=utf-8",
             success: function (returnValue) {
                 debugger;
-                if (returnValue.returnValue = "true") {
+                if (returnValue.returnValue.match("true")) {
                     alert(returnValue.message);
                     if (returnValue.ManuscriptID = 0) {
                         alert('Manuscript not found.');

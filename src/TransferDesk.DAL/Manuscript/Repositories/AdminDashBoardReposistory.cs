@@ -46,7 +46,7 @@ namespace TransferDesk.DAL.Manuscript.Repositories
                               where loginDetails.CrestId == adminDashBoardDTO.CrestId
                               && loginDetails.ServiceTypeStatusId == _serviceTypeId
                               && loginDetails.RoleId == _roleId
-                              && loginDetails.JobProcessStatusId == jobProcessStatusId
+                              && loginDetails.JobProcessStatusId == jobProcessStatusId 
                               && loginDetails.JobStatusId == jobStatusId
                               select loginDetails.UserRoleId).FirstOrDefault();
 
@@ -93,12 +93,13 @@ namespace TransferDesk.DAL.Manuscript.Repositories
             if (IsAssociateAllocateToMSID(_adminDashBoardDTO))
             {
                 var jobProcessStatusId = _manuscriptLoginDBRepositoryReadSide.GetStatusMaster().Where(x => x.Description.ToLower() == "assigned").Select(x => x.ID).FirstOrDefault();
+                var fetchStatusId = _manuscriptLoginDBRepositoryReadSide.GetStatusMaster().Where(x => x.Description.ToLower() == "fetch").Select(x => x.ID).FirstOrDefault();
                 var jobStatusId = _manuscriptLoginDBRepositoryReadSide.GetStatusMaster().Where(x => x.Description.ToLower() == "open").Select(x => x.ID).FirstOrDefault();
                 var _updatemanuscriptLoginDetails = (from loginDetails in manuscriptDataContextRead.ManuscriptLoginDetails
                                                      where loginDetails.CrestId == _adminDashBoardDTO.CrestId
                                                            && loginDetails.RoleId == _roleId
                                                            && loginDetails.ServiceTypeStatusId == _serviceTypeId
-                                                           && loginDetails.JobProcessStatusId == jobProcessStatusId
+                                                           && (loginDetails.JobProcessStatusId == jobProcessStatusId || loginDetails.JobProcessStatusId == fetchStatusId)
                                                            && loginDetails.JobStatusId == jobStatusId
                                                      select loginDetails).FirstOrDefault();
 
@@ -133,12 +134,13 @@ namespace TransferDesk.DAL.Manuscript.Repositories
             if (IsAssociateAllocatedToChapter(_adminDashBoardDTO))
             {
                 var jobProcessStatusId = _manuscriptLoginDBRepositoryReadSide.GetStatusMaster().Where(x => x.Description.ToLower() == "assigned").Select(x => x.ID).FirstOrDefault();
+                var fetchStatusId = _manuscriptLoginDBRepositoryReadSide.GetStatusMaster().Where(x => x.Description.ToLower() == "fetch").Select(x => x.ID).FirstOrDefault();
                 var jobStatusId = _manuscriptLoginDBRepositoryReadSide.GetStatusMaster().Where(x => x.Description.ToLower() == "open").Select(x => x.ID).FirstOrDefault();
                 var _updatemanuscriptBookLoginDetails = (from loginDetails in manuscriptDataContextRead.ManuscriptBookLoginDetails
                                                          where loginDetails.ManuscriptBookLoginId == _adminDashBoardDTO.CrestId
                                                                && loginDetails.RoleId == _roleId
                                                                && loginDetails.ServiceTypeStatusId == _serviceTypeId
-                                                               && loginDetails.JobProcessStatusId == jobProcessStatusId
+                                                               && (loginDetails.JobProcessStatusId == jobProcessStatusId || loginDetails.JobProcessStatusId == fetchStatusId)
                                                                && loginDetails.JobStatusId == jobStatusId
                                                          select loginDetails).FirstOrDefault();
 
@@ -175,13 +177,14 @@ namespace TransferDesk.DAL.Manuscript.Repositories
                 _serviceTypeId = GetServiceTypeId(_adminDashBoardDTO.ServiceType);
                 _roleId = GetRoleId(_adminDashBoardDTO.Role);
                 var jobStatusId = _manuscriptLoginDBRepositoryReadSide.GetStatusMaster().Where(x => x.Description.ToLower() == "open").Select(x => x.ID).FirstOrDefault();
+                var fetchStatusId = _manuscriptLoginDBRepositoryReadSide.GetStatusMaster().Where(x => x.Description.ToLower() == "fetch").Select(x => x.ID).FirstOrDefault();
                 var jobProcessStatusId = _manuscriptLoginDBRepositoryReadSide.GetStatusMaster().Where(x => x.Description.ToLower() == "assigned").Select(x => x.ID).FirstOrDefault();
                 var MSIDAssociateToUser = (from MSD in manuscriptDataContextRead.ManuscriptLoginDetails
                                            where MSD.CrestId == _adminDashBoardDTO.CrestId
                                                  && MSD.RoleId == _roleId
                                                  && MSD.ServiceTypeStatusId == _serviceTypeId
                                                  && MSD.JobStatusId == jobStatusId
-                                                 && MSD.JobProcessStatusId == jobProcessStatusId
+                                                 && (MSD.JobProcessStatusId == jobProcessStatusId || MSD.JobProcessStatusId == fetchStatusId)
                                            select MSD.UserRoleId).SingleOrDefault();
                 if (Convert.ToString(MSIDAssociateToUser) == "")
                     return false;
