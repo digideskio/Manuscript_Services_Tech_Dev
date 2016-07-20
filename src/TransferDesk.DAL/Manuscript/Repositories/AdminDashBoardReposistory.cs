@@ -68,13 +68,14 @@ namespace TransferDesk.DAL.Manuscript.Repositories
                 _serviceTypeId = GetServiceTypeId(_adminDashBoardDTO.ServiceType);
                 _roleId = GetRoleId(_adminDashBoardDTO.Role);
                 var jobStatusId = _manuscriptLoginDBRepositoryReadSide.GetStatusMaster().Where(x => x.Description.ToLower() == "open").Select(x => x.ID).FirstOrDefault();
+                var fetchStatusId = _manuscriptLoginDBRepositoryReadSide.GetStatusMaster().Where(x => x.Description.ToLower() == "fetch").Select(x => x.ID).FirstOrDefault();
                 var jobProcessStatusId = _manuscriptLoginDBRepositoryReadSide.GetStatusMaster().Where(x => x.Description.ToLower() == "assigned").Select(x => x.ID).FirstOrDefault();
                 var MSIDAssociateToUser = (from MSD in manuscriptDataContextRead.ManuscriptBookLoginDetails
                                            where MSD.ManuscriptBookLoginId == _adminDashBoardDTO.CrestId
                                                  && MSD.RoleId == _roleId
                                                  && MSD.ServiceTypeStatusId == _serviceTypeId
                                                  && MSD.JobStatusId == jobStatusId
-                                                 && MSD.JobProcessStatusId == jobProcessStatusId
+                                                 && (MSD.JobProcessStatusId == jobProcessStatusId || MSD.JobProcessStatusId == fetchStatusId)
                                            select MSD.UserRoleId).SingleOrDefault();
                 if (Convert.ToString(MSIDAssociateToUser) == "")
                     return false;
