@@ -172,6 +172,9 @@
             alert("Select a MSID.");
             return false;
         } else {
+            if (!confirm("Are you sure to unallocate the Job")) {
+                return false;
+            }
             var crestid = $("#CrestIdVM").val();
             var associateName = $("#AssociateName").val();
             var serviceType = $("#ServiceTypeVM").val();
