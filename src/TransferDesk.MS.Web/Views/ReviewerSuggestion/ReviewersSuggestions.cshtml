@@ -25,7 +25,8 @@
                 Start Date
             </td>
             <td align="left">
-                @Html.TextBoxFor(x => x.StartDate, new { @class = "form-control input-sm", placeholder = "dd/mm/yyyy", @readonly = "readonly", @Value = Model.StartDate.HasValue ? Model.StartDate.Value.ToShortDateString() : "" })
+                @Html.TextBoxFor(x => x.DisplayStartDate, new { @class = "form-control input-sm", placeholder = "dd/mm/yyyy", @readonly = "readonly", @Value = Model.StartDate.HasValue ? Model.StartDate.Value.ToShortDateString() : "" })
+                @Html.HiddenFor(x => x.StartDate, new { id = "dtStartDate" })
             </td>
             <td>
                 Task<span class="asterik">*</span>

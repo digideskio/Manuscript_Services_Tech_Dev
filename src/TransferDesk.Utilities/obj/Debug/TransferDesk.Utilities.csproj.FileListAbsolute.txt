@@ -425,3 +425,18 @@ D:\DayaData\GitHubWorkingCopy\TransferDesk\Saloni\Manuscript_Services_Tech_Dev\s
 D:\DayaData\GitHubWorkingCopy\TransferDesk\Saloni\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\obj\Debug\TransferDesk.Utilities.csprojResolveAssemblyReference.cache
 D:\DayaData\GitHubWorkingCopy\TransferDesk\Saloni\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\obj\Debug\TransferDesk.Utilities.dll
 D:\DayaData\GitHubWorkingCopy\TransferDesk\Saloni\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\obj\Debug\TransferDesk.Utilities.pdb
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\bin\Debug\TransferDesk.Utilities.dll
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\bin\Debug\TransferDesk.Utilities.pdb
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\bin\Debug\DocumentFormat.OpenXml.dll
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\bin\Debug\HtmlAgilityPack.dll
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\bin\Debug\HtmlToOpenXml.dll
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\bin\Debug\OpenXmlPowerTools.dll
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\bin\Debug\System.IO.Packaging.dll
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\bin\Debug\TransferDesk.UtilitiesHtml.dll
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\bin\Debug\TransferDesk.UtilitiesHtml.pdb
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\bin\Debug\HtmlAgilityPack.pdb
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\bin\Debug\HtmlAgilityPack.xml
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\bin\Debug\HtmlToOpenXml.pdb
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\obj\Debug\TransferDesk.Utilities.csprojResolveAssemblyReference.cache
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\obj\Debug\TransferDesk.Utilities.dll
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\obj\Debug\TransferDesk.Utilities.pdb

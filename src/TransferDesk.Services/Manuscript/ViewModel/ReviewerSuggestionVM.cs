@@ -163,6 +163,9 @@ namespace TransferDesk.Services.Manuscript.ViewModel
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        public System.DateTime? DisplayStartDate
+        { get { return _msDTO.MSReviewersSuggestion.StartDate; } }
+
         public System.DateTime? StartDate
         { get { return _msDTO.MSReviewersSuggestion.StartDate; } set { _msDTO.MSReviewersSuggestion.StartDate = value; } }
 

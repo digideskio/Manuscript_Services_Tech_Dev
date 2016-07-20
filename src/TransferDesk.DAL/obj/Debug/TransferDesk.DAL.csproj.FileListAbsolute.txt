@@ -394,3 +394,15 @@ D:\DayaData\GitHubWorkingCopy\TransferDesk\Saloni\Manuscript_Services_Tech_Dev\s
 D:\DayaData\GitHubWorkingCopy\TransferDesk\Saloni\Manuscript_Services_Tech_Dev\src\TransferDesk.DAL\obj\Debug\TransferDesk.DAL.csprojResolveAssemblyReference.cache
 D:\DayaData\GitHubWorkingCopy\TransferDesk\Saloni\Manuscript_Services_Tech_Dev\src\TransferDesk.DAL\obj\Debug\TransferDesk.DAL.dll
 D:\DayaData\GitHubWorkingCopy\TransferDesk\Saloni\Manuscript_Services_Tech_Dev\src\TransferDesk.DAL\obj\Debug\TransferDesk.DAL.pdb
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.DAL\bin\Debug\TransferDesk.DAL.dll.config
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.DAL\bin\Debug\TransferDesk.DAL.dll
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.DAL\bin\Debug\TransferDesk.DAL.pdb
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.DAL\bin\Debug\EntityFramework.dll
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.DAL\bin\Debug\EntityFramework.SqlServer.dll
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.DAL\bin\Debug\TransferDesk.Contracts.dll
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.DAL\bin\Debug\TransferDesk.Contracts.pdb
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.DAL\bin\Debug\EntityFramework.xml
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.DAL\bin\Debug\EntityFramework.SqlServer.xml
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.DAL\obj\Debug\TransferDesk.DAL.csprojResolveAssemblyReference.cache
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.DAL\obj\Debug\TransferDesk.DAL.dll
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.DAL\obj\Debug\TransferDesk.DAL.pdb
