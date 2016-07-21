@@ -35,7 +35,10 @@ namespace TransferDesk.MS.Web.Controllers
 
             try
             {
-                _userId = @System.Web.HttpContext.Current.User.Identity.Name.Replace("SPRINGER-SBM\\", "");
+                if (@System.Web.HttpContext.Current != null && @System.Web.HttpContext.Current.User != null)
+                {
+                    _userId = @System.Web.HttpContext.Current.User.Identity.Name.Replace("SPRINGER-SBM\\", "");
+                }
                 var conString = Convert.ToString(ConfigurationManager.AppSettings["dbTransferDeskService"]);
                 _manuscriptService = new ManuscriptService(conString, conString);
                 _manuscriptDbRepositoryReadSide = new ManuscriptDBRepositoryReadSide(conString);
