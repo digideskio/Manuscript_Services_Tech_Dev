@@ -172,7 +172,7 @@ namespace TransferDesk.DAL.Manuscript.Repositories
             if (crestID.StartsWith("J"))
             {
                 ID = (from M in context.Manuscripts
-                      where M.MSID == crestID
+                      where M.MSID == MSID
                       select M.ID).FirstOrDefault();
             }
             else

@@ -28,7 +28,6 @@ namespace TransferDesk.MS.Web.Controllers
         private readonly ManuscriptLoginService _manuscriptLoginService;
         private readonly string _conString;
         private string _errormsg = String.Empty;
-        public IFileLogger FileLogger;
         private ILogger _logger;
         public ManuscriptLoginController(ILogger logger)
         {
@@ -37,7 +36,6 @@ namespace TransferDesk.MS.Web.Controllers
             _manuscriptDBRepositoryReadSide = new ManuscriptDBRepositoryReadSide(_conString);
             ManuscriptLoginDbRepositoryReadSide = new ManuscriptLoginDBRepositoryReadSide(_conString);
             _manuscriptLoginService = new ManuscriptLoginService(_conString);
-            FileLogger = new FileLogger();
         }
 
         private void ManuscriptLoginVmDetails(ManuscriptLoginVM manuscriptLoginVm, int crestId)
@@ -118,19 +116,33 @@ namespace TransferDesk.MS.Web.Controllers
             }
             catch (Exception ex)
             {
-                FileLogger.Log("Error in Manuscript Login class and method name ManuscriptBookLoginVmDetails: \n"+ex.ToString());
+                _logger.Log("Error in Manuscript Login class and method name ManuscriptBookLoginVmDetails: \n" + ex.ToString());
             }
+        }
+
+        public bool CheckIfBookPresent(int serviceTypeId, int BookTitleId, string chapterNo)
+        {
+            if (ManuscriptLoginDbRepositoryReadSide.CheckIfBookPresent(serviceTypeId, BookTitleId, chapterNo))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
         }
 
         [HttpPost]
         public ActionResult BookLogin(ManuscriptBookLoginVM manuscriptBookLoginVM)
         {
-            _logger.Log("Loading BookLogin");
+            _logger.Log("Loading BookLogin ");
             var previousid = manuscriptBookLoginVM.ID;
             if (manuscriptBookLoginVM.IsNewEntry)
             {
                 manuscriptBookLoginVM.ID = 0;
             }
+
             manuscriptBookLoginVM.userId = @System.Web.HttpContext.Current.User.Identity.Name.Replace("SPRINGER-SBM\\", "");
             IDictionary<string, string> dataErrors = new Dictionary<string, string>();
             if (manuscriptBookLoginVM.ChapterNumber != "")
@@ -139,12 +151,17 @@ namespace TransferDesk.MS.Web.Controllers
             {
                 TempData["msg"] = "<script>alert('Job is already loggedin');</script>";
                 _logger.Log("Job with id : " + previousid + "is already loggedin");
-                return RedirectToAction("BookLogin", new { id = previousid, jobtype = "book" });
+                if (previousid != 0)
+                {
+                    return RedirectToAction("BookLogin", new { id = previousid, jobtype = "book" });
+                }
+
             }
             if (manuscriptBookLoginVM.ID == 0)
             {
                 AddManuscriptBookLoginInfo(manuscriptBookLoginVM, dataErrors);
                 TempData["msg"] = "<script>alert('Record added succesfully');</script>";
+                manuscriptBookLoginVM.IsNewEntry = true;
             }
             else
             {

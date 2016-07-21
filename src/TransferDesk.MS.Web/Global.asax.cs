@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Web;
+using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
@@ -14,6 +15,7 @@ using SimpleInjector.Integration.Web;
 using TransferDesk.Services;
 using TransferDesk.Services.Manuscript;
 using SimpleInjector.Integration.Web.Mvc;
+using SimpleInjector.Integration.WebApi;
 using TransferDesk.Contracts.Logging;
 using TransferDesk.DAL.Manuscript.Repositories;
 using TransferDesk.Logger;
@@ -23,18 +25,20 @@ namespace TransferDesk.MS.Web
     public class MvcApplication : System.Web.HttpApplication
     {
         private SimpleInjector.Container _simpleInjectorcontainer = null;
-        private IFileLogger _fileLogger = null;
+        private IApplicationLog _applicationLog = null;
 
         protected void Application_Start()
         {
             //test
             //List<string> listOfString = new List<string>();
             StringBuilder stringBuilder = null;
+            IFileLogger _fileLogger = null;
             try
             {
                 stringBuilder = new StringBuilder();
 
                 AreaRegistration.RegisterAllAreas();
+                GlobalConfiguration.Configure(WebApiConfig.Register);
                 FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
                 RouteConfig.RegisterRoutes(RouteTable.Routes);
                 BundleConfig.RegisterBundles(BundleTable.Bundles);
@@ -46,7 +50,9 @@ namespace TransferDesk.MS.Web
 
                 var logger = _simpleInjectorcontainer.GetInstance<ILogger>();
 
+                _applicationLog  = logger as IApplicationLog;
                 _fileLogger = logger as IFileLogger;
+
                 //fileLogger.FilePath = "d:\\TransferdeskLog\\";
                 string iterationInfo = "Transferdesk";//todo:setto config
 
@@ -61,12 +67,15 @@ namespace TransferDesk.MS.Web
                 
                 stringBuilder.AppendLine("Try Register the container as  IDependencyResolver.");
 
-                _fileLogger.WriteStringBuilderToLogAndClear(stringBuilder);
+                _fileLogger.WriteStringBuilderToAppLogAndClear(stringBuilder);
                 
                 try
                 {
                     // Register the container as  IDependencyResolver.
                     DependencyResolver.SetResolver(new SimpleInjectorDependencyResolver(_simpleInjectorcontainer));
+
+                    GlobalConfiguration.Configuration.DependencyResolver =
+                                               new SimpleInjectorWebApiDependencyResolver(_simpleInjectorcontainer);
                 }
                 catch (Exception exception)
                 {
@@ -76,7 +85,7 @@ namespace TransferDesk.MS.Web
             }
             catch (Exception exception)
             {
-                if (_fileLogger == null)
+                if (_applicationLog == null)
                 {
                     string pendingLogWrites = string.Empty;
                     if (stringBuilder != null)
@@ -87,7 +96,7 @@ namespace TransferDesk.MS.Web
                 }
                 else
                 {
-                   _fileLogger.ApplicationExceptionLog(exception,stringBuilder);
+                    _applicationLog.ApplicationExceptionLog(exception,stringBuilder);
                 }
 
             }
@@ -118,7 +127,9 @@ namespace TransferDesk.MS.Web
 
                 //////stringBuilder.AppendLine("Registered Manuscript DB repository for readside");
 
-                //simpleInjectorcontainer.RegisterMvcControllers(Assembly.GetExecutingAssembly());
+                simpleInjectorContainer.RegisterWebApiControllers(GlobalConfiguration.Configuration);
+                simpleInjectorContainer.RegisterMvcControllers(Assembly.GetExecutingAssembly());
+
 
                 stringBuilder.AppendLine("Registered MVC Controllers");
 
@@ -141,6 +152,7 @@ namespace TransferDesk.MS.Web
 
         protected void Application_End(object sender, EventArgs e)
         {
+            _applicationLog.ApplicationLog("Application stopped");
             _simpleInjectorcontainer.Dispose();
         }
         protected void Application_EndRequest()
@@ -163,9 +175,9 @@ namespace TransferDesk.MS.Web
 
                 if (!String.IsNullOrEmpty(shutDownMessage))
                 {
-                    if (_fileLogger != null)
+                    if (_applicationLog != null)
                     {
-                        _fileLogger.ApplicationLog(String.Format("_shutDownMessage={0}\r\n\r\n_shutDownStack={1}", shutDownMessage,shutDownStack));
+                        _applicationLog.ApplicationLog(String.Format("_shutDownMessage={0}\r\n\r\n_shutDownStack={1}", shutDownMessage,shutDownStack));
                     }
                 }
             }

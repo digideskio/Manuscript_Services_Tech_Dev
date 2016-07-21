@@ -19,6 +19,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Web.UI;
 using DTOs = TransferDesk.Contracts.Manuscript.DTO;
 using System.Web.UI.WebControls;
+using TransferDesk.Contracts.Logging;
 namespace TransferDesk.MS.Web.Controllers
 {
     public class AdminDashboardController : Controller
@@ -27,9 +28,10 @@ namespace TransferDesk.MS.Web.Controllers
         private AdminDashBoardService adminDashBoardService;
         private AdminDashBoardReposistory _adminDashBoardReposistory;
         private readonly ManuscriptDBRepositoryReadSide _manuscriptDBRepositoryReadSide;
-
-        public AdminDashboardController()
+        private ILogger _logger;
+        public AdminDashboardController(ILogger logger)
         {
+            _logger = logger;
             string conString = string.Empty;
             conString = Convert.ToString(ConfigurationManager.AppSettings["dbTransferDeskService"]);
             adminDasboardVM = new AdminDasboardVM();
@@ -48,21 +50,51 @@ namespace TransferDesk.MS.Web.Controllers
 
         public bool AllocateManuscriptToUser(string AssociateNameVM, int CrestIdVM, string ServiceTypeVM, string JobProcessingStatusVM, string RoleVM, string JobType)
         {
+            _logger.Log(JobType + " job is allocating to " + AssociateNameVM + " with id" + Convert.ToString(CrestIdVM));
             var adminDash = adminDashBoardService.CreateAdminDasboardVm(AssociateNameVM, CrestIdVM, ServiceTypeVM, JobProcessingStatusVM, RoleVM, JobType);
-            return adminDashBoardService.AllocateManuscriptToUser(adminDash);
+            if (adminDashBoardService.AllocateManuscriptToUser(adminDash))
+            {
+                _logger.Log(JobType + " job is allocating to " + AssociateNameVM + " with id" + Convert.ToString(CrestIdVM));
+                return true;
+            }
+            else
+            {
+                _logger.Log(JobType + " job is failed allocate to the " + AssociateNameVM + " with id" + Convert.ToString(CrestIdVM));
+                return false;
+            }
         }
 
         public bool UnallocateManuscriptFromUser(string AssociateNameVM, int CrestIdVM, string ServiceTypeVM, string JobProcessingStatusVM, string RoleVM, string jobType)
         {
+            _logger.Log(jobType + " job is Unallocating from " + AssociateNameVM + " with id" + Convert.ToString(CrestIdVM));
             var adminDash = adminDashBoardService.CreateAdminDasboardVm(AssociateNameVM, CrestIdVM, ServiceTypeVM, JobProcessingStatusVM, RoleVM, jobType);
-            return adminDashBoardService.UnallocateManuscriptFromUser(adminDash);
+            if (adminDashBoardService.UnallocateManuscriptFromUser(adminDash))
+            {
+                _logger.Log(jobType + " job is unallocated from " + AssociateNameVM + " with id" + Convert.ToString(CrestIdVM));
+                return true;
+            }
+            else
+            {
+                _logger.Log(jobType + " job is failed to unallocate from " + AssociateNameVM + " with id" + Convert.ToString(CrestIdVM));
+                return false;
+            }
 
         }
 
         public bool OnHoldManuscript(string AssociateNameVM, int CrestIdVM, string ServiceTypeVM, string JobProcessingStatusVM, string RoleVM, string jobType)
         {
+            
             var adminDash =adminDashBoardService.CreateAdminDasboardVm(AssociateNameVM, CrestIdVM, ServiceTypeVM, JobProcessingStatusVM, RoleVM, jobType);
-            return adminDashBoardService.OnHoldManuscript(adminDash);
+            if (adminDashBoardService.OnHoldManuscript(adminDash))
+            {
+                _logger.Log(jobType + " job is successfully on hold with id" + Convert.ToString(CrestIdVM));
+                return true;
+            }
+            else
+            {
+                _logger.Log(jobType + " job is failed to on hold with id" + Convert.ToString(CrestIdVM));
+                return false;
+            }
         }
 
         

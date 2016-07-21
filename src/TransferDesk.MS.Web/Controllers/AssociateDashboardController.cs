@@ -51,11 +51,33 @@ namespace TransferDesk.MS.Web.Controllers
                 return true;
         }
 
-        public JsonResult FetchJob()
+        public JsonResult OpenManuscript(string crestID)
         {
+            string userId = @System.Web.HttpContext.Current.User.Identity.Name.Replace("SPRINGER-SBM\\", "");
             try
             {
-                string userId = @System.Web.HttpContext.Current.User.Identity.Name.Replace("SPRINGER-SBM\\", "");
+                _logger.Log(" I am in OpenManuscript: " + userId);
+                string MSID = _associateDashBoardReposistory.GetMSIDOnCrestId(crestID);
+                int ManuscriptID = _associateDashBoardReposistory.GetManuscriptIDOnMSID(MSID, crestID);
+                associateDasboardVM.manuscriptsIDVM = ManuscriptID;
+                _logger.Log(" MSID Get : " + MSID +" "+ userId);
+                var jdata = new { ManuscriptID = ManuscriptID, returnValue = "true", jobType = "" };
+                return this.Json(jdata, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                _logger.Log(" MSID Get : " + ex + " " + userId);
+                throw;
+            }
+            
+    
+        }
+        
+        public JsonResult FetchJob()
+        {
+            string userId = @System.Web.HttpContext.Current.User.Identity.Name.Replace("SPRINGER-SBM\\", "");
+            try
+            {
                 int serviceTypeId = _associateDashBoardReposistory.GetServiceTypeOnUserId(userId);
                 _logger.Log(" Find service type of user: " + userId);
                 if (IsJobFetched(userId, serviceTypeId))
@@ -71,12 +93,10 @@ namespace TransferDesk.MS.Web.Controllers
                     else
                     {
                         _logger.Log(" Job fetched: " + userId);
-                        string MSID = _associateDashBoardReposistory.GetMSIDOnCrestId(fetchedJobs.CrestID);
-                        int ManuscriptID = _associateDashBoardReposistory.GetManuscriptIDOnMSID(MSID, fetchedJobs.CrestID);
-                        associateDasboardVM.manuscriptsIDVM = ManuscriptID;
+                        
                         //open MS screeing form 
                         associateDasboardVM.specificAssociatedetails = _associateDashBoardReposistory.GetAssociatedFetchedJobs(fetchedJobs.CrestID, serviceTypeId, 0);
-                        var jdata = new { message = "Job is fetched successfully.", ManuscriptID = ManuscriptID, returnValue = "true", jobType = fetchedJobs.JobType };
+                        var jdata = new { message = "Job is fetched successfully.", ManuscriptID = "", returnValue = "true", jobType = fetchedJobs.JobType };
                         return this.Json(jdata, JsonRequestBehavior.AllowGet);
                     }
 
@@ -90,7 +110,7 @@ namespace TransferDesk.MS.Web.Controllers
             }
             catch (Exception ex)
             {
-
+                _logger.Log(" MSID Get : " + ex + " " + userId);
                 throw;
             }
         }

@@ -18,6 +18,23 @@
         ''
     );
 
+    if ($("#bookid").val() == 0) {
+        $('#IsNewEntry').prop('checked', true);
+      $("#btnBookLogin").val("Login");
+    }
+   
+
+
+    $('#IsNewEntry').on('click change', function (e) {
+        if ($(this).is(":checked")) {
+            $("#btnBookLogin").val("Login");
+        } else {
+            if ($("#bookid").val() != 0) {
+                $("#btnBookLogin").val("Update");
+            }
+        }
+    });
+
     $('#ReceivedDateBook').datepicker({ dateFormat: 'dd/mm/yy', maxDate: '0' });
     $("#btnBookReset").click(function () {
         var serviceType = $("#ServiceTypeID option:selected").text();
@@ -52,6 +69,44 @@
         }
     });
 
+    $("#btnBookLogin").click(function () {
+        var selectedBookTitle = $("#ddlBookTitle option:selected").val();
+        var serviceType = $("#ServiceTypeID option:selected").val();
+        var checkvalue = "";
+        if ($("#bookid").val() == 0) {
+            $.ajax(
+            {
+                method: "GET",
+                async: false,
+                url: AppPath + "ManuscriptLogin/CheckIfBookPresent",
+                contentType: "application/json; charset=utf-8",
+                data: {
+                    serviceTypeId: serviceType,
+                    BookTitleId: selectedBookTitle,
+                    chapterNo: $("#ChapterNumber").val()
+                },
+                success: function (data) {
+                    checkvalue = data;
+
+                    if (data == "True") {
+                        alert("Job is already loggedin.");
+                        return false;
+                    }
+                    //else {                        
+                    //}
+                },
+                error: function (xhr, exception) {
+                    alert("Error occured while checking book status.");
+                }
+
+            });
+
+        }
+        if (checkvalue == "True") {
+            return false;
+        }
+    });
+
 
     $("#BookAssociateName").autocomplete({
         source: function (request, response) {
@@ -78,7 +133,7 @@
     });
 
     if ($("#bookid").val() != 0 && $("#bookid").val() != null) {
-        $("#btnBookLogin").val("Update");
+    //    $("#btnBookLogin").val("Update");
         var selectedBook = $("#ddlBookTitle option:selected").val();
         if (selectedBook == "") {
             $('#txtFTPLink').empty();
