@@ -64,8 +64,8 @@
                         <span class="asterik">* </span>
                     </div>
                     <div class="col-lg-8">
-                        @Html.TextBoxFor(x => x.JournalTitle, new {@class = "form-control input-sm sizedata", placeholder = "Enter Journal Title"})
-                        @Html.ValidationMessageFor(x => x.JournalTitle, "", new {style = "color:red"})
+                        @Html.TextBoxFor(x => x.JournalTitle, new { @class = "form-control input-sm sizedata", placeholder = "Enter Journal Title" })
+                        @Html.ValidationMessageFor(x => x.JournalTitle, "", new { style = "color:red" })
                     </div>
                 </div>
                 <div class="row">
@@ -73,7 +73,7 @@
                         Journal Link
                     </div>
                     <div class="col-lg-8">
-                        @Html.TextBoxFor(x => x.Link, new {@class = "form-control input-sm", placeholder = "Enter Journal Link"})
+                        @Html.TextBoxFor(x => x.Link, new { @class = "form-control input-sm", placeholder = "Enter Journal Link" })
                     </div>
                 </div>
 
@@ -87,89 +87,89 @@
                 </div>
                 <div class="row" style="text-align: right; padding-right: 2em">
                     <div class="col-lg-12">
-                        <input type="submit" id="btnJournalAdd" class="btn btn-primary btn-sm" value="Add"/>
-                        <input type="button" value="Reset" id="btnReset" class="btn btn-primary btn-sm"/>
+                        <input type="submit" id="btnJournalAdd" class="btn btn-primary btn-sm" value="Add" />
+                        <input type="button" value="Reset" id="btnReset" class="btn btn-primary btn-sm" />
                     </div>
                 </div>
             }
         </div>
     </div>
 </div>
-<br/><br /><br /><br />
-    <table class="table-bordered table-striped table-hover " style="margin-top: 50px">
-        <thead>
+<br /><br /><br /><br />
+<table class="table-bordered table-striped table-hover " style="margin-top: 50px">
+    <thead>
         <tr>
-            <th width="402px">
+            <th width="234px">
                 Journal Title
             </th>
-            <th width="333px">
+            <th width="502px">
                 Journal Link
             </th>
-            <th width="100px" >
+            <th width="100px">
                 Active
             </th>
             <th>
                 Action
             </th>
         </tr>
-        </thead>
-        @foreach (var data in Model.Journals)
-        {
-            <tr>
-                <td style="display: none">@data.ID</td>
-                <td>
-                    @data.JournalTitle
-                </td>
-                <td>
-                    @data.Link
-                </td>
-                <td align="center" width="100px">
-                    @Html.CheckBox("IsActive", @data.IsActive, new {disabled = "disabled"})
-                </td>
-                <td>
-                    <input type="button" id="btnEdit" class="btn btn-primary btn-sm editButton" style="line-height: normal;" value="Edit"/>
-                </td>
-            </tr>
-        }
-    </table>
+    </thead>
+    @foreach (var data in Model.Journals)
+    {
+        <tr>
+            <td style="display: none">@data.ID</td>
+            <td>
+                @data.JournalTitle
+            </td>
+            <td style="word-break: break-all;">
+                @data.Link
+            </td>
+            <td align="center" width="100px">
+                @Html.CheckBox("IsActive", @data.IsActive, new { disabled = "disabled" })
+            </td>
+            <td>
+                <input type="button" id="btnEdit" class="btn btn-primary btn-sm editButton" style="line-height: normal;" value="Edit" />
+            </td>
+        </tr>
+    }
+</table>
 
 
 @*<div class="col-lg-4" style="width:785px; padding-left:22px;">
-    <table class="table table-bordered table-striped table-hover " style="margin-top:20px;">
-        <thead>
-            <tr>
-                <th style="width: 550px;">
-                    Journal Title
-                </th>
-                <th style="width:550px;">
-                    Journal Link
-                </th>
-                <th style="width:112px;">
-                    Active
-                </th>
-                <th style="width:139px;">
-                    Action
-                </th>
-            </tr>
-        </thead>
-        @foreach (var data in Model.Journals)
-        {
-            <tr>
-                <td style="display:none ">@data.ID</td>
-                <td width="308px">
-                    @data.JournalTitle
-                </td>
-                <td style="width: 550px">
-                    @data.Link
-                </td>
-                <td align="center" width="150px">
-                    @Html.CheckBox("IsActive", @data.IsActive, new { disabled = "disabled" })
-                </td>
-                <td width="150px" align="center">
-                    <input type="button" id="btnEdit" class="btn btn-primary btn-sm editButton" style="line-height: normal;" value="Edit" />
-                </td>
-            </tr>
-        }
-    </table>
-</div>*@
+        <table class="table table-bordered table-striped table-hover " style="margin-top:20px;">
+            <thead>
+                <tr>
+                    <th style="width: 550px;">
+                        Journal Title
+                    </th>
+                    <th style="width:550px;">
+                        Journal Link
+                    </th>
+                    <th style="width:112px;">
+                        Active
+                    </th>
+                    <th style="width:139px;">
+                        Action
+                    </th>
+                </tr>
+            </thead>
+            @foreach (var data in Model.Journals)
+            {
+                <tr>
+                    <td style="display:none ">@data.ID</td>
+                    <td width="308px">
+                        @data.JournalTitle
+                    </td>
+                    <td style="width: 550px">
+                        @data.Link
+                    </td>
+                    <td align="center" width="150px">
+                        @Html.CheckBox("IsActive", @data.IsActive, new { disabled = "disabled" })
+                    </td>
+                    <td width="150px" align="center">
+                        <input type="button" id="btnEdit" class="btn btn-primary btn-sm editButton" style="line-height: normal;" value="Edit" />
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>*@
 
