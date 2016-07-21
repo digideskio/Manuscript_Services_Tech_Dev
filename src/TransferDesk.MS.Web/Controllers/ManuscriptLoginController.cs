@@ -28,7 +28,6 @@ namespace TransferDesk.MS.Web.Controllers
         private readonly ManuscriptLoginService _manuscriptLoginService;
         private readonly string _conString;
         private string _errormsg = String.Empty;
-        public IFileLogger FileLogger;
         private ILogger _logger;
         public ManuscriptLoginController(ILogger logger)
         {
@@ -37,7 +36,6 @@ namespace TransferDesk.MS.Web.Controllers
             _manuscriptDBRepositoryReadSide = new ManuscriptDBRepositoryReadSide(_conString);
             ManuscriptLoginDbRepositoryReadSide = new ManuscriptLoginDBRepositoryReadSide(_conString);
             _manuscriptLoginService = new ManuscriptLoginService(_conString);
-            FileLogger = new FileLogger();
         }
 
         private void ManuscriptLoginVmDetails(ManuscriptLoginVM manuscriptLoginVm, int crestId)
@@ -118,7 +116,7 @@ namespace TransferDesk.MS.Web.Controllers
             }
             catch (Exception ex)
             {
-                FileLogger.Log("Error in Manuscript Login class and method name ManuscriptBookLoginVmDetails: \n"+ex.ToString());
+                _logger.Log("Error in Manuscript Login class and method name ManuscriptBookLoginVmDetails: \n" + ex.ToString());
             }
         }
 
