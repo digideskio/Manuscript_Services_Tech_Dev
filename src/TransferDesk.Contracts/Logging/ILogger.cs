@@ -22,11 +22,11 @@ namespace TransferDesk.Contracts.Logging
         /// </summary>
         /// <param name="exception">user exception to write</param>
         /// <param name="stringbuilder">write pending user writes</param>
-        void LogException(Exception exception, StringBuilder stringbuilder);
+        void LogException(Exception exception, StringBuilder stringbuilder=null);
 
         //void LogException(Exception exception);
 
-        void Log(string message, string userId);
+        void Log(string message, string userId=null);
 
         void WriteStringBuilderToUserLogAndClear(StringBuilder stringBuilder, string userIdForUserLog = "");
         

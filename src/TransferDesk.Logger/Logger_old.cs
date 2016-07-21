@@ -19,7 +19,7 @@ using System.Text;
 //File size limited to 1000 lines per file
 //helper can have extension methods for logger classes so it is extensible to change but core will be with logger classes.
 //exception.Tostring will show all inner exceptions if not null
-//will handle line breaks using a wrapper with environment.newline character
+
 
 namespace TransferDesk.Logger
 {
@@ -49,17 +49,25 @@ namespace TransferDesk.Logger
             _fileLogger.Dispose();
         }
 
-       public void WriteStringBuilderToDiskAndClear(StringBuilder stringBuilder)
+       public void WriteStringBuilderToUserLogAndClear(StringBuilder stringBuilder, string userId = null)
         {
             ILogger logger = GetLogger();
             IFileLogger fileLogger = logger as IFileLogger;
             fileLogger.FilePath = this.FilePath;
             fileLogger.FileName = this.FileName;
-            fileLogger.WriteStringBuilderToDiskAndClear(stringBuilder);
+            fileLogger.WriteStringBuilderToUserLogAndClear(stringBuilder, userId);
        }
 
+        public void WriteStringBuilderToAppLogAndClear(StringBuilder stringBuilder)
+        {
+            ILogger logger = GetLogger();
+            IFileLogger fileLogger = logger as IFileLogger;
+            fileLogger.FilePath = this.FilePath;
+            fileLogger.FileName = this.FileName;
+            fileLogger.WriteStringBuilderToAppLogAndClear(stringBuilder);
+        }
 
-        public void Log(string message)
+        public void ApplicationLog(string message)
 
         {
             switch (LogTarget)
@@ -70,17 +78,53 @@ namespace TransferDesk.Logger
                     IFileLogger fileLogger = logger as IFileLogger;
                     fileLogger.FilePath = this.FilePath;
                     fileLogger.FileName = this.FileName;
-                    fileLogger.Log(message);
+                    fileLogger.ApplicationLog(message);
 
                     break;
             }
 
         }
 
+        public void Log(string userId ,string message)
+
+        {
+            switch (LogTarget)
+
+            {
+                case LogTarget.File:
+                    ILogger logger = GetLogger();
+                    IFileLogger fileLogger = logger as IFileLogger;
+                    fileLogger.FilePath = this.FilePath;
+                    fileLogger.FileName = this.FileName;
+                    fileLogger.Log(userId,message);
+
+                    break;
+            }
+
+        }
+
+        public void LogException(Exception exception, StringBuilder stringBuilder)
+
+        {
+            if (stringBuilder == null)
+            {
+                _LogException(exception,null);
+            }
+            else
+            {
+                _LogException(exception,stringBuilder);
+            }
+        }
 
         public void LogException(Exception exception)
 
         {
+                _LogException(exception,null);
+            
+        }
+        private void _LogException(Exception exception, StringBuilder stringBuilder)
+
+        {
             switch (LogTarget)
 
             {
@@ -91,7 +135,7 @@ namespace TransferDesk.Logger
                     IFileLogger fileLogger = logger as IFileLogger;
                     fileLogger.FilePath = this.FilePath;
                     fileLogger.FileName = this.FileName;
-                    fileLogger.LogException(exception);
+                    fileLogger.LogException(exception,stringBuilder);
 
                     break;
 
@@ -100,8 +144,29 @@ namespace TransferDesk.Logger
 
         }
 
+        public void ApplicationExceptionLog(Exception exception, StringBuilder stringBuilder)
 
-       private ILogger GetLogger() //factory method to return objects
+        {
+            switch (LogTarget)
+
+            {
+
+                case LogTarget.File:
+
+                    ILogger logger = GetLogger();
+                    IFileLogger fileLogger = logger as IFileLogger;
+                    fileLogger.FilePath = this.FilePath;
+                    fileLogger.FileName = this.FileName;
+                    fileLogger.LogException(exception, stringBuilder);
+
+                    break;
+
+
+            }
+
+        }
+
+        private ILogger GetLogger() //factory method to return objects
        {
            switch (LogTarget)
            {
@@ -121,7 +186,7 @@ namespace TransferDesk.Logger
     public class FileLogger : IFileLogger
 
         {
-            protected static readonly object LockObj = new object();
+            private static readonly object LockObj = new object();
 
             protected static Stopwatch PerformanceStopWatch;
 
@@ -157,11 +222,11 @@ namespace TransferDesk.Logger
         }
 
 
-        public void Log(string message)
+        public void Log(string userId,string message)
         {
                 try
                 {
-                    WriteToDisk(message);
+                    WriteToDiskFile(message,userId);
                     
                 }
                 catch (Exception loggerException)
@@ -171,14 +236,35 @@ namespace TransferDesk.Logger
               
         }
 
-            private void WriteToDisk(string message )
+        public void ApplicationLog(string message)
+        {
+            try
             {
+                WriteToDiskFile(message);
+
+            }
+            catch (Exception loggerException)
+            {
+                TryWriteForLoggerException(loggerException, message);
+            }
+
+        }
+
+        private void WriteToDiskFile(string message,string userId = "" )
+        {
+            //this check can be eleminated for non windows logon outside interanet
+            if (userId.Length >= 10 || userId.Contains(" "))
+            {
+                throw new Exception("Invalid UserID length greater than 9 characters or contains space in windows user Id ");
+            }
+
+            if (userId.Trim() == "") { userId = "App";} // app as a logger File name user description
                 
                 lock (LockObj)
 
                 {
                     using (StreamWriter streamWriter = new StreamWriter(FilePath + FileName + FileNameSuffix 
-                        + "_" + DateTime.Today.Day + "_" + DateTime.Today.Month + "_" + DateTime.Today.Year + "_" + FileNameSuffixCounter + "_log.txt", true))
+                        + "_" + DateTime.Today.Day + "_" + DateTime.Today.Month + "_" + DateTime.Today.Year + "_" + FileNameSuffixCounter + "_" + userId + "_" +"log.txt", true))
 
                     {
                         string timeStamp = DateTime.Now.ToString("yyyy.MM.dd HH:mm:ss:ffff");
@@ -197,18 +283,27 @@ namespace TransferDesk.Logger
 
             LogLineCounter += 1;
 
-            if (LogLineCounter > LogLineLimitCount)
-            {
-                FileNameSuffixCounter += 1;
-            }
+            //check and file split not required as app and each user log will be now seperate
+            //if (LogLineCounter > LogLineLimitCount)
+            //{
+            //    FileNameSuffixCounter += 1;
+            //}
             
-            }
+        }
 
-            public void WriteStringBuilderToDiskAndClear(StringBuilder stringBuilder )
+            public void WriteStringBuilderToUserLogAndClear(StringBuilder stringBuilder, string userId = null )
             {
                 try
                 {
-                    WriteToDisk(stringBuilder.ToString());
+                    if (userId == null || userId.Trim() == "")
+                    {
+                        if (@System.Web.HttpContext.Current != null && @System.Web.HttpContext.Current.User != null)
+                        {
+                            userId = @System.Web.HttpContext.Current.User.Identity.Name.Replace("SPRINGER-SBM\\", "");
+                        }
+                    }
+
+                    WriteToDiskFile(stringBuilder.ToString(),userId);
                 }
                 catch (Exception loggerException)
                 {
@@ -222,45 +317,110 @@ namespace TransferDesk.Logger
                 
             }
 
-            public void LogException(Exception exception)
+        public void WriteStringBuilderToAppLogAndClear(StringBuilder stringBuilder)
+        {
+            try
+            {
+                WriteToDiskFile(stringBuilder.ToString());
+            }
+            catch (Exception loggerException)
+            {
+                TryWriteForLoggerException(loggerException, stringBuilder.ToString());
+            }
+            finally
+            {
+                stringBuilder.Clear();
+
+            }
+
+        }
+
+        public void LogException(Exception exception, StringBuilder stringBuilder = null)
 
             {
+                var userId = "";
                 string message = null;
                 try
                 {
-                    var userId = @System.Web.HttpContext.Current.User.Identity.Name.Replace("SPRINGER-SBM\\", "");
-                
+                    if (@System.Web.HttpContext.Current != null && @System.Web.HttpContext.Current.User != null)
+                    {
+                        userId = @System.Web.HttpContext.Current.User.Identity.Name.Replace("SPRINGER-SBM\\", "");
+                    }
+
+                    if (stringBuilder != null)
+                    {
+                        //write Stringbuilder to disk and clear
+                        WriteStringBuilderToAppLogAndClear(stringBuilder);
+                    }
                     //exception.tostring will include all inner exception details
 
                     message = "userID : " + userId + " exception : " + exception.ToString();
 
-                    WriteToDisk(message);
+                    WriteToDiskFile(message, userId);
 
                     //throw new Exception("test logger exception");
                 }
                 catch (Exception loggerException)
                 {
-                    TryWriteForLoggerException(loggerException, message);
+                    TryWriteForLoggerException(loggerException, message, userId);
                 }
                     
             }
-            
 
 
-            public void TryWriteForLoggerException(Exception loggerException, string message)
+        public void ApplicationExceptionLog(Exception exception, StringBuilder stringBuilder)
+
+        {
+            var userId = "";
+            string message = null;
+            try
+            {
+               //write Stringbuilder to disk and clear
+                WriteStringBuilderToAppLogAndClear(stringBuilder);
+
+                //exception.tostring will include all inner exception details
+
+                message = "exception : " + exception.ToString();
+
+                WriteToDiskFile(message, userId);
+
+                //throw new Exception("test logger exception");
+            }
+            catch (Exception loggerException)
+            {
+                TryWriteForLoggerException(loggerException, message, userId);
+            }
+
+        }
+
+
+        public void TryWriteForLoggerException(Exception loggerException, string message, string userId = "")
 
             {
-            string timeStamp = DateTime.Now.ToString("yyyy_MM_dd");
-            string filePathForExceptionInLogger = (FilePath + "whenLoggerException" + timeStamp);
-
-                using (StreamWriter streamWriter = new StreamWriter(filePathForExceptionInLogger))
+                try
                 {
-                    streamWriter.WriteLine(message);
-              
-                    streamWriter.WriteLine("ExceptionInLogger:" + loggerException.Message);
-                    streamWriter.Close();
+                    using (StreamWriter streamWriter = new StreamWriter(FilePath + FileName + FileNameSuffix
+                      + "_" + DateTime.Today.Day + "_" + DateTime.Today.Month + "_" + DateTime.Today.Year + "_" + FileNameSuffixCounter + "_" + userId + "_Loggerexception_" + "log.txt", true))
+                    {
+                        string timeStamp = DateTime.Now.ToString("yyyy.MM.dd HH:mm:ss:ffff");
 
+                        streamWriter.WriteLine(LogLineCounter + " " +
+                            timeStamp + " " +
+                            PerformanceStopWatch.ElapsedMilliseconds + " " + "message that was being written when exception occured --" + message);
+
+                        streamWriter.WriteLine(LogLineCounter + " " +
+                            timeStamp + " " +
+                            PerformanceStopWatch.ElapsedMilliseconds + " " + loggerException.ToString());
+
+                        streamWriter.Close();
+
+                    }
                 }
+                catch (Exception exception)
+                {
+                    Trace.TraceWarning("TransferDesk unable to write log due to " +  exception.ToString());
+                }
+               
             }
 
         }

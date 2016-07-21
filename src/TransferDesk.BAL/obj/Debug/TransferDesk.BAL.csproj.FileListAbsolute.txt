@@ -438,3 +438,16 @@ D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.BAL\
 D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.BAL\obj\Debug\TransferDesk.BAL.csprojResolveAssemblyReference.cache
 D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.BAL\obj\Debug\TransferDesk.BAL.dll
 D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.BAL\obj\Debug\TransferDesk.BAL.pdb
+D:\Project Data\Manuscript_Services_Tech_Dev\Manuscript_Services_Tech_Dev\src\TransferDesk.BAL\bin\Debug\TransferDesk.BAL.dll
+D:\Project Data\Manuscript_Services_Tech_Dev\Manuscript_Services_Tech_Dev\src\TransferDesk.BAL\bin\Debug\TransferDesk.BAL.pdb
+D:\Project Data\Manuscript_Services_Tech_Dev\Manuscript_Services_Tech_Dev\src\TransferDesk.BAL\bin\Debug\EntityFramework.dll
+D:\Project Data\Manuscript_Services_Tech_Dev\Manuscript_Services_Tech_Dev\src\TransferDesk.BAL\bin\Debug\EntityFramework.SqlServer.dll
+D:\Project Data\Manuscript_Services_Tech_Dev\Manuscript_Services_Tech_Dev\src\TransferDesk.BAL\bin\Debug\TransferDesk.Contracts.dll
+D:\Project Data\Manuscript_Services_Tech_Dev\Manuscript_Services_Tech_Dev\src\TransferDesk.BAL\bin\Debug\TransferDesk.DAL.dll
+D:\Project Data\Manuscript_Services_Tech_Dev\Manuscript_Services_Tech_Dev\src\TransferDesk.BAL\bin\Debug\TransferDesk.Contracts.pdb
+D:\Project Data\Manuscript_Services_Tech_Dev\Manuscript_Services_Tech_Dev\src\TransferDesk.BAL\bin\Debug\TransferDesk.DAL.pdb
+D:\Project Data\Manuscript_Services_Tech_Dev\Manuscript_Services_Tech_Dev\src\TransferDesk.BAL\bin\Debug\EntityFramework.xml
+D:\Project Data\Manuscript_Services_Tech_Dev\Manuscript_Services_Tech_Dev\src\TransferDesk.BAL\bin\Debug\EntityFramework.SqlServer.xml
+D:\Project Data\Manuscript_Services_Tech_Dev\Manuscript_Services_Tech_Dev\src\TransferDesk.BAL\obj\Debug\TransferDesk.BAL.csprojResolveAssemblyReference.cache
+D:\Project Data\Manuscript_Services_Tech_Dev\Manuscript_Services_Tech_Dev\src\TransferDesk.BAL\obj\Debug\TransferDesk.BAL.dll
+D:\Project Data\Manuscript_Services_Tech_Dev\Manuscript_Services_Tech_Dev\src\TransferDesk.BAL\obj\Debug\TransferDesk.BAL.pdb

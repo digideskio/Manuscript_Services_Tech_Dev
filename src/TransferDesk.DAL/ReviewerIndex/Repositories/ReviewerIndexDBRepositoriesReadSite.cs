@@ -56,7 +56,7 @@ namespace TransferDesk.DAL.ReviewerIndex.Repositories
             }
             finally
             {
-                _logger.WriteStringBuilderToLogAndClear(stringBuilder);
+                _logger.WriteStringBuilderToUserLogAndClear(stringBuilder);
             }
         }
 
@@ -87,7 +87,7 @@ namespace TransferDesk.DAL.ReviewerIndex.Repositories
             }
             finally
             {
-                _logger.WriteStringBuilderToLogAndClear(stringBuilder);
+                _logger.WriteStringBuilderToUserLogAndClear(stringBuilder);
             }
 
         }
@@ -161,7 +161,7 @@ namespace TransferDesk.DAL.ReviewerIndex.Repositories
             }
             finally
             {
-                _logger.WriteStringBuilderToLogAndClear(stringBuilder);
+                _logger.WriteStringBuilderToUserLogAndClear(stringBuilder);
             }
         }
 
@@ -326,7 +326,7 @@ namespace TransferDesk.DAL.ReviewerIndex.Repositories
                 }
                 finally
                 {
-                    _logger.WriteStringBuilderToLogAndClear(stringBuilder);
+                    _logger.WriteStringBuilderToUserLogAndClear(stringBuilder);
                 }
             
         }
@@ -352,7 +352,7 @@ namespace TransferDesk.DAL.ReviewerIndex.Repositories
             }
             finally
             {
-                _logger.WriteStringBuilderToLogAndClear(stringBuilder);
+                _logger.WriteStringBuilderToUserLogAndClear(stringBuilder);
             }
         }
 
@@ -376,7 +376,7 @@ namespace TransferDesk.DAL.ReviewerIndex.Repositories
             }
             finally
             {
-                _logger.WriteStringBuilderToLogAndClear(stringBuilder);
+                _logger.WriteStringBuilderToUserLogAndClear(stringBuilder);
             }       
         }
 
@@ -400,7 +400,7 @@ namespace TransferDesk.DAL.ReviewerIndex.Repositories
             }
             finally
             {
-                _logger.WriteStringBuilderToLogAndClear(stringBuilder);
+                _logger.WriteStringBuilderToUserLogAndClear(stringBuilder);
             }
         }
 
@@ -424,7 +424,7 @@ namespace TransferDesk.DAL.ReviewerIndex.Repositories
             }
             finally
             {
-                _logger.WriteStringBuilderToLogAndClear(stringBuilder);
+                _logger.WriteStringBuilderToUserLogAndClear(stringBuilder);
             }
         }
 
@@ -449,7 +449,7 @@ namespace TransferDesk.DAL.ReviewerIndex.Repositories
             }
             finally
             {
-                _logger.WriteStringBuilderToLogAndClear(stringBuilder);
+                _logger.WriteStringBuilderToUserLogAndClear(stringBuilder);
             }
         }      
 
@@ -474,7 +474,7 @@ namespace TransferDesk.DAL.ReviewerIndex.Repositories
             }
             finally
             {
-                _logger.WriteStringBuilderToLogAndClear(stringBuilder);
+                _logger.WriteStringBuilderToUserLogAndClear(stringBuilder);
             }
         }
 
@@ -509,7 +509,7 @@ namespace TransferDesk.DAL.ReviewerIndex.Repositories
             }
             finally
             {
-                _logger.WriteStringBuilderToLogAndClear(stringBuilder);
+                _logger.WriteStringBuilderToUserLogAndClear(stringBuilder);
             }
         }
 
@@ -534,7 +534,7 @@ namespace TransferDesk.DAL.ReviewerIndex.Repositories
             }
             finally
             {
-                _logger.WriteStringBuilderToLogAndClear(stringBuilder);
+                _logger.WriteStringBuilderToUserLogAndClear(stringBuilder);
             }
         }
 
