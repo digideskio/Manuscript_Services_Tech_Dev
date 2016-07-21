@@ -122,15 +122,29 @@ namespace TransferDesk.MS.Web.Controllers
             }
         }
 
+        public bool CheckIfBookPresent(int serviceTypeId, int BookTitleId, string chapterNo)
+        {
+            if (ManuscriptLoginDbRepositoryReadSide.CheckIfBookPresent(serviceTypeId, BookTitleId, chapterNo))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+
         [HttpPost]
         public ActionResult BookLogin(ManuscriptBookLoginVM manuscriptBookLoginVM)
         {
-            _logger.Log("Loading BookLogin");
+            _logger.Log("Loading BookLogin ");
             var previousid = manuscriptBookLoginVM.ID;
             if (manuscriptBookLoginVM.IsNewEntry)
             {
                 manuscriptBookLoginVM.ID = 0;
             }
+
             manuscriptBookLoginVM.userId = @System.Web.HttpContext.Current.User.Identity.Name.Replace("SPRINGER-SBM\\", "");
             IDictionary<string, string> dataErrors = new Dictionary<string, string>();
             if (manuscriptBookLoginVM.ChapterNumber != "")
@@ -139,12 +153,17 @@ namespace TransferDesk.MS.Web.Controllers
             {
                 TempData["msg"] = "<script>alert('Job is already loggedin');</script>";
                 _logger.Log("Job with id : " + previousid + "is already loggedin");
-                return RedirectToAction("BookLogin", new { id = previousid, jobtype = "book" });
+                if (previousid != 0)
+                {
+                    return RedirectToAction("BookLogin", new { id = previousid, jobtype = "book" });
+                }
+
             }
             if (manuscriptBookLoginVM.ID == 0)
             {
                 AddManuscriptBookLoginInfo(manuscriptBookLoginVM, dataErrors);
                 TempData["msg"] = "<script>alert('Record added succesfully');</script>";
+                manuscriptBookLoginVM.IsNewEntry = true;
             }
             else
             {

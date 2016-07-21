@@ -65,7 +65,9 @@ namespace TransferDesk.BAL.Manuscript
                     }
                     manuscriptBookLoginDTO.manuscriptBookLogin.CreatedBy = currentManuscriptBookLogin.CreatedBy;
                     manuscriptBookLoginDTO.manuscriptBookLogin.CreatedDate = currentManuscriptBookLogin.CreatedDate;
+                   
                 }
+             
                 //add record in ManuscriptBookLogin table
                 manuscriptLoginUnitOfWork = new ManuscriptLoginUnitOfWork(conString);
                 manuscriptLoginUnitOfWork.manuscriptBookLoginDTO = manuscriptBookLoginDTO;
