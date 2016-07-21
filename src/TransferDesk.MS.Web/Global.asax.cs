@@ -15,6 +15,7 @@ using SimpleInjector.Integration.Web;
 using TransferDesk.Services;
 using TransferDesk.Services.Manuscript;
 using SimpleInjector.Integration.Web.Mvc;
+using SimpleInjector.Integration.WebApi;
 using TransferDesk.Contracts.Logging;
 using TransferDesk.DAL.Manuscript.Repositories;
 using TransferDesk.Logger;
@@ -24,13 +25,14 @@ namespace TransferDesk.MS.Web
     public class MvcApplication : System.Web.HttpApplication
     {
         private SimpleInjector.Container _simpleInjectorcontainer = null;
-        private IFileLogger _fileLogger = null;
+       
 
         protected void Application_Start()
         {
             //test
             //List<string> listOfString = new List<string>();
             StringBuilder stringBuilder = null;
+            IFileLogger _fileLogger = null;
             try
             {
                 stringBuilder = new StringBuilder();
@@ -69,6 +71,9 @@ namespace TransferDesk.MS.Web
                 {
                     // Register the container as  IDependencyResolver.
                     DependencyResolver.SetResolver(new SimpleInjectorDependencyResolver(_simpleInjectorcontainer));
+
+                    GlobalConfiguration.Configuration.DependencyResolver =
+                                               new SimpleInjectorWebApiDependencyResolver(_simpleInjectorcontainer);
                 }
                 catch (Exception exception)
                 {
@@ -120,7 +125,9 @@ namespace TransferDesk.MS.Web
 
                 //////stringBuilder.AppendLine("Registered Manuscript DB repository for readside");
 
-                //simpleInjectorcontainer.RegisterMvcControllers(Assembly.GetExecutingAssembly());
+                simpleInjectorContainer.RegisterWebApiControllers(GlobalConfiguration.Configuration);
+                simpleInjectorContainer.RegisterMvcControllers(Assembly.GetExecutingAssembly());
+
 
                 stringBuilder.AppendLine("Registered MVC Controllers");
 
