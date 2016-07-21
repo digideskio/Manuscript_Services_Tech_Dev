@@ -15,7 +15,7 @@
                 if (returnValue.returnValue.match("true")) {
                     if (returnValue.ManuscriptID == 0) {
                         alert('Manuscript not found.');
-                        window.open('/Manuscript', "_blank");
+                        window.open('/ManuscriptScreening', "_blank");
                     }
                     else {
                         window.open('/Manuscript/HomePage/' + returnValue.ManuscriptID, "_blank");
