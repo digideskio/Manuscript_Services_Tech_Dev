@@ -152,6 +152,7 @@ namespace TransferDesk.MS.Web
 
         protected void Application_End(object sender, EventArgs e)
         {
+            _applicationLog.ApplicationLog("Application stopped");
             _simpleInjectorcontainer.Dispose();
         }
         protected void Application_EndRequest()

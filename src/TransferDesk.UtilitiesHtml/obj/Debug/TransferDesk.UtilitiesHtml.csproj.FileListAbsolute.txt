@@ -96,3 +96,10 @@ D:\GitHub_Dev_Branch\Manuscript_Services_Tech_Dev\src\TransferDesk.UtilitiesHtml
 D:\GitHub_Dev_Branch\Manuscript_Services_Tech_Dev\src\TransferDesk.UtilitiesHtml\bin\Debug\TransferDesk.UtilitiesHtml.pdb
 D:\GitHub_Dev_Branch\Manuscript_Services_Tech_Dev\src\TransferDesk.UtilitiesHtml\obj\Debug\TransferDesk.UtilitiesHtml.dll
 D:\GitHub_Dev_Branch\Manuscript_Services_Tech_Dev\src\TransferDesk.UtilitiesHtml\obj\Debug\TransferDesk.UtilitiesHtml.pdb
+D:\RNA-123\src\TransferDesk.UtilitiesHtml\bin\Debug\TransferDesk.UtilitiesHtml.dll
+D:\RNA-123\src\TransferDesk.UtilitiesHtml\bin\Debug\TransferDesk.UtilitiesHtml.pdb
+D:\RNA-123\src\TransferDesk.UtilitiesHtml\bin\Debug\DocumentFormat.OpenXml.dll
+D:\RNA-123\src\TransferDesk.UtilitiesHtml\bin\Debug\DocumentFormat.OpenXml.xml
+D:\RNA-123\src\TransferDesk.UtilitiesHtml\obj\Debug\TransferDesk.UtilitiesHtml.dll
+D:\RNA-123\src\TransferDesk.UtilitiesHtml\obj\Debug\TransferDesk.UtilitiesHtml.pdb
+D:\RNA-123\src\TransferDesk.UtilitiesHtml\obj\Debug\TransferDesk.UtilitiesHtml.csprojResolveAssemblyReference.cache

@@ -279,3 +279,13 @@ D:\GitHub_Dev_Branch\Manuscript_Services_Tech_Dev\src\TransferDesk.Contracts\bin
 D:\GitHub_Dev_Branch\Manuscript_Services_Tech_Dev\src\TransferDesk.Contracts\bin\Debug\EntityFramework.SqlServer.xml
 D:\GitHub_Dev_Branch\Manuscript_Services_Tech_Dev\src\TransferDesk.Contracts\obj\Debug\TransferDesk.Contracts.dll
 D:\GitHub_Dev_Branch\Manuscript_Services_Tech_Dev\src\TransferDesk.Contracts\obj\Debug\TransferDesk.Contracts.pdb
+D:\RNA-123\src\TransferDesk.Contracts\bin\Debug\TransferDesk.Contracts.dll.config
+D:\RNA-123\src\TransferDesk.Contracts\bin\Debug\TransferDesk.Contracts.dll
+D:\RNA-123\src\TransferDesk.Contracts\bin\Debug\TransferDesk.Contracts.pdb
+D:\RNA-123\src\TransferDesk.Contracts\bin\Debug\EntityFramework.dll
+D:\RNA-123\src\TransferDesk.Contracts\bin\Debug\EntityFramework.SqlServer.dll
+D:\RNA-123\src\TransferDesk.Contracts\bin\Debug\EntityFramework.xml
+D:\RNA-123\src\TransferDesk.Contracts\bin\Debug\EntityFramework.SqlServer.xml
+D:\RNA-123\src\TransferDesk.Contracts\obj\Debug\TransferDesk.Contracts.dll
+D:\RNA-123\src\TransferDesk.Contracts\obj\Debug\TransferDesk.Contracts.pdb
+D:\RNA-123\src\TransferDesk.Contracts\obj\Debug\TransferDesk.Contracts.csprojResolveAssemblyReference.cache
