@@ -296,7 +296,12 @@ namespace TransferDesk.Logger
                 try
                 {
                     if (userId == null || userId.Trim() == "")
-                    { userId = @System.Web.HttpContext.Current.User.Identity.Name.Replace("SPRINGER-SBM\\", ""); }
+                    {
+                        if (@System.Web.HttpContext.Current != null && @System.Web.HttpContext.Current.User != null)
+                        {
+                            userId = @System.Web.HttpContext.Current.User.Identity.Name.Replace("SPRINGER-SBM\\", "");
+                        }
+                    }
 
                     WriteToDiskFile(stringBuilder.ToString(),userId);
                 }
@@ -337,7 +342,10 @@ namespace TransferDesk.Logger
                 string message = null;
                 try
                 {
-                    userId = @System.Web.HttpContext.Current.User.Identity.Name.Replace("SPRINGER-SBM\\", "");
+                    if (@System.Web.HttpContext.Current != null && @System.Web.HttpContext.Current.User != null)
+                    {
+                        userId = @System.Web.HttpContext.Current.User.Identity.Name.Replace("SPRINGER-SBM\\", "");
+                    }
 
                     if (stringBuilder != null)
                     {
@@ -367,14 +375,12 @@ namespace TransferDesk.Logger
             string message = null;
             try
             {
-                userId = @System.Web.HttpContext.Current.User.Identity.Name.Replace("SPRINGER-SBM\\", "");
-
-                //write Stringbuilder to disk and clear
+               //write Stringbuilder to disk and clear
                 WriteStringBuilderToAppLogAndClear(stringBuilder);
 
                 //exception.tostring will include all inner exception details
 
-                message = "userID : " + userId + " exception : " + exception.ToString();
+                message = "exception : " + exception.ToString();
 
                 WriteToDiskFile(message, userId);
 
