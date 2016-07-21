@@ -14,4 +14,14 @@ namespace TransferDesk.Contracts.Manuscript.ComplexTypes.UserRole
         public int RollID { get; set; }
         public string RoleName { get; set; }
     }
+	public class pr_GetUserMasterDetails_Result
+    {
+
+        public int ID { get; set; }
+        public string UserID { get; set; }
+        public string EmpName { get; set; }
+        public string Description { get; set; }
+        public bool IsActive { get; set; }
+        public string RoleName { get; set; }
+    }
 }

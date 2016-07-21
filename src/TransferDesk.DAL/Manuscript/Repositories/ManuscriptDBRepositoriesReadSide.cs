@@ -51,6 +51,14 @@ namespace TransferDesk.DAL.Manuscript.Repositories
             return bookTitles;
         }
 
+
+		public List<Entities.BookMaster> GetManuscriptBookTitleList()
+        {
+            var bookTitles = (from q in manuscriptDataContextRead.BookMaster
+                              where q.IsActive == true orderby q.ID descending 
+                              select q  ).ToList();
+            return bookTitles;
+        }
         public IEnumerable<pr_SearchMSDetails_Result> GetSearchResult(string SelectedValue, string SearchBy)
         {
             try
@@ -304,6 +312,21 @@ namespace TransferDesk.DAL.Manuscript.Repositories
             }
         }
 
+public List<Entities.Role> GetRoleList()
+        {
+            var roles = from q in manuscriptDataContextRead.Roles
+                        where q.Status == 1
+                        select q;
+            return roles.ToList();
+        }
+
+        public List<Entities.StatusMaster> GetTeamList()
+        {
+            var teamList = from q in manuscriptDataContextRead.StatusMaster
+                           where q.StatusCode.ToLower() == "team" && q.IsActive == true
+                           select q;
+            return teamList.ToList();
+        }
         public string EmployeeName(string userID)
         {
             string userName = manuscriptDataContextRead.Database.SqlQuery<string>("SELECT EmpName from Employee Where UserName = '" + userID + "' and leftdate =''").FirstOrDefault<string>();
@@ -468,6 +491,46 @@ namespace TransferDesk.DAL.Manuscript.Repositories
                           where q.BookLoginID == bookid
                           select q).ToList();
             return result;
+        }
+
+        public int GetBookServiceID(int? id)
+        {
+
+            int service_id = (from manuscriptLoginDetails in manuscriptDataContextRead.ManuscriptBookLoginDetails
+                              where manuscriptLoginDetails.ManuscriptBookLoginId == id
+                              orderby manuscriptLoginDetails.Id descending
+                              select manuscriptLoginDetails.ServiceTypeStatusId).FirstOrDefault();
+            return service_id;
+        }
+
+        public bool CheckChpaterJobStatusForHold(int? id, int serviceTypeid)
+        {
+            const string onHold = "On Hold";
+            holdstatus_id = GetStatusID(onHold);
+            try
+            {
+                var checkstatus = (from status in manuscriptDataContextRead.ManuscriptBookLoginDetails
+                                   where status.ManuscriptBookLoginId == id && status.ServiceTypeStatusId == serviceTypeid
+                                   orderby status.Id descending
+                                   select status.JobProcessStatusId).FirstOrDefault();
+                if (checkstatus == null)
+                {
+                    return true;
+                }
+                else if (checkstatus == holdstatus_id)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+
+            }
+            catch (Exception)
+            {
+                return true;
+            }
         }
     }
 }

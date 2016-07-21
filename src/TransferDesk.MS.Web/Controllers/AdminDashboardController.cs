@@ -19,18 +19,19 @@ using System.Security.Cryptography.X509Certificates;
 using System.Web.UI;
 using DTOs = TransferDesk.Contracts.Manuscript.DTO;
 using System.Web.UI.WebControls;
+using TransferDesk.Contracts.Logging;
 namespace TransferDesk.MS.Web.Controllers
 {
     public class AdminDashboardController : Controller
     {
-
         private AdminDasboardVM adminDasboardVM;
         private AdminDashBoardService adminDashBoardService;
         private AdminDashBoardReposistory _adminDashBoardReposistory;
         private readonly ManuscriptDBRepositoryReadSide _manuscriptDBRepositoryReadSide;
-
-        public AdminDashboardController()
+        private ILogger _logger;
+        public AdminDashboardController(ILogger logger)
         {
+            _logger = logger;
             string conString = string.Empty;
             conString = Convert.ToString(ConfigurationManager.AppSettings["dbTransferDeskService"]);
             adminDasboardVM = new AdminDasboardVM();
@@ -47,40 +48,56 @@ namespace TransferDesk.MS.Web.Controllers
         }
 
 
-        public bool AdminActionResult(string AssociateNameVM, int CrestIdVM, string ServiceTypeVM, string JobProcessingStatusVM, string RoleVM)
+        public bool AllocateManuscriptToUser(string AssociateNameVM, int CrestIdVM, string ServiceTypeVM, string JobProcessingStatusVM, string RoleVM, string JobType)
         {
-            var adminDash = new AdminDasboardVM();
-            adminDash.AssociateNameVM = AssociateNameVM;
-            adminDash.CrestIdVM = CrestIdVM;
-            adminDash.ServiceTypeVM = ServiceTypeVM;
-            adminDash.JobProcessingStatusVM = JobProcessingStatusVM;
-            adminDash.RoleVM = RoleVM;
-            return adminDashBoardService.AllocateMSIDToUser(adminDash);
+            _logger.Log(JobType + " job is allocating to " + AssociateNameVM + " with id" + Convert.ToString(CrestIdVM));
+            var adminDash = adminDashBoardService.CreateAdminDasboardVm(AssociateNameVM, CrestIdVM, ServiceTypeVM, JobProcessingStatusVM, RoleVM, JobType);
+            if (adminDashBoardService.AllocateManuscriptToUser(adminDash))
+            {
+                _logger.Log(JobType + " job is allocating to " + AssociateNameVM + " with id" + Convert.ToString(CrestIdVM));
+                return true;
+            }
+            else
+            {
+                _logger.Log(JobType + " job is failed allocate to the " + AssociateNameVM + " with id" + Convert.ToString(CrestIdVM));
+                return false;
+            }
         }
 
-        public bool AdminUnallocateMSID(string AssociateNameVM, int CrestIdVM, string ServiceTypeVM, string JobProcessingStatusVM, string RoleVM)
+        public bool UnallocateManuscriptFromUser(string AssociateNameVM, int CrestIdVM, string ServiceTypeVM, string JobProcessingStatusVM, string RoleVM, string jobType)
         {
-            var adminDash = new AdminDasboardVM();
-            adminDash.AssociateNameVM = AssociateNameVM;
-            adminDash.CrestIdVM = CrestIdVM;
-            adminDash.ServiceTypeVM = ServiceTypeVM;
-            adminDash.JobProcessingStatusVM = JobProcessingStatusVM;
-            adminDash.RoleVM = RoleVM;
-            return adminDashBoardService.UnallocateMSIDFromUser(adminDash);
+            _logger.Log(jobType + " job is Unallocating from " + AssociateNameVM + " with id" + Convert.ToString(CrestIdVM));
+            var adminDash = adminDashBoardService.CreateAdminDasboardVm(AssociateNameVM, CrestIdVM, ServiceTypeVM, JobProcessingStatusVM, RoleVM, jobType);
+            if (adminDashBoardService.UnallocateManuscriptFromUser(adminDash))
+            {
+                _logger.Log(jobType + " job is unallocated from " + AssociateNameVM + " with id" + Convert.ToString(CrestIdVM));
+                return true;
+            }
+            else
+            {
+                _logger.Log(jobType + " job is failed to unallocate from " + AssociateNameVM + " with id" + Convert.ToString(CrestIdVM));
+                return false;
+            }
 
         }
 
-        public bool AdminHoldMSID(string AssociateNameVM, int CrestIdVM, string ServiceTypeVM, string JobProcessingStatusVM, string RoleVM)
+        public bool OnHoldManuscript(string AssociateNameVM, int CrestIdVM, string ServiceTypeVM, string JobProcessingStatusVM, string RoleVM, string jobType)
         {
-            var adminDash = new AdminDasboardVM();
-            adminDash.CrestIdVM = CrestIdVM;
-            adminDash.AssociateNameVM = AssociateNameVM;
-            adminDash.ServiceTypeVM = ServiceTypeVM;
-            adminDash.JobProcessingStatusVM = JobProcessingStatusVM;
-            adminDash.RoleVM = RoleVM;
-            return adminDashBoardService.HoldMSID(adminDash);
-
+            
+            var adminDash =adminDashBoardService.CreateAdminDasboardVm(AssociateNameVM, CrestIdVM, ServiceTypeVM, JobProcessingStatusVM, RoleVM, jobType);
+            if (adminDashBoardService.OnHoldManuscript(adminDash))
+            {
+                _logger.Log(jobType + " job is successfully on hold with id" + Convert.ToString(CrestIdVM));
+                return true;
+            }
+            else
+            {
+                _logger.Log(jobType + " job is failed to on hold with id" + Convert.ToString(CrestIdVM));
+                return false;
+            }
         }
+
+        
 
         [AcceptVerbs(HttpVerbs.Get)]
         public JsonResult GetAssociateName(string searchAssociate,string RoleName)
@@ -89,9 +106,9 @@ namespace TransferDesk.MS.Web.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Get)]
-        public string GetLastAssociateName(int crestid, string servicetype)
+        public string GetLastAssociateName(int crestid, string servicetype,string JobType)
         {
-            var LastAssociateName = _adminDashBoardReposistory.GetLastNameOfAssociate_ForHoldJob(crestid, servicetype);
+            var LastAssociateName = _adminDashBoardReposistory.GetLastNameOfAssociate_ForHoldJob(crestid, servicetype, JobType);
             if (LastAssociateName.Count > 0)
             {
                 foreach (var item in LastAssociateName)

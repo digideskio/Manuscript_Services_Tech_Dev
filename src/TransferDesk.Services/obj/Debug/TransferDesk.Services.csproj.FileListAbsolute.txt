@@ -1057,49 +1057,6 @@ D:\MS-Iteration-10_Updated_ToUATRel\MS-Iteration-10_Updated\TransferDesk.Service
 D:\MS-Iteration-10_Updated_ToUATRel\MS-Iteration-10_Updated\TransferDesk.Services\obj\Debug\TransferDesk.Services.csprojResolveAssemblyReference.cache
 D:\MS-Iteration-10_Updated_ToUATRel\MS-Iteration-10_Updated\TransferDesk.Services\obj\Debug\TransferDesk.Services.dll
 D:\MS-Iteration-10_Updated_ToUATRel\MS-Iteration-10_Updated\TransferDesk.Services\obj\Debug\TransferDesk.Services.pdb
-D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\TransferDesk.Services.dll
-D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\TransferDesk.Services.pdb
-D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\HtmlAgilityPack.dll
-D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\Microsoft.Web.Infrastructure.dll
-D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\Newtonsoft.Json.dll
-D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\System.Net.Http.Formatting.dll
-D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\System.Web.Helpers.dll
-D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\System.Web.Http.dll
-D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\System.Web.Mvc.dll
-D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\System.Web.Razor.dll
-D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\System.Web.WebPages.Deployment.dll
-D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\System.Web.WebPages.dll
-D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\System.Web.WebPages.Razor.dll
-D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\TransferDesk.BAL.dll
-D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\TransferDesk.Contracts.dll
-D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\TransferDesk.DAL.dll
-D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\TransferDesk.Utilities.dll
-D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\TransferDesk.UtilitiesHtml.dll
-D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\EntityFramework.dll
-D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\HtmlToOpenXml.dll
-D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\DocumentFormat.OpenXml.dll
-D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\OpenXmlPowerTools.dll
-D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\System.IO.Packaging.dll
-D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\TransferDesk.BAL.pdb
-D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\TransferDesk.Contracts.pdb
-D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\TransferDesk.DAL.pdb
-D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\TransferDesk.UtilitiesHtml.pdb
-D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\TransferDesk.Utilities.pdb
-D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\HtmlAgilityPack.pdb
-D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\HtmlAgilityPack.xml
-D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\Newtonsoft.Json.xml
-D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\System.Net.Http.Formatting.xml
-D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\System.Web.Helpers.xml
-D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\System.Web.Http.xml
-D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\System.Web.Mvc.xml
-D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\System.Web.Razor.xml
-D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\System.Web.WebPages.xml
-D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\System.Web.WebPages.Deployment.xml
-D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\System.Web.WebPages.Razor.xml
-D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\EntityFramework.xml
-D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\obj\Debug\TransferDesk.Services.csprojResolveAssemblyReference.cache
-D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\obj\Debug\TransferDesk.Services.dll
-D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\obj\Debug\TransferDesk.Services.pdb
 D:\GitHub_Dev_Branch\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\TransferDesk.Services.dll
 D:\GitHub_Dev_Branch\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\TransferDesk.Services.pdb
 D:\GitHub_Dev_Branch\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\HtmlAgilityPack.dll
@@ -1143,46 +1100,261 @@ D:\GitHub_Dev_Branch\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\
 D:\GitHub_Dev_Branch\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\obj\Debug\TransferDesk.Services.csprojResolveAssemblyReference.cache
 D:\GitHub_Dev_Branch\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\obj\Debug\TransferDesk.Services.dll
 D:\GitHub_Dev_Branch\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\obj\Debug\TransferDesk.Services.pdb
-D:\RNA-123\src\TransferDesk.Services\bin\Debug\TransferDesk.Services.dll
-D:\RNA-123\src\TransferDesk.Services\bin\Debug\TransferDesk.Services.pdb
-D:\RNA-123\src\TransferDesk.Services\bin\Debug\HtmlAgilityPack.dll
-D:\RNA-123\src\TransferDesk.Services\bin\Debug\Microsoft.Web.Infrastructure.dll
-D:\RNA-123\src\TransferDesk.Services\bin\Debug\Newtonsoft.Json.dll
-D:\RNA-123\src\TransferDesk.Services\bin\Debug\System.Net.Http.Formatting.dll
-D:\RNA-123\src\TransferDesk.Services\bin\Debug\System.Web.Helpers.dll
-D:\RNA-123\src\TransferDesk.Services\bin\Debug\System.Web.Http.dll
-D:\RNA-123\src\TransferDesk.Services\bin\Debug\System.Web.Mvc.dll
-D:\RNA-123\src\TransferDesk.Services\bin\Debug\System.Web.Razor.dll
-D:\RNA-123\src\TransferDesk.Services\bin\Debug\System.Web.WebPages.Deployment.dll
-D:\RNA-123\src\TransferDesk.Services\bin\Debug\System.Web.WebPages.dll
-D:\RNA-123\src\TransferDesk.Services\bin\Debug\System.Web.WebPages.Razor.dll
-D:\RNA-123\src\TransferDesk.Services\bin\Debug\TransferDesk.BAL.dll
-D:\RNA-123\src\TransferDesk.Services\bin\Debug\TransferDesk.Contracts.dll
-D:\RNA-123\src\TransferDesk.Services\bin\Debug\TransferDesk.DAL.dll
-D:\RNA-123\src\TransferDesk.Services\bin\Debug\TransferDesk.Utilities.dll
-D:\RNA-123\src\TransferDesk.Services\bin\Debug\TransferDesk.UtilitiesHtml.dll
-D:\RNA-123\src\TransferDesk.Services\bin\Debug\EntityFramework.dll
-D:\RNA-123\src\TransferDesk.Services\bin\Debug\HtmlToOpenXml.dll
-D:\RNA-123\src\TransferDesk.Services\bin\Debug\DocumentFormat.OpenXml.dll
-D:\RNA-123\src\TransferDesk.Services\bin\Debug\OpenXmlPowerTools.dll
-D:\RNA-123\src\TransferDesk.Services\bin\Debug\System.IO.Packaging.dll
-D:\RNA-123\src\TransferDesk.Services\bin\Debug\TransferDesk.BAL.pdb
-D:\RNA-123\src\TransferDesk.Services\bin\Debug\TransferDesk.Contracts.pdb
-D:\RNA-123\src\TransferDesk.Services\bin\Debug\TransferDesk.DAL.pdb
-D:\RNA-123\src\TransferDesk.Services\bin\Debug\TransferDesk.UtilitiesHtml.pdb
-D:\RNA-123\src\TransferDesk.Services\bin\Debug\TransferDesk.Utilities.pdb
-D:\RNA-123\src\TransferDesk.Services\bin\Debug\HtmlAgilityPack.pdb
-D:\RNA-123\src\TransferDesk.Services\bin\Debug\HtmlAgilityPack.xml
-D:\RNA-123\src\TransferDesk.Services\bin\Debug\Newtonsoft.Json.xml
-D:\RNA-123\src\TransferDesk.Services\bin\Debug\System.Net.Http.Formatting.xml
-D:\RNA-123\src\TransferDesk.Services\bin\Debug\System.Web.Helpers.xml
-D:\RNA-123\src\TransferDesk.Services\bin\Debug\System.Web.Http.xml
-D:\RNA-123\src\TransferDesk.Services\bin\Debug\System.Web.Mvc.xml
-D:\RNA-123\src\TransferDesk.Services\bin\Debug\System.Web.Razor.xml
-D:\RNA-123\src\TransferDesk.Services\bin\Debug\System.Web.WebPages.xml
-D:\RNA-123\src\TransferDesk.Services\bin\Debug\System.Web.WebPages.Deployment.xml
-D:\RNA-123\src\TransferDesk.Services\bin\Debug\System.Web.WebPages.Razor.xml
-D:\RNA-123\src\TransferDesk.Services\bin\Debug\EntityFramework.xml
-D:\RNA-123\src\TransferDesk.Services\obj\Debug\TransferDesk.Services.csprojResolveAssemblyReference.cache
-D:\RNA-123\src\TransferDesk.Services\obj\Debug\TransferDesk.Services.dll
-D:\RNA-123\src\TransferDesk.Services\obj\Debug\TransferDesk.Services.pdb
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.Services\bin\Debug\TransferDesk.Services.dll
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.Services\bin\Debug\TransferDesk.Services.pdb
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.Services\bin\Debug\HtmlAgilityPack.dll
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.Services\bin\Debug\Microsoft.Web.Infrastructure.dll
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.Services\bin\Debug\Newtonsoft.Json.dll
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.Services\bin\Debug\System.Net.Http.Formatting.dll
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.Services\bin\Debug\System.Web.Helpers.dll
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.Services\bin\Debug\System.Web.Http.dll
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.Services\bin\Debug\System.Web.Mvc.dll
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.Services\bin\Debug\System.Web.Razor.dll
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.Services\bin\Debug\System.Web.WebPages.Deployment.dll
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.Services\bin\Debug\System.Web.WebPages.dll
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.Services\bin\Debug\System.Web.WebPages.Razor.dll
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.Services\bin\Debug\TransferDesk.BAL.dll
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.Services\bin\Debug\TransferDesk.Contracts.dll
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.Services\bin\Debug\TransferDesk.DAL.dll
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.Services\bin\Debug\TransferDesk.Utilities.dll
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.Services\bin\Debug\TransferDesk.UtilitiesHtml.dll
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.Services\bin\Debug\EntityFramework.dll
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.Services\bin\Debug\HtmlToOpenXml.dll
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.Services\bin\Debug\DocumentFormat.OpenXml.dll
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.Services\bin\Debug\OpenXmlPowerTools.dll
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.Services\bin\Debug\System.IO.Packaging.dll
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.Services\bin\Debug\TransferDesk.BAL.pdb
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.Services\bin\Debug\TransferDesk.Contracts.pdb
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.Services\bin\Debug\TransferDesk.DAL.pdb
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.Services\bin\Debug\TransferDesk.UtilitiesHtml.pdb
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.Services\bin\Debug\TransferDesk.Utilities.pdb
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.Services\bin\Debug\HtmlAgilityPack.pdb
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.Services\bin\Debug\HtmlAgilityPack.xml
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.Services\bin\Debug\Newtonsoft.Json.xml
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.Services\bin\Debug\System.Net.Http.Formatting.xml
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.Services\bin\Debug\System.Web.Helpers.xml
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.Services\bin\Debug\System.Web.Http.xml
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.Services\bin\Debug\System.Web.Mvc.xml
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.Services\bin\Debug\System.Web.Razor.xml
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.Services\bin\Debug\System.Web.WebPages.xml
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.Services\bin\Debug\System.Web.WebPages.Deployment.xml
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.Services\bin\Debug\System.Web.WebPages.Razor.xml
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.Services\bin\Debug\EntityFramework.xml
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.Services\obj\Debug\TransferDesk.Services.csprojResolveAssemblyReference.cache
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.Services\obj\Debug\TransferDesk.Services.dll
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.Services\obj\Debug\TransferDesk.Services.pdb
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.Services\bin\Debug\TransferDesk.Services.dll
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.Services\bin\Debug\TransferDesk.Services.pdb
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.Services\bin\Debug\HtmlAgilityPack.dll
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.Services\bin\Debug\Microsoft.Web.Infrastructure.dll
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.Services\bin\Debug\Newtonsoft.Json.dll
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.Services\bin\Debug\System.Net.Http.Formatting.dll
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.Services\bin\Debug\System.Web.Helpers.dll
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.Services\bin\Debug\System.Web.Http.dll
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.Services\bin\Debug\System.Web.Mvc.dll
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.Services\bin\Debug\System.Web.Razor.dll
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.Services\bin\Debug\System.Web.WebPages.Deployment.dll
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.Services\bin\Debug\System.Web.WebPages.dll
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.Services\bin\Debug\System.Web.WebPages.Razor.dll
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.Services\bin\Debug\TransferDesk.BAL.dll
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.Services\bin\Debug\TransferDesk.Contracts.dll
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.Services\bin\Debug\TransferDesk.DAL.dll
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.Services\bin\Debug\TransferDesk.Utilities.dll
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.Services\bin\Debug\TransferDesk.UtilitiesHtml.dll
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.Services\bin\Debug\EntityFramework.dll
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.Services\bin\Debug\HtmlToOpenXml.dll
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.Services\bin\Debug\DocumentFormat.OpenXml.dll
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.Services\bin\Debug\OpenXmlPowerTools.dll
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.Services\bin\Debug\System.IO.Packaging.dll
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.Services\bin\Debug\TransferDesk.BAL.pdb
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.Services\bin\Debug\TransferDesk.Contracts.pdb
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.Services\bin\Debug\TransferDesk.DAL.pdb
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.Services\bin\Debug\TransferDesk.UtilitiesHtml.pdb
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.Services\bin\Debug\TransferDesk.Utilities.pdb
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.Services\bin\Debug\HtmlAgilityPack.pdb
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.Services\bin\Debug\HtmlAgilityPack.xml
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.Services\bin\Debug\Newtonsoft.Json.xml
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.Services\bin\Debug\System.Net.Http.Formatting.xml
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.Services\bin\Debug\System.Web.Helpers.xml
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.Services\bin\Debug\System.Web.Http.xml
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.Services\bin\Debug\System.Web.Mvc.xml
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.Services\bin\Debug\System.Web.Razor.xml
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.Services\bin\Debug\System.Web.WebPages.xml
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.Services\bin\Debug\System.Web.WebPages.Deployment.xml
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.Services\bin\Debug\System.Web.WebPages.Razor.xml
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.Services\bin\Debug\EntityFramework.xml
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.Services\obj\Debug\TransferDesk.Services.csprojResolveAssemblyReference.cache
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.Services\obj\Debug\TransferDesk.Services.dll
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.Services\obj\Debug\TransferDesk.Services.pdb
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\TransferDesk.Services.dll
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\TransferDesk.Services.pdb
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\HtmlAgilityPack.dll
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\Microsoft.Web.Infrastructure.dll
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\Newtonsoft.Json.dll
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\System.Net.Http.Formatting.dll
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\System.Web.Helpers.dll
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\System.Web.Http.dll
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\System.Web.Mvc.dll
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\System.Web.Razor.dll
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\System.Web.WebPages.Deployment.dll
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\System.Web.WebPages.dll
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\System.Web.WebPages.Razor.dll
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\TransferDesk.BAL.dll
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\TransferDesk.Contracts.dll
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\TransferDesk.DAL.dll
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\TransferDesk.Utilities.dll
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\TransferDesk.UtilitiesHtml.dll
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\EntityFramework.dll
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\HtmlToOpenXml.dll
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\DocumentFormat.OpenXml.dll
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\OpenXmlPowerTools.dll
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\System.IO.Packaging.dll
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\TransferDesk.BAL.pdb
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\TransferDesk.Contracts.pdb
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\TransferDesk.DAL.pdb
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\TransferDesk.UtilitiesHtml.pdb
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\TransferDesk.Utilities.pdb
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\HtmlAgilityPack.pdb
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\HtmlAgilityPack.xml
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\Newtonsoft.Json.xml
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\System.Net.Http.Formatting.xml
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\System.Web.Helpers.xml
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\System.Web.Http.xml
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\System.Web.Mvc.xml
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\System.Web.Razor.xml
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\System.Web.WebPages.xml
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\System.Web.WebPages.Deployment.xml
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\System.Web.WebPages.Razor.xml
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\EntityFramework.xml
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\obj\Debug\TransferDesk.Services.csprojResolveAssemblyReference.cache
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\obj\Debug\TransferDesk.Services.dll
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\obj\Debug\TransferDesk.Services.pdb
+D:\DayaData\GitHubWorkingCopy\TransferDesk\Saloni\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\TransferDesk.Services.dll
+D:\DayaData\GitHubWorkingCopy\TransferDesk\Saloni\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\TransferDesk.Services.pdb
+D:\DayaData\GitHubWorkingCopy\TransferDesk\Saloni\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\HtmlAgilityPack.dll
+D:\DayaData\GitHubWorkingCopy\TransferDesk\Saloni\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\Microsoft.Web.Infrastructure.dll
+D:\DayaData\GitHubWorkingCopy\TransferDesk\Saloni\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\Newtonsoft.Json.dll
+D:\DayaData\GitHubWorkingCopy\TransferDesk\Saloni\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\System.Net.Http.Formatting.dll
+D:\DayaData\GitHubWorkingCopy\TransferDesk\Saloni\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\System.Web.Helpers.dll
+D:\DayaData\GitHubWorkingCopy\TransferDesk\Saloni\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\System.Web.Http.dll
+D:\DayaData\GitHubWorkingCopy\TransferDesk\Saloni\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\System.Web.Mvc.dll
+D:\DayaData\GitHubWorkingCopy\TransferDesk\Saloni\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\System.Web.Razor.dll
+D:\DayaData\GitHubWorkingCopy\TransferDesk\Saloni\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\System.Web.WebPages.Deployment.dll
+D:\DayaData\GitHubWorkingCopy\TransferDesk\Saloni\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\System.Web.WebPages.dll
+D:\DayaData\GitHubWorkingCopy\TransferDesk\Saloni\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\System.Web.WebPages.Razor.dll
+D:\DayaData\GitHubWorkingCopy\TransferDesk\Saloni\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\TransferDesk.BAL.dll
+D:\DayaData\GitHubWorkingCopy\TransferDesk\Saloni\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\TransferDesk.Contracts.dll
+D:\DayaData\GitHubWorkingCopy\TransferDesk\Saloni\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\TransferDesk.DAL.dll
+D:\DayaData\GitHubWorkingCopy\TransferDesk\Saloni\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\TransferDesk.Utilities.dll
+D:\DayaData\GitHubWorkingCopy\TransferDesk\Saloni\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\TransferDesk.UtilitiesHtml.dll
+D:\DayaData\GitHubWorkingCopy\TransferDesk\Saloni\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\EntityFramework.dll
+D:\DayaData\GitHubWorkingCopy\TransferDesk\Saloni\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\HtmlToOpenXml.dll
+D:\DayaData\GitHubWorkingCopy\TransferDesk\Saloni\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\DocumentFormat.OpenXml.dll
+D:\DayaData\GitHubWorkingCopy\TransferDesk\Saloni\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\OpenXmlPowerTools.dll
+D:\DayaData\GitHubWorkingCopy\TransferDesk\Saloni\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\System.IO.Packaging.dll
+D:\DayaData\GitHubWorkingCopy\TransferDesk\Saloni\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\TransferDesk.BAL.pdb
+D:\DayaData\GitHubWorkingCopy\TransferDesk\Saloni\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\TransferDesk.Contracts.pdb
+D:\DayaData\GitHubWorkingCopy\TransferDesk\Saloni\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\TransferDesk.DAL.pdb
+D:\DayaData\GitHubWorkingCopy\TransferDesk\Saloni\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\TransferDesk.UtilitiesHtml.pdb
+D:\DayaData\GitHubWorkingCopy\TransferDesk\Saloni\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\TransferDesk.Utilities.pdb
+D:\DayaData\GitHubWorkingCopy\TransferDesk\Saloni\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\HtmlAgilityPack.pdb
+D:\DayaData\GitHubWorkingCopy\TransferDesk\Saloni\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\HtmlAgilityPack.xml
+D:\DayaData\GitHubWorkingCopy\TransferDesk\Saloni\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\Newtonsoft.Json.xml
+D:\DayaData\GitHubWorkingCopy\TransferDesk\Saloni\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\System.Net.Http.Formatting.xml
+D:\DayaData\GitHubWorkingCopy\TransferDesk\Saloni\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\System.Web.Helpers.xml
+D:\DayaData\GitHubWorkingCopy\TransferDesk\Saloni\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\System.Web.Http.xml
+D:\DayaData\GitHubWorkingCopy\TransferDesk\Saloni\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\System.Web.Mvc.xml
+D:\DayaData\GitHubWorkingCopy\TransferDesk\Saloni\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\System.Web.Razor.xml
+D:\DayaData\GitHubWorkingCopy\TransferDesk\Saloni\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\System.Web.WebPages.xml
+D:\DayaData\GitHubWorkingCopy\TransferDesk\Saloni\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\System.Web.WebPages.Deployment.xml
+D:\DayaData\GitHubWorkingCopy\TransferDesk\Saloni\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\System.Web.WebPages.Razor.xml
+D:\DayaData\GitHubWorkingCopy\TransferDesk\Saloni\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\EntityFramework.xml
+D:\DayaData\GitHubWorkingCopy\TransferDesk\Saloni\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\obj\Debug\TransferDesk.Services.csprojResolveAssemblyReference.cache
+D:\DayaData\GitHubWorkingCopy\TransferDesk\Saloni\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\obj\Debug\TransferDesk.Services.dll
+D:\DayaData\GitHubWorkingCopy\TransferDesk\Saloni\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\obj\Debug\TransferDesk.Services.pdb
+D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\TransferDesk.Services.dll
+D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\TransferDesk.Services.pdb
+D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\HtmlAgilityPack.dll
+D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\Microsoft.Web.Infrastructure.dll
+D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\Newtonsoft.Json.dll
+D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\System.Net.Http.Formatting.dll
+D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\System.Web.Helpers.dll
+D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\System.Web.Http.dll
+D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\System.Web.Mvc.dll
+D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\System.Web.Razor.dll
+D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\System.Web.WebPages.Deployment.dll
+D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\System.Web.WebPages.dll
+D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\System.Web.WebPages.Razor.dll
+D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\TransferDesk.BAL.dll
+D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\TransferDesk.Contracts.dll
+D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\TransferDesk.DAL.dll
+D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\TransferDesk.Utilities.dll
+D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\TransferDesk.UtilitiesHtml.dll
+D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\EntityFramework.dll
+D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\HtmlToOpenXml.dll
+D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\DocumentFormat.OpenXml.dll
+D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\OpenXmlPowerTools.dll
+D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\System.IO.Packaging.dll
+D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\TransferDesk.BAL.pdb
+D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\TransferDesk.Contracts.pdb
+D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\TransferDesk.DAL.pdb
+D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\TransferDesk.UtilitiesHtml.pdb
+D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\TransferDesk.Utilities.pdb
+D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\HtmlAgilityPack.pdb
+D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\HtmlAgilityPack.xml
+D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\Newtonsoft.Json.xml
+D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\System.Net.Http.Formatting.xml
+D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\System.Web.Helpers.xml
+D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\System.Web.Http.xml
+D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\System.Web.Mvc.xml
+D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\System.Web.Razor.xml
+D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\System.Web.WebPages.xml
+D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\System.Web.WebPages.Deployment.xml
+D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\System.Web.WebPages.Razor.xml
+D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\EntityFramework.xml
+D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\obj\Debug\TransferDesk.Services.csprojResolveAssemblyReference.cache
+D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\obj\Debug\TransferDesk.Services.dll
+D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\obj\Debug\TransferDesk.Services.pdb
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\TransferDesk.Services.dll
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\TransferDesk.Services.pdb
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\HtmlAgilityPack.dll
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\Microsoft.Web.Infrastructure.dll
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\Newtonsoft.Json.dll
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\System.Net.Http.Formatting.dll
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\System.Web.Helpers.dll
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\System.Web.Http.dll
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\System.Web.Mvc.dll
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\System.Web.Razor.dll
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\System.Web.WebPages.Deployment.dll
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\System.Web.WebPages.dll
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\System.Web.WebPages.Razor.dll
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\TransferDesk.BAL.dll
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\TransferDesk.Contracts.dll
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\TransferDesk.DAL.dll
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\TransferDesk.Utilities.dll
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\TransferDesk.UtilitiesHtml.dll
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\EntityFramework.dll
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\HtmlToOpenXml.dll
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\DocumentFormat.OpenXml.dll
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\OpenXmlPowerTools.dll
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\System.IO.Packaging.dll
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\TransferDesk.BAL.pdb
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\TransferDesk.Contracts.pdb
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\TransferDesk.DAL.pdb
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\TransferDesk.UtilitiesHtml.pdb
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\TransferDesk.Utilities.pdb
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\HtmlAgilityPack.pdb
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\HtmlAgilityPack.xml
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\Newtonsoft.Json.xml
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\System.Net.Http.Formatting.xml
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\System.Web.Helpers.xml
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\System.Web.Http.xml
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\System.Web.Mvc.xml
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\System.Web.Razor.xml
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\System.Web.WebPages.xml
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\System.Web.WebPages.Deployment.xml
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\System.Web.WebPages.Razor.xml
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\bin\Debug\EntityFramework.xml
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\obj\Debug\TransferDesk.Services.csprojResolveAssemblyReference.cache
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\obj\Debug\TransferDesk.Services.dll
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\obj\Debug\TransferDesk.Services.pdb

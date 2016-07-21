@@ -335,21 +335,6 @@ D:\MS-Iteration-10_Updated_ToUATRel\MS-Iteration-10_Updated\TransferDesk.Utiliti
 D:\MS-Iteration-10_Updated_ToUATRel\MS-Iteration-10_Updated\TransferDesk.Utilities\obj\Debug\TransferDesk.Utilities.csprojResolveAssemblyReference.cache
 D:\MS-Iteration-10_Updated_ToUATRel\MS-Iteration-10_Updated\TransferDesk.Utilities\obj\Debug\TransferDesk.Utilities.dll
 D:\MS-Iteration-10_Updated_ToUATRel\MS-Iteration-10_Updated\TransferDesk.Utilities\obj\Debug\TransferDesk.Utilities.pdb
-D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\bin\Debug\TransferDesk.Utilities.dll
-D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\bin\Debug\TransferDesk.Utilities.pdb
-D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\bin\Debug\DocumentFormat.OpenXml.dll
-D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\bin\Debug\HtmlAgilityPack.dll
-D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\bin\Debug\HtmlToOpenXml.dll
-D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\bin\Debug\OpenXmlPowerTools.dll
-D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\bin\Debug\System.IO.Packaging.dll
-D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\bin\Debug\TransferDesk.UtilitiesHtml.dll
-D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\bin\Debug\TransferDesk.UtilitiesHtml.pdb
-D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\bin\Debug\HtmlAgilityPack.pdb
-D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\bin\Debug\HtmlAgilityPack.xml
-D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\bin\Debug\HtmlToOpenXml.pdb
-D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\obj\Debug\TransferDesk.Utilities.csprojResolveAssemblyReference.cache
-D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\obj\Debug\TransferDesk.Utilities.dll
-D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\obj\Debug\TransferDesk.Utilities.pdb
 D:\GitHub_Dev_Branch\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\bin\Debug\TransferDesk.Utilities.dll
 D:\GitHub_Dev_Branch\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\bin\Debug\TransferDesk.Utilities.pdb
 D:\GitHub_Dev_Branch\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\bin\Debug\DocumentFormat.OpenXml.dll
@@ -365,18 +350,93 @@ D:\GitHub_Dev_Branch\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\bin
 D:\GitHub_Dev_Branch\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\obj\Debug\TransferDesk.Utilities.csprojResolveAssemblyReference.cache
 D:\GitHub_Dev_Branch\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\obj\Debug\TransferDesk.Utilities.dll
 D:\GitHub_Dev_Branch\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\obj\Debug\TransferDesk.Utilities.pdb
-D:\RNA-123\src\TransferDesk.Utilities\bin\Debug\TransferDesk.Utilities.dll
-D:\RNA-123\src\TransferDesk.Utilities\bin\Debug\TransferDesk.Utilities.pdb
-D:\RNA-123\src\TransferDesk.Utilities\bin\Debug\DocumentFormat.OpenXml.dll
-D:\RNA-123\src\TransferDesk.Utilities\bin\Debug\HtmlAgilityPack.dll
-D:\RNA-123\src\TransferDesk.Utilities\bin\Debug\HtmlToOpenXml.dll
-D:\RNA-123\src\TransferDesk.Utilities\bin\Debug\OpenXmlPowerTools.dll
-D:\RNA-123\src\TransferDesk.Utilities\bin\Debug\System.IO.Packaging.dll
-D:\RNA-123\src\TransferDesk.Utilities\bin\Debug\TransferDesk.UtilitiesHtml.dll
-D:\RNA-123\src\TransferDesk.Utilities\bin\Debug\TransferDesk.UtilitiesHtml.pdb
-D:\RNA-123\src\TransferDesk.Utilities\bin\Debug\HtmlAgilityPack.pdb
-D:\RNA-123\src\TransferDesk.Utilities\bin\Debug\HtmlAgilityPack.xml
-D:\RNA-123\src\TransferDesk.Utilities\bin\Debug\HtmlToOpenXml.pdb
-D:\RNA-123\src\TransferDesk.Utilities\obj\Debug\TransferDesk.Utilities.csprojResolveAssemblyReference.cache
-D:\RNA-123\src\TransferDesk.Utilities\obj\Debug\TransferDesk.Utilities.dll
-D:\RNA-123\src\TransferDesk.Utilities\obj\Debug\TransferDesk.Utilities.pdb
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.Utilities\bin\Debug\TransferDesk.Utilities.dll
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.Utilities\bin\Debug\TransferDesk.Utilities.pdb
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.Utilities\bin\Debug\DocumentFormat.OpenXml.dll
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.Utilities\bin\Debug\HtmlAgilityPack.dll
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.Utilities\bin\Debug\HtmlToOpenXml.dll
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.Utilities\bin\Debug\OpenXmlPowerTools.dll
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.Utilities\bin\Debug\System.IO.Packaging.dll
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.Utilities\bin\Debug\TransferDesk.UtilitiesHtml.dll
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.Utilities\bin\Debug\TransferDesk.UtilitiesHtml.pdb
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.Utilities\bin\Debug\HtmlAgilityPack.pdb
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.Utilities\bin\Debug\HtmlAgilityPack.xml
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.Utilities\bin\Debug\HtmlToOpenXml.pdb
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.Utilities\obj\Debug\TransferDesk.Utilities.csprojResolveAssemblyReference.cache
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.Utilities\obj\Debug\TransferDesk.Utilities.dll
+D:\GitHub_Dev_Branch\RNA-347\src\TransferDesk.Utilities\obj\Debug\TransferDesk.Utilities.pdb
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.Utilities\bin\Debug\TransferDesk.Utilities.dll
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.Utilities\bin\Debug\TransferDesk.Utilities.pdb
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.Utilities\bin\Debug\DocumentFormat.OpenXml.dll
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.Utilities\bin\Debug\HtmlAgilityPack.dll
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.Utilities\bin\Debug\HtmlToOpenXml.dll
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.Utilities\bin\Debug\OpenXmlPowerTools.dll
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.Utilities\bin\Debug\System.IO.Packaging.dll
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.Utilities\bin\Debug\TransferDesk.UtilitiesHtml.dll
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.Utilities\bin\Debug\TransferDesk.UtilitiesHtml.pdb
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.Utilities\bin\Debug\HtmlAgilityPack.pdb
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.Utilities\bin\Debug\HtmlAgilityPack.xml
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.Utilities\bin\Debug\HtmlToOpenXml.pdb
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.Utilities\obj\Debug\TransferDesk.Utilities.csprojResolveAssemblyReference.cache
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.Utilities\obj\Debug\TransferDesk.Utilities.dll
+D:\MSProject\Final UAT\Iteration11_integration\src\TransferDesk.Utilities\obj\Debug\TransferDesk.Utilities.pdb
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\bin\Debug\TransferDesk.Utilities.dll
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\bin\Debug\TransferDesk.Utilities.pdb
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\bin\Debug\DocumentFormat.OpenXml.dll
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\bin\Debug\HtmlAgilityPack.dll
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\bin\Debug\HtmlToOpenXml.dll
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\bin\Debug\OpenXmlPowerTools.dll
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\bin\Debug\System.IO.Packaging.dll
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\bin\Debug\TransferDesk.UtilitiesHtml.dll
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\bin\Debug\TransferDesk.UtilitiesHtml.pdb
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\bin\Debug\HtmlAgilityPack.pdb
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\bin\Debug\HtmlAgilityPack.xml
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\bin\Debug\HtmlToOpenXml.pdb
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\obj\Debug\TransferDesk.Utilities.csprojResolveAssemblyReference.cache
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\obj\Debug\TransferDesk.Utilities.dll
+D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\obj\Debug\TransferDesk.Utilities.pdb
+D:\DayaData\GitHubWorkingCopy\TransferDesk\Saloni\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\bin\Debug\TransferDesk.Utilities.dll
+D:\DayaData\GitHubWorkingCopy\TransferDesk\Saloni\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\bin\Debug\TransferDesk.Utilities.pdb
+D:\DayaData\GitHubWorkingCopy\TransferDesk\Saloni\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\bin\Debug\DocumentFormat.OpenXml.dll
+D:\DayaData\GitHubWorkingCopy\TransferDesk\Saloni\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\bin\Debug\HtmlAgilityPack.dll
+D:\DayaData\GitHubWorkingCopy\TransferDesk\Saloni\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\bin\Debug\HtmlToOpenXml.dll
+D:\DayaData\GitHubWorkingCopy\TransferDesk\Saloni\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\bin\Debug\OpenXmlPowerTools.dll
+D:\DayaData\GitHubWorkingCopy\TransferDesk\Saloni\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\bin\Debug\System.IO.Packaging.dll
+D:\DayaData\GitHubWorkingCopy\TransferDesk\Saloni\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\bin\Debug\TransferDesk.UtilitiesHtml.dll
+D:\DayaData\GitHubWorkingCopy\TransferDesk\Saloni\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\bin\Debug\TransferDesk.UtilitiesHtml.pdb
+D:\DayaData\GitHubWorkingCopy\TransferDesk\Saloni\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\bin\Debug\HtmlAgilityPack.pdb
+D:\DayaData\GitHubWorkingCopy\TransferDesk\Saloni\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\bin\Debug\HtmlAgilityPack.xml
+D:\DayaData\GitHubWorkingCopy\TransferDesk\Saloni\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\bin\Debug\HtmlToOpenXml.pdb
+D:\DayaData\GitHubWorkingCopy\TransferDesk\Saloni\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\obj\Debug\TransferDesk.Utilities.csprojResolveAssemblyReference.cache
+D:\DayaData\GitHubWorkingCopy\TransferDesk\Saloni\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\obj\Debug\TransferDesk.Utilities.dll
+D:\DayaData\GitHubWorkingCopy\TransferDesk\Saloni\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\obj\Debug\TransferDesk.Utilities.pdb
+D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\bin\Debug\TransferDesk.Utilities.dll
+D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\bin\Debug\TransferDesk.Utilities.pdb
+D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\bin\Debug\DocumentFormat.OpenXml.dll
+D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\bin\Debug\HtmlAgilityPack.dll
+D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\bin\Debug\HtmlToOpenXml.dll
+D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\bin\Debug\OpenXmlPowerTools.dll
+D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\bin\Debug\System.IO.Packaging.dll
+D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\bin\Debug\TransferDesk.UtilitiesHtml.dll
+D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\bin\Debug\TransferDesk.UtilitiesHtml.pdb
+D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\bin\Debug\HtmlAgilityPack.pdb
+D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\bin\Debug\HtmlAgilityPack.xml
+D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\bin\Debug\HtmlToOpenXml.pdb
+D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\obj\Debug\TransferDesk.Utilities.csprojResolveAssemblyReference.cache
+D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\obj\Debug\TransferDesk.Utilities.dll
+D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\obj\Debug\TransferDesk.Utilities.pdb
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\bin\Debug\TransferDesk.Utilities.dll
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\bin\Debug\TransferDesk.Utilities.pdb
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\bin\Debug\DocumentFormat.OpenXml.dll
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\bin\Debug\HtmlAgilityPack.dll
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\bin\Debug\HtmlToOpenXml.dll
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\bin\Debug\OpenXmlPowerTools.dll
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\bin\Debug\System.IO.Packaging.dll
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\bin\Debug\TransferDesk.UtilitiesHtml.dll
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\bin\Debug\TransferDesk.UtilitiesHtml.pdb
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\bin\Debug\HtmlAgilityPack.pdb
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\bin\Debug\HtmlAgilityPack.xml
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\bin\Debug\HtmlToOpenXml.pdb
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\obj\Debug\TransferDesk.Utilities.csprojResolveAssemblyReference.cache
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\obj\Debug\TransferDesk.Utilities.dll
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.Utilities\obj\Debug\TransferDesk.Utilities.pdb

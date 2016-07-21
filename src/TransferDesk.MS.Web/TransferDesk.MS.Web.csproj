@@ -213,6 +213,7 @@
     <Content Include="Images\redtick.bmp" />
     <Content Include="Images\Springer-Nature.jpg" />
     <Content Include="Scripts\CustomeScript\AdminDashBoard.js" />
+    <Content Include="Scripts\CustomeScript\AssociateDashboard.js" />
     <Content Include="Scripts\CustomeScript\BookLogin.js" />
     <Content Include="Scripts\CustomeScript\BookMaster.js" />
     <Content Include="Scripts\CustomeScript\BookScreening.js" />
@@ -220,6 +221,7 @@
     <Content Include="Scripts\CustomeScript\JournalSectionType.js" />
     <Content Include="Scripts\CustomeScript\LoginPage.js" />
     <Content Include="Scripts\CustomeScript\ReviewerSuggestionScript.js" />
+    <Content Include="Scripts\CustomeScript\UserMasterScript.js" />
     <Content Include="Scripts\CustomeScript\UserRoleScript.js" />
     <Content Include="Scripts\CustomeScript\UserScript.js" />
     <Content Include="Scripts\ExternalScript\jquery-ddlslick.js" />
@@ -456,6 +458,8 @@
     <Content Include="Views\Manuscript\BookScreening.cshtml" />
     <Content Include="Views\ManuscriptLogin\BookLogin.cshtml" />
     <Content Include="Views\ManuscriptLogin\JournalLogin.cshtml" />
+    <Content Include="Views\UserRole\UserMaster.cshtml" />
+    <Content Include="Views\Shared\_Common.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TransferDesk.BAL\TransferDesk.BAL.csproj">

@@ -53,14 +53,9 @@ namespace TransferDesk.Services.Manuscript
             if (dataErrors.Count == 0)
             {
                 manuscriptLoginDTO = new ManuscriptLoginDTO();
-                //manuscriptLogin = new Entities.ManuscriptLogin();
-
-                //ManuscriptLogin entity data fill up
-
                 if (manuscriptLoginVM.Id == 0)
                 {
                     manuscriptLogin.CrestId = Convert.ToString(manuscriptLoginVM.CrestId);
-                    //manuscriptLogin.ManuscriptFilePath = manuscriptLoginVM.ManuscriptFilePath;
                 }
 
                 manuscriptLogin.ArticleTitle = manuscriptLoginVM.ArticleTitle;

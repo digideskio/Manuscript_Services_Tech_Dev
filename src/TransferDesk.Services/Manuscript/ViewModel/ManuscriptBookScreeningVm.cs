@@ -147,7 +147,7 @@ namespace TransferDesk.Services.Manuscript.ViewModel
             get { return _msDTO.ManuscriptBookLogin.ChapterNumber; }
             set { _msDTO.ManuscriptBookLogin.ChapterNumber = value; }
         }
-        [Required(ErrorMessage = "Chapter Title")]
+        
         public string ChapterTitle
         {
             get { return _msDTO.ManuscriptBookLogin.ChapterTitle; }
@@ -159,7 +159,7 @@ namespace TransferDesk.Services.Manuscript.ViewModel
             get { return _msDTO.ManuscriptBookLogin.ReceivedDate; }
             set { _msDTO.ManuscriptBookLogin.ReceivedDate = value; }
         }
-        [Required(ErrorMessage = "Page Count")]
+        
         public int PageCount
         {
             get { return _msDTO.ManuscriptBookLogin.PageCount; }

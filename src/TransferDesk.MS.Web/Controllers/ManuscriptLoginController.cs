@@ -11,9 +11,11 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Microsoft.Ajax.Utilities;
 using Newtonsoft.Json.Linq;
+using TransferDesk.Contracts.Logging;
 using TransferDesk.Contracts.Manuscript.ComplexTypes.UserRole;
 using TransferDesk.Contracts.Manuscript.Entities;
 using TransferDesk.DAL.Manuscript.Repositories;
+using TransferDesk.Logger;
 using TransferDesk.Services.Manuscript;
 using TransferDesk.Services.Manuscript.ViewModel;
 
@@ -26,8 +28,10 @@ namespace TransferDesk.MS.Web.Controllers
         private readonly ManuscriptLoginService _manuscriptLoginService;
         private readonly string _conString;
         private string _errormsg = String.Empty;
-        public ManuscriptLoginController()
+        private ILogger _logger;
+        public ManuscriptLoginController(ILogger logger)
         {
+            _logger = logger;
             _conString = Convert.ToString(ConfigurationManager.AppSettings["dbTransferDeskService"]);
             _manuscriptDBRepositoryReadSide = new ManuscriptDBRepositoryReadSide(_conString);
             ManuscriptLoginDbRepositoryReadSide = new ManuscriptLoginDBRepositoryReadSide(_conString);
@@ -71,7 +75,6 @@ namespace TransferDesk.MS.Web.Controllers
             manuscriptLoginVm.ReceivedDate = manuscriptLogin.ReceivedDate;
             manuscriptLoginVm.TaskID = manuscriptLogin.TaskID;
             manuscriptLoginVm.EmployeeName = _manuscriptDBRepositoryReadSide.EmployeeName(userId);
-           
         }
 
         private void ManuscriptBookLoginVmDetails(ManuscriptBookLoginVM manuscriptBookLoginVm, int crestId)
@@ -82,12 +85,16 @@ namespace TransferDesk.MS.Web.Controllers
             try
             {
                 manuscriptBookLogin = ManuscriptLoginDbRepositoryReadSide.GetManuscriptBookLoginByCrestID(crestId);
-                manuscriptLoginDetails = ManuscriptLoginDbRepositoryReadSide.GetManuscriptBookLoginDetails(manuscriptBookLogin.ID, manuscriptBookLogin.ServiceTypeID);
+                manuscriptLoginDetails =
+                    ManuscriptLoginDbRepositoryReadSide.GetManuscriptBookLoginDetails(manuscriptBookLogin.ID,
+                        manuscriptBookLogin.ServiceTypeID);
                 if (manuscriptLoginDetails != null)
                 {
                     if (manuscriptLoginDetails.UserRoleId != null && manuscriptLoginDetails.UserRoleId != 0)
                     {
-                        var usernameID = ManuscriptLoginDbRepositoryReadSide.GetUserID(Convert.ToInt32(manuscriptLoginDetails.UserRoleId)).UserID;
+                        var usernameID =
+                            ManuscriptLoginDbRepositoryReadSide.GetUserID(
+                                Convert.ToInt32(manuscriptLoginDetails.UserRoleId)).UserID;
                         manuscriptBookLoginVm.AssociateName = _manuscriptDBRepositoryReadSide.EmployeeName(usernameID);
                     }
                 }
@@ -95,8 +102,8 @@ namespace TransferDesk.MS.Web.Controllers
 
                 manuscriptBookLoginVm.BookMasterId = manuscriptBookLogin.BookMasterID;
                 manuscriptBookLoginVm.ChapterNumber = Convert.ToString(manuscriptBookLogin.ChapterNumber).Trim();
-                manuscriptBookLoginVm.FTPLink = ((BookMaster)(JsBookLinkAndGPUInformation.Data)).FTPLink;
-                manuscriptBookLoginVm.GPUInformation = ((BookMaster)(JsBookLinkAndGPUInformation.Data)).GPUInformation;
+                manuscriptBookLoginVm.FTPLink = ((BookMaster) (JsBookLinkAndGPUInformation.Data)).FTPLink;
+                manuscriptBookLoginVm.GPUInformation = ((BookMaster) (JsBookLinkAndGPUInformation.Data)).GPUInformation;
                 manuscriptBookLoginVm.ChapterTitle = manuscriptBookLogin.ChapterTitle;
                 manuscriptBookLoginVm.PageCount = manuscriptBookLogin.PageCount;
                 manuscriptBookLoginVm.ReceivedDate = manuscriptBookLogin.ReceivedDate;
@@ -107,12 +114,35 @@ namespace TransferDesk.MS.Web.Controllers
                 manuscriptBookLoginVm.EmployeeName = _manuscriptDBRepositoryReadSide.EmployeeName(userId);
                 manuscriptBookLoginVm.SharedDrivePath = manuscriptBookLogin.ShareDrivePath;
             }
-            catch (Exception ex) { }
+            catch (Exception ex)
+            {
+                _logger.Log("Error in Manuscript Login class and method name ManuscriptBookLoginVmDetails: \n" + ex.ToString());
+            }
+        }
+
+        public bool CheckIfBookPresent(int serviceTypeId, int BookTitleId, string chapterNo)
+        {
+            if (ManuscriptLoginDbRepositoryReadSide.CheckIfBookPresent(serviceTypeId, BookTitleId, chapterNo))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
         }
 
         [HttpPost]
         public ActionResult BookLogin(ManuscriptBookLoginVM manuscriptBookLoginVM)
         {
+            _logger.Log("Loading BookLogin ");
+            var previousid = manuscriptBookLoginVM.ID;
+            if (manuscriptBookLoginVM.IsNewEntry)
+            {
+                manuscriptBookLoginVM.ID = 0;
+            }
+
             manuscriptBookLoginVM.userId = @System.Web.HttpContext.Current.User.Identity.Name.Replace("SPRINGER-SBM\\", "");
             IDictionary<string, string> dataErrors = new Dictionary<string, string>();
             if (manuscriptBookLoginVM.ChapterNumber != "")
@@ -120,20 +150,25 @@ namespace TransferDesk.MS.Web.Controllers
             if (ManuscriptLoginDbRepositoryReadSide.IsBookCrestIDLogin(manuscriptBookLoginVM.ServiceTypeID, manuscriptBookLoginVM.BookMasterId, manuscriptBookLoginVM.ChapterNumber, manuscriptBookLoginVM.ChapterTitle, manuscriptBookLoginVM.ID))
             {
                 TempData["msg"] = "<script>alert('Job is already loggedin');</script>";
-                return RedirectToAction("BookLogin", new { id = 0 });
+                _logger.Log("Job with id : " + previousid + "is already loggedin");
+                if (previousid != 0)
+                {
+                    return RedirectToAction("BookLogin", new { id = previousid, jobtype = "book" });
+                }
+
             }
             if (manuscriptBookLoginVM.ID == 0)
             {
                 AddManuscriptBookLoginInfo(manuscriptBookLoginVM, dataErrors);
                 TempData["msg"] = "<script>alert('Record added succesfully');</script>";
+                manuscriptBookLoginVM.IsNewEntry = true;
             }
             else
             {
                 AddManuscriptBookLoginInfo(manuscriptBookLoginVM, dataErrors);
                 TempData["msg"] = "<script>alert('Record updated succesfully');</script>";
             }
-
-            return RedirectToAction("BookLogin", new { id = 0 });
+            return RedirectToAction("BookLogin", new { id = manuscriptBookLoginVM.ID, jobtype = "book" });
         }
 
         private void AddManuscriptBookLoginInfo(ManuscriptBookLoginVM manuscriptBookLoginVM, IDictionary<string, string> dataErrors)
@@ -166,7 +201,7 @@ namespace TransferDesk.MS.Web.Controllers
                 else
                 {
                     if (!ManuscriptLoginDbRepositoryReadSide.IsMSIDAvailable(manuscriptLoginVm.MSID, manuscriptLoginVm.Id, manuscriptLoginVm.ServiceTypeID))
-                        TempData["MSIDError"] = "<script>alert('Manuscript Number is already present.');</script>";
+                            TempData["MSIDError"] = "<script>alert('Manuscript Number is already present.');</script>";
                     else
                     {
                         AddManuscriptLoginInfo(manuscriptLoginVm, dataErrors);
@@ -237,6 +272,8 @@ namespace TransferDesk.MS.Web.Controllers
         {
             return ManuscriptLoginDbRepositoryReadSide.IsMSIDAvailable(msid, 0, serviceTypeStatusId);
         }
+
+     
 
         public string GetJournalLink(int journalId)
         {
@@ -327,7 +364,7 @@ namespace TransferDesk.MS.Web.Controllers
                 grid.HeaderRow.Cells[10].Text = "Special Instruction";
                 grid.HeaderRow.Cells[11].Text = "Service Type";
                 grid.HeaderRow.Cells[12].Text = "Task";
-                grid.HeaderRow.Cells[13].Text = "Share Drive Path";
+                grid.HeaderRow.Cells[13].Text = "Shared Drive Path";
                 Response.ClearContent();
                 Response.Buffer = true;
                 Response.AddHeader("content-disposition", string.Format("attachment; filename={0}", "ManuscriptBookLogin" + DateTime.Now.ToShortDateString() + ".xls"));
@@ -360,6 +397,14 @@ namespace TransferDesk.MS.Web.Controllers
             var userId = @System.Web.HttpContext.Current.User.Identity.Name.Replace("SPRINGER-SBM\\", "");
             if (id != null && id != 0 && jobtype == "book")
             {
+                var serviceTypeid = _manuscriptDBRepositoryReadSide.GetBookServiceID(id);
+                var jobstatusisOnHold = _manuscriptDBRepositoryReadSide.CheckChpaterJobStatusForHold(id, serviceTypeid);
+                if (jobstatusisOnHold == false)
+                {
+                    _errormsg = "This job is on hold and is not editable.";
+                    TempData["msg1"] = "<script>alert(\"" + _errormsg + "\");</script>";
+                    return RedirectToAction("BookLogin");
+                }
                 ManuscriptBookLoginVmDetails(manuscriptBookLoginVm, crestId);
             }
             manuscriptBookLoginVm.TaskList = _manuscriptDBRepositoryReadSide.GetTaskType();

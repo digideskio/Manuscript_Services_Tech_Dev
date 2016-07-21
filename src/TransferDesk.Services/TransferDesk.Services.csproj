@@ -87,11 +87,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Manuscript\AdminDashBoardService.cs" />
+    <Compile Include="Manuscript\HTMLOutputs\ManuscriptBookScreeningPreview.cs" />
     <Compile Include="Manuscript\HTMLOutputs\ManuscriptScreeningPreview.cs" />
     <Compile Include="Manuscript\ManuscriptLoginService.cs" />
     <Compile Include="Manuscript\ManuscriptService.cs" />
     <Compile Include="Manuscript\ReportOutputs\TransferReportDocX.cs" />
     <Compile Include="Manuscript\ReviewerService.cs" />
+    <Compile Include="Manuscript\UserRoleService.cs" />
     <Compile Include="Manuscript\ViewModel\AdminDasboardVM.cs" />
     <Compile Include="Manuscript\ViewModel\AssociateDashboardVM.cs" />
     <Compile Include="Manuscript\ViewModel\BookMasterVm.cs" />

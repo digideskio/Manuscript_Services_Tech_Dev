@@ -164,13 +164,19 @@ namespace TransferDesk.BAL.Manuscript
             try
             {
                 _reviewerSuggestionUnitOfWork = new ReviewerSuggestionUnitOfWork(_ConStringWrite);
-
+                Entities.MSReviewersSuggestion msReviewerSuggestion=new Entities.MSReviewersSuggestion();
+                msReviewerSuggestion= msReviewerSuggestionDBRepositoryReadSide.GetManuscriptByID(msReviewerSuggestionDTO.MSReviewersSuggestion.ID);
+                msReviewerSuggestionDTO.MSReviewersSuggestion.CreatedBy = msReviewerSuggestion.CreatedBy;
+                msReviewerSuggestionDTO.MSReviewersSuggestion.CreatedDate = msReviewerSuggestion.CreatedDate;
+                msReviewerSuggestionDTO.MSReviewersSuggestion.ModifyDate = System.DateTime.Now;
+                msReviewerSuggestionDTO.MSReviewersSuggestion.ModifiedBy =msReviewerSuggestionDTO.CurrentUserID;
                 _reviewerSuggestionUnitOfWork.msReviewerSuggestionDTO = msReviewerSuggestionDTO;
                 _reviewerSuggestionUnitOfWork.SaveMSReviewerSuggestion();
                 _reviewerSuggestionUnitOfWork.SaveChanges();//todo:change this function to update ids and save as seperate commit
                 return true;
             }
             //exception will be raised up in the call stack
+            catch (Exception ex) { return false;}
             finally
             {
                 if (_reviewerSuggestionUnitOfWork != null)

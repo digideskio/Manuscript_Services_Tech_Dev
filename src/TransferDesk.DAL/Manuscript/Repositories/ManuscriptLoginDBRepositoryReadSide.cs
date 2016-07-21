@@ -399,7 +399,7 @@ namespace TransferDesk.DAL.Manuscript.Repositories
                                                          SpecialInstruction = q.SpecialInstruction,
                                                          ServiceType = q.ServiceType,
                                                          Task = q.Task,
-                                                           ShareDrivePath = q.ShareDrivePath,
+                                                          ShareDrivePath = q.ShareDrivePath,
                                                      }).ToList<pr_GetManuscriptBookLoginExportJobs_Result>();
                 return manuscriptBookLoginExportJobs;
             }
@@ -424,5 +424,21 @@ namespace TransferDesk.DAL.Manuscript.Repositories
                 this.manuscriptDataContextRead.Database.SqlQuery<pr_GetManuscriptLoginedJobByMSID_Result>("pr_GetManuscriptLoginedJobByMSID @msid", msid).FirstOrDefault();
             return msidJobDetails;
         }
+
+        public bool CheckIfBookPresent(int serviceTypeId, int BookTitleId, string chapterno)
+        {
+            var manuscripBooktLogin = 0;
+            manuscripBooktLogin = (from q in manuscriptDataContextRead.ManuscriptBookLogin
+                                   where q.BookMasterID == BookTitleId && q.ChapterNumber == chapterno && q.ServiceTypeID == serviceTypeId && q.ManuscriptStatusID == 7
+                                   select q).Count();
+            if (manuscripBooktLogin > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }       
     }
 }

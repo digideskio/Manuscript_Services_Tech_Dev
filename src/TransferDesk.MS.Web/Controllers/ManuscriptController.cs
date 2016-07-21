@@ -27,37 +27,19 @@ namespace TransferDesk.MS.Web.Controllers
         private readonly ManuscriptDBRepositoryReadSide _manuscriptDbRepositoryReadSide;
         private readonly ManuscriptService _manuscriptService;
         private ILogger _logger;
-        private string _userId; 
-
         public ManuscriptController(ILogger logger)
         {
             _logger = logger;
-
-            try
-            {
-                if (@System.Web.HttpContext.Current != null && @System.Web.HttpContext.Current.User != null)
-                {
-                    _userId = @System.Web.HttpContext.Current.User.Identity.Name.Replace("SPRINGER-SBM\\", "");
-                }
-                var conString = Convert.ToString(ConfigurationManager.AppSettings["dbTransferDeskService"]);
-                _manuscriptService = new ManuscriptService(conString, conString);
-                _manuscriptDbRepositoryReadSide = new ManuscriptDBRepositoryReadSide(conString);
-                //throw new Exception("test constructor exception");
-            }
-            catch (Exception exception)
-            {
-               _logger.LogException(exception, null);
-            }
+            var conString = Convert.ToString(ConfigurationManager.AppSettings["dbTransferDeskService"]);
+            _manuscriptService = new ManuscriptService(conString, conString);
+            _manuscriptDbRepositoryReadSide = new ManuscriptDBRepositoryReadSide(conString);
         }
 
         [HttpGet]
         public ActionResult HomePage(int? id)
         {
-            try
-            {
-               
-                _logger.Log(_userId,"user id is " + _userId);
-            var roleIds = _manuscriptDbRepositoryReadSide.GetUserRoles(_userId);
+            var userId = @System.Web.HttpContext.Current.User.Identity.Name.Replace("SPRINGER-SBM\\", "");
+            var roleIds = _manuscriptDbRepositoryReadSide.GetUserRoles(userId);
             if (roleIds.Count() > 0)
             {
                 ViewBag.RoleList = _manuscriptDbRepositoryReadSide.GetUserRoleList(roleIds);
@@ -84,13 +66,6 @@ namespace TransferDesk.MS.Web.Controllers
                 return View("HomePage", manuscriptVm);
             }
             return File("~/Views/Shared/Unauthorised.htm", "text/html");
-            }
-            catch (Exception exception)
-            {
-                _logger.LogException(exception, null);
-            
-                return null;
-            }
         }
 
         [HttpPost, ValidateInput(false)]
@@ -112,7 +87,9 @@ namespace TransferDesk.MS.Web.Controllers
                         manuscriptVm.RevisedDate = null;
                         manuscriptVm = IsSaveOrSubmit(manuscriptVm, associateCommand, qualityCommand);
                         _manuscriptService.SaveManuscriptScreeningVM(dataErrors, manuscriptVm);
+                        _logger.Log(" Manuscript Record added succesfully for MSID:" + manuscriptVm.MSID);
                         TempData["msg"] = "<script>alert('Record added succesfully');</script>";
+
                         ModelState.Clear();
                         manuscriptVm.ID = _manuscriptDbRepositoryReadSide.GetManuscriptID(manuscriptVm.MSID);
                         manuscriptVm = _manuscriptService.GetManuscriptScreeningVM(manuscriptVm.ID);
@@ -137,12 +114,14 @@ namespace TransferDesk.MS.Web.Controllers
                             {
                                 _manuscriptService.SaveManuscriptScreeningVM(dataErrors, manuscriptVm);
                                 TempData["msg"] = "<script>alert('Record added succesfully');</script>";
+                                _logger.Log("Manuscript Record added succesfully in revision case for MSID:" + manuscriptVm.MSID);
                             }
                         }
                         else
                         {
                             _manuscriptService.SaveManuscriptScreeningVM(dataErrors, manuscriptVm);
                             TempData["msg"] = "<script>alert('Record updated succesfully');</script>";
+                            _logger.Log("Manuscript Record updated succesfully for MSID:" + manuscriptVm.MSID);
                         }
                         ModelState.Clear();
                         manuscriptVm.ID = _manuscriptDbRepositoryReadSide.GetManuscriptID(manuscriptVm.MSID);
@@ -167,6 +146,8 @@ namespace TransferDesk.MS.Web.Controllers
             catch (Exception ex)
             {
                 ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator. [exception] " + ex.Message);
+                _logger.Log("Error in Manuscript Screening during add/update operation: \n" + ex.StackTrace);
+                
             }
             finally
             {
@@ -341,6 +322,51 @@ namespace TransferDesk.MS.Web.Controllers
             return htmlPreview;
         }
 
+        [HttpPost]
+        public string BookPreviewForm(ManuscriptBookScreeningVm manuscriptbookVm)
+        {
+            
+                _logger.Log("Loading Book Preview Form ");
+                var bookid = Convert.ToInt32(manuscriptbookVm.BookTitleId);
+                var booktitleList = _manuscriptDbRepositoryReadSide.GetManuscriptBookTitle();
+                var msBookHtmlPreview = new ManuscriptBookScreeningPreview(manuscriptbookVm)
+                {
+                    BookTitleList = booktitleList
+                };
+                var StyleGroupRow = "StyleGroupRow";
+                var StyleRow = "row";
+                var htmlRowDataBookList = new List<HtmlRowData>
+            {
+                 new HtmlRowData() { LabelText = "Book Screening  Fields", InnerHtml = "Information", StyleClass = StyleGroupRow},
+                new HtmlRowData() { LabelText = "Start Date",           InnerHtml = manuscriptbookVm.StartDate.HasValue? manuscriptbookVm.StartDate.Value.ToString("d"):String.Empty , StyleClass = StyleRow },
+                new HtmlRowData() { LabelText = "Associate ID",         InnerHtml = manuscriptbookVm.AssociateUserID, StyleClass = StyleRow },
+                new HtmlRowData() { LabelText = "Role",                 InnerHtml =_manuscriptDbRepositoryReadSide.GetRole(Convert.ToInt32(manuscriptbookVm.RollID)), StyleClass = StyleRow },
+                new HtmlRowData() { LabelText = "Manuscript Details",   InnerHtml = string.Empty, StyleClass = StyleGroupRow },
+                new HtmlRowData() { LabelText = "Book Title*",InnerHtml = msBookHtmlPreview.GetBookTitleList(manuscriptbookVm.BookTitleId), StyleClass = StyleRow },
+                new HtmlRowData() { LabelText = "Chapter Number*",                 InnerHtml = manuscriptbookVm.ChapterNumber, StyleClass = StyleRow },
+                  new HtmlRowData() { LabelText = "Chapter Title*",                 InnerHtml = manuscriptbookVm.ChapterTitle, StyleClass = StyleRow },              
+                new HtmlRowData() { LabelText = "Received Date*",      InnerHtml = manuscriptbookVm.ReceivedDate.ToString("d"), StyleClass = StyleRow },
+                 new HtmlRowData() { LabelText = "Page Count*",  InnerHtml =manuscriptbookVm.PageCount.ToString(), StyleClass = StyleRow },
+                new HtmlRowData() { LabelText = "Author(s) Details", InnerHtml = string.Empty, StyleClass = StyleGroupRow },
+                new HtmlRowData() { LabelText = "Corresponding Author*",        InnerHtml = manuscriptbookVm.CorrespondingAuthor, StyleClass = StyleRow },
+                new HtmlRowData() { LabelText = "Corresponding Author Email*",  InnerHtml = manuscriptbookVm.CorrespondingAuthorEmail, StyleClass = StyleRow },
+                new HtmlRowData() { LabelText = "Corresponding Author Affiliation", InnerHtml = manuscriptbookVm.CorrespondingAuthorAff, StyleClass = StyleRow },              
+                new HtmlRowData() { LabelText = "Analytical Findings",  InnerHtml = string.Empty, StyleClass = StyleGroupRow },
+                new HtmlRowData() { LabelText = "iThenticate %*",       InnerHtml =Convert.ToString(manuscriptbookVm.iThenticatePercentage), StyleClass = StyleRow },
+                new HtmlRowData() { LabelText = "Highest iThenticate %*", InnerHtml =Convert.ToString(manuscriptbookVm.Highest_iThenticateFromSingleSrc), StyleClass = StyleRow },
+                new HtmlRowData() { LabelText = "Cross Check/ iThenticate result*", InnerHtml = _manuscriptDbRepositoryReadSide.GetMetrixLegendTitle(Convert.ToInt32(manuscriptbookVm.Crosscheck_iThenticateResultID)), StyleClass = StyleRow },
+                new HtmlRowData() { LabelText = "Comment",              InnerHtml = manuscriptbookVm.Comments_Crosscheck_iThenticateResult, StyleClass = StyleRow },
+                new HtmlRowData() { LabelText = "English Language Quality*", InnerHtml = _manuscriptDbRepositoryReadSide.GetMetrixLegendTitle(Convert.ToInt32(manuscriptbookVm.English_Lang_QualityID)), StyleClass = StyleRow },
+                new HtmlRowData() { LabelText = "Comment",              InnerHtml = manuscriptbookVm.Comments_English_Lang_Quality , StyleClass = StyleRow },
+                new HtmlRowData() { LabelText = "Ethics Compliance*",   InnerHtml =_manuscriptDbRepositoryReadSide.GetMetrixLegendTitle(Convert.ToInt32(manuscriptbookVm.Ethics_ComplianceID)), StyleClass = StyleRow },
+                new HtmlRowData() { LabelText = "Comment",              InnerHtml = manuscriptbookVm.Comments_Ethics_Compliance, StyleClass = StyleRow },
+                new HtmlRowData() { LabelText = "Final Advice*",   InnerHtml =_manuscriptDbRepositoryReadSide.GetMetrixLegendTitle(Convert.ToInt32(manuscriptbookVm.OverallAnalysisID)), StyleClass = StyleRow },
+                new HtmlRowData() { LabelText = "Comment",              InnerHtml = manuscriptbookVm.Comments_OverallAnalysis, StyleClass = StyleRow },
+            };
+                var htmlBookPreview = msBookHtmlPreview.CreateHtmlPreview(htmlRowDataBookList, "", true, "table table-bordered");
+                return htmlBookPreview;                       
+        }
+
         private string GetOtherAuthors(ManuscripScreeningVM manuscriptVm)
         {
             var htmltable = "<Table class='table table-bordered'>";
@@ -395,10 +421,9 @@ namespace TransferDesk.MS.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult BookScreening(ManuscriptBookScreeningVm manuscriptBookScreeningVm, string associateCommand, string qualityCommand)
         {
-            var userId = "";
             try
             {
-                userId = @System.Web.HttpContext.Current.User.Identity.Name.Replace("SPRINGER-SBM\\", "");
+                var userId = @System.Web.HttpContext.Current.User.Identity.Name.Replace("SPRINGER-SBM\\", "");
                 IDictionary<string, string> dataErrors = new Dictionary<string, string>();
                 _manuscriptService.IsBookSaveOrSubmit(manuscriptBookScreeningVm, associateCommand, qualityCommand);
                 if (manuscriptBookScreeningVm.BookScreeningID == 0)
@@ -414,7 +439,7 @@ namespace TransferDesk.MS.Web.Controllers
             }
             catch (Exception ex)
             {
-                _logger.Log("Error in Manuscript Book Screening during add/update operation: \n"+ ex.StackTrace,userId);
+                _logger.Log("Error in Manuscript Book Screening during add/update operation: \n" + ex.ToString());
             }
             return RedirectToAction("BookScreening", manuscriptBookScreeningVm.BookLoginID);
         }

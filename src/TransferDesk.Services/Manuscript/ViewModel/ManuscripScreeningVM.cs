@@ -146,10 +146,11 @@ namespace TransferDesk.Services.Manuscript.ViewModel
         
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        public System.DateTime DisplayStartDate
+        { get { return  _msDTO.Manuscript.StartDate; }  }
+
         public System.DateTime StartDate
-        { get { return  _msDTO.Manuscript.StartDate; } set { _msDTO.Manuscript.StartDate = value; } }
-
-
+        { get { return _msDTO.Manuscript.StartDate; } set { _msDTO.Manuscript.StartDate = value; } }
 
         [Required(ErrorMessage = "Role")]
         public int? RoleID
