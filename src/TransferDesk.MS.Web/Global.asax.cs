@@ -25,7 +25,7 @@ namespace TransferDesk.MS.Web
     public class MvcApplication : System.Web.HttpApplication
     {
         private SimpleInjector.Container _simpleInjectorcontainer = null;
-       
+        private IApplicationLog _applicationLog = null;
 
         protected void Application_Start()
         {
@@ -50,7 +50,9 @@ namespace TransferDesk.MS.Web
 
                 var logger = _simpleInjectorcontainer.GetInstance<ILogger>();
 
+                _applicationLog  = logger as IApplicationLog;
                 _fileLogger = logger as IFileLogger;
+
                 //fileLogger.FilePath = "d:\\TransferdeskLog\\";
                 string iterationInfo = "Transferdesk";//todo:setto config
 
@@ -83,7 +85,7 @@ namespace TransferDesk.MS.Web
             }
             catch (Exception exception)
             {
-                if (_fileLogger == null)
+                if (_applicationLog == null)
                 {
                     string pendingLogWrites = string.Empty;
                     if (stringBuilder != null)
@@ -94,7 +96,7 @@ namespace TransferDesk.MS.Web
                 }
                 else
                 {
-                   _fileLogger.ApplicationExceptionLog(exception,stringBuilder);
+                    _applicationLog.ApplicationExceptionLog(exception,stringBuilder);
                 }
 
             }
@@ -172,9 +174,9 @@ namespace TransferDesk.MS.Web
 
                 if (!String.IsNullOrEmpty(shutDownMessage))
                 {
-                    if (_fileLogger != null)
+                    if (_applicationLog != null)
                     {
-                        _fileLogger.ApplicationLog(String.Format("_shutDownMessage={0}\r\n\r\n_shutDownStack={1}", shutDownMessage,shutDownStack));
+                        _applicationLog.ApplicationLog(String.Format("_shutDownMessage={0}\r\n\r\n_shutDownStack={1}", shutDownMessage,shutDownStack));
                     }
                 }
             }
