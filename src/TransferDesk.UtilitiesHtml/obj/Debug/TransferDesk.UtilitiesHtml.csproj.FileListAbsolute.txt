@@ -114,13 +114,11 @@ D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\Transfer
 D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.UtilitiesHtml\bin\Debug\TransferDesk.UtilitiesHtml.pdb
 D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.UtilitiesHtml\obj\Debug\TransferDesk.UtilitiesHtml.dll
 D:\GitHub_Dev_Branch\Github_Dev_RNA374\Manuscript_Services_Tech_Dev\src\TransferDesk.UtilitiesHtml\obj\Debug\TransferDesk.UtilitiesHtml.pdb
-D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.UtilitiesHtml\bin\Debug\TransferDesk.UtilitiesHtml.dll
-D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.UtilitiesHtml\bin\Debug\TransferDesk.UtilitiesHtml.pdb
-D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.UtilitiesHtml\obj\Debug\TransferDesk.UtilitiesHtml.csprojResolveAssemblyReference.cache
-D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.UtilitiesHtml\obj\Debug\TransferDesk.UtilitiesHtml.dll
-D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.UtilitiesHtml\obj\Debug\TransferDesk.UtilitiesHtml.pdb
 D:\Project Data\Manuscript_Services_Tech_Dev\Manuscript_Services_Tech_Dev\src\TransferDesk.UtilitiesHtml\bin\Debug\TransferDesk.UtilitiesHtml.dll
 D:\Project Data\Manuscript_Services_Tech_Dev\Manuscript_Services_Tech_Dev\src\TransferDesk.UtilitiesHtml\bin\Debug\TransferDesk.UtilitiesHtml.pdb
 D:\Project Data\Manuscript_Services_Tech_Dev\Manuscript_Services_Tech_Dev\src\TransferDesk.UtilitiesHtml\obj\Debug\TransferDesk.UtilitiesHtml.dll
 D:\Project Data\Manuscript_Services_Tech_Dev\Manuscript_Services_Tech_Dev\src\TransferDesk.UtilitiesHtml\obj\Debug\TransferDesk.UtilitiesHtml.pdb
-D:\Project Data\Manuscript_Services_Tech_Dev\Manuscript_Services_Tech_Dev\src\TransferDesk.UtilitiesHtml\obj\Debug\TransferDesk.UtilitiesHtml.csprojResolveAssemblyReference.cache
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.UtilitiesHtml\bin\Debug\TransferDesk.UtilitiesHtml.dll
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.UtilitiesHtml\bin\Debug\TransferDesk.UtilitiesHtml.pdb
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.UtilitiesHtml\obj\Debug\TransferDesk.UtilitiesHtml.dll
+D:\MSProject\Final UAT\GitHub\Manuscript_Services_Tech_Dev\src\TransferDesk.UtilitiesHtml\obj\Debug\TransferDesk.UtilitiesHtml.pdb
