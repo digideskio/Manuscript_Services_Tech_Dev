@@ -12,6 +12,7 @@ using TransferDesk.Contracts.Manuscript.Entities;
 using Newtonsoft.Json;
 using System.Configuration;
 using System.Text;
+using TransferDesk.Contracts.Logging;
 
 namespace TransferDesk.MS.Web.Controllers
 {
@@ -21,8 +22,10 @@ namespace TransferDesk.MS.Web.Controllers
         private ReviewerSuggestionDBRepositoryReadSide _reviewerDBRepositoryReadSide;
         private ReviewerService _reviewerService;
         public string userID = @System.Web.HttpContext.Current.User.Identity.Name.Replace("SPRINGER-SBM\\", "");
-        public ReviewerSuggestionController()
+        private ILogger _logger;
+        public ReviewerSuggestionController(ILogger logger)
         {
+            _logger = logger;
             string conString = string.Empty;
             conString = Convert.ToString(ConfigurationManager.AppSettings["dbTransferDeskService"]);
             _manuscriptDBRepositoryReadSide = new ManuscriptDBRepositoryReadSide(conString);
@@ -97,12 +100,14 @@ namespace TransferDesk.MS.Web.Controllers
                 {
                     if (_reviewerDBRepositoryReadSide.IsMSIDAvailable(msReviewerSuggestionVM.MSID, msReviewerSuggestionVM.ID))
                     {
+                        _logger.Log(msReviewerSuggestionVM.MSID+ "Manuscript Number is already present.");
                         TempData["MSIDError"] = "<script>alert('Manuscript Number is already present.');</script>";
                     }
                     else
                     {
                         msReviewerSuggestionVM = IsSaveOrSubmit(msReviewerSuggestionVM, AssociateCommand, QualityCommand);
                         _reviewerService.SaveMSReviewerSuggestionVM(dataErrors, msReviewerSuggestionVM);
+                        _logger.Log(msReviewerSuggestionVM.MSID + "Record updated succesfully.");
                         TempData["MSIDError"] = "<script>alert('Record updated succesfully');</script>";
                     }
                 }
@@ -117,6 +122,7 @@ namespace TransferDesk.MS.Web.Controllers
                     var result = _reviewerDBRepositoryReadSide.GetMSReviewerInfoIDs(Convert.ToInt32(reviewerID));
                     List<TransferDesk.Contracts.Manuscript.Entities.ReviewerMaster> reviewerMasters =
                         _reviewerDBRepositoryReadSide.GetReviewerDetails(result.ReviewerMasterID);
+                    _logger.Log("Reviewer "+reviewerMasters[0].ReviewerName+"is unassigned from "+msReviewerSuggestionVM.MSID);
                     reviewerNames += reviewerMasters[0].ReviewerName + ", ";
                 }
                 if (UnAssignedReviewer.Length > 0)
@@ -132,7 +138,7 @@ namespace TransferDesk.MS.Web.Controllers
                         "Reviewer(s) unassigned for :" + dicReplace["[manuscriptNumber]"],
                         Convert.ToString(dicReplace["[QAEmail]"]), Convert.ToString(dicReplace["[AnalystEmail]"]),
                         Convert.ToString(dicReplace["[QAEmail]"]), "");
-
+                    _logger.Log("Reviewers unassigned successfully and mail send to respective analyst");
                     TempData["MSIDError"] = "<script>alert('Reviewer unassigned successfully');</script>";
                 }
             }
