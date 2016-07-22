@@ -1,1 +1,0 @@
-D:\MSProject\Final UAT\RNA-341,348,336,345\Manuscript_Services_Tech_Dev\src\TransferDesk.Services\obj\Release\TransferDesk.Services.csprojResolveAssemblyReference.cache
