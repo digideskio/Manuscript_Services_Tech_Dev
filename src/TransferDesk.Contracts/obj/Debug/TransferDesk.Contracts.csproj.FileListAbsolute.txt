@@ -335,3 +335,4 @@ D:\Project Data\Manuscript_Services_Tech_Dev\Manuscript_Services_Tech_Dev\src\Tr
 D:\Project Data\Manuscript_Services_Tech_Dev\Manuscript_Services_Tech_Dev\src\TransferDesk.Contracts\bin\Debug\EntityFramework.SqlServer.xml
 D:\Project Data\Manuscript_Services_Tech_Dev\Manuscript_Services_Tech_Dev\src\TransferDesk.Contracts\obj\Debug\TransferDesk.Contracts.dll
 D:\Project Data\Manuscript_Services_Tech_Dev\Manuscript_Services_Tech_Dev\src\TransferDesk.Contracts\obj\Debug\TransferDesk.Contracts.pdb
+D:\Project Data\Manuscript_Services_Tech_Dev\Manuscript_Services_Tech_Dev\src\TransferDesk.Contracts\obj\Debug\TransferDesk.Contracts.csprojResolveAssemblyReference.cache

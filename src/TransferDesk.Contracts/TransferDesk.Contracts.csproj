@@ -117,6 +117,8 @@
     <Compile Include="Manuscript\Entities\Section.cs" />
     <Compile Include="Manuscript\Entities\SlidingScale.cs" />
     <Compile Include="Manuscript\Entities\StatusMaster.cs" />
+    <Compile Include="Manuscript\Entities\TitleMaster.cs" />
+    <Compile Include="Manuscript\Entities\TitleReviewerlink.cs" />
     <Compile Include="Manuscript\Entities\User.cs" />
     <Compile Include="Manuscript\Entities\UserAdmin.cs" />
     <Compile Include="Manuscript\Entities\UserRoles.cs" />
