@@ -83,7 +83,7 @@
                 data: {
                     serviceTypeId: serviceType,
                     BookTitleId: selectedBookTitle,
-                    chapterNo: $("#ChapterNumber").val()
+                    chapterNo: $.trim($("#ChapterNumber").val()).toLowerCase()
                 },
                 success: function (data) {
                     checkvalue = data;

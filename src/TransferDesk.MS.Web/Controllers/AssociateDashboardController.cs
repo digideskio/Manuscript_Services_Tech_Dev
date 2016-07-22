@@ -23,6 +23,7 @@ namespace TransferDesk.MS.Web.Controllers
         private AssociateDashboardVM associateDasboardVM;
         private AssociateDashBoardReposistory _associateDashBoardReposistory;
         public ILogger _logger;
+
         public AssociateDashboardController(ILogger logger)
         {
             _logger = logger;

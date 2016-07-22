@@ -20,9 +20,13 @@ namespace TransferDesk.MS.Web.Controllers
         private ManuscriptDBRepositoryReadSide _manuscriptDBRepositoryReadSide;
         private ReviewerSuggestionDBRepositoryReadSide _reviewerDBRepositoryReadSide;
         private ReviewerService _reviewerService;
-        public string userID = @System.Web.HttpContext.Current.User.Identity.Name.Replace("SPRINGER-SBM\\", "");
+        public string userID;
         public ReviewerSuggestionController()
         {
+            if (@System.Web.HttpContext.Current != null && @System.Web.HttpContext.Current.User != null)
+            {
+                userID = @System.Web.HttpContext.Current.User.Identity.Name.Replace("SPRINGER-SBM\\", "");
+            }
             string conString = string.Empty;
             conString = Convert.ToString(ConfigurationManager.AppSettings["dbTransferDeskService"]);
             _manuscriptDBRepositoryReadSide = new ManuscriptDBRepositoryReadSide(conString);
@@ -118,6 +122,9 @@ namespace TransferDesk.MS.Web.Controllers
                     List<TransferDesk.Contracts.Manuscript.Entities.ReviewerMaster> reviewerMasters =
                         _reviewerDBRepositoryReadSide.GetReviewerDetails(result.ReviewerMasterID);
                     reviewerNames += reviewerMasters[0].ReviewerName + ", ";
+
+                    _reviewerService.RemoveReviewerTile(Convert.ToInt32(result.ReviewerMasterID), msReviewerSuggestionVM.ArticleTitle.Trim(), userID);
+
                 }
                 if (UnAssignedReviewer.Length > 0)
                 {

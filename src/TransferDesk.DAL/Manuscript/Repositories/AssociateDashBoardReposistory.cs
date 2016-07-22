@@ -160,7 +160,7 @@ namespace TransferDesk.DAL.Manuscript.Repositories
         public int GetServiceTypeOnUserId(string userID)
         {
             var serivceType = (from UR in context.UserRoles
-                               where UR.UserID == userID && UR.RollID == 1
+                               where UR.UserID == userID && UR.RollID == 1 && UR.IsActive==true
                                select UR.ServiceTypeId).FirstOrDefault();
 
             return Convert.ToInt32(serivceType);

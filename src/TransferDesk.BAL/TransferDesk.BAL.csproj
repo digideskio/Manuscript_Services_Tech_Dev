@@ -55,6 +55,9 @@
     <Compile Include="Manuscript\UserRoleBL.cs" />
     <Compile Include="Manuscript\Validations\ManuscriptValidation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReviewerIndex\ReviewerIndexBL.cs" />
+    <Compile Include="ReviewerIndex\Rules\ReviewerIndexRules.cs" />
+    <Compile Include="ReviewerIndex\Validations\ReviewerIndexValidations.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
