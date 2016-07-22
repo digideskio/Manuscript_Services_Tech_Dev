@@ -101,15 +101,10 @@
                     <td>
                         @Html.TextAreaFor(model => model.SharedDrivePath, new { @class = "form-control input-sm ", style = "height: 40px", placeholder = "Please, Enter Share Drive Path", id = "bookSpecialInstruction" })
                     </td>
-<<<<<<< HEAD
-                    <td colspan="4" align="right">
-                        <input type="submit" value="Login" id="btnBookLogin" class="btn btn-primary btn-sm" />
-=======
                     <td colspan="4">
                         Add New Entry
                         <span style="margin-left: 100px">@Html.CheckBoxFor(x => x.IsNewEntry)</span>
                         <input type="submit" value="Login" id="btnBookLogin" class="btn btn-primary btn-sm" style="margin-left: 108px" />
->>>>>>> 1fea7bcea23134e344c96052352094840d2cc1ee
                         <input type="reset" value="Reset" id="btnBookReset" class="btn btn-primary btn-sm" />
                         <input type="button" value="Export To Excel" id="btnBookExporttoExcel" class="btn btn-primary btn-sm" data-target="#myBookModal" />
                     </td>

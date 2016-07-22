@@ -63,6 +63,7 @@ function btnSearch_onclick() {
 
     $.ajax({
         url: "/ReviewerIndex/GetReviewerIndexData",
+        //url: "GetReviewerIndexData",
         type: 'GET',
         dataType: 'json',
         data: { fromrow: firstrow, torow: lastrow, pagesize: pageCount, searchOne: txtTitleSrch, searchTwo: txtTitleSrch1, minValue: minValue, maxValue: maxValue, SearchOneVal: ddlManuscript, ConditionVal: ddlConditions, SearchTwoVal: ddlSearchTwo, NewSearch: true },

@@ -19,6 +19,12 @@ namespace TransferDesk.MS.Web
                 );
 
             routes.MapRoute(
+                name: "ReviewerIndex",
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "ReviewerIndex", action = "ReviewerIndexSearch", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Manuscript", action = "HomePage", id = UrlParameter.Optional }
