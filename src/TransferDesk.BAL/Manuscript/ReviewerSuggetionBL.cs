@@ -193,6 +193,13 @@ namespace TransferDesk.BAL.Manuscript
             _reviewerSuggestionUnitOfWork.UnAssignReviewer(reviewerInfoID, msReviewersSuggestionID);
 
         }
+        public void RemoveReviewerTile(int reviewerId, string articleTitle, string user)
+        {
+            ReviewerSuggestionUnitOfWork _reviewerSuggestionUnitOfWork = null;
+            _reviewerSuggestionUnitOfWork = new ReviewerSuggestionUnitOfWork(_ConStringWrite);
+            _reviewerSuggestionUnitOfWork.RemoveReviewerTile(reviewerId, articleTitle, user);
+
+        }
 
         public void GetMailDetails(Dictionary<String, String> dicReplace, int reviewerMasterID, int? msReviewersSuggestionID, string userID)
         {

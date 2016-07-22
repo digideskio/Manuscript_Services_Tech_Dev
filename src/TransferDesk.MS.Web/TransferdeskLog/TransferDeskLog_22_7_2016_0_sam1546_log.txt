@@ -1,0 +1,279 @@
+2 2016.07.22 11:24:46:9220 48397 INFO: UserId-sam1546open reviewer index Search.
+3 2016.07.22 11:24:51:2753 4350 Info : Method Name - GetJournal : term-& Journal count95
+4 2016.07.22 11:24:52:1173 841 Info : Method Name - GetJournal : term-& Journal count95
+5 2016.07.22 11:24:54:4324 2314 GetReviewerIds execution start.
+KeySearchOne : KeySearchOne KeySearchTwo KeySearchTwo SearchCondition : SearchCondition DDLOneValue DDLOneValue DDLTwoValue : DDLTwoValue
+GetReviewerIds execution end.
+
+6 2016.07.22 11:24:54:7815 348 adding parameters to SqlParameter
+store procedure executed successfully.
+INFO DAL : Method Name - GetReviewersLists : reviewer detail result count - 94
+
+7 2016.07.22 11:24:54:7825 1 Info: Method Name - GetReviewerIndexData , Parameters > searchOne: ,searchTwo: , ConditionVal: AND, SearchOneVal: tm.Name, SearchTwoVal: vwe.AreaOfExpertiseMin Value: 0Max Value: 999Total Result Count: 20
+8 2016.07.22 11:24:54:7835 0 Info: Method Name - GetReviewerIndexData , Result Count : 20totalcount: 94firstRow: 1lastRow: 20
+9 2016.07.22 11:24:57:8536 3070 Info : Method Name - DisplayManuscriptDetails , Key : LoadSelectedReviewers , MSID : Null , reviewersId : 0 loaded successfully.
+10 2016.07.22 11:24:57:8936 39 Info : Method Name - GetJournal : term-& Journal count95
+11 2016.07.22 11:25:00:3438 2450 Info : Method Name - DisplayManuscriptDetails , Key : LoadOntxtbox , MSID : 1212 , reviewersId : 0 loaded successfully.
+12 2016.07.22 11:25:39:6200 39274 Info : Method Name - DisplayManuscriptDetails , Key : LoadOntxtbox , MSID : 1212 , reviewersId : 0 loaded successfully.
+13 2016.07.22 11:25:46:8424 7221 Info : Method Name - GetJournal : term-& Journal count95
+14 2016.07.22 11:25:47:5715 728 GetReviewerDetails > method execution start for reviewerID :56908StartTime :22/07/2016 11:25:47
+GetReviewerDetails > Create a SQL command to execute the StoredProcedure
+GetReviewerDetails > reviewerIndexDBContextRead Database connection open.
+GetReviewerDetails > start to read 'spGetReviewerDetails_Result' result set.
+GetReviewerDetails > start to read 'ReviewerEmails_Result' result set.
+GetReviewerDetails > start to read 'AreaOfExpertise_Result' result set.
+GetReviewerDetails > start to read 'ReferenceLink_Result' result set.
+GetReviewerDetails > start to read 'Journal_Result' result set.
+GetReviewerDetails > start to read 'TitleReviewerlinkMaster_Result' result set.
+GetReviewerDetails > start to read 'TitleAndAffillationMaster_Result' result set.
+GetReviewerDetails > start to read 'AreaOfExpReviewerlink_Result' result set.
+GetReviewerDetails > end execution process of GetReviewerDetails. EndTime :22/07/2016 11:25:47
+
+15 2016.07.22 11:25:47:5715 0 Info: Method Name - LoadProfileData : ReviewerId-56908
+16 2016.07.22 11:25:47:8955 323 Info : Method Name - GetPrimaryExpertise : PrimaryExpertise count13
+17 2016.07.22 11:25:48:1395 244 GetReviewerDetails > method execution start for reviewerID :56907StartTime :22/07/2016 11:25:48
+GetReviewerDetails > Create a SQL command to execute the StoredProcedure
+GetReviewerDetails > reviewerIndexDBContextRead Database connection open.
+GetReviewerDetails > start to read 'spGetReviewerDetails_Result' result set.
+GetReviewerDetails > start to read 'ReviewerEmails_Result' result set.
+GetReviewerDetails > start to read 'AreaOfExpertise_Result' result set.
+GetReviewerDetails > start to read 'ReferenceLink_Result' result set.
+GetReviewerDetails > start to read 'Journal_Result' result set.
+GetReviewerDetails > start to read 'TitleReviewerlinkMaster_Result' result set.
+GetReviewerDetails > start to read 'TitleAndAffillationMaster_Result' result set.
+GetReviewerDetails > start to read 'AreaOfExpReviewerlink_Result' result set.
+GetReviewerDetails > end execution process of GetReviewerDetails. EndTime :22/07/2016 11:25:48
+
+18 2016.07.22 11:25:48:1405 0 Info: Method Name - LoadProfileData : ReviewerId-56907
+19 2016.07.22 11:25:48:2415 101 Info : Method Name - GetJournal : term-& Journal count95
+20 2016.07.22 11:25:48:7505 508 Info : Method Name - GetPrimaryExpertise : PrimaryExpertise count13
+21 2016.07.22 11:26:09:8578 21106 Info : Method Name - DisplayManuscriptDetails , Key : LoadOntxtbox , MSID : 1212 , reviewersId : 0 loaded successfully.
+22 2016.07.22 11:29:57:3128 227446 Info : Method Name - GetJournal : term-& Journal count95
+23 2016.07.22 11:30:01:6120 4297 GetReviewerIds execution start.
+KeySearchOne : KeySearchOne KeySearchTwo KeySearchTwo SearchCondition : SearchCondition DDLOneValue DDLOneValue DDLTwoValue : DDLTwoValue
+GetReviewerIds execution end.
+
+24 2016.07.22 11:30:01:7080 96 adding parameters to SqlParameter
+store procedure executed successfully.
+INFO DAL : Method Name - GetReviewersLists : reviewer detail result count - 1
+
+25 2016.07.22 11:30:01:7090 0 Info: Method Name - GetReviewerIndexData , Parameters > searchOne: ,searchTwo: zdzislaw.brzezniak@york.ac.uk, ConditionVal: AND, SearchOneVal: tm.Name, SearchTwoVal: rml.EmailMin Value: 0Max Value: 999Total Result Count: 1
+26 2016.07.22 11:30:01:7090 0 Info: Method Name - GetReviewerIndexData , Result Count : 1totalcount: 1firstRow: 1lastRow: 1
+27 2016.07.22 11:30:04:6222 2912 Info : Method Name - GetJournal : term-& Journal count95
+28 2016.07.22 11:30:04:7922 169 GetReviewerDetails > method execution start for reviewerID :56904StartTime :22/07/2016 11:30:04
+GetReviewerDetails > Create a SQL command to execute the StoredProcedure
+GetReviewerDetails > reviewerIndexDBContextRead Database connection open.
+GetReviewerDetails > start to read 'spGetReviewerDetails_Result' result set.
+GetReviewerDetails > start to read 'ReviewerEmails_Result' result set.
+GetReviewerDetails > start to read 'AreaOfExpertise_Result' result set.
+GetReviewerDetails > start to read 'ReferenceLink_Result' result set.
+GetReviewerDetails > start to read 'Journal_Result' result set.
+GetReviewerDetails > start to read 'TitleReviewerlinkMaster_Result' result set.
+GetReviewerDetails > start to read 'TitleAndAffillationMaster_Result' result set.
+GetReviewerDetails > start to read 'AreaOfExpReviewerlink_Result' result set.
+GetReviewerDetails > end execution process of GetReviewerDetails. EndTime :22/07/2016 11:30:04
+
+29 2016.07.22 11:30:04:7922 0 Info: Method Name - LoadProfileData : ReviewerId-56904
+30 2016.07.22 11:30:05:1792 386 Info : Method Name - GetPrimaryExpertise : PrimaryExpertise count13
+31 2016.07.22 11:30:19:3810 14201 GetReviewerIds execution start.
+KeySearchOne : KeySearchOne KeySearchTwo KeySearchTwo SearchCondition : SearchCondition DDLOneValue DDLOneValue DDLTwoValue : DDLTwoValue
+GetReviewerIds execution end.
+
+32 2016.07.22 11:30:19:4670 85 adding parameters to SqlParameter
+store procedure executed successfully.
+INFO DAL : Method Name - GetReviewersLists : reviewer detail result count - 1
+
+33 2016.07.22 11:30:19:4680 0 Info: Method Name - GetReviewerIndexData , Parameters > searchOne: ,searchTwo: zeaiean@tmu.ac.ir, ConditionVal: AND, SearchOneVal: tm.Name, SearchTwoVal: rml.EmailMin Value: 0Max Value: 999Total Result Count: 1
+34 2016.07.22 11:30:19:4690 0 Info: Method Name - GetReviewerIndexData , Result Count : 1totalcount: 1firstRow: 1lastRow: 1
+35 2016.07.22 11:30:21:9592 2489 Info : Method Name - GetJournal : term-& Journal count95
+36 2016.07.22 11:30:22:0322 73 GetReviewerDetails > method execution start for reviewerID :56905StartTime :22/07/2016 11:30:22
+GetReviewerDetails > Create a SQL command to execute the StoredProcedure
+GetReviewerDetails > reviewerIndexDBContextRead Database connection open.
+GetReviewerDetails > start to read 'spGetReviewerDetails_Result' result set.
+GetReviewerDetails > start to read 'ReviewerEmails_Result' result set.
+GetReviewerDetails > start to read 'AreaOfExpertise_Result' result set.
+GetReviewerDetails > start to read 'ReferenceLink_Result' result set.
+GetReviewerDetails > start to read 'Journal_Result' result set.
+GetReviewerDetails > start to read 'TitleReviewerlinkMaster_Result' result set.
+GetReviewerDetails > start to read 'TitleAndAffillationMaster_Result' result set.
+GetReviewerDetails > start to read 'AreaOfExpReviewerlink_Result' result set.
+GetReviewerDetails > end execution process of GetReviewerDetails. EndTime :22/07/2016 11:30:22
+
+37 2016.07.22 11:30:22:0332 0 Info: Method Name - LoadProfileData : ReviewerId-56905
+38 2016.07.22 11:30:22:1622 128 Info : Method Name - GetPrimaryExpertise : PrimaryExpertise count13
+39 2016.07.22 11:30:30:1676 8005 GetReviewerIds execution start.
+KeySearchOne : KeySearchOne KeySearchTwo KeySearchTwo SearchCondition : SearchCondition DDLOneValue DDLOneValue DDLTwoValue : DDLTwoValue
+GetReviewerIds execution end.
+
+40 2016.07.22 11:30:30:2586 90 adding parameters to SqlParameter
+store procedure executed successfully.
+INFO DAL : Method Name - GetReviewersLists : reviewer detail result count - 1
+
+41 2016.07.22 11:30:30:2596 0 Info: Method Name - GetReviewerIndexData , Parameters > searchOne: ,searchTwo: zeelha.abdool@gmail.com, ConditionVal: AND, SearchOneVal: tm.Name, SearchTwoVal: rml.EmailMin Value: 0Max Value: 999Total Result Count: 1
+42 2016.07.22 11:30:30:2596 0 Info: Method Name - GetReviewerIndexData , Result Count : 1totalcount: 1firstRow: 1lastRow: 1
+43 2016.07.22 11:30:32:9488 2688 GetReviewerDetails > method execution start for reviewerID :56906StartTime :22/07/2016 11:30:32
+GetReviewerDetails > Create a SQL command to execute the StoredProcedure
+GetReviewerDetails > reviewerIndexDBContextRead Database connection open.
+GetReviewerDetails > start to read 'spGetReviewerDetails_Result' result set.
+GetReviewerDetails > start to read 'ReviewerEmails_Result' result set.
+GetReviewerDetails > start to read 'AreaOfExpertise_Result' result set.
+GetReviewerDetails > start to read 'ReferenceLink_Result' result set.
+GetReviewerDetails > start to read 'Journal_Result' result set.
+GetReviewerDetails > start to read 'TitleReviewerlinkMaster_Result' result set.
+GetReviewerDetails > start to read 'TitleAndAffillationMaster_Result' result set.
+GetReviewerDetails > start to read 'AreaOfExpReviewerlink_Result' result set.
+GetReviewerDetails > end execution process of GetReviewerDetails. EndTime :22/07/2016 11:30:32
+
+44 2016.07.22 11:30:32:9498 0 Info: Method Name - LoadProfileData : ReviewerId-56906
+45 2016.07.22 11:30:33:1558 206 Info : Method Name - GetJournal : term-& Journal count95
+46 2016.07.22 11:30:33:6408 483 Info : Method Name - GetPrimaryExpertise : PrimaryExpertise count13
+47 2016.07.22 11:32:32:3176 118671 Info : Method Name - GetPrimaryExpertise : PrimaryExpertise count13
+48 2016.07.22 11:32:32:8237 505 Info : Method Name - GetJournal : term-& Journal count95
+49 2016.07.22 11:32:33:3517 527 GetReviewerDetails > method execution start for reviewerID :56906StartTime :22/07/2016 11:32:33
+GetReviewerDetails > Create a SQL command to execute the StoredProcedure
+GetReviewerDetails > reviewerIndexDBContextRead Database connection open.
+GetReviewerDetails > start to read 'spGetReviewerDetails_Result' result set.
+GetReviewerDetails > start to read 'ReviewerEmails_Result' result set.
+GetReviewerDetails > start to read 'AreaOfExpertise_Result' result set.
+GetReviewerDetails > start to read 'ReferenceLink_Result' result set.
+GetReviewerDetails > start to read 'Journal_Result' result set.
+GetReviewerDetails > start to read 'TitleReviewerlinkMaster_Result' result set.
+GetReviewerDetails > start to read 'TitleAndAffillationMaster_Result' result set.
+GetReviewerDetails > start to read 'AreaOfExpReviewerlink_Result' result set.
+GetReviewerDetails > end execution process of GetReviewerDetails. EndTime :22/07/2016 11:32:33
+
+50 2016.07.22 11:32:33:3527 0 Info: Method Name - LoadProfileData : ReviewerId-56906
+51 2016.07.22 11:35:04:5673 151208 GetReviewerDetails > method execution start for reviewerID :56906StartTime :22/07/2016 11:35:04
+GetReviewerDetails > Create a SQL command to execute the StoredProcedure
+GetReviewerDetails > reviewerIndexDBContextRead Database connection open.
+GetReviewerDetails > start to read 'spGetReviewerDetails_Result' result set.
+GetReviewerDetails > start to read 'ReviewerEmails_Result' result set.
+GetReviewerDetails > start to read 'AreaOfExpertise_Result' result set.
+GetReviewerDetails > start to read 'ReferenceLink_Result' result set.
+GetReviewerDetails > start to read 'Journal_Result' result set.
+GetReviewerDetails > start to read 'TitleReviewerlinkMaster_Result' result set.
+GetReviewerDetails > start to read 'TitleAndAffillationMaster_Result' result set.
+GetReviewerDetails > start to read 'AreaOfExpReviewerlink_Result' result set.
+GetReviewerDetails > end execution process of GetReviewerDetails. EndTime :22/07/2016 11:35:04
+
+52 2016.07.22 11:35:04:5683 0 Info: Method Name - LoadProfileData : ReviewerId-56906
+53 2016.07.22 11:35:05:1014 531 Info : Method Name - GetPrimaryExpertise : PrimaryExpertise count13
+54 2016.07.22 11:35:05:5814 479 Info : Method Name - GetJournal : term-& Journal count95
+55 2016.07.22 11:35:08:7106 3129 GetReviewerDetails > method execution start for reviewerID :56906StartTime :22/07/2016 11:35:08
+GetReviewerDetails > Create a SQL command to execute the StoredProcedure
+GetReviewerDetails > reviewerIndexDBContextRead Database connection open.
+GetReviewerDetails > start to read 'spGetReviewerDetails_Result' result set.
+GetReviewerDetails > start to read 'ReviewerEmails_Result' result set.
+GetReviewerDetails > start to read 'AreaOfExpertise_Result' result set.
+GetReviewerDetails > start to read 'ReferenceLink_Result' result set.
+GetReviewerDetails > start to read 'Journal_Result' result set.
+GetReviewerDetails > start to read 'TitleReviewerlinkMaster_Result' result set.
+GetReviewerDetails > start to read 'TitleAndAffillationMaster_Result' result set.
+GetReviewerDetails > start to read 'AreaOfExpReviewerlink_Result' result set.
+GetReviewerDetails > end execution process of GetReviewerDetails. EndTime :22/07/2016 11:35:08
+
+56 2016.07.22 11:35:08:7116 0 Info: Method Name - LoadProfileData : ReviewerId-56906
+57 2016.07.22 11:35:09:1796 467 Info : Method Name - GetPrimaryExpertise : PrimaryExpertise count13
+58 2016.07.22 11:35:09:6586 478 Info : Method Name - GetJournal : term-& Journal count95
+59 2016.07.22 11:35:14:2469 4587 GetReviewerDetails > method execution start for reviewerID :56905StartTime :22/07/2016 11:35:13
+GetReviewerDetails > Create a SQL command to execute the StoredProcedure
+GetReviewerDetails > reviewerIndexDBContextRead Database connection open.
+GetReviewerDetails > start to read 'spGetReviewerDetails_Result' result set.
+GetReviewerDetails > start to read 'ReviewerEmails_Result' result set.
+GetReviewerDetails > start to read 'AreaOfExpertise_Result' result set.
+GetReviewerDetails > start to read 'ReferenceLink_Result' result set.
+GetReviewerDetails > start to read 'Journal_Result' result set.
+GetReviewerDetails > start to read 'TitleReviewerlinkMaster_Result' result set.
+GetReviewerDetails > start to read 'TitleAndAffillationMaster_Result' result set.
+GetReviewerDetails > start to read 'AreaOfExpReviewerlink_Result' result set.
+GetReviewerDetails > end execution process of GetReviewerDetails. EndTime :22/07/2016 11:35:14
+
+60 2016.07.22 11:35:14:2469 0 Info: Method Name - LoadProfileData : ReviewerId-56905
+61 2016.07.22 11:35:14:5069 259 Info : Method Name - GetPrimaryExpertise : PrimaryExpertise count13
+62 2016.07.22 11:35:14:9869 478 Info : Method Name - GetJournal : term-& Journal count95
+63 2016.07.22 11:35:19:3792 4391 Info : Method Name - GetJournal : term-& Journal count95
+64 2016.07.22 11:35:19:9372 558 GetReviewerDetails > method execution start for reviewerID :56904StartTime :22/07/2016 11:35:19
+GetReviewerDetails > Create a SQL command to execute the StoredProcedure
+GetReviewerDetails > reviewerIndexDBContextRead Database connection open.
+GetReviewerDetails > start to read 'spGetReviewerDetails_Result' result set.
+GetReviewerDetails > start to read 'ReviewerEmails_Result' result set.
+GetReviewerDetails > start to read 'AreaOfExpertise_Result' result set.
+GetReviewerDetails > start to read 'ReferenceLink_Result' result set.
+GetReviewerDetails > start to read 'Journal_Result' result set.
+GetReviewerDetails > start to read 'TitleReviewerlinkMaster_Result' result set.
+GetReviewerDetails > start to read 'TitleAndAffillationMaster_Result' result set.
+GetReviewerDetails > start to read 'AreaOfExpReviewerlink_Result' result set.
+GetReviewerDetails > end execution process of GetReviewerDetails. EndTime :22/07/2016 11:35:19
+
+65 2016.07.22 11:35:19:9382 0 Info: Method Name - LoadProfileData : ReviewerId-56904
+66 2016.07.22 11:35:20:5002 561 Info : Method Name - GetPrimaryExpertise : PrimaryExpertise count13
+67 2016.07.22 11:57:01:7967 1301244 Info : Method Name - DisplayManuscriptDetails , Key : LoadSelectedReviewers , MSID : Null , reviewersId : 0 loaded successfully.
+68 2016.07.22 11:57:01:9707 173 Info : Method Name - GetJournal : term-& Journal count95
+69 2016.07.22 11:57:04:2858 2314 Info : Method Name - DisplayManuscriptDetails , Key : LoadOntxtbox , MSID : 123 , reviewersId : 0 loaded successfully.
+70 2016.07.22 11:57:26:6201 22332 Info : Method Name - GetJournal : term-& Journal count95
+71 2016.07.22 11:57:29:2072 2585 GetReviewerIds execution start.
+KeySearchOne : KeySearchOne KeySearchTwo KeySearchTwo SearchCondition : SearchCondition DDLOneValue DDLOneValue DDLTwoValue : DDLTwoValue
+GetReviewerIds execution end.
+
+72 2016.07.22 11:57:29:6413 433 adding parameters to SqlParameter
+store procedure executed successfully.
+INFO DAL : Method Name - GetReviewersLists : reviewer detail result count - 94
+
+73 2016.07.22 11:57:29:6413 0 Info: Method Name - GetReviewerIndexData , Parameters > searchOne: ,searchTwo: , ConditionVal: AND, SearchOneVal: tm.Name, SearchTwoVal: vwe.AreaOfExpertiseMin Value: 0Max Value: 999Total Result Count: 20
+74 2016.07.22 11:57:29:6423 0 Info: Method Name - GetReviewerIndexData , Result Count : 20totalcount: 94firstRow: 1lastRow: 20
+75 2016.07.22 11:57:36:1756 6533 Info : Method Name - DisplayManuscriptDetails , Key : LoadSelectedReviewers , MSID : Null , reviewersId : 0, 56920, 56921, 56922 loaded successfully.
+76 2016.07.22 11:57:38:7068 2529 Info : Method Name - DisplayManuscriptDetails , Key : LoadOntxtbox , MSID : 123 , reviewersId : 0, 56920, 56921, 56922 loaded successfully.
+77 2016.07.22 11:57:59:1200 20411 Info : Method Name - DisplayManuscriptDetails , Key : LoadOntxtbox , MSID : 123 , reviewersId : 0, 56920, 56921, 56922 loaded successfully.
+78 2016.07.22 11:58:14:3748 15254 Info : Method Name - DisplayManuscriptDetails , Key : LoadOntxtbox , MSID : 123 , reviewersId : 0, 56920, 56921, 56922 loaded successfully.
+79 2016.07.22 11:58:18:4841 4108 Info : Method Name - DisplayManuscriptDetails , Key : LoadOntxtbox , MSID : 123.R1 , reviewersId : 0, 56920, 56921, 56922 loaded successfully.
+80 2016.07.22 11:58:33:8329 15347 Info : Method Name - DisplayManuscriptDetails , Key : LoadOntxtbox , MSID : 123 , reviewersId : 0, 56920, 56921, 56922 loaded successfully.
+81 2016.07.22 11:58:36:7041 2870 Info : Method Name - DisplayManuscriptDetails , Key : LoadOntxtbox , MSID : 123 , reviewersId : 0, 56920, 56921, 56922 loaded successfully.
+82 2016.07.22 12:08:44:3339 607605 INFO: UserId-sam1546 open reviewer profile.
+83 2016.07.22 12:08:45:2869 952 Info : Method Name - GetJournal : term-& Journal count95
+84 2016.07.22 12:08:45:7469 460 GetReviewerDetails > method execution start for reviewerID :56906StartTime :22/07/2016 12:08:45
+GetReviewerDetails > Create a SQL command to execute the StoredProcedure
+GetReviewerDetails > reviewerIndexDBContextRead Database connection open.
+GetReviewerDetails > start to read 'spGetReviewerDetails_Result' result set.
+GetReviewerDetails > start to read 'ReviewerEmails_Result' result set.
+GetReviewerDetails > start to read 'AreaOfExpertise_Result' result set.
+GetReviewerDetails > start to read 'ReferenceLink_Result' result set.
+GetReviewerDetails > start to read 'Journal_Result' result set.
+GetReviewerDetails > start to read 'TitleReviewerlinkMaster_Result' result set.
+GetReviewerDetails > start to read 'TitleAndAffillationMaster_Result' result set.
+GetReviewerDetails > start to read 'AreaOfExpReviewerlink_Result' result set.
+GetReviewerDetails > end execution process of GetReviewerDetails. EndTime :22/07/2016 12:08:45
+
+85 2016.07.22 12:08:45:7479 0 Info: Method Name - LoadProfileData : ReviewerId-56906
+86 2016.07.22 12:08:45:8219 74 Info : Method Name - GetPrimaryExpertise : PrimaryExpertise count13
+87 2016.07.22 12:08:49:7942 3971 Info : Method Name - GetJournal : term-& Journal count95
+88 2016.07.22 12:08:50:2932 498 Info : Method Name - GetPrimaryExpertise : PrimaryExpertise count13
+89 2016.07.22 12:08:50:4752 182 GetReviewerDetails > method execution start for reviewerID :56905StartTime :22/07/2016 12:08:50
+GetReviewerDetails > Create a SQL command to execute the StoredProcedure
+GetReviewerDetails > reviewerIndexDBContextRead Database connection open.
+GetReviewerDetails > start to read 'spGetReviewerDetails_Result' result set.
+GetReviewerDetails > start to read 'ReviewerEmails_Result' result set.
+GetReviewerDetails > start to read 'AreaOfExpertise_Result' result set.
+GetReviewerDetails > start to read 'ReferenceLink_Result' result set.
+GetReviewerDetails > start to read 'Journal_Result' result set.
+GetReviewerDetails > start to read 'TitleReviewerlinkMaster_Result' result set.
+GetReviewerDetails > start to read 'TitleAndAffillationMaster_Result' result set.
+GetReviewerDetails > start to read 'AreaOfExpReviewerlink_Result' result set.
+GetReviewerDetails > end execution process of GetReviewerDetails. EndTime :22/07/2016 12:08:50
+
+90 2016.07.22 12:08:50:4762 0 Info: Method Name - LoadProfileData : ReviewerId-56905
+91 2016.07.22 12:08:57:6566 7180 Info : Method Name - GetJournal : term-& Journal count95
+92 2016.07.22 12:08:58:1127 455 Info : Method Name - GetPrimaryExpertise : PrimaryExpertise count13
+93 2016.07.22 12:08:58:6957 582 GetReviewerDetails > method execution start for reviewerID :56904StartTime :22/07/2016 12:08:58
+GetReviewerDetails > Create a SQL command to execute the StoredProcedure
+GetReviewerDetails > reviewerIndexDBContextRead Database connection open.
+GetReviewerDetails > start to read 'spGetReviewerDetails_Result' result set.
+GetReviewerDetails > start to read 'ReviewerEmails_Result' result set.
+GetReviewerDetails > start to read 'AreaOfExpertise_Result' result set.
+GetReviewerDetails > start to read 'ReferenceLink_Result' result set.
+GetReviewerDetails > start to read 'Journal_Result' result set.
+GetReviewerDetails > start to read 'TitleReviewerlinkMaster_Result' result set.
+GetReviewerDetails > start to read 'TitleAndAffillationMaster_Result' result set.
+GetReviewerDetails > start to read 'AreaOfExpReviewerlink_Result' result set.
+GetReviewerDetails > end execution process of GetReviewerDetails. EndTime :22/07/2016 12:08:58
+
+94 2016.07.22 12:08:58:6967 0 Info: Method Name - LoadProfileData : ReviewerId-56904

@@ -136,7 +136,8 @@ function saveSubmitReviewers(isAssociateFinalSubmit) {
                                         ClearPopUpControls();
                                         $('#myModal2').modal('toggle');
                                         //opens new tab(Reviewer Suggestion Page) after final submit.
-                                        var url = 'http://192.168.84.68/TransferDeskService//ReviewerSuggestion/ReviewersSuggestions/' + rowNum;
+                                        //var url = 'http://192.168.84.68/TransferDeskService//ReviewerSuggestion/ReviewersSuggestions/' + rowNum;  // UAT
+                                        var url = 'http://192.168.84.68/ManuscriptScreening/ReviewerSuggestion/ReviewersSuggestions/' + rowNum; // Testing
                                         window.open(url);
                                     }
                                 }

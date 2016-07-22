@@ -87,7 +87,11 @@ namespace TransferDesk.Services.Manuscript
             _reviewerSuggetionBL.UnAssignReviewer(reviewerInfoID, msReviewersSuggestionID);
             return true;
         }
-
+        public bool RemoveReviewerTile(int reviewerId, string articleTitle, string user)
+        {
+            _reviewerSuggetionBL.RemoveReviewerTile(reviewerId, articleTitle, user);
+            return true;
+        }
         public void GetMailDetails(Dictionary<String, String> dicReplace, int reviewerInfoID, int? msReviewersSuggestionID, string userID)
         {
             _reviewerSuggetionBL.GetMailDetails(dicReplace, reviewerInfoID, msReviewersSuggestionID, userID);
