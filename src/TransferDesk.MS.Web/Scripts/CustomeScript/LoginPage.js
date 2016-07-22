@@ -90,8 +90,6 @@
                     $.get(AppPath + "ManuscriptLogin/CheckMSIDForRevision", { "msid": $("#MSID").val(), "serviceTypeStatusId": $("#ServiceTypeID").val() }, function (data1) {
                         if (data1 != "" || data1 != null) {
                             $("#MSID").val(msiddata + ".R" + data1);
-                        } else {
-                            alert('Revision' + data1);
                         }
                     });
                 }
