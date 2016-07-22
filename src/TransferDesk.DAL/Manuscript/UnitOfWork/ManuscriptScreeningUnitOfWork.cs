@@ -26,7 +26,7 @@ namespace TransferDesk.DAL.Manuscript.UnitOfWork
         public DTOs.ManuscriptScreeningDTO manuscriptScreeningDTO { get; set; }
         private Repos.ManuscriptBookErrorCategoryRepository _bookErrorCategoryRepository;
         public DTOs.ManuscriptBookScreeningDTO manuscriptBookScreeningDTO { get; set; }
-
+        public ManuscriptLoginUnitOfWork _manuscriptLoginUnitOfWork;
         public ManuscriptScreeningUnitOfWork(string conString)
         {
             _manuscriptRepository = new Repos.ManuscriptRepository(conString);
