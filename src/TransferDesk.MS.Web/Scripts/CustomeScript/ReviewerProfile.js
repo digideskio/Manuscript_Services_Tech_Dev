@@ -67,7 +67,7 @@ $(document).ready(function () {
 
     $("#txtJournalSearch").keyup(function (e) {      
         $.ajax({
-            url: "/ReviewerIndex/GetJournal",
+            url: AppPath + "/ReviewerIndex/GetJournal",
             type: "POST",
             dataType: "json",
             data: { term: e.target.value },
@@ -145,7 +145,7 @@ function CloseSavePopup()
 function ReviewerSaveSuccess() {
     var id = $("#newReviewerId").val();   
     //location.reload();
-    window.open("/ReviewerIndex/ReviewerProfile?reviewerId="+id, "_self")
+    window.open(AppPath + "/ReviewerIndex/ReviewerProfile?reviewerId=" + id, "_self")
 }
 
 function SaveProfile() {
@@ -322,7 +322,7 @@ function SaveProfile() {
         $.ajax(
          {
              type: "POST",
-             url: "/ReviewerIndex/SaveReviewerProfile",
+             url: AppPath + "/ReviewerIndex/SaveReviewerProfile",
              contentType: "application/json; charset=utf-8",
              dataType: "json",
              data: JSON.stringify(profileDetails),
@@ -590,7 +590,7 @@ function UpdateManuscriptToTable()
         $("#ManuscriptDetails").append($("#ManuScriptDetailsTemplate").render(manuScriptData));
         if (titleId > 0) {
             $.ajax({
-                url: "/ReviewerIndex/EditManuscriptTitle",
+                url: AppPath + "/ReviewerIndex/EditManuscriptTitle",
                 type: 'GET',
                 dataType: 'json',
                 data: { titleId: titleId, mScriptID: mScriptId, name: titleName },
@@ -608,7 +608,7 @@ function UpdateManuscriptToTable()
 }
 function LoadProfileData(reviewerId) {   
     $.ajax({
-        url: "/ReviewerIndex/LoadProfileData",
+        url: AppPath + "/ReviewerIndex/LoadProfileData",
         type: 'GET',
         dataType: 'json',
         data: { reviewerId: reviewerId },
@@ -682,16 +682,16 @@ function BindDataToControl(response) {
 }
 
 function CreateNewProfile() {
-    window.location = "/ReviewerIndex/ReviewerProfile?reviewerId=0";
+    window.location = AppPath + "/ReviewerIndex/ReviewerProfile?reviewerId=0";
 }
 
 function CancelProfile() {
-    window.location = "/ReviewerIndex/ReviewerIndexSearch";
+    window.location = AppPath + "/ReviewerIndex/ReviewerIndexSearch";
 }
 function ddlPrimaryChange(e)
 {
     $.ajax({
-        url: "/ReviewerIndex/GetSecondaryExpertise",
+        url: AppPath + "/ReviewerIndex/GetSecondaryExpertise",
         type: "POST",
         dataType: "json",
         data: { primaryParentID: e.value },
@@ -710,7 +710,7 @@ function ddlPrimaryChange(e)
 
 function ddlSecondaryChange(e) {
     $.ajax({
-        url: "/ReviewerIndex/GetTertiaryExpertise",
+        url: AppPath + "/ReviewerIndex/GetTertiaryExpertise",
         type: "POST",
         dataType: "json",
         data: { secondaryParentID: e.value },
@@ -729,7 +729,7 @@ function GetAutoCompleteData()
     $("#txtAffiliation").autocomplete({
         source: function (request, response) {
             $.ajax({
-                url: "/ReviewerIndex/AutoCompleteInstitute",
+                url: AppPath + "/ReviewerIndex/AutoCompleteInstitute",
                 type: "POST",
                 dataType: "json",
                 data: { term: request.term },
@@ -755,7 +755,7 @@ function GetAutoCompleteData()
     $("#txtDepartmentName").autocomplete({
         source: function (request, response) {
             $.ajax({
-                url: "/ReviewerIndex/AutoCompleteDepartment",
+                url: AppPath + "/ReviewerIndex/AutoCompleteDepartment",
                 type: "POST",
                 dataType: "json",
                 data: { term: request.term },
@@ -781,7 +781,7 @@ function GetAutoCompleteData()
     $("#txtCountry").autocomplete({
         source: function (request, response) {
             $.ajax({
-                url: "/ReviewerIndex/AutoCompleteCountry",
+                url: AppPath + "/ReviewerIndex/AutoCompleteCountry",
                 type: "POST",
                 dataType: "json",
                 data: { term: request.term },
@@ -816,7 +816,7 @@ function GetAutoCompleteData()
                 countryId = 0;
             }
             $.ajax({
-                url: "/ReviewerIndex/AutoCompleteState",
+                url: AppPath + "/ReviewerIndex/AutoCompleteState",
                 type: "POST",
                 dataType: "json",
                 data: { term: request.term,parentPrefix: countryId },
@@ -848,7 +848,7 @@ function GetAutoCompleteData()
                 stateId = 0;
             }
             $.ajax({
-                url: "/ReviewerIndex/AutoCompleteCity",
+                url: AppPath + "/ReviewerIndex/AutoCompleteCity",
                 type: "POST",
                 dataType: "json",
                 data: { term: request.term, parentPrefix: stateId },
@@ -873,7 +873,7 @@ function GetAutoCompleteData()
     $("#txttitleTitle").autocomplete({
         source: function (request, response) {
             $.ajax({
-                url: "/ReviewerIndex/AutoCompleteManuscriptTitle",
+                url: AppPath + "/ReviewerIndex/AutoCompleteManuscriptTitle",
                 type: "POST",
                 dataType: "json",
                 data: { term: request.term },
@@ -899,7 +899,7 @@ function GetAutoCompleteData()
     // Load JournalName dropdown on page load -> following code will loda all journals on page load
     var journalSearch = $("#txtJournalSearch").val();
     $.ajax({
-        url: "/ReviewerIndex/GetJournal",
+        url: AppPath + "/ReviewerIndex/GetJournal",
         type: "POST",
         dataType: "json",
         data: { term: journalSearch },
@@ -912,7 +912,7 @@ function GetAutoCompleteData()
     })
 
     $.ajax({
-        url: "/ReviewerIndex/GetPrimaryExpertise",
+        url: AppPath + "/ReviewerIndex/GetPrimaryExpertise",
         type: "POST",
         dataType: "json",     
         success: function (result) {

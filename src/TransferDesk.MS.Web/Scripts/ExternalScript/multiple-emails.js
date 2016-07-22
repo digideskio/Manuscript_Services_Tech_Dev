@@ -21,7 +21,7 @@
 		}
 		else if (settings.theme.toLowerCase() == "Basic".toLowerCase()) {
 			//Default which you should use if you don't use Bootstrap, SemanticUI, or other CSS frameworks
-		    deleteIconHTML = '<a href="#" class="multiple_emails-close" title="Remove"><img title="Remove" src="/Images/DeleteRed.png" style="width:20px; height:20px;"></a>';
+		    deleteIconHTML = '<a href="#" class="multiple_emails-close" title="Remove"><img title="Remove" src="@Url.Content("~/")/Images/DeleteRed.png" style="width:20px; height:20px;"></a>';
 		}
 		
 		return this.each(function() {

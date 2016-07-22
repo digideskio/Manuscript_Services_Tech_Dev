@@ -125,6 +125,5 @@ D:\Project Data\Manuscript_Services_Tech_Dev\Manuscript_Services_Tech_Dev\src\Tr
 D:\Project Data\Manuscript_Services_Tech_Dev\Manuscript_Services_Tech_Dev\src\TransferDesk.UtilitiesHtml\bin\Debug\HtmlAgilityPack.pdb
 D:\Project Data\Manuscript_Services_Tech_Dev\Manuscript_Services_Tech_Dev\src\TransferDesk.UtilitiesHtml\bin\Debug\HtmlAgilityPack.xml
 D:\Project Data\Manuscript_Services_Tech_Dev\Manuscript_Services_Tech_Dev\src\TransferDesk.UtilitiesHtml\bin\Debug\HtmlToOpenXml.pdb
-D:\Project Data\Manuscript_Services_Tech_Dev\Manuscript_Services_Tech_Dev\src\TransferDesk.UtilitiesHtml\obj\Debug\TransferDesk.UtilitiesHtml.csprojResolveAssemblyReference.cache
 D:\Project Data\Manuscript_Services_Tech_Dev\Manuscript_Services_Tech_Dev\src\TransferDesk.UtilitiesHtml\obj\Debug\TransferDesk.UtilitiesHtml.dll
 D:\Project Data\Manuscript_Services_Tech_Dev\Manuscript_Services_Tech_Dev\src\TransferDesk.UtilitiesHtml\obj\Debug\TransferDesk.UtilitiesHtml.pdb
