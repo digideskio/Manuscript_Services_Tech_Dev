@@ -1,0 +1,7 @@
+1 2016.07.22 11:23:58:5222 4 Application started on computer LAINPUMA0170 DomainName SPRINGER-SBM
+Try Register all objects
+Registered MVC Controllers
+DI container try verify
+DI container verify done
+Try Register the container as  IDependencyResolver.
+
