@@ -171,29 +171,30 @@ namespace TransferDesk.BAL.Manuscript
 
             //on MSID get crest id 
             int MLID = GetCrestIdOnMSID(manuscriptScreeningDTO.Manuscript.MSID);
-            
-            var addManuscriptLoginDetails = new ManuscriptLoginDetails
+            List<ManuscriptLoginDetails> manuscriptLoginDetailsList = new List<ManuscriptLoginDetails>();
+            if (manuscriptScreeningDTO.Manuscript.IsAssociateFinalSubmit == true)
             {
-                CrestId=MLID,
-                JobStatusId=7,
-                JobProcessStatusId=21,
-                ServiceTypeStatusId=5,
-                RoleId=1,
-                CreatedDate=DateTime.Now,
-                AssignedDate=DateTime.Now,
-                ModifiedDate=DateTime.Now
-            };
-            List<ManuscriptLoginDetails> manuscriptLoginDetailsList=new List<ManuscriptLoginDetails>();
-            manuscriptLoginDetailsList = GetManuscriptLoginDetailsData(MLID);
-            if (manuscriptLoginDetailsList.Count > 0) 
-            {
-                manuscriptLoginDetailsList[0].SubmitedDate = DateTime.Now;
-                manuscriptLoginDetailsList[0].JobStatusId = 8;
-                manuscriptLoginDetailsList[0].JobProcessStatusId = 12;
-                manuscriptLoginDetailsList[0].ModifiedDate = DateTime.Now;
+                var addManuscriptLoginDetails = new ManuscriptLoginDetails
+                {
+                    CrestId = MLID,
+                    JobStatusId = 7,
+                    JobProcessStatusId = 21,
+                    ServiceTypeStatusId = 5,
+                    RoleId = 1,
+                    CreatedDate = DateTime.Now,
+                    AssignedDate = DateTime.Now,
+                    ModifiedDate = DateTime.Now
+                };
+                manuscriptLoginDetailsList = GetManuscriptLoginDetailsData(MLID);
+                if (manuscriptLoginDetailsList.Count > 0)
+                {
+                    manuscriptLoginDetailsList[0].SubmitedDate = DateTime.Now;
+                    manuscriptLoginDetailsList[0].JobStatusId = 8;
+                    manuscriptLoginDetailsList[0].JobProcessStatusId = 12;
+                    manuscriptLoginDetailsList[0].ModifiedDate = DateTime.Now;
+                }
+                manuscriptLoginDetailsList.Add(addManuscriptLoginDetails);
             }
-            manuscriptLoginDetailsList.Add(addManuscriptLoginDetails);
-
             ManuscriptScreeningUnitOfWork _manuscriptScreeningUnitOfWork = null;
             try
             {
@@ -202,9 +203,12 @@ namespace TransferDesk.BAL.Manuscript
                 _manuscriptScreeningUnitOfWork.manuscriptScreeningDTO = manuscriptScreeningDTO;
                 _manuscriptScreeningUnitOfWork.SaveManuscriptScreening();
                 _manuscriptScreeningUnitOfWork.SaveChanges();//todo:change this function to update ids and save as seperate commit
-                _manuscriptScreeningUnitOfWork._manuscriptLoginUnitOfWork.manuscriptLoginDTO = new DTOs.ManuscriptLoginDTO();
-                _manuscriptScreeningUnitOfWork._manuscriptLoginUnitOfWork.manuscriptLoginDTO.manuscriptLoginDetails = manuscriptLoginDetailsList;
-                _manuscriptScreeningUnitOfWork._manuscriptLoginUnitOfWork.SaveManuscriptLoginDetails();
+                if (manuscriptScreeningDTO.Manuscript.IsAssociateFinalSubmit == true)
+                {
+                    _manuscriptScreeningUnitOfWork._manuscriptLoginUnitOfWork.manuscriptLoginDTO = new DTOs.ManuscriptLoginDTO();
+                    _manuscriptScreeningUnitOfWork._manuscriptLoginUnitOfWork.manuscriptLoginDTO.manuscriptLoginDetails = manuscriptLoginDetailsList;
+                    _manuscriptScreeningUnitOfWork._manuscriptLoginUnitOfWork.SaveManuscriptLoginDetails();
+                }
                 return true;
             }
             //exception will be raised up in the call stack
