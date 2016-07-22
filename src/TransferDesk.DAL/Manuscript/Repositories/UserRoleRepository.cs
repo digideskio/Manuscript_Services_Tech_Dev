@@ -10,6 +10,7 @@ using Entities = TransferDesk.Contracts.Manuscript.Entities;
 
 using TransferDesk.DAL.Manuscript.DataContext;
 using System.Data.Entity.Infrastructure;
+using TransferDesk.Contracts.Manuscript.ComplexTypes.AssociateDashBoard;
 using TransferDesk.Contracts.Manuscript.ComplexTypes.ManuscriptLogin;
 using TransferDesk.Contracts.Manuscript.Entities;
 using TransferDesk.Contracts.Manuscript.ComplexTypes.UserRole;
@@ -20,15 +21,17 @@ namespace TransferDesk.DAL.Manuscript.Repositories
     public class UserRoleRepository : IDisposable
     {
         private ManuscriptDBContext context;
-
+        private AssociateDashBoardReposistory _associateDashBoardReposistory;
         public UserRoleRepository(ManuscriptDBContext context)
         {
             this.context = context;
+            _associateDashBoardReposistory=new AssociateDashBoardReposistory(context);
         }
 
 		public UserRoleRepository(string constring)
         {
             this.context = new ManuscriptDBContext(constring);
+            _associateDashBoardReposistory = new AssociateDashBoardReposistory(context);
         }
         public IEnumerable<Entities.UserRoles> GetUserRoles()
         {
@@ -129,6 +132,35 @@ namespace TransferDesk.DAL.Manuscript.Repositories
 
 
 
+        }
+
+        public bool IsUserRoleAvailable(string userID, int serviceType, int roleId)
+        {
+            var count = 0;
+            if (serviceType == 5 && roleId == 1)
+                serviceType = 6;
+            else if (serviceType == 6 && roleId == 1)
+                serviceType = 5;
+            if (roleId == 1)
+            {
+                count = (from UR in context.UserRoles
+                         where UR.UserID == userID.Trim() && UR.ServiceTypeId == serviceType && UR.RollID == 1 && UR.IsActive == true
+                         select UR).Count();
+            }
+            if (count > 0)
+                return true;
+            else
+                return false;
+        }
+
+        public bool IsJobFetchedByUser(string userID, int serviceType)
+        {
+            pr_IsJobFetched_Result IsJobFetched;
+            IsJobFetched = _associateDashBoardReposistory.IsJobFetched(userID, serviceType);
+            if (IsJobFetched.FetchedJobCount == 0)
+                return true;
+            else
+                return false;
         }
 
         public void SaveUserRole()

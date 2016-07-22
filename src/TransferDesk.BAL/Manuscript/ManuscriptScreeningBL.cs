@@ -11,6 +11,7 @@ using Validations = TransferDesk.BAL.Manuscript.Validations;
 //UnitOfWork Manuscript Screening
 using TransferDesk.DAL.Manuscript.UnitOfWork;
 using TransferDesk.DAL.Manuscript.Repositories;
+using TransferDesk.Contracts.Manuscript.Entities;
 
 //todo:keep a seperate read side/done needs refactor later
 
@@ -168,6 +169,31 @@ namespace TransferDesk.BAL.Manuscript
             manuscriptScreeningDTO.HasToSaveOtherAuthors = true;
             manuscriptScreeningDTO.HasToSaveErrorCategoriesList = true;
 
+            //on MSID get crest id 
+            int MLID = GetCrestIdOnMSID(manuscriptScreeningDTO.Manuscript.MSID);
+            
+            var addManuscriptLoginDetails = new ManuscriptLoginDetails
+            {
+                CrestId=MLID,
+                JobStatusId=7,
+                JobProcessStatusId=21,
+                ServiceTypeStatusId=5,
+                RoleId=1,
+                CreatedDate=DateTime.Now,
+                AssignedDate=DateTime.Now,
+                ModifiedDate=DateTime.Now
+            };
+            List<ManuscriptLoginDetails> manuscriptLoginDetailsList=new List<ManuscriptLoginDetails>();
+            manuscriptLoginDetailsList = GetManuscriptLoginDetailsData(MLID);
+            if (manuscriptLoginDetailsList.Count > 0) 
+            {
+                manuscriptLoginDetailsList[0].SubmitedDate = DateTime.Now;
+                manuscriptLoginDetailsList[0].JobStatusId = 8;
+                manuscriptLoginDetailsList[0].JobProcessStatusId = 12;
+                manuscriptLoginDetailsList[0].ModifiedDate = DateTime.Now;
+            }
+            manuscriptLoginDetailsList.Add(addManuscriptLoginDetails);
+
             ManuscriptScreeningUnitOfWork _manuscriptScreeningUnitOfWork = null;
             try
             {
@@ -176,6 +202,9 @@ namespace TransferDesk.BAL.Manuscript
                 _manuscriptScreeningUnitOfWork.manuscriptScreeningDTO = manuscriptScreeningDTO;
                 _manuscriptScreeningUnitOfWork.SaveManuscriptScreening();
                 _manuscriptScreeningUnitOfWork.SaveChanges();//todo:change this function to update ids and save as seperate commit
+                _manuscriptScreeningUnitOfWork._manuscriptLoginUnitOfWork.manuscriptLoginDTO = new DTOs.ManuscriptLoginDTO();
+                _manuscriptScreeningUnitOfWork._manuscriptLoginUnitOfWork.manuscriptLoginDTO.manuscriptLoginDetails = manuscriptLoginDetailsList;
+                _manuscriptScreeningUnitOfWork._manuscriptLoginUnitOfWork.SaveManuscriptLoginDetails();
                 return true;
             }
             //exception will be raised up in the call stack
@@ -186,6 +215,33 @@ namespace TransferDesk.BAL.Manuscript
                     _manuscriptScreeningUnitOfWork.Dispose();
                 }
             }
+        }
+
+        public int GetCrestIdOnMSID(string MSID)
+        {
+            var MLID = (from ML in ManuscriptLoginDbRepositoryReadSide.manuscriptDataContextRead.ManuscriptLogin
+                        where ML.MSID == MSID
+                        orderby ML.Id descending
+                        select ML.Id).FirstOrDefault();
+
+            return Convert.ToInt32(MLID);
+        }
+
+        public int GetUserId(string userID)
+        {
+            var serivceType = (from UR in ManuscriptLoginDbRepositoryReadSide.manuscriptDataContextRead.UserRoles
+                               where UR.UserID == userID && UR.RollID == 1 && UR.IsActive == true && UR.ServiceTypeId == 5
+                               select UR.ID).FirstOrDefault();
+
+            return Convert.ToInt32(serivceType);
+        }
+        public List<Entities.ManuscriptLoginDetails> GetManuscriptLoginDetailsData(int crestID)
+        {
+            var fetchedMLD = (from MLD in ManuscriptLoginDbRepositoryReadSide.manuscriptDataContextRead.ManuscriptLoginDetails
+                              where MLD.CrestId == crestID && MLD.ServiceTypeStatusId == 5 && MLD.JobProcessStatusId == 11 && MLD.JobStatusId == 7
+                              select MLD).ToList();
+
+            return fetchedMLD;
         }
 
         public bool SaveManuscriptBookScreening(DTOs.ManuscriptBookScreeningDTO manuscriptBookScreeningDto, IDictionary<string, string> dataErrors)

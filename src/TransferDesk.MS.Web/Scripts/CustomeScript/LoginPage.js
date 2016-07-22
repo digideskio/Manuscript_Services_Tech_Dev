@@ -30,7 +30,7 @@
     });
 
     $("#MSID").focusout(function () {
-        $.get(AppPath + "ManuscriptLogin/GetManuscriptLoginedJobByMsid", { "msid": $("#MSID").val() }, function (data) {
+        $.get(AppPath + "ManuscriptLogin/GetManuscriptLoginedJobByMsid", { "msid": $("#MSID").val(), servicetype: $("#ServiceTypeID").val() }, function (data) {
             $("#ServiceTypeID").val($("#ServiceTypeID" + " option").filter(function () { return this.text == data.ServiceType }).val());
             $("#ddlJournalTitle").val($("#ddlJournalTitle" + " option").filter(function () { return this.text == data.JournalTitle }).val());
             $("#ArticleTitle").val(data.ArticleTitle);
@@ -75,6 +75,7 @@
         window.location.href = url;
     });
     
+
     $("#IsRevision").change(function () {
         if ($("#IsRevision").is(":checked")) {
             $("#btnLogin").val("Login");
@@ -82,15 +83,29 @@
             $("#ManuscriptFilePath").click(function () {
                 return true;
             });
-
-            $.get(AppPath + "ManuscriptLogin/ValidateMsidIsOpen", { "msid": $("#MSID").val() }, function (data) {
-                if (data.toLocaleLowerCase() == "true") {
-                    alert("You can not create revision for open manuscript.");
-                    $("#IsRevision").prop("checked", false);
-                    $("#IsRevision").prop("disabled", true);
-                    return false;
+            var msiddata = $("#MSID").val();
+            var servicetype = $("#ServiceTypeID").val();
+            if (servicetype == 6) {
+                if ($(this).is(":checked")) {
+                    $.get(AppPath + "ManuscriptLogin/CheckMSIDForRevision", { "msid": $("#MSID").val(), "serviceTypeStatusId": $("#ServiceTypeID").val() }, function (data1) {
+                        if (data1 != "" || data1 != null) {
+                            $("#MSID").val(msiddata + ".R" + data1);
+                        } else {
+                            alert('Revision' + data1);
+                        }
+                    });
                 }
-            });
+            } else {
+                $.get(AppPath + "ManuscriptLogin/ValidateMsidIsOpen", { "msid": $("#MSID").val() }, function (data) {
+                    if (data.toLocaleLowerCase() == "true") {
+                        alert("You can not create revision for open manuscript.");
+                        $("#IsRevision").prop("checked", false);
+                        $("#IsRevision").prop("disabled", true);
+                        return false;
+                    }
+                });
+            }
+
         }
     });
 

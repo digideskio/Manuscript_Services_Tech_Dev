@@ -122,6 +122,7 @@ namespace TransferDesk.MS.Web.Controllers
 
         public bool CheckIfBookPresent(int serviceTypeId, int BookTitleId, string chapterNo)
         {
+            _logger.Log("Checking same book is present... ");
             if (ManuscriptLoginDbRepositoryReadSide.CheckIfBookPresent(serviceTypeId, BookTitleId, chapterNo))
             {
                 return true;
@@ -385,9 +386,9 @@ namespace TransferDesk.MS.Web.Controllers
 
         }
 
-        public JsonResult GetManuscriptLoginedJobByMsid(string msid)
+        public JsonResult GetManuscriptLoginedJobByMsid(string msid, int servicetype)
         {
-            return this.Json(ManuscriptLoginDbRepositoryReadSide.GetManuscriptDetailsByMsid(msid), JsonRequestBehavior.AllowGet);
+            return this.Json(ManuscriptLoginDbRepositoryReadSide.GetManuscriptDetailsByMsid(msid, servicetype), JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult BookLogin(int? id, string jobtype)
@@ -440,6 +441,20 @@ namespace TransferDesk.MS.Web.Controllers
             manuscriptLoginVm.ArticleType = _manuscriptDBRepositoryReadSide.GetArticleList(Convert.ToInt32(manuscriptLoginVm.JournalID));
             manuscriptLoginVm.Section = _manuscriptDBRepositoryReadSide.GetSectionList(Convert.ToInt32(manuscriptLoginVm.JournalID));
             return View("JournalLogin", manuscriptLoginVm);
+        }
+
+        public int CheckMSIDForRevision(string msid, int serviceTypeStatusId)
+        {
+
+            if (ValidateMsidIsOpen(msid) == false)
+            {
+                return ManuscriptLoginDbRepositoryReadSide.CheckMsidRevision(msid, 0, serviceTypeStatusId);
+            }
+
+            else
+            {
+                return 0;
+            }
         }
     }
 }
