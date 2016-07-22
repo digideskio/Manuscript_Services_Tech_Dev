@@ -429,7 +429,7 @@ namespace TransferDesk.DAL.Manuscript.Repositories
         {
             var manuscripBooktLogin = 0;
             manuscripBooktLogin = (from q in manuscriptDataContextRead.ManuscriptBookLogin
-                                   where q.BookMasterID == BookTitleId && q.ChapterNumber == chapterno && q.ServiceTypeID == serviceTypeId && q.ManuscriptStatusID == 7
+                                   where q.BookMasterID == BookTitleId && q.ChapterNumber.ToLower().Trim() == chapterno.ToLower().Trim() && q.ServiceTypeID == serviceTypeId && q.ManuscriptStatusID == 7
                                    select q).Count();
             if (manuscripBooktLogin > 0)
             {
