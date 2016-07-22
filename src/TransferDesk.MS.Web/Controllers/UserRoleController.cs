@@ -235,12 +235,28 @@ namespace TransferDesk.MS.Web.Controllers
             return RedirectToAction("UserMaster", new { id = 0 });
         }
 
-        private void AddUserMasterInfo(UserRoleVM userrolevm)
+        private bool AddUserMasterInfo(UserRoleVM userrolevm)
         {
             var userRoles = new UserRoles();
-            _userRoleService.SaveUserRoleDetails(userrolevm, userRoles);
+            if (_UserRoleRepository.IsJobFetchedByUser(userrolevm.UserID, userrolevm.ServiceTypeID, userrolevm.RollID))
+            {
+                if (_UserRoleRepository.IsUserRoleAvailable(userrolevm.UserID, userrolevm.ServiceTypeID, userrolevm.RollID))
+                {
+                    _userRoleService.SaveUserRoleDetails(userrolevm, userRoles);
+                    return true;
+                }
+                else
+                {
+                    TempData["msg"] = "<script>alert('Associate should have only one role.');</script>";
+                    return false;
+                }
+            }
+            else
+            {
+                TempData["msg"] = "<script>alert('Unallocate job from user.');</script>";
+                return false;
+            }
         }
-
 		
 		[AcceptVerbs(HttpVerbs.Get)]
         public string GetSlidingScaleList(int ServiceTypeId)

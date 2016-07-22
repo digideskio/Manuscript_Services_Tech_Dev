@@ -144,20 +144,24 @@ namespace TransferDesk.DAL.Manuscript.Repositories
             if (roleId == 1)
             {
                 count = (from UR in context.UserRoles
-                         where UR.UserID == userID.Trim() && UR.ServiceTypeId == serviceType && UR.RollID == 1 && UR.IsActive == true
+                         where UR.UserID == userID.Trim() && UR.ServiceTypeId == serviceType && UR.RollID == roleId && UR.IsActive == true
                          select UR).Count();
             }
             if (count > 0)
-                return true;
-            else
                 return false;
+            else
+                return true;
         }
 
-        public bool IsJobFetchedByUser(string userID, int serviceType)
+        public bool IsJobFetchedByUser(string userID, int serviceType, int roleId)
         {
-            pr_IsJobFetched_Result IsJobFetched;
-            IsJobFetched = _associateDashBoardReposistory.IsJobFetched(userID, serviceType);
-            if (IsJobFetched.FetchedJobCount == 0)
+            if (serviceType == 5 && roleId == 1)
+                serviceType = 6;
+            else if (serviceType == 6 && roleId == 1)
+                serviceType = 5;
+            pr_IsJobFetchedOrAssign_Result IsJobFetchedOrAssing;
+            IsJobFetchedOrAssing = _associateDashBoardReposistory.IsJobFetchedOrAssign(userID, serviceType);
+            if (IsJobFetchedOrAssing.FetchedJobCount == 0)
                 return true;
             else
                 return false;

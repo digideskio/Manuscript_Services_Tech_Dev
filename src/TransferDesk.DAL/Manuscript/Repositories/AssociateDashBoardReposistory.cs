@@ -112,6 +112,33 @@ namespace TransferDesk.DAL.Manuscript.Repositories
             }
         }
 
+
+        public pr_IsJobFetchedOrAssign_Result IsJobFetchedOrAssign(string userid, int serviceTypeId)
+        {
+            try
+            {
+
+                var userId = userid != null ?
+                   new SqlParameter("userId", userid) :
+                   new SqlParameter("userId", typeof(global::System.String));
+
+                var serviceType = serviceTypeId != null ?
+                   new SqlParameter("serviceType", serviceTypeId) :
+                   new SqlParameter("serviceType", typeof(global::System.Int32));
+
+                pr_IsJobFetchedOrAssign_Result fetchedJobs = this.context.Database.SqlQuery<pr_IsJobFetchedOrAssign_Result>("exec pr_IsJobFetchedOrAssign @userId,@serviceType", userId, serviceType).FirstOrDefault();
+                return fetchedJobs;
+            }
+            catch
+            {
+                return null;//todo:check and remove this trycatchhandler
+            }
+            finally
+            {
+
+            }
+        }
+
         public pr_JobTobeFetched_Result JobTobeFetched(string userid, int serviceTypeId, int roleId)
         {
             try
