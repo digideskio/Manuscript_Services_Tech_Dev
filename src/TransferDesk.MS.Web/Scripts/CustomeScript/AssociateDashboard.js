@@ -15,10 +15,10 @@
                 if (returnValue.returnValue.match("true")) {
                     if (returnValue.ManuscriptID == 0) {
                         alert('Manuscript not found.');
-                        window.open('/ManuscriptScreening', "_blank");
+                        //window.open(AppPath+ '/Manuscript', "_blank");
                     }
                     else {
-                        window.open('/Manuscript/HomePage/' + returnValue.ManuscriptID, "_blank");
+                        window.open(AppPath+ '/Manuscript/HomePage/' + returnValue.ManuscriptID, "_blank");
                     }
                     window.location.reload(true);
                 }

@@ -88,6 +88,9 @@
     <Compile Include="Manuscript\UnitOfWork\UnitOfWorkManuscriptRepos.cs" />
     <Compile Include="Manuscript\UnitOfWork\UserRolesUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReviewerIndex\DataContext\ReviewerIndexDBContext.cs" />
+    <Compile Include="ReviewerIndex\Repositories\ReviewerIndexDBRepositoriesReadSite.cs" />
+    <Compile Include="ReviewerIndex\Repositories\ReviewerIndexRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TransferDesk.Contracts\TransferDesk.Contracts.csproj">

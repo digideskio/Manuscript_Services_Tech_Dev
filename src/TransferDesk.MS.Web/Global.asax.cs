@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Web;
+using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
@@ -14,6 +15,7 @@ using SimpleInjector.Integration.Web;
 using TransferDesk.Services;
 using TransferDesk.Services.Manuscript;
 using SimpleInjector.Integration.Web.Mvc;
+using SimpleInjector.Integration.WebApi;
 using TransferDesk.Contracts.Logging;
 using TransferDesk.DAL.Manuscript.Repositories;
 using TransferDesk.Logger;
@@ -23,55 +25,80 @@ namespace TransferDesk.MS.Web
     public class MvcApplication : System.Web.HttpApplication
     {
         private SimpleInjector.Container _simpleInjectorcontainer = null;
-        private IFileLogger _fileLogger = null;
+        private IApplicationLog _applicationLog = null;
 
         protected void Application_Start()
         {
             //test
             //List<string> listOfString = new List<string>();
-            StringBuilder stringBuilder = new StringBuilder();
-
-            AreaRegistration.RegisterAllAreas();
-            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
-            RouteConfig.RegisterRoutes(RouteTable.Routes);
-            BundleConfig.RegisterBundles(BundleTable.Bundles);
-            //compositon root for object graph using the IoC Container
-            _simpleInjectorcontainer = new SimpleInjector.Container();
-
-            //Register all components
-            RegisterAllComponents(stringBuilder, _simpleInjectorcontainer);
-
-            var logger = _simpleInjectorcontainer.GetInstance<ILogger>();
-
-                _fileLogger = logger as IFileLogger;
-            //fileLogger.FilePath = "d:\\TransferdeskLog\\";
-            string iterationInfo = "Iteration11";//todo:setto config
-
-            _fileLogger.FilePath = System.Web.HttpRuntime.AppDomainAppPath + iterationInfo + "Log\\";
-
-            if (System.IO.Directory.Exists(_fileLogger.FilePath) == false)
-            {
-                System.IO.Directory.CreateDirectory(_fileLogger.FilePath);
-            }
-
-            _fileLogger.FileName = "TransferDeskLog";
-
-            _fileLogger.WriteStringBuilderToDiskAndClear(stringBuilder);
-
-            stringBuilder.Length = 0;
-
-            stringBuilder.AppendLine("Try Register the container as  IDependencyResolver.");
-
-            _fileLogger.WriteStringBuilderToDiskAndClear(stringBuilder);
-
+            StringBuilder stringBuilder = null;
+            IFileLogger _fileLogger = null;
             try
             {
-                // Register the container as  IDependencyResolver.
-                DependencyResolver.SetResolver(new SimpleInjectorDependencyResolver(_simpleInjectorcontainer));
+                stringBuilder = new StringBuilder();
+
+                AreaRegistration.RegisterAllAreas();
+                GlobalConfiguration.Configure(WebApiConfig.Register);
+                FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+                RouteConfig.RegisterRoutes(RouteTable.Routes);
+                BundleConfig.RegisterBundles(BundleTable.Bundles);
+                //compositon root for object graph using the IoC Container
+                _simpleInjectorcontainer = new SimpleInjector.Container();
+
+                //Register all components
+                RegisterAllComponents(stringBuilder, _simpleInjectorcontainer);
+
+                var logger = _simpleInjectorcontainer.GetInstance<ILogger>();
+
+                _applicationLog  = logger as IApplicationLog;
+                _fileLogger = logger as IFileLogger;
+
+                //fileLogger.FilePath = "d:\\TransferdeskLog\\";
+                string iterationInfo = "Transferdesk";//todo:setto config
+
+                _fileLogger.FilePath = System.Web.HttpRuntime.AppDomainAppPath + iterationInfo + "Log\\";
+
+                if (System.IO.Directory.Exists(_fileLogger.FilePath) == false)
+                {
+                    System.IO.Directory.CreateDirectory(_fileLogger.FilePath);
+                }
+
+                _fileLogger.FileName = "TransferDeskLog";
+                
+                stringBuilder.AppendLine("Try Register the container as  IDependencyResolver.");
+
+                _fileLogger.WriteStringBuilderToAppLogAndClear(stringBuilder);
+                
+                try
+                {
+                    // Register the container as  IDependencyResolver.
+                    DependencyResolver.SetResolver(new SimpleInjectorDependencyResolver(_simpleInjectorcontainer));
+
+                    GlobalConfiguration.Configuration.DependencyResolver =
+                                               new SimpleInjectorWebApiDependencyResolver(_simpleInjectorcontainer);
+                }
+                catch (Exception exception)
+                {
+                    _fileLogger.LogException(exception, stringBuilder);
+                }
+                //throw new Exception("test app start exception");
             }
             catch (Exception exception)
             {
-                _fileLogger.LogException(exception);
+                if (_applicationLog == null)
+                {
+                    string pendingLogWrites = string.Empty;
+                    if (stringBuilder != null)
+                    {
+                        pendingLogWrites = stringBuilder.ToString();
+                    }
+                    Trace.WriteLine("Transferdesk exception " + pendingLogWrites + exception.ToString());
+                }
+                else
+                {
+                    _applicationLog.ApplicationExceptionLog(exception,stringBuilder);
+                }
+
             }
 
         }
@@ -100,7 +127,9 @@ namespace TransferDesk.MS.Web
 
                 //////stringBuilder.AppendLine("Registered Manuscript DB repository for readside");
 
-                //simpleInjectorcontainer.RegisterMvcControllers(Assembly.GetExecutingAssembly());
+                simpleInjectorContainer.RegisterWebApiControllers(GlobalConfiguration.Configuration);
+                simpleInjectorContainer.RegisterMvcControllers(Assembly.GetExecutingAssembly());
+
 
                 stringBuilder.AppendLine("Registered MVC Controllers");
 
@@ -111,16 +140,19 @@ namespace TransferDesk.MS.Web
 
                 stringBuilder.AppendLine("DI container verify done");
 
+
+
             }
             catch (Exception exception)
             {
-                //throw; essential to catch before first trace log, stringbuilder instance will identify steps skipped
-                stringBuilder.AppendLine("Exception in app_start " + exception.ToString());
+                //register is called before logger instance so write to string builder if exception in registering
+                stringBuilder.AppendLine(exception.ToString());
             }
         }
 
         protected void Application_End(object sender, EventArgs e)
         {
+            _applicationLog.ApplicationLog("Application stopped");
             _simpleInjectorcontainer.Dispose();
         }
         protected void Application_EndRequest()
@@ -143,9 +175,9 @@ namespace TransferDesk.MS.Web
 
                 if (!String.IsNullOrEmpty(shutDownMessage))
                 {
-                    if (_fileLogger != null)
+                    if (_applicationLog != null)
                     {
-                        _fileLogger.Log(String.Format("_shutDownMessage={0}\r\n\r\n_shutDownStack={1}", shutDownMessage,shutDownStack));
+                        _applicationLog.ApplicationLog(String.Format("_shutDownMessage={0}\r\n\r\n_shutDownStack={1}", shutDownMessage,shutDownStack));
                     }
                 }
             }
