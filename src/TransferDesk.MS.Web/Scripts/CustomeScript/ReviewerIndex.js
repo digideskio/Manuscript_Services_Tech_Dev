@@ -38,6 +38,7 @@ function resetSearch() {
     $("#SearchResultGridDiv").css("display", "none");
     $("#PaginatationDiv").css("display", "none");
     $("#NoReviewerFound").css("display", "none");
+    $("#lblTimeTaken").text("");
 }
 
 function btnSearch_onclick() {
