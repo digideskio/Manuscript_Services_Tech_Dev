@@ -72,6 +72,7 @@ namespace TransferDesk.Services.Manuscript
                 manuscriptLoginDTO.manuscriptLogin = manuscriptLogin;
                 manuscriptLoginDTO.AssociateName = manuscriptLoginVM.Associate;
                 manuscriptLoginDTO.IsRevision = manuscriptLoginVM.IsRevision;
+                manuscriptLoginDTO.userID = manuscriptLoginVM.userID;
                 if (_manuscriptLoginBL.SaveManuscriptLogin(manuscriptLoginDTO, dataErrors))
                 {
                     return true;

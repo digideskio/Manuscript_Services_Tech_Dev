@@ -457,6 +457,19 @@ namespace TransferDesk.DAL.Manuscript.Repositories
             }
         }
 
+        public bool CheckIntergerIsNullorEmpty(int number)
+        {
+            if (number == null || number == 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+            
+        }
+
         public int CheckMsidRevision(string msid, int id, int serviceTypeStatusId)
         {
 
@@ -477,7 +490,7 @@ namespace TransferDesk.DAL.Manuscript.Repositories
                                              orderby q.Revision descending
                                              select q.Revision).ToList();
                         var revisionnumber = Convert.ToInt32(revisionvalue.First());
-                        if (revisionnumber == null || revisionnumber == 0)
+                        if (CheckIntergerIsNullorEmpty(revisionnumber))                         
                         {
                             return (revisionnumber + 1);
                         }
@@ -500,7 +513,7 @@ namespace TransferDesk.DAL.Manuscript.Repositories
                                              orderby q.Revision descending
                                              select q.Revision).ToList();
                         var revisionnumber = Convert.ToInt32(revisionvalue.First());
-                        if (revisionnumber == null || revisionnumber == 0)
+                        if (CheckIntergerIsNullorEmpty(revisionnumber))
                         {
                             return (revisionnumber + 1);
                         }
