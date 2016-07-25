@@ -62,8 +62,7 @@ function btnSearch_onclick() {
     }
 
     $.ajax({
-        url: AppPath+ "/ReviewerIndex/GetReviewerIndexData",
-        //url: "GetReviewerIndexData",
+        url: AppPath + "/ReviewerIndex/GetReviewerIndexData", 
         type: 'GET',
         dataType: 'json',
         data: { fromrow: firstrow, torow: lastrow, pagesize: pageCount, searchOne: txtTitleSrch, searchTwo: txtTitleSrch1, minValue: minValue, maxValue: maxValue, SearchOneVal: ddlManuscript, ConditionVal: ddlConditions, SearchTwoVal: ddlSearchTwo, NewSearch: true },

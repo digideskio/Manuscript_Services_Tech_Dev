@@ -1,9 +1,0 @@
-D:\Project Data\Manuscript_Services_Tech_Dev\Manuscript_Services_Tech_Dev\src\TransferDesk.Logger\bin\Debug\TransferDesk.Logger.dll
-D:\Project Data\Manuscript_Services_Tech_Dev\Manuscript_Services_Tech_Dev\src\TransferDesk.Logger\bin\Debug\TransferDesk.Logger.pdb
-D:\Project Data\Manuscript_Services_Tech_Dev\Manuscript_Services_Tech_Dev\src\TransferDesk.Logger\bin\Debug\TransferDesk.Contracts.dll
-D:\Project Data\Manuscript_Services_Tech_Dev\Manuscript_Services_Tech_Dev\src\TransferDesk.Logger\bin\Debug\EntityFramework.dll
-D:\Project Data\Manuscript_Services_Tech_Dev\Manuscript_Services_Tech_Dev\src\TransferDesk.Logger\bin\Debug\TransferDesk.Contracts.pdb
-D:\Project Data\Manuscript_Services_Tech_Dev\Manuscript_Services_Tech_Dev\src\TransferDesk.Logger\bin\Debug\EntityFramework.xml
-D:\Project Data\Manuscript_Services_Tech_Dev\Manuscript_Services_Tech_Dev\src\TransferDesk.Logger\obj\Debug\TransferDesk.Logger.csprojResolveAssemblyReference.cache
-D:\Project Data\Manuscript_Services_Tech_Dev\Manuscript_Services_Tech_Dev\src\TransferDesk.Logger\obj\Debug\TransferDesk.Logger.dll
-D:\Project Data\Manuscript_Services_Tech_Dev\Manuscript_Services_Tech_Dev\src\TransferDesk.Logger\obj\Debug\TransferDesk.Logger.pdb
