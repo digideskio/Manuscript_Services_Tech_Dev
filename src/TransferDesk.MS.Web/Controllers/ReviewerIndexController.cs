@@ -57,8 +57,7 @@ namespace TransferDesk.MS.Web.Controllers
         {
 
             try
-            {
-
+            { 
                 if (Session["UserName"] == null)
                 {
                     var userId = @System.Web.HttpContext.Current.User.Identity.Name.Replace("SPRINGER-SBM\\", "");

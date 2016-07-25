@@ -62,7 +62,7 @@ function btnSearch_onclick() {
     }
 
     $.ajax({
-        url: "/ReviewerIndex/GetReviewerIndexData",
+        url: AppPath + "/ReviewerIndex/GetReviewerIndexData", 
         type: 'GET',
         dataType: 'json',
         data: { fromrow: firstrow, torow: lastrow, pagesize: pageCount, searchOne: txtTitleSrch, searchTwo: txtTitleSrch1, minValue: minValue, maxValue: maxValue, SearchOneVal: ddlManuscript, ConditionVal: ddlConditions, SearchTwoVal: ddlSearchTwo, NewSearch: true },
@@ -142,7 +142,7 @@ function ReviewerIndexPagination(PageValue) {
     var start_time = new Date().getTime();
 
     $.ajax({
-        url: "/ReviewerIndex/GetReviewerIndexData",
+        url: AppPath + "/ReviewerIndex/GetReviewerIndexData",
         type: 'GET',
         dataType: 'json',
         data: { fromrow: firstrow, torow: lastrow, pagesize: pageCount, searchOne: txtTitleSrch, searchTwo: txtTitleSrch1, minValue: minValue, maxValue: maxValue, SearchOneVal: ddlManuscript, ConditionVal: ddlConditions, SearchTwoVal: ddlSearchTwo, NewSearch: false },
@@ -214,7 +214,7 @@ function FirstAndLastPagination(PageValue) {
     }
 
     $.ajax({
-        url: "/ReviewerIndex/GetReviewerIndexData",
+        url: AppPath + "/ReviewerIndex/GetReviewerIndexData",
         type: 'GET',
         dataType: 'json',
         data: { fromrow: firstrow, torow: lastrow, pagesize: pageCount, searchOne: txtTitleSrch, searchTwo: txtTitleSrch1, minValue: minValue, maxValue: maxValue, SearchOneVal: ddlManuscript, ConditionVal: ddlConditions, SearchTwoVal: ddlSearchTwo, NewSearch: false },

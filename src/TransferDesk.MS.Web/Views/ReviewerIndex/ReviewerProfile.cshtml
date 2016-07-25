@@ -15,13 +15,13 @@
 
 <script id="ReferenceGridTemplate" type="text/x-jsrender">
     <li id="{{:ID}}_li" class="multiple_emails-email">
-        <a href="#" onclick="removeRefTableRow(id)" id="{{:ID}}" class="multiple_emails-close" title="Remove"><img title="Remove" src="/Images/DeleteRed.png" style="width:20px; height:20px;"></a>
+        <a href="#" onclick="removeRefTableRow(id)" id="{{:ID}}" class="multiple_emails-close" title="Remove"><img title="Remove" src="@Url.Content("~/")/Images/DeleteRed.png" style="width:20px; height:20px;"></a>
         <a href="{{:ReferenceLink}}" id="{{:ID}}" target="_blank" class="email_name">{{:ReferenceLink}}</a>
     </li>
 </script>
 <script id="JournalTemplate" type="text/x-jsrender">
     <li id="{{:JournalID}}_li" class="multiple_emails-email">
-        <a href="#" onclick="removeRefTableRow(id)" id="{{:JournalID}}" class="multiple_emails-close" title="Remove"><img title="Remove" src="/Images/DeleteRed.png" style="width:20px; height:20px;"></a>
+        <a href="#" onclick="removeRefTableRow(id)" id="{{:JournalID}}" class="multiple_emails-close" title="Remove"><img title="Remove" src="@Url.Content("~/")/Images/DeleteRed.png" style="width:20px; height:20px;"></a>
         <span id="{{:JournalID}}" class="email_name">{{:JournalTitle}}</span>
     </li>
 </script>
@@ -37,7 +37,7 @@
             {{:TertiaryExp}}
         </td>
         <td>
-            <img title="Remove this row" src="/Images/DeleteRed.png" style="width:20px; height:20px; margin-left:25%" id="{{:PID}}" onclick="removeTableRow(id)">
+            <img title="Remove this row" src="@Url.Content("~/")/Images/DeleteRed.png" style="width:20px; height:20px; margin-left:25%" id="{{:PID}}" onclick="removeTableRow(id)">
         </td>
     </tr>
 </script>
@@ -48,7 +48,7 @@
             <span id="{{:ID}}" title="Manuscript Title" style="color: #428bca; ">{{:Name}}</span>
         </td>
         <td style="width: 4%; text-align: left; padding: 4px; border: 1px solid #ddd; ">
-            <img title="Remove this row" src="/Images/DeleteRed.png" style="width: 20px; height: 20px; margin-left: 25%;" id="{{:ID}}" onclick="removeManuScriptTableRow(id)">
+            <img title="Remove this row" src="@Url.Content("~/")/Images/DeleteRed.png" style="width: 20px; height: 20px; margin-left: 25%;" id="{{:ID}}" onclick="removeManuScriptTableRow(id)">
         </td>
     </tr>
 </script>
@@ -269,7 +269,7 @@
             </td>
             <td style="width: 3%;">
                 <div style="padding-top:5px;">
-                    <button type="submit" style="background-color:rgba(255,255,255,0.0);  border:none;" id="btnAddManuScriptDetails" onclick="AddExpertiseInToTable();"><img src="~/Images/AddButton.png" style="height:26px; height:26px;" title="Add area of expertise" /></button>    
+                    <button type="submit" style="background-color:rgba(255,255,255,0.0);  border:none;" id="btnAddManuScriptDetails" onclick="AddExpertiseInToTable();"><img src="@Url.Content("~/")/Images/AddButton.png" style="height:26px; height:26px;" title="Add area of expertise" /></button>    
                 </div>
             </td>
         </tr>
@@ -330,7 +330,7 @@
             </td>            
             <td style="width: 4%;">
                 <div id="addPanel" style="padding-top:5px;">
-                    <button type="submit" style="background-color:rgba(255,255,255,0.0);  border:none;" id="btnAddManuScriptDetails" onclick="AddManuscriptToTable();"><img src="~/Images/AddButton.png" style="height:26px; height:26px;" title="Add Manuscript Details" /></button>                      
+                    <button type="submit" style="background-color:rgba(255,255,255,0.0);  border:none;" id="btnAddManuScriptDetails" onclick="AddManuscriptToTable();"><img src="@Url.Content("~/")/Images/AddButton.png" style="height:26px; height:26px;" title="Add Manuscript Details" /></button>                      
                 </div>
             </td>
         </tr>
