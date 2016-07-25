@@ -16,7 +16,7 @@
 <script id="ReferenceGridTemplate" type="text/x-jsrender">
     <li id="{{:ID}}_li" class="multiple_emails-email">
         <a href="#" onclick="removeRefTableRow(id)" id="{{:ID}}" class="multiple_emails-close" title="Remove"><img title="Remove" src="../Images/DeleteRed.png" style="width:20px; height:20px;"></a>
-        <a href="{{:ReferenceLink}}" id="{{:ID}}" style="display: inline-flex; width: 100%; overflow: hidden;" target="_blank" class="email_name">{{:ReferenceLink}}</a>
+        <a href="{{:ReferenceLink}}" id="{{:ID}}" target="_blank" class="email_name" style="overflow-wrap:break-word">{{:ReferenceLink}}</a>
     </li>
 </script>
 <script id="JournalTemplate" type="text/x-jsrender">
@@ -45,7 +45,7 @@
     <tr id="{{:ID}}_ManuScript_tr" ondblclick="EditManuScriptDetails(this)" style="border: 1px #BBD8FB solid;">
         <td style="width: 96%; text-align: left; padding: 4px; border: 1px solid #ddd; border-right:hidden">  
             <span id="{{:ID}}" title="Manuscript Title" style="color: #428bca; ">{{:MScriptID}}</span> |         
-            <span id="{{:ID}}" title="Manuscript Title" style="color: #428bca; display: inline-flex; width: 100%; overflow: hidden; ">{{:Name}}</span>
+            <span id="{{:ID}}" title="Manuscript Title" style="color: #428bca; display: inline; overflow-wrap:break-word">{{:Name}}</span>
         </td>
         <td style="width: 4%; text-align: left; padding: 4px; border: 1px solid #ddd; ">
             <img title="Remove this row" src="../Images/DeleteRed.png" style="width: 20px; height: 20px; margin-left: 25%;" id="{{:ID}}" onclick="removeManuScriptTableRow(id)">
@@ -211,13 +211,13 @@
             <td colspan="4"id="errorEmailId" style="color: red; font-size: small; display: none">First Name is mandatory</td>
         </tr>
     </table>
-    <table class="auto-style1">
+    <table style="table-layout: fixed;">
         <tr>
             <th>Reference link<span style="color:red">*</span></th>
             <th>Number Of Relevant Publications<span style="color:red">*</span></th>
         </tr>
         <tr>
-            <td rowspan="2" style="width: 50%;">
+            <td rowspan="2" style="width: 50%; overflow: hidden;">
                 <div style="padding-top:8px; width:85%">
                     <div class="multiple_emails-container">
                         <ul id="referenceUL" class="multiple_emails-ul"></ul>
