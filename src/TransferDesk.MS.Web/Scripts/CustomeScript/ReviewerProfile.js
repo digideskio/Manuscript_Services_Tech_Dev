@@ -126,11 +126,17 @@ function VerificationPopupOnSave()
     var cityName = $("#txtCity").val();
 
     $("#tdInstitute").text(institute);
+    $("#tdInstitute").attr("title", institute); 
     $("#tdDepartment").text(departmentName);
+    $("#tdDepartment").attr("title", departmentName);
     $("#tdStreet").text(streetName);
+    $("#tdStreet").attr("title", streetName);
     $("#tdCountry").text(countryName);
+    $("#tdCountry").attr("title", countryName);
     $("#tdState").text(stateName);
+    $("#tdState").attr("title", stateName);
     $("#tdCity").text(cityName);
+    $("#tdCity").attr("title", cityName);
     var isValid = ReviewerProfileValidation();
     if (isValid) {
         $("#divPopup").dialog('open');
