@@ -10,8 +10,8 @@
 
     <link href="~/Content/Notification.css" rel="stylesheet" />
     <script src="~/Scripts/CustomeScript/ReviewerIndexLayout.js"></script>
-    <script type="text/javascript">
-        var AppPath = '@Url.Content("~/")' 
+    <script type="text/javascript">       
+        var AppPath = "@(new Uri(Request.Url, Url.Content("~")))";
     </script>
     <style>
         .headingReviewer {

@@ -62,6 +62,7 @@ function btnSearch_onclick() {
         maxValue = 999;
     }
 
+    debugger;
     $.ajax({
         url: AppPath + "/ReviewerIndex/GetReviewerIndexData", 
         type: 'GET',
@@ -95,6 +96,7 @@ function btnSearch_onclick() {
             document.getElementById("TotalCount_span_header").innerHTML = totalcount;            
         },
         error: function (xhr) {
+            jQuery('#loading').hide();
         }
     });
 }
