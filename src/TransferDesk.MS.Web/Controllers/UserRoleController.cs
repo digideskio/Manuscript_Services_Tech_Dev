@@ -217,20 +217,24 @@ namespace TransferDesk.MS.Web.Controllers
             }
         }
 
-		[HttpPost]
+        [HttpPost]
         public ActionResult UserMaster(UserRoleVM userrolevm, List<int> SelectedJournalID, List<int> SelectedBookIDs)
         {
             var userId = @System.Web.HttpContext.Current.User.Identity.Name.Replace("SPRINGER-SBM\\", "");
             userrolevm.loginuser = userId;
             if (userrolevm.ID == 0)
             {
-                AddUserMasterInfo(userrolevm);
-                TempData["msg"] = "<script>alert('Record added succesfully');</script>";
+                if (AddUserMasterInfo(userrolevm))
+                {
+                    TempData["msg"] = "<script>alert('Record added succesfully');</script>";
+                }
             }
             else
             {
-                AddUserMasterInfo(userrolevm);
-                TempData["msg"] = "<script>alert('Record updated succesfully');</script>";
+                if (AddUserMasterInfo(userrolevm))
+                {
+                    TempData["msg"] = "<script>alert('Record updated succesfully');</script>";
+                }
             }
             return RedirectToAction("UserMaster", new { id = 0 });
         }

@@ -133,25 +133,44 @@ namespace TransferDesk.DAL.Manuscript.Repositories
 
 
         }
-
         public bool IsUserRoleAvailable(string userID, int serviceType, int roleId)
         {
             var count = 0;
-            if (serviceType == 5 && roleId == 1)
-                serviceType = 6;
-            else if (serviceType == 6 && roleId == 1)
-                serviceType = 5;
+
             if (roleId == 1)
             {
-                count = (from UR in context.UserRoles
-                         where UR.UserID == userID.Trim() && UR.ServiceTypeId == serviceType && UR.RollID == roleId && UR.IsActive == true
-                         select UR).Count();
+                var userRoles = (from UR in context.UserRoles
+                                 where UR.UserID == userID.Trim() && UR.ServiceTypeId == serviceType && UR.RollID == roleId && UR.IsActive == true
+                                 select UR).FirstOrDefault();
+                if (userRoles == null || userRoles.ServiceTypeId != serviceType)
+                    count = CheckAccessOfUser(userID, serviceType, 1);
+                else
+                    count = 0;
             }
+
             if (count > 0)
                 return false;
             else
                 return true;
         }
+
+        public int CheckAccessOfUser(string userID, int serviceType, int roleId)
+        {
+            var count = 0;
+            if (serviceType == 5)
+                serviceType = 6;
+            else
+                serviceType = 5;
+            var updateUserRoles = (from UR in context.UserRoles
+                                   where UR.UserID == userID.Trim() && UR.ServiceTypeId == serviceType && UR.RollID == roleId && UR.IsActive == true
+                                   select UR.UserID).Count();
+            if (updateUserRoles == 0)
+                count = 0;
+            else
+                count = updateUserRoles;
+            return count;
+        }
+
 
         public bool IsJobFetchedByUser(string userID, int serviceType, int roleId)
         {

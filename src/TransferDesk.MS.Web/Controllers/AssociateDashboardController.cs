@@ -85,7 +85,7 @@ namespace TransferDesk.MS.Web.Controllers
                 {
                     _logger.Log(" Job fetching started: " + userId);
                     var fetchedJobs = _associateDashBoardReposistory.JobTobeFetched(userId, serviceTypeId, 0);
-                    if (fetchedJobs.CrestID == "")
+                    if (fetchedJobs.CrestID == "" || string.IsNullOrEmpty(fetchedJobs.CrestID))
                     {
                         _logger.Log(" Job are not found: " + userId);
                         var jdata = new { message = "There are no open jobs in queue.", ManuscriptID = 0, returnValue = "false", jobType = "" };

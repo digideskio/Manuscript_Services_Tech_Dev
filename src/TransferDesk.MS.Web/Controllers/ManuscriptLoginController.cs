@@ -238,6 +238,7 @@ namespace TransferDesk.MS.Web.Controllers
             var manuscriptLogin = new ManuscriptLogin();
             //if new record or revision then add entry into db
             manuscriptLoginVm.CrestId = "";
+            manuscriptLoginVm.userID = @System.Web.HttpContext.Current.User.Identity.Name.Replace("SPRINGER-SBM\\", "");
             _manuscriptLoginService.SaveManuscriptLoginVM(dataErrors, manuscriptLoginVm, manuscriptLogin);
             TempData["msg"] = "<script>alert('Record added succesfully');</script>";
         }
@@ -445,15 +446,17 @@ namespace TransferDesk.MS.Web.Controllers
 
         public int CheckMSIDForRevision(string msid, int serviceTypeStatusId)
         {
-
+            try
+            {          
             if (ValidateMsidIsOpen(msid) == false)
             {
                 return ManuscriptLoginDbRepositoryReadSide.CheckMsidRevision(msid, 0, serviceTypeStatusId);
-            }
-
-            else
-            {
+            }           
                 return 0;
+            }
+            catch (Exception)
+            {
+                throw;
             }
         }
     }
