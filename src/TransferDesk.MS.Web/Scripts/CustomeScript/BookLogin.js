@@ -18,10 +18,10 @@
         ''
     );
 
-    //if ($("#bookid").val() == 0) {
-    //    $('#IsNewEntry').prop('checked', true);
-    //  $("#btnBookLogin").val("Login");
-    //}
+    if ($("#bookid").val() == 0) {
+        $('#IsNewEntry').prop('checked', true);
+      $("#btnBookLogin").val("Login");
+    }
    
 
 
@@ -83,7 +83,7 @@
                 data: {
                     serviceTypeId: serviceType,
                     BookTitleId: selectedBookTitle,
-                    chapterNo: $.trim($("#ChapterNumber").val()).toLowerCase()
+                    chapterNo: $("#ChapterNumber").val()
                 },
                 success: function (data) {
                     checkvalue = data;
@@ -133,7 +133,7 @@
     });
 
     if ($("#bookid").val() != 0 && $("#bookid").val() != null) {
-        $("#btnBookLogin").val("Update");
+    //    $("#btnBookLogin").val("Update");
         var selectedBook = $("#ddlBookTitle option:selected").val();
         if (selectedBook == "") {
             $('#txtFTPLink').empty();

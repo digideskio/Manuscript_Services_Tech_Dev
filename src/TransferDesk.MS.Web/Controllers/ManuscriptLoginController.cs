@@ -122,7 +122,6 @@ namespace TransferDesk.MS.Web.Controllers
 
         public bool CheckIfBookPresent(int serviceTypeId, int BookTitleId, string chapterNo)
         {
-            _logger.Log("Checking same book is present... ");
             if (ManuscriptLoginDbRepositoryReadSide.CheckIfBookPresent(serviceTypeId, BookTitleId, chapterNo))
             {
                 return true;
@@ -238,7 +237,6 @@ namespace TransferDesk.MS.Web.Controllers
             var manuscriptLogin = new ManuscriptLogin();
             //if new record or revision then add entry into db
             manuscriptLoginVm.CrestId = "";
-            manuscriptLoginVm.userID = @System.Web.HttpContext.Current.User.Identity.Name.Replace("SPRINGER-SBM\\", "");
             _manuscriptLoginService.SaveManuscriptLoginVM(dataErrors, manuscriptLoginVm, manuscriptLogin);
             TempData["msg"] = "<script>alert('Record added succesfully');</script>";
         }
@@ -387,9 +385,9 @@ namespace TransferDesk.MS.Web.Controllers
 
         }
 
-        public JsonResult GetManuscriptLoginedJobByMsid(string msid, int servicetype)
+        public JsonResult GetManuscriptLoginedJobByMsid(string msid)
         {
-            return this.Json(ManuscriptLoginDbRepositoryReadSide.GetManuscriptDetailsByMsid(msid, servicetype), JsonRequestBehavior.AllowGet);
+            return this.Json(ManuscriptLoginDbRepositoryReadSide.GetManuscriptDetailsByMsid(msid), JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult BookLogin(int? id, string jobtype)
@@ -442,22 +440,6 @@ namespace TransferDesk.MS.Web.Controllers
             manuscriptLoginVm.ArticleType = _manuscriptDBRepositoryReadSide.GetArticleList(Convert.ToInt32(manuscriptLoginVm.JournalID));
             manuscriptLoginVm.Section = _manuscriptDBRepositoryReadSide.GetSectionList(Convert.ToInt32(manuscriptLoginVm.JournalID));
             return View("JournalLogin", manuscriptLoginVm);
-        }
-
-        public int CheckMSIDForRevision(string msid, int serviceTypeStatusId)
-        {
-            try
-            {          
-            if (ValidateMsidIsOpen(msid) == false)
-            {
-                return ManuscriptLoginDbRepositoryReadSide.CheckMsidRevision(msid, 0, serviceTypeStatusId);
-            }           
-                return 0;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
         }
     }
 }
