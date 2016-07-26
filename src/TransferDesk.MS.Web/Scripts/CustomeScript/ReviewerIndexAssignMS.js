@@ -90,7 +90,7 @@ function saveSubmitReviewers(isAssociateFinalSubmit) {
             var msReviewerSuggestionId = row.find('td input')[1].id;
             var chk = row.find('td input')[0].checked ? true : false;
             $.ajax({
-                url: AppPath + "/ReviewerIndex/SaveReviewersSuggestion",
+                url: "/ReviewerIndex/SaveReviewersSuggestion",
                 type: "GET",
                 dataType: "json",
                 data: {
@@ -110,7 +110,7 @@ function saveSubmitReviewers(isAssociateFinalSubmit) {
                     var rowNum = result;
                     if (rowNum != 0 || rowNum != null) {
                         $.ajax({
-                            url: AppPath + "/ReviewerIndex/SaveReviewersSuggestionInfo",
+                            url: "/ReviewerIndex/SaveReviewersSuggestionInfo",
                             type: "POST",
                             dataType: "json",
                             data: {
@@ -136,8 +136,7 @@ function saveSubmitReviewers(isAssociateFinalSubmit) {
                                         ClearPopUpControls();
                                         $('#myModal2').modal('toggle');
                                         //opens new tab(Reviewer Suggestion Page) after final submit.
-                                        //var url = 'http://192.168.84.68/TransferDeskService//ReviewerSuggestion/ReviewersSuggestions/' + rowNum;  // UAT
-                                        var url = 'http://192.168.84.68/ManuscriptScreening/ReviewerSuggestion/ReviewersSuggestions/' + rowNum; // Testing
+                                        var url = 'http://192.168.84.68/TransferDeskService//ReviewerSuggestion/ReviewersSuggestions/' + rowNum;
                                         window.open(url);
                                     }
                                 }
@@ -177,7 +176,7 @@ function EnableDesablePopupControls() {
 function SaveReviewersSuggestion(key, msid, ddlTask, rollId, jobType, articleTitle, ddlJournalId, user, reviewerMasterId, isAssociateFinalSubmit, msReviewerSuggestionId) {
 
     $.ajax({
-        url: AppPath + "/ReviewerIndex/SaveReviewersSuggestion",
+        url: "/ReviewerIndex/SaveReviewersSuggestion",
         type: "POST",
         dataType: "json",
         data: {
@@ -208,7 +207,7 @@ function SaveReviewersSuggestion(key, msid, ddlTask, rollId, jobType, articleTit
 function DisplayManuscriptDetails(key, msid, reviewerIds) {
 
     $.ajax({
-        url: AppPath + "/ReviewerIndex/DisplayManuscriptDetails",
+        url: "/ReviewerIndex/DisplayManuscriptDetails",
         type: "GET",
         dataType: "json",
         data: { key: key, msid: msid, reviewersId: reviewerIds },
@@ -287,7 +286,7 @@ function ClearPopUpControls() {
 
 function LoadJournalList() {
     $.ajax({
-        url: AppPath + "/ReviewerIndex/GetJournal",
+        url: "/ReviewerIndex/GetJournal",
         type: "POST",
         dataType: "json",
         data: { term: null },
@@ -304,7 +303,7 @@ function LoadJournalList() {
 function LoadTask() {
 
     $.ajax({
-        url: AppPath + "/ReviewerIndex/GetTask",
+        url: "/ReviewerIndex/GetTask",
         type: "POST",
         datatype: "json",
         success: function (result) {
@@ -384,7 +383,7 @@ function CheckDuplicatesReviewers(id) {
             journalId = 0;
         }
         $.ajax({
-            url: AppPath + "/ReviewerIndex/CheckDuplicates",
+            url: "/ReviewerIndex/CheckDuplicates",
             type: "GET",
             dataType: "json",
             data: {

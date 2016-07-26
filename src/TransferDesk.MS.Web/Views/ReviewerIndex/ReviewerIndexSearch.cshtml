@@ -10,9 +10,6 @@
     <title></title>
     <script src="~/Scripts/jquery-1.10.2.js"></script>
     <script src="../Scripts/jsrender.js" type="text/javascript"></script>
-    <script src="~/Scripts/jsrender.min.js"></script>
-
-
     <link href="~/Content/ReviewerIndex.css" rel="stylesheet" />
     @*sam code*@ 
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
@@ -47,7 +44,7 @@
                     {{:Numberofrelevantpublications}}
                 </td>
                 <td>
-                    <a href="../ReviewerIndex/ReviewerProfile?reviewerId={{:ReviewerID}}" target="_blank" class="review">View/Edit</a>
+                    <a href="/ReviewerIndex/ReviewerProfile?reviewerId={{:ReviewerID}}" target="_blank" class="review">View/Edit</a>
 
                 </td>
             </tr>
@@ -58,7 +55,7 @@
             <div>             
                 @*<input type="submit" value="New Profile" id="btnNewProfile" class="btn btn-primary btn-sm" />*@
                 <h1 style="font-size: 18px; padding-left: 5px; color: #192F5A; text-align: left; float: left;">Keywords Search Categories</h1>
-                <h2 style="font-size: 18px; padding-left: 5px; text-align: right; float: right;"><a href="~/ReviewerIndex/ReviewerProfile?reviewerId=0" target="_blank">Create New Profile</a></h2>                
+                <h2 style="font-size: 18px; padding-left: 5px; text-align: right; float: right;"><a href="/ReviewerIndex/ReviewerProfile?reviewerId=0" target="_blank">Create New Profile</a></h2>                
                 <hr style="clear:both;" />
             </div>            
             <table class="auto-style1">
@@ -232,7 +229,7 @@
                     <input id='{{:ID}}' value='{{:ID}}' hidden />
                 </td>
                 <td>
-                    <a href="../ReviewerIndex/ReviewerProfile?reviewerId={{:ReviewerMasterID}}" target="_blank" class="review">{{:ReviewerName}} </a>
+                    <a href="/ReviewerIndex/ReviewerProfile?reviewerId={{:ReviewerMasterID}}" target="_blank" class="review">{{:ReviewerName}} </a>
                 </td>
                 <td>
                     {{:Affiliation}}
