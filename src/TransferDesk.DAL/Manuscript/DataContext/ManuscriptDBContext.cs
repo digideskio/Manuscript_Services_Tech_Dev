@@ -75,6 +75,8 @@ namespace TransferDesk.DAL.Manuscript.DataContext
 			modelBuilder.Entity<Entities.JournalUserRoles>();
             modelBuilder.Entity<Entities.SlidingScale>();
             modelBuilder.Entity<Entities.BookUserRoles>();
+            modelBuilder.Entity<Entities.TitleMaster>(); 
+            modelBuilder.Entity<Entities.TitleReviewerlink>();
             modelBuilder.Entity<TransferDesk.Contracts.Manuscript.ComplexTypes.Search.pr_SearchMSDetails_Result>();
             modelBuilder.Entity<TransferDesk.Contracts.Manuscript.ComplexTypes.ManuscriptAdmin.pr_GetJournalArticleDetails_Result>();
             modelBuilder.Entity<TransferDesk.Contracts.Manuscript.ComplexTypes.ManuscriptAdmin.pr_GetJournalSectionDetails_Result>();
@@ -126,6 +128,8 @@ namespace TransferDesk.DAL.Manuscript.DataContext
 		public virtual DbSet<Entities.BookUserRoles> BookUserRoles { get; set; }
         public virtual DbSet<Entities.JournalUserRoles> JournalUserRoles { get; set; }
         public virtual DbSet<Entities.SlidingScale> SlidingScale { get; set; }
+        public virtual DbSet<Entities.TitleMaster> TitleMaster { get; set; }
+        public virtual DbSet<Entities.TitleReviewerlink> TitleReviewerlink { get; set; } 
         public virtual int pr_GetMSDetails()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pr_GetMSDetails");

@@ -67,5 +67,24 @@ namespace TransferDesk.DAL.Manuscript.Repositories
             context.Entry(reviewerInfo).State = EntityState.Modified;  
             context.SaveChanges();
         }
+        internal void RemoveReviewerTile(int reviewerId, string articleTitle, string user)
+        {
+            var titleInfo = new Entities.TitleMaster();
+            titleInfo = context.TitleMaster.Where(x => x.Name.ToLower() == articleTitle.ToLower()).FirstOrDefault();
+            var titleReviewerLink = new Entities.TitleReviewerlink();
+            if (titleInfo != null)
+            {
+                titleReviewerLink = context.TitleReviewerlink.Where(
+                    x => x.ReviewerMasterID == reviewerId && x.TitleMasterID == titleInfo.TitleID).FirstOrDefault();
+                titleReviewerLink.IsActive = false;
+                titleReviewerLink.ModifiedBy = user.Trim();
+                titleReviewerLink.ModifiedDate = DateTime.Now;
+                context.SaveChanges();
+
+            }
+
+        }
+
+
     }
 }

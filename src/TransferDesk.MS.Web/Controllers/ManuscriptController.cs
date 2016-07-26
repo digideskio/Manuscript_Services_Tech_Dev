@@ -31,7 +31,7 @@ namespace TransferDesk.MS.Web.Controllers
         {
             _logger = logger;
             var conString = Convert.ToString(ConfigurationManager.AppSettings["dbTransferDeskService"]);
-            _manuscriptService = new ManuscriptService(conString, conString);
+            _manuscriptService = new ManuscriptService(conString, conString,_logger);
             _manuscriptDbRepositoryReadSide = new ManuscriptDBRepositoryReadSide(conString);
         }
 

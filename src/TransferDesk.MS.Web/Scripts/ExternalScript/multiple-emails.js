@@ -21,7 +21,7 @@
 		}
 		else if (settings.theme.toLowerCase() == "Basic".toLowerCase()) {
 			//Default which you should use if you don't use Bootstrap, SemanticUI, or other CSS frameworks
-		    deleteIconHTML = '<a href="#" class="multiple_emails-close" title="Remove"><img title="Remove" src="/Images/DeleteRed.png" style="width:20px; height:20px;"></a>';
+		    deleteIconHTML = '<a href="#" class="multiple_emails-close" title="Remove"><img title="Remove" src="../Images/DeleteRed.png" style="width:20px; height:20px;"></a>';
 		}
 		
 		return this.each(function() {
@@ -39,7 +39,7 @@
 				});
 			}
 			
-			var $input = $('<input type="text" class="multiple_emails-input text-left" />').on('keyup', function(e) { // input
+			var $input = $('<input type="text" class="multiple_emails-input text-left" placeholder="Enter your email" />').on('keyup', function (e) { // input
 				$(this).removeClass('multiple_emails-error');
 				var input_length = $(this).val().length;
 				
@@ -151,7 +151,7 @@
 			        $.ajax(
                      {
                          type: "GET",
-                         url: "/ReviewerIndex/VerifyEmailAddress",
+                         url: AppPath + "/ReviewerIndex/VerifyEmailAddress",
                          contentType: "application/json; charset=utf-8",
                          dataType: "json",
                          Async: false,
