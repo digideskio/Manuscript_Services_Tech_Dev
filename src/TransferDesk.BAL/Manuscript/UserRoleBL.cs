@@ -117,7 +117,7 @@ namespace TransferDesk.BAL.Manuscript
             try
             {
                 List<JournalUserRoles> journalUserRolesList = new List<JournalUserRoles>();
-                var usermasterid = userRolesUnitOfWork.GetUserID(userRoleDto.userroles.UserID, userRoleDto.userroles.ServiceTypeId);
+                var usermasterid = userRolesUnitOfWork.GetUserID(userRoleDto.userroles.UserID, userRoleDto.userroles.ServiceTypeId, userRoleDto.userroles.RollID);
                 journalUserRolesList = _journalUserRoles.GetJournalDetailsForUserID(usermasterid);
                 userRoleDto.deleteJournalUser = journalUserRolesList;
                 userRolesUnitOfWork.DeleteJournalUserRolesDetails(userRoleDto);
@@ -138,7 +138,7 @@ namespace TransferDesk.BAL.Manuscript
             try
             {
                 List<BookUserRoles> bookUserRolesList = new List<BookUserRoles>();
-                var usermasterid = userRolesUnitOfWork.GetUserID(userRoleDto.userroles.UserID, userRoleDto.userroles.ServiceTypeId);
+                var usermasterid = userRolesUnitOfWork.GetUserID(userRoleDto.userroles.UserID, userRoleDto.userroles.ServiceTypeId, userRoleDto.userroles.RollID);
                 bookUserRolesList = _bookUserReposistory.GetBookDetailsForUserID(usermasterid);
                 userRoleDto.deleteBookUser = bookUserRolesList;
                 userRolesUnitOfWork.DeleteBookUserRolesDetails(userRoleDto);  
@@ -157,7 +157,7 @@ namespace TransferDesk.BAL.Manuscript
             try
             {
                 List<JournalUserRoles> journalUserRolesList = new List<JournalUserRoles>();
-                var usermasterid = userRolesUnitOfWork.GetUserID(userRoleDto.userroles.UserID, userRoleDto.userroles.ServiceTypeId);
+                var usermasterid = userRolesUnitOfWork.GetUserID(userRoleDto.userroles.UserID, userRoleDto.userroles.ServiceTypeId, userRoleDto.userroles.RollID);
                 if (userRoleDto.SelectedJournalID != null || userRoleDto.SelectedJournalIDs != null)
                 {              
                     journalUserRolesList = _journalUserRoles.GetJournalDetailsForUserID(usermasterid);
@@ -195,7 +195,7 @@ namespace TransferDesk.BAL.Manuscript
             try
             {
                 List<BookUserRoles> bookUserRolesList = new List<BookUserRoles>();
-                var usermasterid = userRolesUnitOfWork.GetUserID(userRoleDto.userroles.UserID, userRoleDto.userroles.ServiceTypeId);
+                var usermasterid = userRolesUnitOfWork.GetUserID(userRoleDto.userroles.UserID, userRoleDto.userroles.ServiceTypeId, userRoleDto.userroles.RollID);
                 if (userRoleDto.SelectedBookID != null || userRoleDto.SelectedBookIDs != null)
                 {
                     bookUserRolesList = _bookUserReposistory.GetBookDetailsForUserID(usermasterid);                    

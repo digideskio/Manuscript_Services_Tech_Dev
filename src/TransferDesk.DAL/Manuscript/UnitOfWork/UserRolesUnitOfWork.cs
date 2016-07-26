@@ -33,7 +33,7 @@ namespace TransferDesk.DAL.Manuscript.UnitOfWork
         {
             var servicetypeID = userRoleDto.userroles.ServiceTypeId;
             var useridforcheck = userRoleDto.userroles.UserID;
-            var checkuserID = _userRoleRepository.CheckIfUserIsPresent(useridforcheck, servicetypeID);
+            var checkuserID = _userRoleRepository.CheckIfUserIsPresent(useridforcheck, servicetypeID, userRoleDto.userroles.RollID);
 
             if (checkuserID != true)
             {
@@ -43,7 +43,7 @@ namespace TransferDesk.DAL.Manuscript.UnitOfWork
             }
             else
             {
-                var id = _userRoleRepository.CheckUserIdIfPresent(useridforcheck, servicetypeID);
+                var id = _userRoleRepository.CheckUserIdIfPresent(useridforcheck, servicetypeID, userRoleDto.userroles.RollID);
                 userRoleDto.userroles.ID = id;
                 userRoleDto.userroles.ModifiedDateTime = System.DateTime.Now;
                 userRoleDto.userroles.Status = 1;
@@ -54,11 +54,11 @@ namespace TransferDesk.DAL.Manuscript.UnitOfWork
 
         }
 
-        public int GetUserID(string userid, int servicetype)
+        public int GetUserID(string userid, int servicetype, int roleId)
         {
             try
             {
-                var id = _userRoleRepository.GetUserID(userid, servicetype);
+                var id = _userRoleRepository.GetUserID(userid, servicetype, roleId);
                 return id;
             }
             catch (Exception e)

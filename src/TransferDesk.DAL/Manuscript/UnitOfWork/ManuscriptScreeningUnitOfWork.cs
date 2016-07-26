@@ -35,6 +35,7 @@ namespace TransferDesk.DAL.Manuscript.UnitOfWork
             _manuscriptErrorCategoryRepository = new Repos.ManuscriptErrorCategoryRepository(_manuscriptRepository.manuscriptDataContext);
             _manuscriptBookScreeningRepository = new Repos.ManuscriptBookScreeningRepository(conString);
             _bookErrorCategoryRepository = new Repos.ManuscriptBookErrorCategoryRepository(conString);
+            _manuscriptLoginUnitOfWork = new ManuscriptLoginUnitOfWork(conString);
         }
 
         private void SaveOtherAuthors()

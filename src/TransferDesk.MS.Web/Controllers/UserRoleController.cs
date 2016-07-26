@@ -242,22 +242,22 @@ namespace TransferDesk.MS.Web.Controllers
         private bool AddUserMasterInfo(UserRoleVM userrolevm)
         {
             var userRoles = new UserRoles();
-            if (_UserRoleRepository.IsJobFetchedByUser(userrolevm.UserID, userrolevm.ServiceTypeID, userrolevm.RollID))
+            if (_UserRoleRepository.IsUserRoleAvailable(userrolevm.UserID, userrolevm.ServiceTypeID, userrolevm.RollID))
             {
-                if (_UserRoleRepository.IsUserRoleAvailable(userrolevm.UserID, userrolevm.ServiceTypeID, userrolevm.RollID))
+                if (_UserRoleRepository.IsJobFetchedByUser(userrolevm.UserID, userrolevm.ServiceTypeID, userrolevm.RollID, userrolevm.IsActive))
                 {
                     _userRoleService.SaveUserRoleDetails(userrolevm, userRoles);
                     return true;
                 }
                 else
                 {
-                    TempData["msg"] = "<script>alert('Associate should have only one role.');</script>";
+                    TempData["msg"] = "<script>alert('Unallocate job from user.');</script>";
                     return false;
                 }
             }
             else
             {
-                TempData["msg"] = "<script>alert('Unallocate job from user.');</script>";
+                TempData["msg"] = "<script>alert('Associate should have only one role.');</script>";
                 return false;
             }
         }
