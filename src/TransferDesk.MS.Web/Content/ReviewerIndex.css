@@ -218,12 +218,3 @@
     white-space: fixed;
     table-layout: fixed;
 }
-
-.crop {
-    width: 300px;
-    overflow: hidden;
-    height: 25px;    
-    display:inline-block;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}

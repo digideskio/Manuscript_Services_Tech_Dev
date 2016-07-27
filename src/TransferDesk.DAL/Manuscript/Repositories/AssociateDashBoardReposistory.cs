@@ -112,7 +112,6 @@ namespace TransferDesk.DAL.Manuscript.Repositories
             }
         }
 
-
         public pr_IsJobFetchedOrAssign_Result IsJobFetchedOrAssign(string userid, int serviceTypeId)
         {
             try
@@ -138,6 +137,7 @@ namespace TransferDesk.DAL.Manuscript.Repositories
 
             }
         }
+
 
         public pr_JobTobeFetched_Result JobTobeFetched(string userid, int serviceTypeId, int roleId)
         {
@@ -187,7 +187,7 @@ namespace TransferDesk.DAL.Manuscript.Repositories
         public int GetServiceTypeOnUserId(string userID)
         {
             var serivceType = (from UR in context.UserRoles
-                               where UR.UserID == userID && UR.RollID == 1 && UR.IsActive==true
+                               where UR.UserID == userID && UR.RollID == 1
                                select UR.ServiceTypeId).FirstOrDefault();
 
             return Convert.ToInt32(serivceType);

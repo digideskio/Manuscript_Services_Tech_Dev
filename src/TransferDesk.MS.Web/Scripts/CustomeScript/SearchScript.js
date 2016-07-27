@@ -319,6 +319,10 @@ $(document).ready(function () {
             }
         }
     });
+    if ($("#Highest_iThenticateFromSingleSrc").val() == 0) {
+        $("#Highest_iThenticateFromSingleSrc").val('');
+    }
+
 
     $('span').removeClass("dd-pointer dd-pointer-down");
 
