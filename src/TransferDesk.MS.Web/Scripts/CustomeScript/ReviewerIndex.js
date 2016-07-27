@@ -38,7 +38,6 @@ function resetSearch() {
     $("#SearchResultGridDiv").css("display", "none");
     $("#PaginatationDiv").css("display", "none");
     $("#NoReviewerFound").css("display", "none");
-    $("#lblTimeTaken").text("");
 }
 
 function btnSearch_onclick() {
@@ -62,9 +61,8 @@ function btnSearch_onclick() {
         maxValue = 999;
     }
 
-    debugger;
     $.ajax({
-        url: AppPath + "/ReviewerIndex/GetReviewerIndexData", 
+        url: "/ReviewerIndex/GetReviewerIndexData",
         type: 'GET',
         dataType: 'json',
         data: { fromrow: firstrow, torow: lastrow, pagesize: pageCount, searchOne: txtTitleSrch, searchTwo: txtTitleSrch1, minValue: minValue, maxValue: maxValue, SearchOneVal: ddlManuscript, ConditionVal: ddlConditions, SearchTwoVal: ddlSearchTwo, NewSearch: true },
@@ -96,7 +94,6 @@ function btnSearch_onclick() {
             document.getElementById("TotalCount_span_header").innerHTML = totalcount;            
         },
         error: function (xhr) {
-            jQuery('#loading').hide();
         }
     });
 }
@@ -145,7 +142,7 @@ function ReviewerIndexPagination(PageValue) {
     var start_time = new Date().getTime();
 
     $.ajax({
-        url: AppPath + "/ReviewerIndex/GetReviewerIndexData",
+        url: "/ReviewerIndex/GetReviewerIndexData",
         type: 'GET',
         dataType: 'json',
         data: { fromrow: firstrow, torow: lastrow, pagesize: pageCount, searchOne: txtTitleSrch, searchTwo: txtTitleSrch1, minValue: minValue, maxValue: maxValue, SearchOneVal: ddlManuscript, ConditionVal: ddlConditions, SearchTwoVal: ddlSearchTwo, NewSearch: false },
@@ -217,7 +214,7 @@ function FirstAndLastPagination(PageValue) {
     }
 
     $.ajax({
-        url: AppPath + "/ReviewerIndex/GetReviewerIndexData",
+        url: "/ReviewerIndex/GetReviewerIndexData",
         type: 'GET',
         dataType: 'json',
         data: { fromrow: firstrow, torow: lastrow, pagesize: pageCount, searchOne: txtTitleSrch, searchTwo: txtTitleSrch1, minValue: minValue, maxValue: maxValue, SearchOneVal: ddlManuscript, ConditionVal: ddlConditions, SearchTwoVal: ddlSearchTwo, NewSearch: false },

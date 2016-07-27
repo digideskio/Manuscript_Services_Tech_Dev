@@ -8,6 +8,7 @@ using Entities = TransferDesk.Contracts.Manuscript.Entities;
 using TransferDesk.Contracts.Manuscript.DTO;
 using TransferDesk.BAL.Manuscript;
 using TransferDesk.Services.Manuscript.ViewModel;
+using TransferDesk.Contracts.Logging;
 using System.Collections;
 
 //todo: a seperate "web adapter" for service that will allow modelstate to cross will be created.
@@ -22,15 +23,19 @@ namespace TransferDesk.Services.Manuscript
 
         public ManuscriptScreeningBL _manuscriptScreeningBL { get; set; }
 
-        public ManuscriptService()
+        private ILogger _logger;
+
+        public ManuscriptService(ILogger Logger)
         {
-            //empty constructor            
+            //empty constructor  
+            _logger = Logger;
         }
 
-        public ManuscriptService(String ConStringRead, String ConStringWrite)
+        public ManuscriptService(String ConStringRead, String ConStringWrite, ILogger Logger)
         {
             _ConStringRead = ConStringRead;
             _ConStringWrite = ConStringWrite;
+            _logger = Logger;
             CreateManuscriptScreeningBL();
         }
 
@@ -109,34 +114,50 @@ namespace TransferDesk.Services.Manuscript
 
         public bool SaveManuscriptScreeningVM(IDictionary<string, string> dataErrors, ManuscripScreeningVM manuscriptVM)
         {
+            _logger.Log("trying to save MS Viewmodel, ID is " + manuscriptVM.ID);
             ManuscriptScreeningDTO manuscriptScreeningDTO = manuscriptVM.FetchDTO;
+            _logger.Log("DTO fetched with id " + manuscriptScreeningDTO.Manuscript.ID);
             manuscriptScreeningDTO.CurrentUserID = System.Web.HttpContext.Current.User.Identity.Name.Replace("SPRINGER-SBM\\", "");
+            _logger.Log("Current User ID " + manuscriptScreeningDTO.CurrentUserID);
             ValidateManuscriptScreening(dataErrors, manuscriptScreeningDTO);
+            _logger.Log("errors (if any) " + dataErrors.ToString());
             if (dataErrors.Count == 0)
             {
                 _manuscriptScreeningBL.SaveManuscriptScreening(manuscriptScreeningDTO, dataErrors);
+                _logger.Log("Saved successfully with data errors (if any) " + dataErrors.ToString());
                 return true;
             }
             else
             {
+                _logger.Log("Not saved due to errors before save - " + dataErrors.ToString());
                 return false;
             }
         }
 
         public bool SaveManuscriptBookScreeningVM(IDictionary<string, string> dataErrors, ManuscriptBookScreeningVm manuscriptVM)
         {
+            _logger.Log("trying to save VModel Book Screening ID is " + manuscriptVM.BookScreeningID);
             ManuscriptBookScreeningDTO manuscriptBookScreeningDTO = manuscriptVM.FetchDTO;
+            _logger.Log("DTO fetched with Book screening Id - " + manuscriptBookScreeningDTO.ManuscriptBookScreening.ID);
             manuscriptBookScreeningDTO.CurrentUserID = System.Web.HttpContext.Current.User.Identity.Name.Replace("SPRINGER-SBM\\", "");
+            _logger.Log("Current User ID " + manuscriptBookScreeningDTO.CurrentUserID);
             manuscriptBookScreeningDTO.ManuscriptBookScreening.BookLoginID = manuscriptVM.BookLoginID;
+            _logger.Log("Manuscript screening VM  Book Login Id - " + manuscriptVM.BookLoginID);
             manuscriptBookScreeningDTO.ManuscriptBookScreening.ID = manuscriptVM.BookScreeningID;
+            _logger.Log("manuscript VM book screening ID assigned to DTO Manu. Book Screening DTO  as " + manuscriptVM.BookScreeningID);
             ValidateManuscriptBookScreening(dataErrors, manuscriptBookScreeningDTO);
+            _logger.Log("Data errors (if any) after validation of Manu. Book Screening DTO");
             if (dataErrors.Count == 0)
             {
                 _manuscriptScreeningBL.SaveManuscriptBookScreening(manuscriptBookScreeningDTO, dataErrors);
+                _logger.Log("manu. book screening  saved successfully");
                 return true;
             }
             else
-                return false;           
+            {
+                _logger.Log("manu. book screening not saved due to errors " + dataErrors.ToString());
+                return false;
+            }
         }
 
         private void ValidateManuscriptBookScreening(IDictionary<string, string> dataErrors, ManuscriptBookScreeningDTO manuscriptBookScreeningDTO)

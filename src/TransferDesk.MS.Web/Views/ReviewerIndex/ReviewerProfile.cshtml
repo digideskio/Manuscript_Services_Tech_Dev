@@ -15,13 +15,13 @@
 
 <script id="ReferenceGridTemplate" type="text/x-jsrender">
     <li id="{{:ID}}_li" class="multiple_emails-email">
-        <a href="#" onclick="removeRefTableRow(id)" id="{{:ID}}" class="multiple_emails-close" title="Remove"><img title="Remove" src="../Images/DeleteRed.png" style="width:20px; height:20px;"></a>
-        <a href="{{:ReferenceLink}}" id="{{:ID}}" target="_blank" class="email_name" style="overflow-wrap:break-word">{{:ReferenceLink}}</a>
+        <a href="#" onclick="removeRefTableRow(id)" id="{{:ID}}" class="multiple_emails-close" title="Remove"><img title="Remove" src="/Images/DeleteRed.png" style="width:20px; height:20px;"></a>
+        <a href="{{:ReferenceLink}}" id="{{:ID}}" target="_blank" class="email_name">{{:ReferenceLink}}</a>
     </li>
 </script>
 <script id="JournalTemplate" type="text/x-jsrender">
     <li id="{{:JournalID}}_li" class="multiple_emails-email">
-        <a href="#" onclick="removeRefTableRow(id)" id="{{:JournalID}}" class="multiple_emails-close" title="Remove"><img title="Remove" src="../Images/DeleteRed.png" style="width:20px; height:20px;"></a>
+        <a href="#" onclick="removeRefTableRow(id)" id="{{:JournalID}}" class="multiple_emails-close" title="Remove"><img title="Remove" src="/Images/DeleteRed.png" style="width:20px; height:20px;"></a>
         <span id="{{:JournalID}}" class="email_name">{{:JournalTitle}}</span>
     </li>
 </script>
@@ -37,7 +37,7 @@
             {{:TertiaryExp}}
         </td>
         <td>
-            <img title="Remove this row" src="../Images/DeleteRed.png" style="width:20px; height:20px; margin-left:25%" id="{{:PID}}" onclick="removeTableRow(id)">
+            <img title="Remove this row" src="/Images/DeleteRed.png" style="width:20px; height:20px; margin-left:25%" id="{{:PID}}" onclick="removeTableRow(id)">
         </td>
     </tr>
 </script>
@@ -45,10 +45,10 @@
     <tr id="{{:ID}}_ManuScript_tr" ondblclick="EditManuScriptDetails(this)" style="border: 1px #BBD8FB solid;">
         <td style="width: 96%; text-align: left; padding: 4px; border: 1px solid #ddd; border-right:hidden">  
             <span id="{{:ID}}" title="Manuscript Title" style="color: #428bca; ">{{:MScriptID}}</span> |         
-            <span id="{{:ID}}" title="Manuscript Title" style="color: #428bca; display: inline; overflow-wrap:break-word">{{:Name}}</span>
+            <span id="{{:ID}}" title="Manuscript Title" style="color: #428bca; ">{{:Name}}</span>
         </td>
         <td style="width: 4%; text-align: left; padding: 4px; border: 1px solid #ddd; ">
-            <img title="Remove this row" src="../Images/DeleteRed.png" style="width: 20px; height: 20px; margin-left: 25%;" id="{{:ID}}" onclick="removeManuScriptTableRow(id)">
+            <img title="Remove this row" src="/Images/DeleteRed.png" style="width: 20px; height: 20px; margin-left: 25%;" id="{{:ID}}" onclick="removeManuScriptTableRow(id)">
         </td>
     </tr>
 </script>
@@ -114,7 +114,7 @@
             <td style="width: 25%;">
                 <div style="padding-top:8px;">
                     <input type="hidden" id="txtAffiliationId" value="" />
-                    <input type="text" id="txtAffiliation" title="Institute Name" maxlength="500" placeholder="Institute Name" style="width:100%;" class="ui-autocomplete-input" autocomplete="off">                                       
+                    <input type="text" id="txtAffiliation" title="Institute Name" placeholder="Institute Name" style="width:100%;" class="ui-autocomplete-input" autocomplete="off">                                       
                 </div>
             </td>
             <td style="width: 8%;">
@@ -125,7 +125,7 @@
             <td style="width: 25%;">
                 <div style="padding-top:8px;">
                     <input type="hidden" id="txtDepartmentId" value="" />
-                    <input type="text" id="txtDepartmentName" maxlength="500" title="Department Name" placeholder="Department Name" style="width:100%;" class="ui-autocomplete-input" autocomplete="off">
+                    <input type="text" id="txtDepartmentName" title="Department Name" placeholder="Department Name" style="width:100%;" class="ui-autocomplete-input" autocomplete="off">
                 </div>
             </td>
             <td style="width: 8%;">
@@ -148,7 +148,7 @@
             <td style="width: 25%;">
                 <div style="padding-top:8px;">
                     <input type="hidden" id="txtCountryId" value=""/>
-                    <input type="text" id="txtCountry" maxlength="100" title="Country Name" placeholder="Country Name" style="width:100%;" class="ui-autocomplete-input" autocomplete="off">                
+                    <input type="text" id="txtCountry" title="Country Name" placeholder="Country Name" style="width:100%;" class="ui-autocomplete-input" autocomplete="off">                
                 </div>
             </td>
             <td style="width: 8%;">
@@ -159,7 +159,7 @@
             <td style="width: 25%;">
                 <div style="padding-top:8px;">
                     <input type="hidden" id="txtStateId" value="" />
-                    <input type="text" id="txtState" title="State Name" maxlength="100" placeholder="State Name" style="width:100%;" class="ui-autocomplete-input" autocomplete="off">
+                    <input type="text" id="txtState" title="State Name" placeholder="State Name" style="width:100%;" class="ui-autocomplete-input" autocomplete="off">
                 </div>
             </td>
             <td style="width: 8%;">
@@ -170,7 +170,7 @@
             <td style="width: 25%;">
                 <div style="padding-top:8px;">
                     <input type="hidden" id="txtCityId" value=""/>
-                    <input type="text" id="txtCity" maxlength="100" title="City Name" placeholder="City Name" style="width:100%;" class="ui-autocomplete-input" autocomplete="off">
+                    <input type="text" id="txtCity" title="City Name" placeholder="City Name" style="width:100%;" class="ui-autocomplete-input" autocomplete="off">
                 </div>
             </td>
         </tr>
@@ -211,16 +211,17 @@
             <td colspan="4"id="errorEmailId" style="color: red; font-size: small; display: none">First Name is mandatory</td>
         </tr>
     </table>
-    <table style="table-layout: fixed;">
+    <table class="auto-style1">
         <tr>
             <th>Reference link<span style="color:red">*</span></th>
             <th>Number Of Relevant Publications<span style="color:red">*</span></th>
         </tr>
         <tr>
-            <td rowspan="2" style="width: 50%; overflow: hidden;">
+            <td rowspan="2" style="width: 50%;">
                 <div style="padding-top:8px; width:85%">
                     <div class="multiple_emails-container">
-                        <ul id="referenceUL" class="multiple_emails-ul"></ul>
+                        <ul id="referenceUL" class="multiple_emails-ul">                            
+                        </ul>
                         <input type="text" id="RefLink" class="multiple_emails-input text-left" />
                     </div>
                 </div>
@@ -268,7 +269,7 @@
             </td>
             <td style="width: 3%;">
                 <div style="padding-top:5px;">
-                    <button type="submit" style="background-color:rgba(255,255,255,0.0);  border:none;" id="btnAddManuScriptDetails" onclick="AddExpertiseInToTable();"><img src="../Images/AddButton.png" style="height:26px; height:26px;" title="Add area of expertise" /></button>    
+                    <button type="submit" style="background-color:rgba(255,255,255,0.0);  border:none;" id="btnAddManuScriptDetails" onclick="AddExpertiseInToTable();"><img src="~/Images/AddButton.png" style="height:26px; height:26px;" title="Add area of expertise" /></button>    
                 </div>
             </td>
         </tr>
@@ -310,75 +311,74 @@
             </td>
         </tr>
     </table>
-    <table>
+    <table class="auto-style1">
         <tr>
             <th colspan="4">Manuscript Details<span style="color:red">*</span></th>
         </tr>
         <tr>
             <td style="width: 10%;">
                 <div style="padding-top:8px;">
-                    <input type="text" maxlength="50" id="txttitleId" placeholder="Manuscript ID" style="width:100%">
+                    <input  type="text" maxlength="99999" id="txttitleId" placeholder="Manuscript ID" style="width:100%" >
                 </div>
             </td>
             <td style="width: 86%;">
                 <div style="padding-top:8px;">
                     <input type="hidden" id="txttitleTitleId" value="" />
                     <input type="hidden" id="editTitleId" value="" />
-                    <input type="text" maxlength="1000" id="txttitleTitle" placeholder="Manuscript Title" style="width:100%">
+                    <input type="text" maxlength="99999" id="txttitleTitle" placeholder="Manuscript Title" style="width:100%">
                 </div>
-            </td>
+            </td>            
             <td style="width: 4%;">
                 <div id="addPanel" style="padding-top:5px;">
-                    <button type="submit" style="background-color:rgba(255,255,255,0.0);  border:none;" id="btnAddManuScriptDetails" onclick="AddManuscriptToTable();"><img src="../Images/AddButton.png" style="height:26px; height:26px;" title="Add Manuscript Details" /></button>
+                    <button type="submit" style="background-color:rgba(255,255,255,0.0);  border:none;" id="btnAddManuScriptDetails" onclick="AddManuscriptToTable();"><img src="~/Images/AddButton.png" style="height:26px; height:26px;" title="Add Manuscript Details" /></button>                      
                 </div>
             </td>
         </tr>
         <tr>
             <td colspan="4">
-                <div id="updatePanel" style="display:none">
-                    <input type="submit" id="btnUpdateManuScriptDetails" class="btn btn-primary btn-sm" value="Update" onclick="UpdateManuscriptToTable();" />
-                    <input type="submit" value="Cancel" class="btn btn-primary btn-sm" id="btnCancelManuScriptDetails" onclick="CancelManuscriptDetails();" />
+                <div id="updatePanel" style="display:none"><input type="submit" id="btnUpdateManuScriptDetails" class="btn btn-primary btn-sm" value="Update" onclick="UpdateManuscriptToTable();" />
+                    <input type="submit" value="Cancel"  class="btn btn-primary btn-sm" id="btnCancelManuScriptDetails" onclick="CancelManuscriptDetails();" />
                 </div>
             </td>
         </tr>
         <tr>
             <td colspan="4">
-                <table style="table-layout: fixed;">
-                    <tbody id="ManuscriptDetails"></tbody>
-                </table>
+              <table>
+                  <tbody id="ManuscriptDetails"></tbody>
+              </table>
             </td>
-        </tr>
+        </tr> 
     </table>
     <div id="saveDialog" title="Information !" style="display:none;">     
         <h4>Reviewer saved successfully...!!</h4>   
         <input type="text" style="display:none" id="newReviewerId" />
         <input type="submit" value="OK" style="float:right; margin-right:10px" class="btn btn-primary btn-sm" onclick="ReviewerSaveSuccess();" id="btnSaveSucess" />  
     </div>
-    <div id="divPopup" class="dialog" title="Please verify the added affiliation details" style="display:none;">
-        <table style="table-layout: fixed;">
+    <div id="divPopup" class="dialog" title="Please verify the added affiliation details" style="display:none; width:200px">
+        <table>
             <tr>
                 <td style="width:27%">Institute:</td>
-                <td class="crop" id="tdInstitute"></td>
+                <td id="tdInstitute"></td>
             </tr>
             <tr>
                 <td style="width:27%">Department:</td>
-                <td class="crop" id="tdDepartment"></td>
+                <td id="tdDepartment"></td>
             </tr>
             <tr>
                 <td style="width:27%">Street Name:</td>
-                <td class="crop" id="tdStreet"></td>
+                <td id="tdStreet"></td>
             </tr>
             <tr>
                 <td style="width:27%">Country Name:</td>
-                <td class="crop" id="tdCountry"></td>
+                <td id="tdCountry"></td>
             </tr>
             <tr>
                 <td style="width:27%">State Name:</td>
-                <td class="crop" id="tdState" ></td>
+                <td id="tdState"></td>
             </tr>
             <tr>
                 <td style="width:27%">City Name:</td>
-                <td class="crop" id="tdCity"></td>
+                <td id="tdCity"></td>
             </tr>
             <tr>
                 <td style="width:27%">                    
