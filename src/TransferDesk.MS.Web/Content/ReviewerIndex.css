@@ -222,3 +222,7 @@
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+#searchButtonPanelTable td {
+    text-align: left; 
+    border: 0px solid #ddd;
+}

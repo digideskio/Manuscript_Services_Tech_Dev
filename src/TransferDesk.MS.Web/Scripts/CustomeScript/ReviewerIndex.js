@@ -67,8 +67,7 @@ function btnSearch_onclick() {
     } if (maxValue == "") {
         maxValue = 999;
     }
-
-    debugger;
+     
     $.ajax({
         url: AppPath + "/ReviewerIndex/GetReviewerIndexData", 
         type: 'GET',
@@ -98,7 +97,7 @@ function btnSearch_onclick() {
             document.getElementById("last_span").innerHTML = Math.ceil(totalcount / pageCount);
 
             document.getElementById("start_span_header").innerHTML = Math.ceil(1);
-            document.getElementById("last_span_header").innerHTML = pageCount;
+            document.getElementById("last_span_header").innerHTML = lastrow;
             document.getElementById("TotalCount_span_header").innerHTML = totalcount;            
         },
         error: function (xhr) {
