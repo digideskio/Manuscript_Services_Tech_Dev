@@ -213,3 +213,9 @@
     white-space: fixed;
     table-layout: fixed;
 }
+
+.crop {
+    width: 200px;
+    overflow: hidden;
+    height: 50px;    
+}

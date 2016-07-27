@@ -169,6 +169,8 @@ namespace TransferDesk.BAL.Manuscript
                 msReviewerSuggestionDTO.MSReviewersSuggestion.CreatedBy = msReviewerSuggestion.CreatedBy;
                 msReviewerSuggestionDTO.MSReviewersSuggestion.CreatedDate = msReviewerSuggestion.CreatedDate;
                 msReviewerSuggestionDTO.MSReviewersSuggestion.ModifyDate = System.DateTime.Now;
+                msReviewerSuggestionDTO.MSReviewersSuggestion.AnalystSubmissionDate =
+                    msReviewerSuggestion.AnalystSubmissionDate;
                 msReviewerSuggestionDTO.MSReviewersSuggestion.ModifiedBy =msReviewerSuggestionDTO.CurrentUserID;
                 _reviewerSuggestionUnitOfWork.msReviewerSuggestionDTO = msReviewerSuggestionDTO;
                 _reviewerSuggestionUnitOfWork.SaveMSReviewerSuggestion();
