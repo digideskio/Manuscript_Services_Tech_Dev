@@ -489,7 +489,12 @@ namespace TransferDesk.DAL.Manuscript.Repositories
                                              where q.MSID.Contains(msid + ".R")
                                              orderby q.Revision descending
                                              select q.Revision).ToList();
-                        var revisionnumber = Convert.ToInt32(revisionvalue.First());
+                        int revisionnumber;
+                        if (revisionvalue.Count == 0)
+                            revisionnumber = 0;
+                        else
+                        revisionnumber = Convert.ToInt32(revisionvalue.First());
+
                         if (CheckIntergerIsNullorEmpty(revisionnumber))                         
                         {
                             return (revisionnumber + 1);
@@ -512,7 +517,11 @@ namespace TransferDesk.DAL.Manuscript.Repositories
                                              where q.MSID.Contains(msid + ".R")
                                              orderby q.Revision descending
                                              select q.Revision).ToList();
-                        var revisionnumber = Convert.ToInt32(revisionvalue.First());
+                        int revisionnumber;
+                        if (revisionvalue.Count == 0)
+                            revisionnumber = 0;
+                        else
+                            revisionnumber = Convert.ToInt32(revisionvalue.First());
                         if (CheckIntergerIsNullorEmpty(revisionnumber))
                         {
                             return (revisionnumber + 1);
