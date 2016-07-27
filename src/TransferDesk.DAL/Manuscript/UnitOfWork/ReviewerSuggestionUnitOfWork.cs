@@ -115,7 +115,10 @@ namespace TransferDesk.DAL.Manuscript.UnitOfWork
         {
             _msReviewerInfo.UnAssignReviewer(reviewerInfoID, msReviewersSuggestionID);
         }
-
+        public void RemoveReviewerTile(int reviewerId, string articleTitle, string user)
+        {
+            _msReviewerInfo.RemoveReviewerTile(reviewerId, articleTitle, user);
+        }
         public void SaveMailDetails(Dictionary<string, string> dicReplace, string emailTo, string emailFrom, string emailCC, string emailBCC, string emailSubject, string emailBody)
         {
              _emailDetails= new Entities.EmailDetails();

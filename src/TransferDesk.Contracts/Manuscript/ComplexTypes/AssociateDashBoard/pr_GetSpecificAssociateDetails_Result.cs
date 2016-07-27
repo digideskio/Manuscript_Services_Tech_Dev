@@ -24,18 +24,17 @@ namespace TransferDesk.Contracts.Manuscript.ComplexTypes.AssociateDashBoard
         public int? Age { get; set; }
         public string HandlingTime { get; set; }
     }
-
    public class pr_IsJobFetchedOrAssign_Result
    {
        public int FetchedJobCount { get; set; }
 
    }
+
    public class pr_IsJobFetched_Result
    {
        public int FetchedJobCount { get; set; }
 
    }
-
    public class pr_JobTobeFetched_Result
    {
        public string CrestID { get; set; }

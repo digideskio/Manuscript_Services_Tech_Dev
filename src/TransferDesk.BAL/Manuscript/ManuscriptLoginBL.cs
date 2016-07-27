@@ -118,11 +118,16 @@ namespace TransferDesk.BAL.Manuscript
                                       where q.Description.ToLower() == "open"
                                       select q.ID).FirstOrDefault();
             manuscriptLoginDTO.manuscriptLogin.ManuscriptStatusId = Convert.ToInt32(manuscriptStatusId);
-            if (manuscriptLoginDTO.IsRevision == true)
+            if (manuscriptLoginDTO.IsRevision == true && manuscriptLoginDTO.manuscriptLogin.ServiceTypeStatusId == 5)
             {
                 manuscriptLoginDTO.manuscriptLogin.Revision = Convert.ToInt32(_manuscriptLoginDBRepositoryReadSide.GetRevisionCount(manuscriptLoginDTO.manuscriptLogin.MSID));
                 manuscriptLoginDTO.manuscriptLogin.RevisionParentId = _manuscriptLoginDBRepositoryReadSide.GetParentCrestId(manuscriptLoginDTO.manuscriptLogin.MSID);
-                manuscriptLoginDTO.manuscriptLogin.MSID = manuscriptLoginDTO.manuscriptLogin.MSID + "_R" + Convert.ToString(_manuscriptLoginDBRepositoryReadSide.GetRevisionCount(manuscriptLoginDTO.manuscriptLogin.MSID));
+                manuscriptLoginDTO.manuscriptLogin.MSID = manuscriptLoginDTO.manuscriptLogin.MSID + ".R" + Convert.ToString(_manuscriptLoginDBRepositoryReadSide.GetRevisionCount(manuscriptLoginDTO.manuscriptLogin.MSID));
+            }
+            else if (manuscriptLoginDTO.IsRevision == true && manuscriptLoginDTO.manuscriptLogin.ServiceTypeStatusId == 6)
+            {
+                manuscriptLoginDTO.manuscriptLogin.Revision = Convert.ToInt32(_manuscriptLoginDBRepositoryReadSide.GetRevisionCountForRS(manuscriptLoginDTO.manuscriptLogin.MSID));               
+                manuscriptLoginDTO.manuscriptLogin.MSID = manuscriptLoginDTO.manuscriptLogin.MSID;
             }
 
             ManuscriptLoginUnitOfWork manuscriptLoginUnitOfWork = null;
@@ -145,7 +150,7 @@ namespace TransferDesk.BAL.Manuscript
             {
 
             }
-            //exception will be raised up in the call stack
+          
             finally
             {
                 if (manuscriptLoginUnitOfWork != null)

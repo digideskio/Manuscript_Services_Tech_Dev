@@ -14,9 +14,9 @@
 <link href="~/Content/LoginPage.css" rel="stylesheet" />
 <link type="text/css" rel="Stylesheet" href="http://ajax.microsoft.com/ajax/jquery.ui/1.8.6/themes/smoothness/jquery-ui.css" />
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-<br/>
-<br/>
-<br/>
+<br />
+<br />
+<br />
 @Html.Raw(TempData["msg"])
 @using (Html.BeginForm("BookLogin", "ManuscriptLogin", FormMethod.Post))
 {
@@ -26,90 +26,90 @@
         <div class="table-responsive">
             <table class="table MetadataInfo">
                 <tbody>
-                <tr>
-                    <td colspan="4" align="right"><b>Welcome @Model.EmployeeName</b></td>
-                </tr>
-                <tr>
-                    <td>Book Title<span class="asterik">* </span></td>
-                    <td>
-                        @Html.DropDownListFor(model => model.BookMasterId, new SelectList(Model.BookTitleList, "ID", "BookTitle"), "Select Book Title", new {@class = "form-control input-sm", id = "ddlBookTitle"})
-                    </td>
-                    <td>Chapter Number<span class="asterik">* </span></td>
-                    <td>
-                        @Html.TextBoxFor(x => x.ChapterNumber, new {@class = "form-control input-sm", placeholder = "Please, Enter Chapter Number"})
-                    </td>
-                </tr>
-                <tr>
-                    <td>FTP Path</td>
-                    <td>
-                        @*<input type="text" class="form-control input-sm" placeholder="Please, Select Book Title" id="txtFTPLink" readonly="readonly" />*@
-                        <div id="txtFTPLink"></div>
-                    </td>
-                    <td>GPU Information</td>
-                    <td>
-                        @*<input type="text" placeholder="Please, Select Book Title" class="form-control input-sm" id="txtGPUInformation" readonly="readonly" />*@
-                        <div id="txtGPUInformation" style="text-decoration: none; padding-left: 40px"></div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Chapter Title<span class="asterik">* </span></td>
-                    <td>
-                        @Html.TextBoxFor(x => x.ChapterTitle, new {placeholder = "Please, Enter Chapter Title", @class = "form-control input-sm"})
-                    </td>
-                    <td>Page Count<span class="asterik">* </span></td>
-                    <td>
-                        @Html.TextBoxFor(x => x.PageCount, new {@class = "form-control input-sm", placeholder = "Please, Enter Page Count"})
-                    </td>
+                    <tr>
+                        <td colspan="4" align="right"><b>Welcome @Model.EmployeeName</b></td>
+                    </tr>
+                    <tr>
+                        <td>Book Title<span class="asterik">* </span></td>
+                        <td>
+                            @Html.DropDownListFor(model => model.BookMasterId, new SelectList(Model.BookTitleList, "ID", "BookTitle"), "Select Book Title", new { @class = "form-control input-sm", id = "ddlBookTitle" })
+                        </td>
+                        <td>Chapter Number<span class="asterik">* </span></td>
+                        <td>
+                            @Html.TextBoxFor(x => x.ChapterNumber, new { @class = "form-control input-sm", placeholder = "Please, Enter Chapter Number" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>FTP Path</td>
+                        <td>
+                            @*<input type="text" class="form-control input-sm" placeholder="Please, Select Book Title" id="txtFTPLink" readonly="readonly" />*@
+                            <div id="txtFTPLink"></div>
+                        </td>
+                        <td>GPU Information</td>
+                        <td>
+                            @*<input type="text" placeholder="Please, Select Book Title" class="form-control input-sm" id="txtGPUInformation" readonly="readonly" />*@
+                            <div id="txtGPUInformation" style="text-decoration: none; padding-left: 40px"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Chapter Title<span class="asterik">* </span></td>
+                        <td>
+                            @Html.TextBoxFor(x => x.ChapterTitle, new { placeholder = "Please, Enter Chapter Title", @class = "form-control input-sm" })
+                        </td>
+                        <td>Page Count<span class="asterik">* </span></td>
+                        <td>
+                            @Html.TextBoxFor(x => x.PageCount, new { @class = "form-control input-sm", placeholder = "Please, Enter Page Count" })
+                        </td>
 
-                </tr>
-                <tr>
+                    </tr>
+                    <tr>
 
-                    <td>Received Date<span class="asterik">* </span></td>
-                    <td>
-                        @Html.TextBoxFor(model => model.ReceivedDate, new {@class = "form-control input-sm", id = "ReceivedDateBook", placeholder = "dd/mm/yyyy", @Value = Model.ReceivedDate.ToShortDateString()})
-                    </td>
-                    <td>Requester Name<span class="asterik">* </span></td>
-                    <td>
-                        @Html.TextBoxFor(x => x.RequesterName, new {@class = "form-control input-sm", placeholder = "Please, Enter Requester Name"})
-                    </td>
-                </tr>
-                <tr>
+                        <td>Received Date<span class="asterik">* </span></td>
+                        <td>
+                            @Html.TextBoxFor(model => model.ReceivedDate, new { @class = "form-control input-sm", id = "ReceivedDateBook", placeholder = "dd/mm/yyyy", @Value = Model.ReceivedDate.ToShortDateString() })
+                        </td>
+                        <td>Requester Name<span class="asterik">* </span></td>
+                        <td>
+                            @Html.TextBoxFor(x => x.RequesterName, new { @class = "form-control input-sm", placeholder = "Please, Enter Requester Name" })
+                        </td>
+                    </tr>
+                    <tr>
 
-                    <td>Associate</td>
-                    <td>
-                        @Html.TextBoxFor(x => x.AssociateName, new {@class = "form-control input-sm", placeholder = "Please, Enter Associate", id = "BookAssociateName"})
-                    </td>
-                    <td>Special Instruction</td>
-                    <td>
-                        @Html.TextAreaFor(model => model.SpecialInstruction, new {@class = "form-control input-sm", placeholder = "Please, Enter Special Instruction", id = "bookSpecialInstruction"})
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Service Type<span class="asterik">*</span>
-                    </td>
-                    <td>
-                        @Html.DropDownListFor(model => model.ServiceTypeID, new SelectList(Model.ServiceTypes, "ID", "Description"), "Select-Service Type", new {@class = "form-control input-sm"})
-                    </td>
-                    <td>Task<span class="asterik">* </span></td>
-                    <td>
-                        @Html.DropDownListFor(model => model.StatusMasterTaskID, new SelectList(Model.TaskList, "ID", "Description"), "Select-Task", new {@class = "form-control input-sm", id = "TaskID"})
-                        @Html.HiddenFor(x => x.StatusMasterTaskID)
-                    </td>
-                </tr>
-                <tr>
-                    <td>Shared Drive Path</td>
-                    <td>
-                        @Html.TextAreaFor(model => model.SharedDrivePath, new {@class = "form-control input-sm ", style = "height: 40px", placeholder = "Please, Enter Share Drive Path", id = "bookSpecialInstruction"})
-                    </td>                  
-                    <td colspan="4" >                        
+                        <td>Associate</td>
+                        <td>
+                            @Html.TextBoxFor(x => x.AssociateName, new { @class = "form-control input-sm", placeholder = "Please, Enter Associate", id = "BookAssociateName" })
+                        </td>
+                        <td>Special Instruction</td>
+                        <td>
+                            @Html.TextAreaFor(model => model.SpecialInstruction, new { @class = "form-control input-sm", placeholder = "Please, Enter Special Instruction", id = "bookSpecialInstruction" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Service Type<span class="asterik">*</span>
+                        </td>
+                        <td>
+                            @Html.DropDownListFor(model => model.ServiceTypeID, new SelectList(Model.ServiceTypes, "ID", "Description"), "Select-Service Type", new { @class = "form-control input-sm" })
+                        </td>
+                        <td>Task<span class="asterik">* </span></td>
+                        <td>
+                            @Html.DropDownListFor(model => model.StatusMasterTaskID, new SelectList(Model.TaskList, "ID", "Description"), "Select-Task", new { @class = "form-control input-sm", id = "TaskID" })
+                            @Html.HiddenFor(x => x.StatusMasterTaskID)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Shared Drive Path</td>
+                        <td>
+                            @Html.TextAreaFor(model => model.SharedDrivePath, new { @class = "form-control input-sm ", style = "height: 40px", placeholder = "Please, Enter Share Drive Path", id = "bookSpecialInstruction" })
+                        </td>
+                        <td colspan="4">
                             Add New Entry
-                        <span style="margin-left: 100px">@Html.CheckBoxFor(x => x.IsNewEntry)</span>                       
-                        <input type="submit" value="Login" id="btnBookLogin" class="btn btn-primary btn-sm" style="margin-left: 108px"/>
-                        <input type="reset" value="Reset" id="btnBookReset" class="btn btn-primary btn-sm"/>
-                        <input type="button" value="Export To Excel" id="btnBookExporttoExcel" class="btn btn-primary btn-sm" data-target="#myBookModal"/>
-                    </td>
-                </tr>
+                            <span style="margin-left: 100px">@Html.CheckBoxFor(x => x.IsNewEntry)</span>
+                            <input type="submit" value="Login" id="btnBookLogin" class="btn btn-primary btn-sm" style="margin-left: 108px" />
+                            <input type="reset" value="Reset" id="btnBookReset" class="btn btn-primary btn-sm" />
+                            <input type="button" value="Export To Excel" id="btnBookExporttoExcel" class="btn btn-primary btn-sm" data-target="#myBookModal" />
+                        </td>
+                    </tr>
                 </tbody>
             </table>
         </div>

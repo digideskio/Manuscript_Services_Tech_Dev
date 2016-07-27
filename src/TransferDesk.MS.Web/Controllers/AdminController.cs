@@ -15,13 +15,11 @@ using Newtonsoft.Json;
 using System.Configuration;
 using System.Text;
 using System.Text.RegularExpressions;
-using TransferDesk.Contracts.Logging;
 
 namespace TransferDesk.MS.Web.Controllers
 {
     public class AdminController : Controller
     {
-        private readonly ILogger _logger;
         private readonly ManuscriptDBRepositoryReadSide _manuscriptDBRepositoryReadSide;
         private ManuscriptService _manuscriptService;
         private readonly JournalRepository _JournalRepository;
@@ -32,13 +30,11 @@ namespace TransferDesk.MS.Web.Controllers
         public JournalSectionTypeRepository _JournalSectionReposistory;
         public BookMasterRepository bookMasterRepository;
 
-
-        public AdminController(ILogger Logger)
+        public AdminController()
         {
-            _logger = Logger;
             var conString = string.Empty;
             conString = Convert.ToString(ConfigurationManager.AppSettings["dbTransferDeskService"]);
-            _manuscriptService = new ManuscriptService(conString, conString, _logger);
+            _manuscriptService = new ManuscriptService(conString, conString);
             _manuscriptDBRepositoryReadSide = new ManuscriptDBRepositoryReadSide(conString);
             _JournalRepository = new JournalRepository(conString);
             journalvm = new JournalVM();

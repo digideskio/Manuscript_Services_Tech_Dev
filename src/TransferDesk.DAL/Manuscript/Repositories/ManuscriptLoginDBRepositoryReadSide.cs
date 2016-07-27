@@ -124,6 +124,19 @@ namespace TransferDesk.DAL.Manuscript.Repositories
             return (revisionCount + 1);
         }
 
+        public int GetRevisionCountForRS(string msid)
+        {
+            var result = (from q in manuscriptDataContextRead.ManuscriptLogin
+                          where q.MSID.Contains(".R")
+                          orderby q.Revision descending
+                          select q.Revision).ToList();
+            var revisionCount = 0;
+            if (result.Count() > 0)
+                revisionCount = Convert.ToInt32(result.First());
+
+            return (revisionCount + 1);
+        }
+
         public bool IsMSIDAvailable(string msid, int id, int serviceTypeStatusId)
         {
             if (id == 0)
@@ -413,23 +426,26 @@ namespace TransferDesk.DAL.Manuscript.Repositories
             }
 
         }
-
-        public pr_GetManuscriptLoginedJobByMSID_Result GetManuscriptDetailsByMsid(string msid1)
+        public pr_GetManuscriptLoginedJobByMSID_Result GetManuscriptDetailsByMsid(string msid1, int servicetype)
         {
             var msid = msid1 != null ?
             new SqlParameter("msid", msid1) :
             new SqlParameter("msid", typeof(global::System.String));
 
+            var servicetypeParameter = servicetype != null ?
+                 new SqlParameter("ServiceTypeId", servicetype) :
+                 new SqlParameter("ServiceTypeId", typeof(global::System.Int32));
+
+
             var msidJobDetails =
-                this.manuscriptDataContextRead.Database.SqlQuery<pr_GetManuscriptLoginedJobByMSID_Result>("pr_GetManuscriptLoginedJobByMSID @msid", msid).FirstOrDefault();
+                this.manuscriptDataContextRead.Database.SqlQuery<pr_GetManuscriptLoginedJobByMSID_Result>("pr_GetManuscriptLoginedJobByMSID @msid,@ServiceTypeId", msid, servicetypeParameter).FirstOrDefault();
             return msidJobDetails;
         }
-
         public bool CheckIfBookPresent(int serviceTypeId, int BookTitleId, string chapterno)
         {
             var manuscripBooktLogin = 0;
             manuscripBooktLogin = (from q in manuscriptDataContextRead.ManuscriptBookLogin
-                                   where q.BookMasterID == BookTitleId && q.ChapterNumber == chapterno && q.ServiceTypeID == serviceTypeId && q.ManuscriptStatusID == 7
+                                   where q.BookMasterID == BookTitleId && q.ChapterNumber.ToLower().Trim() == chapterno.ToLower().Trim() && q.ServiceTypeID == serviceTypeId && q.ManuscriptStatusID == 7
                                    select q).Count();
             if (manuscripBooktLogin > 0)
             {
@@ -439,6 +455,76 @@ namespace TransferDesk.DAL.Manuscript.Repositories
             {
                 return false;
             }
-        }       
+        }
+
+        public bool CheckIntergerIsNullorEmpty(int number)
+        {
+            if (number == null || number == 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+            
+        }
+
+        public int CheckMsidRevision(string msid, int id, int serviceTypeStatusId)
+        {
+
+            if (IsMsidOpen(msid) == false)
+            {
+                if (id == 0)
+                {
+                    var result = from q in manuscriptDataContextRead.ManuscriptLogin
+                                 where
+                                     q.MSID == msid && q.ManuscriptStatusId == 8 && q.ServiceTypeStatusId == serviceTypeStatusId
+                                 select q;
+                    if (result.ToList().Count() == 0)
+                    { return 0; }
+                    else
+                    {
+                        var revisionvalue = (from q in manuscriptDataContextRead.ManuscriptLogin
+                                             where q.MSID.Contains(msid + ".R")
+                                             orderby q.Revision descending
+                                             select q.Revision).ToList();
+                        var revisionnumber = Convert.ToInt32(revisionvalue.First());
+                        if (CheckIntergerIsNullorEmpty(revisionnumber))                         
+                        {
+                            return (revisionnumber + 1);
+                        }
+                        return (revisionnumber + 1);
+                    }
+                }
+                else
+                {
+                    var result = from q in manuscriptDataContextRead.ManuscriptLogin
+                                 where
+                                     q.MSID == msid && q.ServiceTypeStatusId == serviceTypeStatusId && q.ManuscriptStatusId == 8
+                                 select q;
+                    var count = result.ToList().Count();
+                    if (result.ToList().Count() == 0)
+                        return 0;
+                    else
+                    {
+                        var revisionvalue = (from q in manuscriptDataContextRead.ManuscriptLogin
+                                             where q.MSID.Contains(msid + ".R")
+                                             orderby q.Revision descending
+                                             select q.Revision).ToList();
+                        var revisionnumber = Convert.ToInt32(revisionvalue.First());
+                        if (CheckIntergerIsNullorEmpty(revisionnumber))
+                        {
+                            return (revisionnumber + 1);
+                        }
+                        return (revisionnumber + 1);
+                    }
+                }
+            }
+            else
+            {
+                return 0;
+            }
+        }
     }
 }

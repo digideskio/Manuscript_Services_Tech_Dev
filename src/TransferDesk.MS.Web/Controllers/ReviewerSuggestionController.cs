@@ -122,6 +122,9 @@ namespace TransferDesk.MS.Web.Controllers
                     List<TransferDesk.Contracts.Manuscript.Entities.ReviewerMaster> reviewerMasters =
                         _reviewerDBRepositoryReadSide.GetReviewerDetails(result.ReviewerMasterID);
                     reviewerNames += reviewerMasters[0].ReviewerName + ", ";
+
+                    _reviewerService.RemoveReviewerTile(Convert.ToInt32(result.ReviewerMasterID), msReviewerSuggestionVM.ArticleTitle.Trim(), userID);
+
                 }
                 if (UnAssignedReviewer.Length > 0)
                 {
