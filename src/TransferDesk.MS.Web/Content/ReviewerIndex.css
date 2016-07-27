@@ -25,6 +25,11 @@
         border: 1px solid #ddd;
     }
 
+#searchButtonPanelTable td {
+    text-align: left; 
+    border: 0px solid #ddd;
+}
+
    #SearchResultGridDiv th {
         text-align: left;
         padding: 5px;
