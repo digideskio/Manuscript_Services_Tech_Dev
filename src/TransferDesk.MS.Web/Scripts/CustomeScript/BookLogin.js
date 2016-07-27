@@ -96,7 +96,7 @@
                     //}
                 },
                 error: function (xhr, exception) {
-                    alert("Error occured while checking book status.");
+                    //alert("Error occured while checking book status.");
                 }
 
             });

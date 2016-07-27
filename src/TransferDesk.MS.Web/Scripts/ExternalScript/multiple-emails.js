@@ -21,7 +21,7 @@
 		}
 		else if (settings.theme.toLowerCase() == "Basic".toLowerCase()) {
 			//Default which you should use if you don't use Bootstrap, SemanticUI, or other CSS frameworks
-		    deleteIconHTML = '<a href="#" class="multiple_emails-close" title="Remove"><img title="Remove" src="../Images/DeleteRed.png" style="width:20px; height:20px;"></a>';
+		    deleteIconHTML = '<a href="#" class="multiple_emails-close" title="Remove"><img title="Remove" src="/Images/DeleteRed.png" style="width:20px; height:20px;"></a>';
 		}
 		
 		return this.each(function() {
@@ -39,7 +39,7 @@
 				});
 			}
 			
-			var $input = $('<input type="text" class="multiple_emails-input text-left" />').on('keyup', function(e) { // input
+			var $input = $('<input type="text" id="txtEmail" class="multiple_emails-input text-left" placeholder="Enter your email" />').on('keyup', function (e) { // input
 				$(this).removeClass('multiple_emails-error');
 				var input_length = $(this).val().length;
 				
@@ -54,17 +54,11 @@
 				
 				// Supported key press is tab, enter, space or comma, there is no support for semi-colon since the keyCode differs in various browsers
 				if (keynum == 9 || keynum == 32 || keynum == 188) {				 
-				    var isValid = VerifyEmailAddress($(this).val().trim())
-				    if (isValid == true) {
-				        display_email($(this), settings.checkDupEmail);
-				    }
+				    display_email($(this), settings.checkDupEmail);
 					
 				}
 				else if (keynum == 13) {				
-				    var isValid = VerifyEmailAddress($(this).val().trim())
-				    if (isValid == true) {
-				        display_email($(this), settings.checkDupEmail);
-				    }
+				    display_email($(this), settings.checkDupEmail);
 					//Prevents enter key default
 					//This is to prevent the form from submitting with  the submit button
 					//when you press enter in the email textbox
@@ -143,28 +137,31 @@
 				$orig.val(JSON.stringify(emails)).trigger('change');
 			}
 
-			function VerifyEmailAddress(email) {			   
-			    email= email.replace(',', '');
+			function VerifyEmailAddress(email) {
+			    var reviewerId = Number($('#ReviewerViewBagData').text());
+			    email = email.replace(',', '');
 			    var IsVerified = true;
 			    var pattern = new RegExp(/^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$/i);
 			    if (pattern.test(email)) {
 			        $.ajax(
                      {
                          type: "GET",
-                         url: AppPath + "/ReviewerIndex/VerifyEmailAddress",
+                         url: "/ReviewerIndex/VerifyEmailAddress",
                          contentType: "application/json; charset=utf-8",
                          dataType: "json",
                          Async: false,
-                         data: { email: email.trim() },
+                         data: { email: email.trim(), reviewerId: reviewerId },
                          success: function (result) {
-                             if (result) {                                 
+                             if (result) {
                                  ShowFailureResponseMessage("This email address is already is already registered.Please enter another email address.");
                                  $list.find('li').each(function (j, li) {
                                      if (li.id == email.toLowerCase()) {
                                          $(this).remove();
-                                     }                                   
-                                 });                                                         
-                                
+                                     }
+                                 });
+                                 $("#txtEmail").val('');
+                             } else {
+                                 $("#txtEmail").val('');
                              }
                              IsVerified = result;
                          },

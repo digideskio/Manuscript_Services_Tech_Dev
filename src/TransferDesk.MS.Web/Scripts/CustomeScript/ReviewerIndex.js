@@ -21,6 +21,12 @@
             return false;
         });
     });
+
+    $('#txtTitleSrch,#txtTitleSrch1, #txtGreaterthan,#txtLessThan').keyup(function (e) {
+        if (e.keyCode == 13) {
+            btnSearch_onclick();
+        }
+    });
 });
 var firstrow = 1;
 var lastrow = 5;

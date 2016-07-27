@@ -88,12 +88,12 @@ namespace TransferDesk.DAL.Manuscript.Repositories
             }
 
         }
-		
-		public bool CheckIfUserIsPresent(string userid, int servicetypeID)
+
+        public bool CheckIfUserIsPresent(string userid, int servicetypeID, int roleId)
         {
 
             var check = (from q in context.UserRoles
-                         where q.UserID == userid && q.ServiceTypeId == servicetypeID
+                         where q.UserID == userid && q.ServiceTypeId == servicetypeID && q.RollID == roleId
                          select q);
             if (check.Count() > 0)
                 return true;
@@ -103,11 +103,11 @@ namespace TransferDesk.DAL.Manuscript.Repositories
             }
 
         }
-		public int CheckUserIdIfPresent(string userid, int servicetypeID)
+        public int CheckUserIdIfPresent(string userid, int servicetypeID, int roleId)
         {
 
             var check = (from q in context.UserRoles
-                         where q.UserID == userid && q.ServiceTypeId == servicetypeID
+                         where q.UserID == userid && q.ServiceTypeId == servicetypeID && q.RollID == roleId
                          select q);
             foreach (var id in check)
             {
@@ -116,10 +116,10 @@ namespace TransferDesk.DAL.Manuscript.Repositories
             return 0;
         }
 
-        public int GetUserID(string userid, int serviceType)
+        public int GetUserID(string userid, int serviceType, int roleId)
         {
             var id = from q in context.UserRoles
-                     where q.UserID.ToLower().Trim() == userid.ToLower().Trim() && q.ServiceTypeId == serviceType
+                     where q.UserID.ToLower().Trim() == userid.ToLower().Trim() && q.ServiceTypeId == serviceType && q.RollID == roleId
                      select q;
             foreach (var uid in id)
             {
@@ -133,6 +133,7 @@ namespace TransferDesk.DAL.Manuscript.Repositories
 
 
         }
+        
         public bool IsUserRoleAvailable(string userID, int serviceType, int roleId)
         {
             var count = 0;
@@ -172,18 +173,19 @@ namespace TransferDesk.DAL.Manuscript.Repositories
         }
 
 
-        public bool IsJobFetchedByUser(string userID, int serviceType, int roleId)
+        public bool IsJobFetchedByUser(string userID, int serviceType, int roleId, bool IsActive)
         {
-            if (serviceType == 5 && roleId == 1)
-                serviceType = 6;
-            else if (serviceType == 6 && roleId == 1)
-                serviceType = 5;
-            pr_IsJobFetchedOrAssign_Result IsJobFetchedOrAssing;
-            IsJobFetchedOrAssing = _associateDashBoardReposistory.IsJobFetchedOrAssign(userID, serviceType);
-            if (IsJobFetchedOrAssing.FetchedJobCount == 0)
-                return true;
+            if (IsActive == false)
+            {
+                pr_IsJobFetchedOrAssign_Result IsJobFetchedOrAssing;
+                IsJobFetchedOrAssing = _associateDashBoardReposistory.IsJobFetchedOrAssign(userID, serviceType);
+                if (IsJobFetchedOrAssing.FetchedJobCount == 0)
+                    return true;
+                else
+                    return false;
+            }
             else
-                return false;
+                return true;
         }
 
         public void SaveUserRole()

@@ -57,7 +57,8 @@ namespace TransferDesk.MS.Web.Controllers
         {
 
             try
-            { 
+            {
+
                 if (Session["UserName"] == null)
                 {
                     var userId = @System.Web.HttpContext.Current.User.Identity.Name.Replace("SPRINGER-SBM\\", "");
@@ -506,7 +507,7 @@ namespace TransferDesk.MS.Web.Controllers
         /// </summary>
         /// <param name="email"></param>
         /// <returns></returns>
-        public JsonResult VerifyEmailAddress(string email)
+        public JsonResult VerifyEmailAddress(string email, int reviewerId)
         {
             try
             {
@@ -516,7 +517,10 @@ namespace TransferDesk.MS.Web.Controllers
                 var emailAddress = _reviewerIndexDBContext.ReviewerMailLink.Where(o => o.Email.Equals(email, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
                 if (emailAddress != null)
                 {
-                    flag = true;
+                    if (reviewerId != emailAddress.ReviewerMasterID)
+                    {
+                        flag = true;
+                    }                    
                 }
                 _logger.Log(userId, "Info : Method Name - VerifyEmailAddress : email: " + email );
                 return Json(flag, JsonRequestBehavior.AllowGet);
