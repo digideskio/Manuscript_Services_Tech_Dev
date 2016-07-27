@@ -51,7 +51,7 @@ namespace TransferDesk.DAL.Manuscript.DataContext
             modelBuilder.Entity<Entities.UserAdmin>();
 
             modelBuilder.Entity<Entities.MSReviewerErrorCategory>();
-            modelBuilder.Entity<Entities.MSReviewersSuggestionInfo>();
+            modelBuilder.Entity<Entities.MSReviewersSuggestionInfo>(); 
             modelBuilder.Entity<Entities.MSReviewerLink>();
             modelBuilder.Entity<Entities.MSReviewersSuggestion>();
             modelBuilder.Entity<Entities.MSSAreaOfExpertise>();

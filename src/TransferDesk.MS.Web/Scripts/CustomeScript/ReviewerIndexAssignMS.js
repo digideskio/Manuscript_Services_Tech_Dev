@@ -1,4 +1,6 @@
-﻿$(document).ready(function () {
+﻿var IsEnable = false;
+
+$(document).ready(function () {
 
     jQuery('#loading').hide();
     $('#ddlJournalTitle').empty();
@@ -43,6 +45,7 @@
             $("#btnAssignMS").attr('disabled', true);
             $("#btnSubmitFinal").attr('disabled', true);
         }
+        $('#chkIsRevision').attr('checked', false); 
     });
 
 
@@ -124,11 +127,14 @@ function saveSubmitReviewers(isAssociateFinalSubmit) {
                                 msid: msid
                             },
                             success: function (result) {
-                                rowCount++;                              
+                                rowCount++;
                                 if (rowCount == totRows) {
                                     //loads data after save.
                                     DisplayManuscriptDetails("LoadOnSaveButton", msid, reviewerIds);
                                     if (isAssociateFinalSubmit == 0) {
+                                        $('#template_tr tr input:checked').each(function () {
+                                            $(this).attr('checked', false);
+                                        });
                                         alert("Manuscript saved successfuly...!.");
                                     }
                                     else if (isAssociateFinalSubmit == 1) {
@@ -166,11 +172,15 @@ function EnableDesablePopupControls() {
         $('#ddlJournalTitle').prop('disabled', true);
         $('#txtArticleTitle').prop('disabled', true);
         $('#ddlTask').prop('disabled', true);
+
+        IsEnable = false;
     } else {
         $('input[type="radio"]').prop('disabled', false);
         $('#ddlJournalTitle').prop('disabled', false);
         $('#txtArticleTitle').prop('disabled', false);
         $('#ddlTask').prop('disabled', false);
+
+        IsEnable = true;
     }
 }
 
@@ -193,7 +203,7 @@ function SaveReviewersSuggestion(key, msid, ddlTask, rollId, jobType, articleTit
             isAssociateFinalSubmit: isAssociateFinalSubmit,
             msReviewerSuggestionId: msReviewerSuggestionId
         },
-        success: function (result) {        
+        success: function (result) {
             alert(result);
             return result;
             return false;
@@ -274,13 +284,14 @@ function onBookClick() {
 function ClearPopUpControls() {
     $("#txtManuscriptID").val("");
     $("#txtArticleTitle").val("");
-    $('#template_tr tr input:checked').each(function () { 
+    $('#template_tr tr input:checked').each(function () {
         $(this).attr('checked', false);
     });
     $('#template_tr tr').each(function (i, row) {
         row = $(this);
         row.css('background-color', '#ffffff');
     });
+    $('#chkIsRevision').attr('checked', false);
     LoadJournalList();
     LoadTask();
 }
@@ -412,4 +423,20 @@ function CheckDuplicatesReviewers(id) {
         $("#btnAssignMS").attr('disabled', false);
         $("#btnSubmitFinal").attr('disabled', false);
     }
+}
+
+function IsRevision() {
+    if (($('#chkIsRevision').is(":checked")) && IsEnable == false) {
+        $('input[type="radio"]').prop('disabled', false);
+        $('#ddlJournalTitle').prop('disabled', false);
+        $('#txtArticleTitle').prop('disabled', false);
+        $('#ddlTask').prop('disabled', false);
+    }
+    if (($('#chkIsRevision').is(":checked") == false) && IsEnable == false) {
+        $('input[type="radio"]').prop('disabled', true);
+        $('#ddlJournalTitle').prop('disabled', true);
+        $('#txtArticleTitle').prop('disabled', true);
+        $('#ddlTask').prop('disabled', true);
+    }
+
 }

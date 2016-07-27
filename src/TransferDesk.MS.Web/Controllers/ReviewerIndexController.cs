@@ -606,7 +606,7 @@ namespace TransferDesk.MS.Web.Controllers
             {
                 var userId = @System.Web.HttpContext.Current.User.Identity.Name.Replace("SPRINGER-SBM\\", "");
                 var result = _reviewerIndexDBRepositoriesReadSite.SaveReviewersSuggestion(key, msid, ddlTask, rollId,
-                    jobType, articleTitle, ddlJournalId, user, reviewerMasterId, isAssociateFinalSubmit,
+                    jobType, articleTitle, ddlJournalId, userId, reviewerMasterId, isAssociateFinalSubmit,
                     msReviewerSuggestionId);
 
                 _logger.Log(userId, "Info : Method Name - CheckDuplicates :Check successful.");
@@ -634,16 +634,17 @@ namespace TransferDesk.MS.Web.Controllers
         /// <returns></returns>
         public JsonResult SaveReviewersSuggestionInfo(string key, int rowNum, int reviewerMasterId, string user, bool chk, int isAssociateFinalSubmit, string articleTitle, string msid)
         {
+            var userId = @System.Web.HttpContext.Current.User.Identity.Name.Replace("SPRINGER-SBM\\", "");
             try
             {
-                _reviewerIndexDBRepositoriesReadSite.SaveReviewersSuggestionInfo(key, rowNum, reviewerMasterId, user,
+                _reviewerIndexDBRepositoriesReadSite.SaveReviewersSuggestionInfo(key, rowNum, reviewerMasterId, userId,
                     chk, isAssociateFinalSubmit, articleTitle, msid);
                 return Json(true, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {
                 StringBuilder str = new StringBuilder();
-                str.Append("Exception occured while saving/submitting the reviewer details : reviewer ID - " + reviewerMasterId + ", user : " + user + " , articleTitle : " + articleTitle + " isAssociateFinalSubmit " + isAssociateFinalSubmit + ".");
+                str.Append("Exception occured while saving/submitting the reviewer details : reviewer ID - " + reviewerMasterId + ", user : " + userId + " , articleTitle : " + articleTitle + " isAssociateFinalSubmit " + isAssociateFinalSubmit + ".");
                 _logger.LogException(ex, str);
                 throw;
             }
