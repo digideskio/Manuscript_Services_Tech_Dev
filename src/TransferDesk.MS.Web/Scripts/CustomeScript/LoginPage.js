@@ -92,6 +92,8 @@
                             $("#MSID").val(msiddata + ".R" + data1);
                         } else {
                             alert("You can not create revision for open manuscript.");
+                            $("#IsRevision").prop("checked", false);
+                            $("#IsRevision").prop("disabled", true);
                             $("#MSID").val(msiddata);
                         }
                     });

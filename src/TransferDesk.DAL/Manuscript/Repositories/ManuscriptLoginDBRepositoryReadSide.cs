@@ -349,6 +349,17 @@ namespace TransferDesk.DAL.Manuscript.Repositories
                 return true;
         }
 
+        public bool IsMsidOpenForRS(string msid,int servicetypeid)
+        {
+            var id = (from q in manuscriptDataContextRead.ManuscriptLogin
+                      where (q.MSID == msid || q.MSID.Contains(msid + "_R")) && q.ManuscriptStatusId == 7 && q.ServiceTypeStatusId==servicetypeid
+                      select q.MSID).FirstOrDefault();
+            if (id == null || id == "0")
+                return false;
+            else
+                return true;
+        }
+
         public List<pr_GetManuscriptLoginExportJobs_Result> GetManuscriptLoginJobsDetailsForExcel(string strFromDate, string strToDate)
         {
             try
@@ -486,7 +497,7 @@ namespace TransferDesk.DAL.Manuscript.Repositories
         public int CheckMsidRevision(string msid, int id, int serviceTypeStatusId)
         {
 
-            if (IsMsidOpen(msid) == false)
+            if (IsMsidOpenForRS(msid, serviceTypeStatusId) == false)
             {
                 if (id == 0)
                 {
