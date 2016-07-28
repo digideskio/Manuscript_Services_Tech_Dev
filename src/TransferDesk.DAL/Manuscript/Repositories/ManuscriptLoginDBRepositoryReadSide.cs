@@ -298,10 +298,23 @@ namespace TransferDesk.DAL.Manuscript.Repositories
             {
                 var currentServiceTypeId = (from q in manuscriptDataContextRead.ManuscriptBookLogin where q.ID == ID select q.ServiceTypeID).FirstOrDefault();
                 if (Convert.ToInt32(currentServiceTypeId) == serviceTypeId)
-                    return false;
-                manuscripBooktLogin = (from q in manuscriptDataContextRead.ManuscriptBookLogin
-                                       where q.BookMasterID == BookTitleId && q.ChapterNumber == chapterNo && q.ServiceTypeID == serviceTypeId && q.ManuscriptStatusID == 7
-                                       select q.CrestID).Count();
+                {
+                    var result1 = (from d in manuscriptDataContextRead.ManuscriptBookLogin
+                                   where d.BookMasterID == BookTitleId && d.ChapterNumber == chapterNo &&
+                                       d.ServiceTypeID == serviceTypeId && d.ManuscriptStatusID == 7 && d.ID == ID
+                                   select d.CrestID).Count();
+                    if (Convert.ToInt32(result1) > 0)
+                        return false;
+                    else
+                        return true;
+                }
+                else
+
+                    manuscripBooktLogin = (from q in manuscriptDataContextRead.ManuscriptBookLogin
+                        where
+                            q.BookMasterID == BookTitleId && q.ChapterNumber == chapterNo &&
+                            q.ServiceTypeID == serviceTypeId && q.ManuscriptStatusID == 7
+                        select q.CrestID).Count();
 
             }
             if (Convert.ToInt32(manuscripBooktLogin) == 0)
