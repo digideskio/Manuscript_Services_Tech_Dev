@@ -6,6 +6,7 @@ using Entities = TransferDesk.Contracts.ReviewerIndex.Entities;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Core.Objects;
 using TransferDesk.Contracts.ReviewerIndex.ComplexTypes;
+using System.Text;
 
 namespace TransferDesk.DAL.ReviewerIndex.DataContext
 {
@@ -17,12 +18,7 @@ namespace TransferDesk.DAL.ReviewerIndex.DataContext
             : base(ConString)
         {
         }
-
-        //public ReviewerIndexDBContext(string conString)
-        //    : base(conString)
-        //{
-        //    this.context = new ReviewerIndexDBContext(conString);
-        //}
+        
 
         public ReviewerIndexDBContext(ReviewerIndexDBContext context)
         {
@@ -157,8 +153,14 @@ namespace TransferDesk.DAL.ReviewerIndex.DataContext
 
         public virtual string spGetReviewersList(string keySearchOne, string keySearchTwo, string searchCondition, string dDLOneValue, string dDLTwoValue, string reviewersList)
         {
+            StringBuilder stringBuilder = new StringBuilder();
+
             try
             {
+                stringBuilder.AppendLine("INFO DAL :ReviewerIndexDBContext > spGetReviewersList- Execution start");
+                stringBuilder.AppendLine("INFO DAL :spGetReviewersList > keySearchOne:" + keySearchOne + " keySearchTwo:" + keySearchTwo
+                  + " searchCondition:" + searchCondition + " dDLOneValue:" + dDLOneValue + " dDLTwoValue:" + dDLTwoValue + " reviewersList:" + reviewersList);
+
                 var keySearchOneParameter = keySearchOne != null ?
                 new ObjectParameter("KeySearchOne", keySearchOne) :
                 new ObjectParameter("KeySearchOne", typeof(string));
@@ -189,12 +191,9 @@ namespace TransferDesk.DAL.ReviewerIndex.DataContext
             }
             catch (Exception ex)
             {
-                {
-                    throw ex;
-                }
                 throw;
             }
-             }
+        }
 
         public virtual ObjectResult<string> SpGetUser(string userId)
         {

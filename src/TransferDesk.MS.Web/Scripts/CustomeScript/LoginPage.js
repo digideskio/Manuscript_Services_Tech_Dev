@@ -88,10 +88,13 @@
             if (servicetype == 6) {
                 if ($(this).is(":checked")) {
                     $.get(AppPath + "ManuscriptLogin/CheckMSIDForRevision", { "msid": $("#MSID").val(), "serviceTypeStatusId": $("#ServiceTypeID").val() }, function (data1) {
-                        if (data1 != "" || data1 != null) {
+                        if (data1 != "" && data1 != "0" && data1 != null) {
                             $("#MSID").val(msiddata + ".R" + data1);
                         } else {
-                            $("#MSID").val();
+                            alert("You can not create revision for open manuscript.");
+                            $("#IsRevision").prop("checked", false);
+                            $("#IsRevision").prop("disabled", true);
+                            $("#MSID").val(msiddata);
                         }
                     });
                 }

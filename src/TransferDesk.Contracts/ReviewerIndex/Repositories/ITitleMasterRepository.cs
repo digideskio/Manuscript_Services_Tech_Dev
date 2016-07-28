@@ -9,9 +9,7 @@ namespace TransferDesk.Contracts.ReviewerIndex.Repositories
     public interface ITitleMasterRepository: IDisposable
     {
         int? AddTitleMaster(Entities.TitleMaster titleMaster);
-        void UpdateTitleMaster(Entities.TitleMaster titleMaster);
-        //void DeleteTitleMaster(Entities.TitleMaster titleMaster);
-
+        void UpdateTitleMaster(Entities.TitleMaster titleMaster);       
         void SaveChanges();
     }
 }

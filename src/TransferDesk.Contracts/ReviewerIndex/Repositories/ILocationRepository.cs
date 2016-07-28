@@ -10,8 +10,6 @@ namespace TransferDesk.Contracts.ReviewerIndex.Repositories
     {
         int? AddLocation(Entities.Location location);
         void UpdateLocation(Entities.Location location);
-        //void DeleteLocation(Entities.Location location);
-
         void SaveChanges();
     }
 }

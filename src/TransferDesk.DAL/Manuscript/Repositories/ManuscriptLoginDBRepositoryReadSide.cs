@@ -298,10 +298,23 @@ namespace TransferDesk.DAL.Manuscript.Repositories
             {
                 var currentServiceTypeId = (from q in manuscriptDataContextRead.ManuscriptBookLogin where q.ID == ID select q.ServiceTypeID).FirstOrDefault();
                 if (Convert.ToInt32(currentServiceTypeId) == serviceTypeId)
-                    return false;
-                manuscripBooktLogin = (from q in manuscriptDataContextRead.ManuscriptBookLogin
-                                       where q.BookMasterID == BookTitleId && q.ChapterNumber == chapterNo && q.ServiceTypeID == serviceTypeId && q.ManuscriptStatusID == 7
-                                       select q.CrestID).Count();
+                {
+                    var result1 = (from d in manuscriptDataContextRead.ManuscriptBookLogin
+                                   where d.BookMasterID == BookTitleId && d.ChapterNumber == chapterNo &&
+                                       d.ServiceTypeID == serviceTypeId && d.ManuscriptStatusID == 7 && d.ID == ID
+                                   select d.CrestID).Count();
+                    if (Convert.ToInt32(result1) > 0)
+                        return false;
+                    else
+                        return true;
+                }
+                else
+
+                    manuscripBooktLogin = (from q in manuscriptDataContextRead.ManuscriptBookLogin
+                        where
+                            q.BookMasterID == BookTitleId && q.ChapterNumber == chapterNo &&
+                            q.ServiceTypeID == serviceTypeId && q.ManuscriptStatusID == 7
+                        select q.CrestID).Count();
 
             }
             if (Convert.ToInt32(manuscripBooktLogin) == 0)
@@ -329,6 +342,17 @@ namespace TransferDesk.DAL.Manuscript.Repositories
         {
             var id = (from q in manuscriptDataContextRead.ManuscriptLogin
                       where (q.MSID == msid || q.MSID.Contains(msid + "_R")) && q.ManuscriptStatusId == 7
+                      select q.MSID).FirstOrDefault();
+            if (id == null || id == "0")
+                return false;
+            else
+                return true;
+        }
+
+        public bool IsMsidOpenForRS(string msid,int servicetypeid)
+        {
+            var id = (from q in manuscriptDataContextRead.ManuscriptLogin
+                      where (q.MSID == msid || q.MSID.Contains(msid + "_R")) && q.ManuscriptStatusId == 7 && q.ServiceTypeStatusId==servicetypeid
                       select q.MSID).FirstOrDefault();
             if (id == null || id == "0")
                 return false;
@@ -473,7 +497,7 @@ namespace TransferDesk.DAL.Manuscript.Repositories
         public int CheckMsidRevision(string msid, int id, int serviceTypeStatusId)
         {
 
-            if (IsMsidOpen(msid) == false)
+            if (IsMsidOpenForRS(msid, serviceTypeStatusId) == false)
             {
                 if (id == 0)
                 {
@@ -489,7 +513,12 @@ namespace TransferDesk.DAL.Manuscript.Repositories
                                              where q.MSID.Contains(msid + ".R")
                                              orderby q.Revision descending
                                              select q.Revision).ToList();
-                        var revisionnumber = Convert.ToInt32(revisionvalue.First());
+                        int revisionnumber;
+                        if (revisionvalue.Count == 0)
+                            revisionnumber = 0;
+                        else
+                        revisionnumber = Convert.ToInt32(revisionvalue.First());
+
                         if (CheckIntergerIsNullorEmpty(revisionnumber))                         
                         {
                             return (revisionnumber + 1);
@@ -512,7 +541,11 @@ namespace TransferDesk.DAL.Manuscript.Repositories
                                              where q.MSID.Contains(msid + ".R")
                                              orderby q.Revision descending
                                              select q.Revision).ToList();
-                        var revisionnumber = Convert.ToInt32(revisionvalue.First());
+                        int revisionnumber;
+                        if (revisionvalue.Count == 0)
+                            revisionnumber = 0;
+                        else
+                            revisionnumber = Convert.ToInt32(revisionvalue.First());
                         if (CheckIntergerIsNullorEmpty(revisionnumber))
                         {
                             return (revisionnumber + 1);
