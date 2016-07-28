@@ -271,7 +271,7 @@ namespace TransferDesk.MS.Web.Controllers
         }
 
         public bool IsMsidAvaialable(string msid, int serviceTypeStatusId)
-        {
+            {
             return ManuscriptLoginDbRepositoryReadSide.IsMSIDAvailable(msid, 0, serviceTypeStatusId);
         }
 
@@ -446,17 +446,14 @@ namespace TransferDesk.MS.Web.Controllers
 
         public int CheckMSIDForRevision(string msid, int serviceTypeStatusId)
         {
-            try
-            {          
+                    
             if (ValidateMsidIsOpen(msid) == false)
             {
                 return ManuscriptLoginDbRepositoryReadSide.CheckMsidRevision(msid, 0, serviceTypeStatusId);
-            }           
-                return 0;
             }
-            catch (Exception)
+            else
             {
-                throw;
+                return 0;
             }
         }
     }
