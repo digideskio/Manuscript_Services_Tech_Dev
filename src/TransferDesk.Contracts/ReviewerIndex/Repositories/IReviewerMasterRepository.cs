@@ -10,8 +10,6 @@ namespace TransferDesk.Contracts.ReviewerIndex.Repositories
     {
         int? AddReviewerMaster(Entities.ReviewerMaster reviewerMaster);
         void UpdateReviewerMaster(Entities.ReviewerMaster reviewerMaster);
-        //void DeleteReviewerMaster(Entities.ReviewerMaster reviewerMaster);
-
         void SaveChanges();
     }
 }

@@ -129,14 +129,8 @@ namespace TransferDesk.MS.Web.Controllers
                 int totalCount = 0;
                 List<pr_GetReviewersList> searchResult = new List<pr_GetReviewersList>();
                 var userId = @System.Web.HttpContext.Current.User.Identity.Name.Replace("SPRINGER-SBM\\", "");
-                if (minValue == string.Empty)
-                {
-                    minValue = null;
-                }
-                if (maxValue == string.Empty)
-                {
-                    maxValue = null;
-                }
+                minValue = minValue == string.Empty ? null : minValue;
+                maxValue = maxValue == string.Empty ? null : maxValue;
 
                 if (NewSearch || Session["SearchResult"] == null)
                 {
@@ -357,13 +351,13 @@ namespace TransferDesk.MS.Web.Controllers
                 var userId = @System.Web.HttpContext.Current.User.Identity.Name.Replace("SPRINGER-SBM\\", "");
                 if (!string.IsNullOrEmpty(term))
                 {
-                    var JournalList = _reviewerIndexDBContext.Journal.Where(o => o.JournalTitle.ToLower().Contains(term.ToLower())).ToList();
+                    var JournalList = _reviewerIndexDBContext.Journal.Where(o => o.JournalTitle.ToLower().Contains(term.ToLower())).OrderBy(o => o.JournalTitle).ToList();
                     _logger.Log(userId, "Info : Method Name - GetJournal : term-" + term + "& Journal count" + JournalList.Count);
                     return Json(JournalList, JsonRequestBehavior.AllowGet);
                 }
                 else
                 {
-                    var JournalList = _reviewerIndexDBContext.Journal.ToList();
+                    var JournalList = _reviewerIndexDBContext.Journal.OrderBy(o => o.JournalTitle).ToList();
                     _logger.Log(userId, "Info : Method Name - GetJournal : term-" + term + "& Journal count" + JournalList.Count);
                     return Json(JournalList, JsonRequestBehavior.AllowGet);
                 }
@@ -411,7 +405,7 @@ namespace TransferDesk.MS.Web.Controllers
             try
             {
                 var userId = @System.Web.HttpContext.Current.User.Identity.Name.Replace("SPRINGER-SBM\\", "");
-                var secondaryExpertiesList = _reviewerIndexDBContext.AreaOfExpertiseMaster.Where(o => o.ParentID == primaryParentID).ToList();
+                var secondaryExpertiesList = _reviewerIndexDBContext.AreaOfExpertiseMaster.Where(o => o.ParentID == primaryParentID).OrderBy(o => o.Name).ToList();
                 _logger.Log(userId, "Info : Method Name - GetSecondaryExpertise : SecondaryExpertise count" + secondaryExpertiesList.Count);
                 return Json(secondaryExpertiesList, JsonRequestBehavior.AllowGet);
             }
@@ -432,7 +426,7 @@ namespace TransferDesk.MS.Web.Controllers
             try
             {
                 var userId = @System.Web.HttpContext.Current.User.Identity.Name.Replace("SPRINGER-SBM\\", "");
-                var tertiaryExpertiesList = _reviewerIndexDBContext.AreaOfExpertiseMaster.Where(o => o.ParentID == secondaryParentID).ToList();
+                var tertiaryExpertiesList = _reviewerIndexDBContext.AreaOfExpertiseMaster.Where(o => o.ParentID == secondaryParentID).OrderBy(o => o.Name).ToList();
                 _logger.Log(userId, "Info : Method Name - GetTertiaryExpertise : tertiaryExperties count" + tertiaryExpertiesList.Count);
                 return Json(tertiaryExpertiesList, JsonRequestBehavior.AllowGet);
             }

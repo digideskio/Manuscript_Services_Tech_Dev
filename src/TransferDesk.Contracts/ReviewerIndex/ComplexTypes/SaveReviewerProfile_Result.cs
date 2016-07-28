@@ -35,20 +35,13 @@ namespace TransferDesk.Contracts.ReviewerIndex.ComplexTypes
         public List<TitleReviewerlinkMaster_Result> TitleMaster { get; set; }       
         public List<AreaOfExpReviewerlink_Result> AreaOfExpReviewerlink { get; set; }
 
-        //public List<TitleAndAffillationMaster_Result> AffillationMastert { get; set; }
-        //public List<AreaOfExpertise_Result> AreaOfExpertise{ get; set; }
-
         public SaveReviewerProfile_Result()
         {
             ReviewerEmails = new List<ReviewerEmails_Result>();
             ReferenceLink = new List<ReferenceLink_Result>();
             Journal = new List<Journal_Result>();
             TitleMaster = new List<TitleReviewerlinkMaster_Result>();
-            AreaOfExpReviewerlink = new List<AreaOfExpReviewerlink_Result>();
-
-            //AffillationMastert = new List<TitleAndAffillationMaster_Result>();
-            //AreaOfExpertise = new List<AreaOfExpertise_Result>();
-        
+            AreaOfExpReviewerlink = new List<AreaOfExpReviewerlink_Result>();        
         }
     }
 }
