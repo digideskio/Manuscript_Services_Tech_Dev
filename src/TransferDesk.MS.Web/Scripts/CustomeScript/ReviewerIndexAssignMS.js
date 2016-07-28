@@ -45,7 +45,7 @@ $(document).ready(function () {
             $("#btnAssignMS").attr('disabled', true);
             $("#btnSubmitFinal").attr('disabled', true);
         }
-        $('#chkIsRevision').attr('checked', false); 
+        $('#chkIsRevision').attr('checked', false);
     });
 
 
@@ -75,7 +75,7 @@ function saveSubmitReviewers(isAssociateFinalSubmit) {
     var jobType = $('input[type="radio"]:checked').val();
     var articleTitle = $('#txtArticleTitle').val();
     var ddlJournalTitle = $('#ddlJournalTitle option:selected').val();
-    var user = "sam1546";
+    var user = "";
     var rowCount = 0;
     var totRows = 0;
     $('#tableTemplateMSPopup_tr tr').each(function (i, rows) {
@@ -233,6 +233,7 @@ function DisplayManuscriptDetails(key, msid, reviewerIds) {
             $("#tableTemplateMSPopup_tr").append($("#tableTemplateMSPopup").render(response));
 
             if (response.length > 0) {
+
                 var msid = response[response.length - 1].msid == "" ? $('#txtManuscriptID').val() : $('#txtManuscriptID').val();
                 $('#txtManuscriptID').val(msid);
 

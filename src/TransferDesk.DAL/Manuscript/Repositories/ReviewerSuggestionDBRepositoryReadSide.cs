@@ -58,25 +58,25 @@ namespace TransferDesk.DAL.Manuscript.Repositories
 
         public List<Entities.MSReviewersSuggestionInfo> GetMSReviewers(int msReviewersSuggestionId, string msid)
         {
-            //var msReviewersSuggestionInfo = new List<Entities.MSReviewersSuggestionInfo>();
-            //var result = (from q in ReviewerSuggestionDataContextRead.MSReviewersSuggestionInfo
-            //              where q.MSReviewersSuggestionID == msReviewersSuggestionId && q.IsAssociateFinalSubmit == true
-                          
-            //              orderby q.IsAssociateFinalSubmit ascending, q.AnalystSubmissionDate descending
-            //              select q).ToList();
-            //msReviewersSuggestionInfo.AddRange(result);
-            //return msReviewersSuggestionInfo;
-
             var msReviewersSuggestionInfo = new List<Entities.MSReviewersSuggestionInfo>();
-            var msReviewersSuggestion = new List<Entities.MSReviewersSuggestion>();
-            var result = (from q in ReviewerSuggestionDataContextRead.MSReviewersSuggestionInfo 
-                          join s in ReviewerSuggestionDataContextRead.MSReviewersSuggestion 
-                          on q.MSReviewersSuggestionID equals s.ID 
+            var result = (from q in ReviewerSuggestionDataContextRead.MSReviewersSuggestionInfo
+                          where q.MSReviewersSuggestionID == msReviewersSuggestionId && q.IsAssociateFinalSubmit == true
+
                           orderby q.IsAssociateFinalSubmit ascending, q.AnalystSubmissionDate descending
-                          where (s.MSID.Equals(msid) || s.MSID.StartsWith(msid + ".")) 
                           select q).ToList();
             msReviewersSuggestionInfo.AddRange(result);
             return msReviewersSuggestionInfo;
+
+            ////var msReviewersSuggestionInfo = new List<Entities.MSReviewersSuggestionInfo>();
+            ////var msReviewersSuggestion = new List<Entities.MSReviewersSuggestion>();
+            ////var result = (from q in ReviewerSuggestionDataContextRead.MSReviewersSuggestionInfo
+            ////              join s in ReviewerSuggestionDataContextRead.MSReviewersSuggestion
+            ////              on q.MSReviewersSuggestionID equals s.ID
+            ////              orderby q.IsAssociateFinalSubmit ascending, q.AnalystSubmissionDate descending
+            ////              where (s.MSID.Equals(msid) || s.MSID.StartsWith(msid + "."))
+            ////              select q).ToList();
+            ////msReviewersSuggestionInfo.AddRange(result);
+            ////return msReviewersSuggestionInfo;
 
         }
 
